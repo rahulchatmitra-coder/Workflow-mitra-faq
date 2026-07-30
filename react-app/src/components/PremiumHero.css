@@ -1,0 +1,637 @@
+/* ============================================
+   Gumloop-Style Agents Showcase Section
+   ============================================ */
+
+.gum-agents-section {
+  padding: 100px 0 120px;
+  background: #fafafa;
+  position: relative;
+}
+
+.gum-agents-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ========================
+   LEFT SIDE
+   ======================== */
+.gum-agents-left {
+  position: sticky;
+  top: 100px;
+}
+
+.gum-agents-title {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #0a0a0a;
+  margin-bottom: 40px;
+}
+
+/* Agent Navigation List */
+.gum-agents-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gum-agent-item {
+  padding: 14px 0;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.gum-agent-item:not(:last-child) {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.gum-agent-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #a3a3a3;
+  margin: 0;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+
+.gum-agent-item:hover .gum-agent-name {
+  color: #525252;
+}
+
+.gum-agent-item.active .gum-agent-name {
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+/* Expanded Agent Details */
+.gum-agent-expanded {
+  overflow: hidden;
+}
+
+.gum-agent-expanded-inner {
+  display: flex;
+  gap: 16px;
+  padding-top: 16px;
+  align-items: flex-start;
+}
+
+.gum-agent-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gum-agent-icon {
+  font-size: 22px;
+}
+
+.gum-agent-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.gum-agent-details-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 0 0 6px 0;
+}
+
+.gum-agent-details-desc {
+  font-size: 14px;
+  color: #737373;
+  line-height: 1.55;
+  margin: 0 0 12px 0;
+}
+
+.gum-agent-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gum-avatars {
+  display: flex;
+}
+
+.gum-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  margin-left: -6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gum-avatar:first-child {
+  margin-left: 0;
+}
+
+.gum-team-label {
+  font-size: 12px;
+  color: #ec4899;
+  font-weight: 500;
+}
+
+/* ========================
+   RIGHT SIDE
+   ======================== */
+.gum-agents-right {
+  position: relative;
+  min-height: 600px;
+}
+
+.gum-demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* User Message Bubble */
+.gum-user-bubble {
+  position: relative;
+  background: #f1f1f3;
+  border-radius: 16px;
+  border-top-right-radius: 6px;
+  padding: 14px 50px 14px 18px;
+  margin-left: auto;
+  max-width: 75%;
+  margin-bottom: 16px;
+}
+
+.gum-user-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0a0a0a;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.gum-user-avatar {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Response Card */
+.gum-response-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  position: relative;
+}
+
+/* Response Header */
+.gum-response-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.gum-response-chevron {
+  font-size: 16px;
+  color: #a3a3a3;
+  font-weight: 300;
+  transform: rotate(90deg);
+  display: inline-block;
+}
+
+.gum-response-brand {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+/* Response Meta (step icons + count) */
+.gum-response-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
+
+.gum-step-icons {
+  display: flex;
+  gap: -4px;
+}
+
+.gum-step-icon {
+  font-size: 14px;
+  margin-right: -2px;
+}
+
+.gum-step-count {
+  font-size: 13px;
+  color: #737373;
+  font-weight: 500;
+}
+
+/* Response Body */
+.gum-response-body {
+  padding-left: 0;
+}
+
+.gum-response-heading {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0a0a0a;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+/* Content Blocks */
+.gum-content-block {
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #0a0a0a;
+}
+
+.gum-content-block:last-child {
+  margin-bottom: 0;
+}
+
+.gum-content-block > strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.gum-sub-text {
+  font-size: 12px;
+  color: #737373;
+  margin: 2px 0 12px 0;
+  line-height: 1.4;
+}
+
+/* Red Dot Title */
+.gum-red-dot-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.gum-red-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  flex-shrink: 0;
+}
+
+/* Tables */
+.gum-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.gum-table th {
+  background: #f9fafb;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 12px;
+}
+
+.gum-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.gum-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.gum-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+/* Horizontal Bar Charts */
+.gum-bar-chart-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.gum-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gum-bar-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  min-width: 100px;
+  text-align: right;
+}
+
+.gum-bar-track {
+  flex: 1;
+  height: 28px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.gum-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gum-bar-fill span {
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+}
+
+.gum-bar-blue {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.gum-bar-purple {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+
+.gum-bar-green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+/* Ticket Block */
+.gum-ticket-block {
+  line-height: 1.6;
+}
+
+.gum-ticket-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.gum-ticket-icon {
+  font-size: 16px;
+}
+
+.gum-ticket-meta {
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.gum-ticket-meta code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #1f2937;
+}
+
+.gum-ticket-summary {
+  font-size: 13px;
+  color: #374151;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.gum-logged-details {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.gum-logged-details ul {
+  margin: 6px 0 0 20px;
+  padding: 0;
+  font-size: 13px;
+  color: #374151;
+}
+
+.gum-logged-details li {
+  margin-bottom: 2px;
+}
+
+.gum-follow-up {
+  font-size: 13px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Stage Grid (Call Analysis) */
+.gum-stage-grid {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.gum-stage-header {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #6b7280;
+  font-weight: 600;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.gum-stage-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.gum-stage-label {
+  font-weight: 500;
+  color: #374151;
+  font-size: 12px;
+}
+
+.gum-stage-cell {
+  background: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  color: #374151;
+  font-size: 12px;
+}
+
+.gum-stage-high {
+  background: #8b5cf6;
+  color: white;
+  border-radius: 6px;
+}
+
+/* Checklist */
+.gum-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.gum-checklist li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.gum-checklist li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #8b5cf6;
+  font-weight: 700;
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+@media (max-width: 1200px) {
+  .gum-agents-container {
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
+    padding: 0 32px;
+  }
+
+  .gum-agents-title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gum-agents-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .gum-agents-left {
+    position: relative;
+    top: 0;
+  }
+
+  .gum-agents-right {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gum-agents-section {
+    padding: 64px 0 80px;
+  }
+
+  .gum-agents-container {
+    padding: 0 20px;
+    gap: 32px;
+  }
+
+  .gum-agents-title {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+
+  .gum-agent-name {
+    font-size: 16px;
+  }
+
+  .gum-user-bubble {
+    max-width: 90%;
+  }
+
+  .gum-response-card {
+    padding: 20px;
+  }
+
+  .gum-bar-label {
+    min-width: 70px;
+    font-size: 11px;
+  }
+
+  .gum-stage-header,
+  .gum-stage-row {
+    grid-template-columns: 100px 1fr 1fr 1fr;
+    gap: 4px;
+  }
+
+  .gum-stage-label {
+    font-size: 11px;
+  }
+
+  .gum-stage-cell {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gum-agents-title {
+    font-size: 28px;
+  }
+
+  .gum-table th,
+  .gum-table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .gum-stage-header,
+  .gum-stage-row {
+    grid-template-columns: 80px 1fr 1fr 1fr;
+  }
+}

@@ -1,0 +1,19 @@
+.flowmitra-logo-full,
+.flowmitra-logo-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.flowmitra-logo-full {
+  color: var(--color-foreground);
+}
+
+.flowmitra-logo-icon {
+  color: var(--color-primary);
+}
+
+/* Dark backgrounds */
+.flowmitra-logo-full.on-dark,
+.flowmitra-logo-icon.on-dark {
+  color: var(--color-background);
+}
