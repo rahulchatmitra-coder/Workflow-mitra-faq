@@ -13,19 +13,19 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
   padding: var(--space-3) var(--space-6);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .badge-new {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
+  background: rgba(236, 72, 153, 0.2);
+  color: #831843;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 11px;
@@ -34,7 +34,7 @@
 }
 
 .badge-text {
-  color: white;
+  color: #831843;
   font-size: 14px;
   font-weight: 500;
 }
@@ -42,7 +42,7 @@
 /* Templates Section */
 .templates-section {
   padding: var(--space-20) 0;
-  background: #fafafa;
+  background: transparent;
 }
 
 .section-header {
@@ -83,7 +83,7 @@
 }
 
 .tab-btn.active {
-  background: #0a0a0a;
+  background: #111111;
   color: white;
   border-color: #0a0a0a;
 }
@@ -216,7 +216,7 @@
 
 .btn-use {
   padding: var(--space-2) var(--space-5);
-  background: #0a0a0a;
+  background: #111111;
   color: white;
   border: none;
   border-radius: var(--radius-md);
@@ -255,7 +255,7 @@
 /* Stats Section */
 .stats-section {
   padding: var(--space-24) 0;
-  background: #fafafa;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -328,7 +328,7 @@
 /* CTA Section */
 .cta-section {
   padding: var(--space-24) 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #111111 0%, #222222 100%);
   color: white;
 }
 
@@ -365,7 +365,7 @@
 }
 
 .cta-section .btn-primary:hover {
-  background: #f5f5f5;
+  background: #ffffff;
 }
 
 .cta-section .btn-secondary {

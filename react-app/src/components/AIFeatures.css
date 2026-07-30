@@ -2,7 +2,7 @@
 
 .ai-features-section {
   padding: var(--space-24) 0;
-  background: #fafafa;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }

@@ -1,17 +1,17 @@
 /* ============================================
-   Make.com-Style Integrations Showcase Section
+   n8n-Style Integrations Showcase Section
    ============================================ */
 
-.make-integrations-section {
+.n8n-integrations-section {
   padding: 100px 0;
-  background: transparent; /* Use the original background */
+  background: transparent; /* Inherit the page's original background */
   position: relative;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-.make-integrations-container {
-  max-width: 1200px;
+.n8n-integrations-container {
+  max-width: 1000px;
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -20,32 +20,32 @@
 }
 
 /* Header */
-.make-header {
+.n8n-header {
   text-align: center;
   margin-bottom: 60px;
   padding: 0 24px;
 }
 
-.make-title {
-  font-size: 42px;
-  font-weight: 800;
+.n8n-title {
+  font-size: 46px;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 24px;
-  color: #171131; /* Deep navy/purple-black typical of Make */
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: inherit; /* Adjusts well on both light and dark if parent provides color */
 }
 
-.make-subtitle {
-  font-size: 18px;
-  color: #5c5970;
-  max-width: 760px;
+.n8n-subtitle {
+  font-size: 16px;
+  color: #7a7a8c;
+  max-width: 600px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 400;
 }
 
 /* Carousel Wrapper */
-.make-carousel-wrapper {
+.n8n-carousel-wrapper {
   position: relative;
   width: 100vw;
   max-width: 100%;
@@ -54,69 +54,79 @@
   overflow: hidden;
   padding: 20px 0;
   margin-bottom: 40px;
-}
-
-/* The Track */
-.make-carousel-track {
   display: flex;
-  gap: 24px;
-  width: max-content;
-  animation: make-marquee 40s linear infinite;
+  flex-direction: column;
+  gap: 16px; /* Space between rows */
 }
 
-.make-carousel-wrapper:hover .make-carousel-track {
+/* The Tracks */
+.n8n-carousel-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+
+/* Move Left Animation */
+.n8n-move-left {
+  animation: n8n-marquee-left 40s linear infinite;
+}
+
+/* Move Right Animation */
+.n8n-move-right {
+  animation: n8n-marquee-right 40s linear infinite;
+  /* Shift initial position slightly so rows look staggered */
+  transform: translateX(-50%);
+}
+
+.n8n-carousel-wrapper:hover .n8n-carousel-track {
   animation-play-state: paused;
 }
 
-@keyframes make-marquee {
+@keyframes n8n-marquee-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* App Cards (White pills) */
-.make-app-card {
-  width: 160px;
-  height: 160px;
+@keyframes n8n-marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* App Cards (n8n Style) */
+.n8n-app-card {
+  width: 72px;
+  height: 72px;
   background: #ffffff;
-  border-radius: 32px; /* Very rounded like Make */
+  border-radius: 18px; /* Rounded squares */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
   cursor: pointer;
   flex-shrink: 0;
 }
 
-.make-app-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.08);
+/* Bright, clean hover state for light mode cards */
+.n8n-app-card:hover {
+  transform: scale(1.05);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.make-app-icon {
+.n8n-app-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-}
-
-.make-app-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #5c5970;
-  text-align: center;
-  max-width: 90%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 32px;
+  height: 32px;
+  color: #181717; /* Default icon color if not specified */
 }
 
 /* Edge Fades */
-.make-fade {
+.n8n-fade {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -125,87 +135,96 @@
   pointer-events: none;
 }
 
-.make-fade-left {
+/* We use a mask or linear gradient matching the transparent background */
+.n8n-fade-left {
   left: 0;
-  /* Assumes original bg is white or light gray. Using white fade */
-  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to right, var(--bg-color, #ffffff) 0%, transparent 100%);
+  /* Since we don't know the exact parent bg, a subtle fade or mask works best */
+  mask-image: linear-gradient(to right, black, transparent);
+  -webkit-mask-image: linear-gradient(to right, black, transparent);
+  background: inherit;
 }
 
-.make-fade-right {
+.n8n-fade-right {
   right: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to left, var(--bg-color, #ffffff) 0%, transparent 100%);
+  mask-image: linear-gradient(to left, black, transparent);
+  -webkit-mask-image: linear-gradient(to left, black, transparent);
+  background: inherit;
 }
 
 /* Call to Action */
-.make-cta-container {
-  margin-top: 20px;
+.n8n-cta-container {
+  margin-top: 24px;
 }
 
-.make-btn {
+.n8n-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #A800FF, #D700C3);
+  background: #ff5033; /* n8n vibrant orange/red */
   color: white;
   text-decoration: none;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
 }
 
-.make-btn:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(168, 0, 255, 0.3);
+.n8n-btn:hover {
+  background: #ff6a52;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 80, 51, 0.3);
 }
 
 /* ========================
    RESPONSIVE
    ======================== */
 @media (max-width: 1024px) {
-  .make-title {
-    font-size: 36px;
+  .n8n-title {
+    font-size: 38px;
   }
 }
 
 @media (max-width: 768px) {
-  .make-integrations-section {
+  .n8n-integrations-section {
     padding: 80px 0;
   }
 
-  .make-title {
+  .n8n-title {
     font-size: 32px;
   }
 
-  .make-subtitle {
-    font-size: 16px;
+  .n8n-subtitle {
+    font-size: 15px;
   }
 
-  .make-app-card {
-    width: 130px;
-    height: 130px;
-    border-radius: 24px;
+  .n8n-app-card {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
   }
 
-  .make-app-icon {
+  .n8n-app-icon {
     transform: scale(0.85);
   }
 
-  .make-fade {
+  .n8n-fade {
     width: 80px;
   }
 }
 
 @media (max-width: 480px) {
-  .make-title {
+  .n8n-title {
     font-size: 28px;
   }
   
-  .make-app-card {
-    width: 120px;
-    height: 120px;
+  .n8n-app-card {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
   }
 }

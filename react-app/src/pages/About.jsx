@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './About.css'
 
 function About() {
@@ -65,12 +66,8 @@ function About() {
           <div className="team-grid">
             {team.map((member, index) => (
               <div key={index} className="team-card">
-                <div className="team-avatar">
-                  <svg width="80" height="80" viewBox="0 0 80 80">
-                    <circle cx="40" cy="40" r="40" fill="#f0f0f0"/>
-                    <circle cx="40" cy="32" r="12" fill="#d0d0d0"/>
-                    <path d="M20 64C20 52 28 44 40 44C52 44 60 52 60 64" fill="#d0d0d0"/>
-                  </svg>
+                <div className="team-avatar" style={{ background: ['#8B5CF6', '#3B82F6', '#EC4899', '#10B981'][index], width: 80, height: 80, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ color: 'white', fontSize: '28px', fontWeight: 700 }}>{member.name.split(' ').map(n => n[0]).join('')}</span>
                 </div>
                 <h3>{member.name}</h3>
                 <div className="role">{member.role}</div>
@@ -85,7 +82,7 @@ function About() {
         <div className="container">
           <h2>Join Us on Our Journey</h2>
           <p>We're always looking for talented people to join our team</p>
-          <a href="/contact" className="btn btn-primary btn-large">Get in Touch</a>
+          <Link to="/contact" className="btn btn-primary btn-large">Get in Touch</Link>
         </div>
       </section>
     </div>

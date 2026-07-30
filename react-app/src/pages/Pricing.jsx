@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Pricing.css'
 
 function Pricing() {
@@ -93,12 +94,12 @@ function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <a 
-                  href="/contact" 
+                <Link 
+                  to="/contact" 
                   className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-secondary'} btn-large btn-full`}
                 >
                   {plan.cta}
-                </a>
+                </Link>
               </div>
             ))}
           </div>

@@ -8,10 +8,11 @@ function Contact() {
     company: '',
     message: ''
   })
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert('Thank you! We will get back to you soon.')
+    setIsSubmitted(true)
     setFormData({ name: '', email: '', company: '', message: '' })
   }
 
@@ -109,9 +110,17 @@ function Contact() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-large btn-full">
-                  Send Message
-                </button>
+                {isSubmitted ? (
+                  <div style={{ textAlign: 'center', padding: '2rem', background: '#f0fdf4', borderRadius: '12px', border: '1px solid #bbf7d0' }}>
+                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✓</div>
+                    <p style={{ fontWeight: 600, color: '#166534', marginBottom: '0.25rem' }}>Message sent successfully!</p>
+                    <p style={{ color: '#4b5563', fontSize: '0.9rem' }}>We'll get back to you within 24 hours.</p>
+                  </div>
+                ) : (
+                  <button type="submit" className="btn btn-primary btn-large btn-full">
+                    Send Message
+                  </button>
+                )}
               </form>
             </div>
           </div>

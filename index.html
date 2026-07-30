@@ -1,403 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Build intelligent AI automation workflows for your business. Streamline operations with no-code AI agents.">
-    <meta name="keywords" content="AI automation, workflow automation, no-code AI, business automation, AI agents">
-    <meta name="author" content="FlowMitra">
-    <meta name="theme-color" content="#000000">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://flowmitra.com/">
-    <meta property="og:title" content="FlowMitra - Build AI Agents for Work">
-    <meta property="og:description" content="Build intelligent AI automation workflows for your business. Streamline operations with no-code AI agents.">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://flowmitra.com/">
-    <meta property="twitter:title" content="FlowMitra - Build AI Agents for Work">
-    <meta property="twitter:description" content="Build intelligent AI automation workflows for your business. Streamline operations with no-code AI agents.">
-    
-    <title>FlowMitra - Build AI Agents for Work</title>
-    
-    <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23000'/><path d='M16 8L24 16L16 24L8 16L16 8Z' fill='%23fff'/></svg>">
-    
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlowMitra - Automate with AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;
+      --border:rgba(255,255,255,0.08);--accent:#7c5cfc;
+      --accent2:#a78bfa;--accent3:#06b6d4;
+      --text:#f1f0ff;--muted:#8b8aa0;
+      --card:rgba(255,255,255,0.04);--glow:rgba(124,92,252,0.25)
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(10,10,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-size:1.35rem;font-weight:800;color:var(--text);text-decoration:none}
+    .logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+
+    /* BUTTONS */
+    .btn{padding:9px 20px;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;border:none;font-family:inherit}
+    .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+    .btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#5b3fd4);color:#fff;box-shadow:0 0 20px var(--glow)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(124,92,252,.4)}
+    .btn-lg{padding:14px 28px;font-size:1rem;border-radius:10px}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,92,252,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(6,182,212,.1) 0%,transparent 60%)}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,252,.12);border:1px solid rgba(124,92,252,.3);border-radius:100px;padding:6px 16px;font-size:.8rem;color:var(--accent2);font-weight:600;margin-bottom:28px;position:relative;z-index:1}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+    .hero h1{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;max-width:900px;position:relative;z-index:1;margin-bottom:24px}
+    .gradient-text{background:linear-gradient(135deg,var(--accent2) 0%,var(--accent3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--muted);max-width:600px;margin-bottom:40px;position:relative;z-index:1}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;margin-bottom:64px}
+    .hero-social-proof{display:flex;align-items:center;gap:12px;position:relative;z-index:1;color:var(--muted);font-size:.85rem}
+    .avatars{display:flex}
+    .avatars span{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+    .avatars span:first-child{margin-left:0}
+
+    /* CANVAS */
+    .canvas-preview{position:relative;z-index:1;width:100%;max-width:1000px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 60px var(--glow);margin-top:20px}
+    .canvas-topbar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:var(--bg2);border-bottom:1px solid var(--border)}
+    .canvas-dot{width:12px;height:12px;border-radius:50%}
+    .canvas-body{padding:40px 30px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;min-height:260px;background:radial-gradient(circle at 50% 50%,rgba(124,92,252,.06) 0%,transparent 70%);position:relative}
+    .canvas-body::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px}
+    .flow-node{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;min-width:140px;text-align:center;position:relative;z-index:1;transition:all .3s}
+    .flow-node:hover{border-color:var(--accent);box-shadow:0 0 20px var(--glow);transform:translateY(-2px)}
+    .node-icon{font-size:1.5rem;margin-bottom:6px}
+    .node-label{font-size:.78rem;font-weight:600;color:var(--text)}
+    .node-sub{font-size:.68rem;color:var(--muted);margin-top:2px}
+    .flow-node.active{border-color:var(--accent);box-shadow:0 0 24px var(--glow)}
+    .flow-arrow{display:flex;align-items:center;padding:0 8px;position:relative;z-index:1}
+    .flow-arrow svg{color:var(--accent);opacity:.7}
+
+    /* LOGOS */
+    .logos-section{padding:60px 5%;text-align:center;border-top:1px solid var(--border)}
+    .logos-section p{color:var(--muted);font-size:.85rem;margin-bottom:32px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+    .logos-grid{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+    .logo-item{color:var(--muted);font-size:1rem;font-weight:700;opacity:.5;transition:opacity .2s}
+    .logo-item:hover{opacity:.9}
+
+    /* SECTIONS */
+    section{padding:100px 5%}
+    .section-label{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+    .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;max-width:700px;margin-bottom:20px}
+    .section-desc{color:var(--muted);font-size:1.05rem;max-width:560px;margin-bottom:48px}
+
+    /* FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .feature-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .3s;position:relative;overflow:hidden}
+    .feature-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}
+    .feature-card:hover{border-color:rgba(124,92,252,.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+    .feature-card:hover::before{opacity:1}
+    .feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px}
+    .feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+    .feature-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
+
+    /* STEPS */
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px}
+    .step-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#5b3fd4);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff;margin-bottom:20px;box-shadow:0 0 20px var(--glow)}
+    .step h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+    .step p{color:var(--muted);font-size:.9rem;line-height:1.7}
+
+    /* TEMPLATES */
+    .templates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+    .template-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;cursor:pointer;transition:all .25s}
+    .template-card:hover{border-color:rgba(124,92,252,.4);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+    .template-tag{display:inline-block;background:rgba(124,92,252,.15);color:var(--accent2);border-radius:6px;padding:3px 10px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+    .template-card h3{font-size:.95rem;font-weight:700;margin-bottom:8px}
+    .template-card p{color:var(--muted);font-size:.83rem;line-height:1.6}
+    .template-footer{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+    .template-icons{display:flex;gap:6px;font-size:1.1rem}
+    .template-uses{font-size:.75rem;color:var(--muted)}
+
+    /* PRICING */
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:960px;margin:0 auto}
+    .pricing-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 32px;position:relative;overflow:hidden;transition:all .3s}
+    .pricing-card.popular{border-color:var(--accent);box-shadow:0 0 40px var(--glow)}
+    .popular-badge{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--accent),#5b3fd4);color:#fff;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.08em}
+    .pricing-card h3{font-size:1rem;font-weight:700;color:var(--muted);margin-bottom:12px}
+    .price{font-size:3rem;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+    .price span{font-size:1rem;font-weight:500;color:var(--muted)}
+    .price-desc{color:var(--muted);font-size:.85rem;margin-bottom:28px}
+    .pricing-features{list-style:none;margin-bottom:32px}
+    .pricing-features li{display:flex;align-items:center;gap:10px;font-size:.88rem;padding:8px 0;border-bottom:1px solid var(--border);color:var(--muted)}
+    .pricing-features li:last-child{border-bottom:none}
+    .check{color:#22c55e;font-size:1rem}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+    .testimonial-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .25s}
+    .testimonial-card:hover{border-color:rgba(124,92,252,.3);transform:translateY(-3px)}
+    .stars{color:#f59e0b;font-size:.9rem;margin-bottom:14px}
+    .testimonial-card p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+    .testimonial-author{display:flex;align-items:center;gap:12px}
+    .author-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff}
+    .author-name{font-size:.88rem;font-weight:700}
+    .author-role{font-size:.75rem;color:var(--muted)}
+
+    /* CTA */
+    .cta-section{padding:100px 5%;text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(124,92,252,.15) 0%,transparent 70%)}
+    .cta-section h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-.03em;max-width:700px;margin:0 auto 20px;position:relative;z-index:1}
+    .cta-section p{color:var(--muted);font-size:1.1rem;max-width:500px;margin:0 auto 40px;position:relative;z-index:1}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:60px 5% 40px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+    .footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.7;margin-top:14px;max-width:280px}
+    .footer-col h4{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:10px}
+    .footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s}
+    .footer-col ul li a:hover{color:var(--text)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem;flex-wrap:wrap;gap:12px}
+    .footer-socials{display:flex;gap:16px}
+    .footer-socials a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .2s}
+    .footer-socials a:hover{color:var(--text)}
+
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .7s ease forwards}
+    .delay-1{animation-delay:.1s;opacity:0}
+    .delay-2{animation-delay:.2s;opacity:0}
+    .delay-3{animation-delay:.3s;opacity:0}
+    .delay-4{animation-delay:.4s;opacity:0}
+
+    @media(max-width:768px){.nav-links{display:none}.footer-grid{grid-template-columns:1fr 1fr}.canvas-body{padding:24px 16px}.flow-node{min-width:110px;padding:10px 12px}}
+    @media(max-width:480px){.footer-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:center}}
+  </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="container">
-            <div class="nav-content">
-                <a href="/" class="logo" aria-label="FlowMitra Home">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                        <rect width="32" height="32" rx="8" fill="currentColor" opacity="0.1"/>
-                        <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="currentColor"/>
-                    </svg>
-                    <span>FlowMitra</span>
-                </a>
-                
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                </button>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">&#9889;</div>
+    FlowMitra
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#docs">Docs</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="btn btn-ghost">Sign in</a>
+    <a href="#" class="btn btn-primary">Start Free &rarr;</a>
+  </div>
+</nav>
 
-                <ul class="nav-links" role="list">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge fade-up">
+    <span class="dot"></span> Now with GPT-4o &amp; Gemini support
+  </div>
+  <h1 class="fade-up delay-1">
+    Automate anything with<br/>
+    <span class="gradient-text">AI-powered workflows</span>
+  </h1>
+  <p class="fade-up delay-2">
+    FlowMitra lets you build powerful AI automations visually. No code needed.
+    Connect your tools, train your agents, and ship faster than ever.
+  </p>
+  <div class="hero-actions fade-up delay-3">
+    <a href="#" class="btn btn-primary btn-lg">&#9889; Start Building Free</a>
+    <a href="#" class="btn btn-ghost btn-lg">&#9654; Watch Demo</a>
+  </div>
+  <div class="hero-social-proof fade-up delay-4">
+    <div class="avatars">
+      <span style="background:linear-gradient(135deg,#7c5cfc,#a78bfa)">A</span>
+      <span style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">R</span>
+      <span style="background:linear-gradient(135deg,#f59e0b,#ef4444)">S</span>
+      <span style="background:linear-gradient(135deg,#22c55e,#06b6d4)">M</span>
+    </div>
+    <span>Trusted by <strong>12,000+</strong> builders worldwide</span>
+  </div>
 
-                <div class="nav-actions">
-                    <a href="#signin" class="btn btn-ghost">Sign in</a>
-                    <a href="#start" class="btn btn-primary">Get started</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- Flow Canvas Preview -->
+  <div class="canvas-preview fade-up delay-4">
+    <div class="canvas-topbar">
+      <div class="canvas-dot" style="background:#ff5f57"></div>
+      <div class="canvas-dot" style="background:#febc2e"></div>
+      <div class="canvas-dot" style="background:#28c840"></div>
+      <span style="color:var(--muted);font-size:.8rem;margin-left:12px">FlowMitra Canvas &mdash; My First Automation</span>
+    </div>
+    <div class="canvas-body">
+      <div class="flow-node active">
+        <div class="node-icon">&#128231;</div>
+        <div class="node-label">Gmail Trigger</div>
+        <div class="node-sub">New email received</div>
+      </div>
+      <div class="flow-arrow">
+        <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+          <path d="M0 8H28M28 8L22 2M28 8L22 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="flow-node">
+        <div class="node-icon">&#129302;</div>
+        <div class="node-label">AI Summarize</div>
+        <div class="node-sub">GPT-4o</div>
+      </div>
+      <div class="flow-arrow">
+        <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+          <path d="M0 8H28M28 8L22 2M28 8L22 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="flow-node">
+        <div class="node-icon">&#128172;</div>
+        <div class="node-label">Slack Notify</div>
+        <div class="node-sub">Send to #team</div>
+      </div>
+      <div class="flow-arrow">
+        <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+          <path d="M0 8H28M28 8L22 2M28 8L22 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="flow-node">
+        <div class="node-icon">&#128202;</div>
+        <div class="node-label">Log to Sheet</div>
+        <div class="node-sub">Google Sheets</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-heading">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 id="hero-heading" class="hero-title">
-                        Build AI agents that work for you
-                    </h1>
-                    <p class="hero-description">
-                        Create powerful automation workflows without code. Connect your tools, 
-                        automate tasks, and let AI handle the repetitive work so you can focus 
-                        on what matters most.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#start" class="btn btn-primary btn-lg">
-                            Start building for free
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                                <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </a>
-                        <a href="#demo" class="btn btn-secondary btn-lg">
-                            Watch demo
-                        </a>
-                    </div>
-                    <div class="hero-stats" role="list">
-                        <div class="stat" role="listitem">
-                            <div class="stat-value">10k+</div>
-                            <div class="stat-label">Active users</div>
-                        </div>
-                        <div class="stat" role="listitem">
-                            <div class="stat-value">500k+</div>
-                            <div class="stat-label">Automations created</div>
-                        </div>
-                        <div class="stat" role="listitem">
-                            <div class="stat-value">99.9%</div>
-                            <div class="stat-label">Uptime</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- LOGOS -->
+<div class="logos-section">
+  <p>Integrates with your favorite tools</p>
+  <div class="logos-grid">
+    <div class="logo-item">Notion</div>
+    <div class="logo-item">Slack</div>
+    <div class="logo-item">Gmail</div>
+    <div class="logo-item">Airtable</div>
+    <div class="logo-item">HubSpot</div>
+    <div class="logo-item">Shopify</div>
+    <div class="logo-item">GitHub</div>
+    <div class="logo-item">Stripe</div>
+  </div>
+</div>
 
-        <!-- Features Section -->
-        <section id="features" class="features" aria-labelledby="features-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="features-heading" class="section-title">Everything you need to automate</h2>
-                    <p class="section-description">
-                        Powerful features designed for teams that want to move faster
-                    </p>
-                </div>
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">&#10022; Features</div>
+  <h2 class="section-title">Everything you need to automate smarter</h2>
+  <p class="section-desc">FlowMitra combines a visual workflow builder with powerful AI. Automate complex tasks without writing a single line of code.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(124,92,252,.15)">&#129513;</div>
+      <h3>Visual Flow Builder</h3>
+      <p>Drag-and-drop nodes to build complex automations. Connect triggers, actions, and AI steps in minutes with our intuitive canvas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(6,182,212,.15)">&#129302;</div>
+      <h3>AI-Native Nodes</h3>
+      <p>Use GPT-4o, Gemini, Claude, and more directly in your flows. Summarize, classify, extract, generate &mdash; all without leaving FlowMitra.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(34,197,94,.15)">&#9889;</div>
+      <h3>Instant Triggers</h3>
+      <p>React to events in real-time. Webhooks, scheduled runs, email triggers, form submissions &mdash; your flows run the moment something happens.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(245,158,11,.15)">&#128279;</div>
+      <h3>200+ Integrations</h3>
+      <p>Connect to Slack, Notion, Gmail, Airtable, HubSpot, Shopify, and hundreds more. One-click OAuth, no API keys needed.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(239,68,68,.15)">&#128737;</div>
+      <h3>Enterprise Security</h3>
+      <p>SOC 2 Type II certified. All data encrypted at rest and in transit. SSO, audit logs, and role-based access control included.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(124,92,252,.15)">&#128200;</div>
+      <h3>Analytics &amp; Logs</h3>
+      <p>Monitor every run in real-time. Debug failed steps, inspect payloads, and track performance with detailed execution logs.</p>
+    </div>
+  </div>
+</section>
 
-                <div class="features-grid" role="list">
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">No-code builder</h3>
-                        <p class="feature-description">
-                            Build complex automation workflows with an intuitive drag-and-drop interface. 
-                            No programming knowledge required.
-                        </p>
-                    </article>
+<!-- HOW IT WORKS -->
+<section id="how" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label">&#10022; How it Works</div>
+    <h2 class="section-title">From idea to automation in 3 steps</h2>
+    <p class="section-desc">No engineering degree required. If you can describe what you want, FlowMitra can automate it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choose a trigger</h3>
+        <p>Pick what starts your flow: a new email, form submission, scheduled time, or webhook from any app.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Add AI &amp; actions</h3>
+        <p>Drop in AI nodes to process data, then connect actions to send messages, update databases, or call APIs.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Deploy &amp; monitor</h3>
+        <p>Activate your flow with one click. Watch it run in real-time and get alerts if anything needs attention.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Iterate &amp; scale</h3>
+        <p>Improve your flows with live data. Clone, version, and share automations across your entire team.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
-                                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
-                                <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
-                                <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Smart integrations</h3>
-                        <p class="feature-description">
-                            Connect to 1000+ apps and services. From CRM to spreadsheets, 
-                            all your tools work together seamlessly.
-                        </p>
-                    </article>
+<!-- TEMPLATES -->
+<section id="templates">
+  <div class="section-label">&#10022; Templates</div>
+  <h2 class="section-title">Start with a ready-made flow</h2>
+  <p class="section-desc">Browse 100+ pre-built templates. Clone any flow and customize it in minutes.</p>
+  <div class="templates-grid">
+    <div class="template-card">
+      <div class="template-tag">Marketing</div>
+      <h3>AI Blog Post Generator</h3>
+      <p>Turn a keyword into a full SEO-optimized blog post with GPT-4o, then publish to WordPress automatically.</p>
+      <div class="template-footer"><div class="template-icons">&#128221; &#129302; &#127760;</div><span class="template-uses">3.2k uses</span></div>
+    </div>
+    <div class="template-card">
+      <div class="template-tag">Sales</div>
+      <h3>Lead Enrichment Pipeline</h3>
+      <p>Enrich new CRM leads with company data, score them with AI, and route hot leads to your sales team instantly.</p>
+      <div class="template-footer"><div class="template-icons">&#128100; &#129302; &#128202;</div><span class="template-uses">2.8k uses</span></div>
+    </div>
+    <div class="template-card">
+      <div class="template-tag">Support</div>
+      <h3>Smart Email Responder</h3>
+      <p>Classify incoming support emails, draft AI responses, and route complex tickets to the right team member.</p>
+      <div class="template-footer"><div class="template-icons">&#128231; &#129302; &#128172;</div><span class="template-uses">4.1k uses</span></div>
+    </div>
+    <div class="template-card">
+      <div class="template-tag">Research</div>
+      <h3>Web Scraper + Summarizer</h3>
+      <p>Scrape any website, extract key information with AI, and compile a structured report in Google Sheets.</p>
+      <div class="template-footer"><div class="template-icons">&#127760; &#129302; &#128203;</div><span class="template-uses">5.6k uses</span></div>
+    </div>
+    <div class="template-card">
+      <div class="template-tag">Social</div>
+      <h3>Social Media Scheduler</h3>
+      <p>Generate platform-specific posts from a single idea and schedule them across Twitter, LinkedIn, and Instagram.</p>
+      <div class="template-footer"><div class="template-icons">&#9997; &#129302; &#128197;</div><span class="template-uses">2.1k uses</span></div>
+    </div>
+    <div class="template-card">
+      <div class="template-tag">Finance</div>
+      <h3>Invoice Data Extractor</h3>
+      <p>Upload invoices, extract line items with AI vision, and sync structured data to your accounting software.</p>
+      <div class="template-footer"><div class="template-icons">&#129534; &#129302; &#128176;</div><span class="template-uses">1.9k uses</span></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px">
+    <a href="#" class="btn btn-ghost btn-lg">Browse all templates &rarr;</a>
+  </div>
+</section>
 
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 2V6M12 18V22M22 12H18M6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">AI-powered logic</h3>
-                        <p class="feature-description">
-                            Advanced AI understands context and makes intelligent decisions, 
-                            handling edge cases automatically.
-                        </p>
-                    </article>
+<!-- TESTIMONIALS -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-label">&#10022; Testimonials</div>
+  <h2 class="section-title">Loved by builders everywhere</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"FlowMitra replaced 3 different tools for us. We automated our entire lead pipeline in a weekend. Absolutely game-changing."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:linear-gradient(135deg,#7c5cfc,#a78bfa)">P</div>
+        <div><div class="author-name">Priya Sharma</div><div class="author-role">Head of Growth, TechVenture</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"I am not a developer but I built a full AI customer support system in 2 hours. The visual builder is incredibly intuitive."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">R</div>
+        <div><div class="author-name">Rahul Mehta</div><div class="author-role">Founder, SaaSify</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"We save 40+ hours per week on manual data entry. FlowMitra AI extraction is incredibly accurate and the integrations just work."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:linear-gradient(135deg,#22c55e,#06b6d4)">A</div>
+        <div><div class="author-name">Ananya Patel</div><div class="author-role">Operations Lead, Finova</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Real-time monitoring</h3>
-                        <p class="feature-description">
-                            Track every workflow in real-time. Get instant alerts and detailed 
-                            logs for complete visibility.
-                        </p>
-                    </article>
+<!-- PRICING -->
+<section id="pricing">
+  <div style="text-align:center;margin-bottom:60px">
+    <div class="section-label" style="justify-content:center">&#10022; Pricing</div>
+    <h2 class="section-title" style="margin:0 auto 16px">Simple, transparent pricing</h2>
+    <p class="section-desc" style="margin:0 auto">Start free. Scale as you grow. No hidden fees.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Starter</h3>
+      <div class="price">&#8377;0 <span>/ month</span></div>
+      <div class="price-desc">Perfect for individuals and side projects</div>
+      <ul class="pricing-features">
+        <li><span class="check">&#10003;</span> 5 active flows</li>
+        <li><span class="check">&#10003;</span> 1,000 runs/month</li>
+        <li><span class="check">&#10003;</span> 20+ integrations</li>
+        <li><span class="check">&#10003;</span> Basic AI nodes</li>
+        <li><span class="check">&#10003;</span> Community support</li>
+      </ul>
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Get started free</a>
+    </div>
+    <div class="pricing-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <h3>Pro</h3>
+      <div class="price">&#8377;1,999 <span>/ month</span></div>
+      <div class="price-desc">For growing teams and serious builders</div>
+      <ul class="pricing-features">
+        <li><span class="check">&#10003;</span> Unlimited flows</li>
+        <li><span class="check">&#10003;</span> 50,000 runs/month</li>
+        <li><span class="check">&#10003;</span> 200+ integrations</li>
+        <li><span class="check">&#10003;</span> All AI models (GPT-4o, Gemini)</li>
+        <li><span class="check">&#10003;</span> Priority support</li>
+        <li><span class="check">&#10003;</span> Team collaboration</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Start Pro trial &rarr;</a>
+    </div>
+    <div class="pricing-card">
+      <h3>Enterprise</h3>
+      <div class="price">Custom</div>
+      <div class="price-desc">For large teams with advanced needs</div>
+      <ul class="pricing-features">
+        <li><span class="check">&#10003;</span> Unlimited everything</li>
+        <li><span class="check">&#10003;</span> Custom AI model fine-tuning</li>
+        <li><span class="check">&#10003;</span> SSO &amp; SAML</li>
+        <li><span class="check">&#10003;</span> Dedicated infrastructure</li>
+        <li><span class="check">&#10003;</span> SLA &amp; dedicated support</li>
+        <li><span class="check">&#10003;</span> On-premise option</li>
+      </ul>
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Contact sales</a>
+    </div>
+  </div>
+</section>
 
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Schedule & trigger</h3>
-                        <p class="feature-description">
-                            Run workflows on schedule or trigger them based on events. 
-                            Complete flexibility for your needs.
-                        </p>
-                    </article>
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to automate your work?</h2>
+  <p>Join 12,000+ builders using FlowMitra to save time, reduce errors, and scale faster with AI.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn btn-primary btn-lg">&#9889; Start for free &mdash; no credit card</a>
+    <a href="#" class="btn btn-ghost btn-lg">Talk to us</a>
+  </div>
+</section>
 
-                    <article class="feature-card" role="listitem">
-                        <div class="feature-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="currentColor" stroke-width="2"/>
-                                <path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Enterprise security</h3>
-                        <p class="feature-description">
-                            Bank-level encryption, SOC 2 compliance, and role-based access control 
-                            keep your data secure.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="font-size:1.2rem">
+        <div class="logo-icon" style="width:32px;height:32px;font-size:1rem">&#9889;</div>
+        FlowMitra
+      </a>
+      <p>The AI-powered workflow automation platform built for modern teams. Automate smarter, ship faster.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Status</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 FlowMitra. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+    </div>
+  </div>
+</footer>
 
-        <!-- Testimonials Section -->
-        <section class="testimonials" aria-labelledby="testimonials-heading">
-            <div class="container">
-                <h2 id="testimonials-heading" class="section-title">Trusted by teams worldwide</h2>
-                
-                <div class="testimonials-grid" role="list">
-                    <article class="testimonial-card" role="listitem">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "This platform transformed our operations. We automated 30+ processes 
-                                and saved hundreds of hours every month. The ROI was immediate."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" aria-hidden="true">
-                                <svg width="40" height="40" viewBox="0 0 40 40">
-                                    <circle cx="20" cy="20" r="20" fill="currentColor" opacity="0.1"/>
-                                    <circle cx="20" cy="16" r="6" fill="currentColor" opacity="0.6"/>
-                                    <path d="M10 32C10 26 14 22 20 22C26 22 30 26 30 32" fill="currentColor" opacity="0.6"/>
-                                </svg>
-                            </div>
-                            <div class="author-info">
-                                <div class="author-name">Sarah Chen</div>
-                                <div class="author-title">Head of Operations, TechCorp</div>
-                            </div>
-                        </div>
-                    </article>
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
 
-                    <article class="testimonial-card" role="listitem">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "The no-code interface is incredibly intuitive. Our entire team was 
-                                building automations within a day. No IT department needed."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" aria-hidden="true">
-                                <svg width="40" height="40" viewBox="0 0 40 40">
-                                    <circle cx="20" cy="20" r="20" fill="currentColor" opacity="0.1"/>
-                                    <circle cx="20" cy="16" r="6" fill="currentColor" opacity="0.6"/>
-                                    <path d="M10 32C10 26 14 22 20 22C26 22 30 26 30 32" fill="currentColor" opacity="0.6"/>
-                                </svg>
-                            </div>
-                            <div class="author-info">
-                                <div class="author-name">Michael Rodriguez</div>
-                                <div class="author-title">Product Manager, StartupHub</div>
-                            </div>
-                        </div>
-                    </article>
+  // Scroll-in animations
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
 
-                    <article class="testimonial-card" role="listitem">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "We've tried other automation tools, but this one stands out. 
-                                The AI capabilities are game-changing for our workflow efficiency."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" aria-hidden="true">
-                                <svg width="40" height="40" viewBox="0 0 40 40">
-                                    <circle cx="20" cy="20" r="20" fill="currentColor" opacity="0.1"/>
-                                    <circle cx="20" cy="16" r="6" fill="currentColor" opacity="0.6"/>
-                                    <path d="M10 32C10 26 14 22 20 22C26 22 30 26 30 32" fill="currentColor" opacity="0.6"/>
-                                </svg>
-                            </div>
-                            <div class="author-info">
-                                <div class="author-name">Jessica Park</div>
-                                <div class="author-title">CEO, Innovation Labs</div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta" aria-labelledby="cta-heading">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 id="cta-heading" class="cta-title">
-                        Ready to automate your workflow?
-                    </h2>
-                    <p class="cta-description">
-                        Join thousands of teams already building with AI agents. 
-                        Start free, no credit card required.
-                    </p>
-                    <div class="cta-actions">
-                        <a href="#start" class="btn btn-primary btn-lg">
-                            Get started for free
-                        </a>
-                        <a href="#contact" class="btn btn-secondary btn-lg">
-                            Talk to sales
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="/" class="footer-logo" aria-label="FlowMitra Home">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                            <rect width="32" height="32" rx="8" fill="currentColor" opacity="0.1"/>
-                            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="currentColor"/>
-                        </svg>
-                        <span>FlowMitra</span>
-                    </a>
-                    <p class="footer-tagline">Build AI agents for work</p>
-                </div>
-
-                <nav class="footer-links" aria-label="Footer navigation">
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Product</h3>
-                        <ul role="list">
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#integrations">Integrations</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                            <li><a href="#changelog">Changelog</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Company</h3>
-                        <ul role="list">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                            <li><a href="#careers">Careers</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Resources</h3>
-                        <ul role="list">
-                            <li><a href="#docs">Documentation</a></li>
-                            <li><a href="#guides">Guides</a></li>
-                            <li><a href="#support">Support</a></li>
-                            <li><a href="#community">Community</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Legal</h3>
-                        <ul role="list">
-                            <li><a href="#privacy">Privacy</a></li>
-                            <li><a href="#terms">Terms</a></li>
-                            <li><a href="#security">Security</a></li>
-                            <li><a href="#compliance">Compliance</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="footer-copyright">
-                    © 2024 FlowMitra. All rights reserved.
-                </p>
-                <div class="footer-social" role="list">
-                    <a href="#twitter" class="social-link" aria-label="Twitter">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M15.751 2h2.874l-6.276 7.172L19.5 18h-5.78l-4.526-5.916L3.95 18H1.075l6.715-7.672L1.5 2h5.925l4.092 5.41L15.751 2z"/>
-                        </svg>
-                    </a>
-                    <a href="#linkedin" class="social-link" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M17 1H3C1.9 1 1 1.9 1 3V17C1 18.1 1.9 19 3 19H17C18.1 19 19 18.1 19 17V3C19 1.9 18.1 1 17 1ZM7 15H5V8H7V15ZM6 7C5.4 7 5 6.6 5 6C5 5.4 5.4 5 6 5C6.6 5 7 5.4 7 6C7 6.6 6.6 7 6 7ZM15 15H13V11.5C13 10.7 12.3 10 11.5 10C10.7 10 10 10.7 10 11.5V15H8V8H10V9C10.5 8.4 11.2 8 12 8C13.7 8 15 9.3 15 11V15Z"/>
-                        </svg>
-                    </a>
-                    <a href="#github" class="social-link" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M10 0C4.477 0 0 4.477 0 10C0 14.42 2.865 18.17 6.839 19.49C7.339 19.58 7.52 19.27 7.52 19V17.31C4.73 17.91 4.14 16.03 4.14 16.03C3.685 14.86 3.03 14.55 3.03 14.55C2.121 13.94 3.098 13.95 3.098 13.95C4.101 14.02 4.629 14.98 4.629 14.98C5.521 16.5 6.97 16.06 7.54 15.81C7.63 15.17 7.889 14.73 8.175 14.49C5.955 14.25 3.62 13.38 3.62 9.53C3.62 8.43 4.01 7.53 4.649 6.83C4.546 6.59 4.203 5.56 4.747 4.17C4.747 4.17 5.586 3.9 7.517 5.2C8.317 4.99 9.157 4.88 9.997 4.88C10.837 4.88 11.677 4.99 12.477 5.2C14.407 3.9 15.247 4.17 15.247 4.17C15.791 5.56 15.448 6.59 15.345 6.83C15.985 7.53 16.373 8.43 16.373 9.53C16.373 13.39 14.035 14.24 11.805 14.48C12.165 14.79 12.487 15.4 12.487 16.33V19C12.487 19.27 12.667 19.58 13.177 19.49C17.135 18.16 20 14.42 20 10C20 4.477 15.523 0 10 0Z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Load JavaScript with defer for better performance -->
-    <script src="script.js" defer></script>
+  document.querySelectorAll('.feature-card,.step,.template-card,.testimonial-card,.pricing-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    obs.observe(el);
+  });
+</script>
 </body>
 </html>

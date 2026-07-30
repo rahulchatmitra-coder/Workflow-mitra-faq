@@ -1,12 +1,19 @@
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
+import CustomerLogos from '../components/CustomerLogos'
+import AgentsShowcase from '../components/AgentsShowcase'
 import AIFeatures from '../components/AIFeatures'
-import PremiumHero from '../components/PremiumHero'
 import IntegrationsShowcase from '../components/IntegrationsShowcase'
 import './Home.css'
 
 function Home() {
+  const navigate = useNavigate()
+  const [activeTab, setActiveTab] = useState('All')
+  const categories = ['All', 'Data sync', 'Notifications', 'Reporting']
   const templates = [
     {
+      id: 'new-order-email-sheet',
       category: 'NOTIFICATIONS',
       title: 'New order — Email + Sheet',
       description: 'When an order comes in, email the customer a confirmation and log the order to Google Sheets.',
@@ -15,6 +22,7 @@ function Home() {
       uses: '2 uses'
     },
     {
+      id: 'api-health-check-discord',
       category: 'NOTIFICATIONS',
       title: 'API health check — Discord alert',
       description: 'Ping an endpoint on a schedule. If it is down, post an alert to your team Discord channel.',
@@ -23,6 +31,7 @@ function Home() {
       uses: '1 uses'
     },
     {
+      id: 'daily-report-slack',
       category: 'REPORTING',
       title: 'Daily report — Slack',
       description: 'Fetch your metrics from an API, format a short summary, and post it to a Slack channel every day.',
@@ -31,6 +40,7 @@ function Home() {
       uses: '1 uses'
     },
     {
+      id: 'lead-capture-google-sheet',
       category: 'DATA SYNC',
       title: 'Lead capture — Google Sheet',
       description: 'Capture a new lead and append it as a row in Google Sheets. Add a webhook trigger to fire it from your site form.',
@@ -88,13 +98,12 @@ function Home() {
     <div className="home-page">
       <HeroAnimated />
       
-      {/* AI Features Section - Make.com Style */}
+      <CustomerLogos />
+      
+      <AgentsShowcase />
+      
       <AIFeatures />
       
-      {/* Premium Hero - Interactive Agents */}
-      <PremiumHero />
-      
-      {/* Integrations Showcase - n8n style */}
       <IntegrationsShowcase />
       
       {/* Templates Section */}
@@ -103,18 +112,20 @@ function Home() {
           <div className="section-header">
             <h2 className="section-title">Featured Templates</h2>
             <div className="template-tabs">
-              <button className="tab-btn active">All</button>
-              <button className="tab-btn">Data sync</button>
-              <button className="tab-btn">Notifications</button>
-              <button className="tab-btn">Sales</button>
-              <button className="tab-btn">Support</button>
-              <button className="tab-btn">Reporting</button>
-              <button className="tab-btn">Logistics</button>
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  className={`tab-btn ${activeTab === cat ? 'active' : ''}`}
+                  onClick={() => setActiveTab(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
           </div>
 
           <div className="templates-grid">
-            {templates.map((template, index) => (
+            {templates.filter(t => activeTab === 'All' || t.category.toLowerCase() === activeTab.toLowerCase()).map((template, index) => (
               <div key={index} className="template-card">
                 <div className="template-header">
                   <div className="template-apps">
@@ -133,7 +144,7 @@ function Home() {
                   
                   <div className="template-footer">
                     <span className="template-meta">{template.steps} · {template.uses}</span>
-                    <button className="btn-use">Use</button>
+                    <button className="btn-use" onClick={() => navigate(`/template/${template.id}`)}>Use</button>
                   </div>
                 </div>
               </div>
@@ -175,8 +186,8 @@ function Home() {
               Join thousands of teams already building with AI agents. Start free, no credit card required.
             </p>
             <div className="cta-actions">
-              <a href="/contact" className="btn btn-primary btn-large">Get Started for Free</a>
-              <a href="/contact" className="btn btn-secondary btn-large">Talk to Sales</a>
+              <Link to="/contact" className="btn btn-primary btn-large">Get Started for Free</Link>
+              <Link to="/contact" className="btn btn-secondary btn-large">Talk to Sales</Link>
             </div>
           </div>
         </div>
