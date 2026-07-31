@@ -1,59 +1,8 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import './AgentsShowcase.css'
 
-const agents = [
-  {
-    id: 'data-analysis',
-    title: 'Data Analysis Agent',
-    description: 'A reasoning agent that answers questions from your data warehouse.',
-    icon: '📊',
-    team: 'Data',
-    creators: ['Aron', 'Katherine', 'Max'],
-    badgeColor: '#dbeafe',
-    badgeText: '#1d4ed8',
-  },
-  {
-    id: 'support',
-    title: 'Support Agent',
-    description: 'An agent that triages bugs, creates tickets, and spots support patterns automatically.',
-    icon: '💬',
-    team: 'Support',
-    creators: ['Gonzalo', 'Katherine', 'Marcelo'],
-    badgeColor: '#dcfce7',
-    badgeText: '#15803d',
-  },
-  {
-    id: 'crm',
-    title: 'CRM Agent',
-    description: 'An agent that manages deals, researches prospects, and keeps your CRM up to date.',
-    icon: '💼',
-    team: 'Sales',
-    creators: ['Aron', 'Rahul'],
-    badgeColor: '#fef3c7',
-    badgeText: '#b45309',
-  },
-  {
-    id: 'meeting-prep',
-    title: 'Meeting Prep Agent',
-    description: 'An agent that automatically briefs you before every meeting with context from across your tools.',
-    icon: '📋',
-    team: 'Sales',
-    creators: ['Gonzalo', 'Max', 'Rahul'],
-    badgeColor: '#ede9fe',
-    badgeText: '#6d28d9',
-  },
-  {
-    id: 'call-analysis',
-    title: 'Call Analysis Agent',
-    description: 'An agent that analyzes call recordings to surface objection patterns, coaching insights, and competitive intelligence.',
-    icon: '📞',
-    team: 'Sales',
-    creators: ['Aron', 'Katherine', 'Marcelo'],
-    badgeColor: '#fce7f3',
-    badgeText: '#be185d',
-  },
-]
+export default function AgentsShowcase() {
+  const [activeTab, setActiveTab] = useState(0)
 
   const agents = [
     {
