@@ -60,7 +60,6 @@ export default function AgentsShowcase() {
   const renderPreview = () => {
     const agent = agents[activeTab]
 
-    /* ---------- Data Analysis Agent ---------- */
     if (agent.id === 'data-analysis') {
       return (
         <div className="preview-content data-preview">
@@ -126,7 +125,6 @@ export default function AgentsShowcase() {
       )
     }
 
-    /* ---------- Support Agent (matches Gumloop screenshot) ---------- */
     if (agent.id === 'support') {
       return (
         <div className="preview-content support-preview">
@@ -207,7 +205,6 @@ export default function AgentsShowcase() {
       )
     }
 
-    /* ---------- Call Analysis Agent ---------- */
     if (agent.id === 'call-analysis') {
       return (
         <div className="preview-content call-preview">
@@ -265,7 +262,6 @@ export default function AgentsShowcase() {
       )
     }
 
-    /* ---------- CRM Agent ---------- */
     if (agent.id === 'crm') {
       return (
         <div className="preview-content crm-preview">
@@ -310,7 +306,6 @@ export default function AgentsShowcase() {
       )
     }
 
-    /* ---------- Meeting Prep Agent ---------- */
     if (agent.id === 'meeting-prep') {
       return (
         <div className="preview-content meeting-preview">
@@ -362,7 +357,6 @@ export default function AgentsShowcase() {
     <section className="agents-showcase-section">
       <div className="container">
         <div className="showcase-grid">
-          {/* Left accordion */}
           <div className="showcase-accordion">
             <h2 className="showcase-heading">
               Roll out specialized
@@ -416,7 +410,6 @@ export default function AgentsShowcase() {
             </div>
           </div>
 
-          {/* Right preview */}
           <div className="showcase-preview-container">
             <div className="preview-panel">{renderPreview()}</div>
           </div>
