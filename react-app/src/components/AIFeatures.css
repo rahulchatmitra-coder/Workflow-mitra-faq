@@ -1,204 +1,332 @@
-/* AI Features Section - Make.com Style */
+/* AI Features — Gumloop-style 2×2 Bento Grid */
 
 .ai-features-section {
   padding: var(--space-24) 0;
-  background: transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.ai-features-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
-  animation: pulse 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  background: #fff;
 }
 
 .ai-features-title {
-  font-size: clamp(32px, 4.5vw, 52px);
+  font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #1a1a1a;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #111827;
   text-align: center;
-  margin-bottom: var(--space-16);
+  margin-bottom: 48px;
 }
 
-.highlight-text {
-  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Feature Cards Grid */
-.ai-features-grid {
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-8);
-  max-width: 1200px;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
-.ai-feature-card {
-  background: #f8f9fb;
-  border-radius: var(--radius-2xl);
-  padding: var(--space-10);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: fadeSlideUp 0.6s ease-out backwards;
-  border: 2px solid transparent;
-  position: relative;
+.bento-card {
+  background: #fafafa;
+  border-radius: 20px;
+  padding: 26px 28px 24px;
+  border: 1px solid #ebebeb;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
 }
 
-.ai-feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-  transition: left 0.6s ease;
+.bento-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af;
+  line-height: 1.45;
+  margin-bottom: 18px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.ai-feature-card:hover::before {
-  left: 100%;
+.bento-label span {
+  display: block;
+  color: #111827;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* ── TOP LEFT: Models row ────────────────────────────────────────────────── */
+.bento-tl {
+  background: linear-gradient(160deg, #fdf2f8 0%, #f5f3ff 40%, #eff6ff 100%);
 }
 
-.ai-feature-card:nth-child(1) { animation-delay: 0.1s; }
-.ai-feature-card:nth-child(2) { animation-delay: 0.2s; }
-.ai-feature-card:nth-child(3) { animation-delay: 0.3s; }
-
-.ai-feature-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
-  border-color: #e5e7eb;
-  background: #ffffff;
-}
-
-/* Feature Icon */
-.ai-feature-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-xl);
+.bento-models-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-6);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  gap: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+  padding: 8px 0;
 }
 
-.ai-feature-icon::after {
+.model-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.model-circle:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.model-circle-center {
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+  z-index: 1;
+}
+
+/* ── TOP RIGHT: Integrations ─────────────────────────────────────────────── */
+.bento-tr {
+  background: #fff;
+}
+
+.bento-integrations {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  flex: 1;
+  align-content: center;
+}
+
+.integration-tile {
+  aspect-ratio: 1;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease;
+}
+
+.integration-tile:hover {
+  transform: scale(1.06);
+}
+
+.integration-empty {
+  background: transparent;
+  border: 1.5px dashed #e5e7eb;
+  box-shadow: none;
+}
+
+/* ── BOTTOM LEFT: Recurring tasks + timeline ─────────────────────────────── */
+.bento-bl {
+  background: #fafafa;
+}
+
+.bento-tasks-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  justify-content: center;
+}
+
+.task-row-gum {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.task-row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.task-name-gum {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.task-schedule-gum {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 1px;
+}
+
+.task-timeline {
+  position: relative;
+  padding-top: 18px;
+}
+
+.monitoring-pill,
+.alert-pill {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.monitoring-pill {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.alert-pill {
+  background: #fef2f2;
+  color: #dc2626;
+  left: 60%;
+}
+
+.timeline-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 20px;
+}
+
+.timeline-track::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border-radius: var(--radius-xl);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  background: inherit;
-  filter: blur(12px);
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: #e5e7eb;
+  transform: translateY(-50%);
 }
 
-.ai-feature-card:hover .ai-feature-icon {
-  transform: scale(1.15) rotate(-5deg);
+.timeline-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d1d5db;
+  z-index: 1;
 }
 
-.ai-feature-card:hover .ai-feature-icon::after {
-  opacity: 0.6;
-  animation: glow 2s ease-in-out infinite;
+.timeline-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #9ca3af;
+  white-space: nowrap;
 }
 
-@keyframes glow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.1); }
+/* ── BOTTOM RIGHT: Workflow canvas ───────────────────────────────────────── */
+.bento-br {
+  background: linear-gradient(160deg, #fdf4ff 0%, #f5f3ff 50%, #faf5ff 100%);
 }
 
-/* Feature Content */
-.ai-feature-title {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: var(--space-3);
-  line-height: 1.3;
+.bento-workflow {
+  position: relative;
+  flex: 1;
+  min-height: 160px;
 }
 
-.ai-feature-description {
-  font-size: var(--font-size-base);
-  color: #64748b;
-  line-height: 1.6;
+.workflow-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .ai-features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-6);
-  }
-
-  .ai-features-title {
-    font-size: clamp(28px, 6vw, 42px);
-  }
+.wf-node {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 6px 12px 6px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+.wf-node-active {
+  border-color: #86efac;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.wf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wf-cursor {
+  position: absolute;
+  bottom: -14px;
+  right: -6px;
+  font-size: 14px;
+  color: #f97316;
+  transform: rotate(-20deg);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .ai-features-section {
-    padding: var(--space-20) 0;
-  }
-
-  .ai-features-grid {
+  .bento-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-5);
   }
 
-  .ai-feature-card {
-    padding: var(--space-8);
+  .bento-card {
+    min-height: 240px;
   }
 
-  .ai-feature-icon {
-    width: 64px;
-    height: 64px;
+  .task-row-gum {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .ai-feature-title {
-    font-size: var(--font-size-lg);
+  .bento-integrations {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .ai-features-title {
-    font-size: clamp(24px, 8vw, 32px);
+  .bento-card {
+    padding: 20px;
   }
 
-  .ai-feature-icon {
-    width: 56px;
-    height: 56px;
+  .bento-models-row {
+    gap: 8px;
   }
 
-  .ai-feature-description {
-    font-size: var(--font-size-sm);
+  .model-circle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .model-circle-center {
+    width: 48px;
+    height: 48px;
   }
 }
