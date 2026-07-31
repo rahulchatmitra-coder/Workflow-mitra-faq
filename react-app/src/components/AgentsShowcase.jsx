@@ -55,239 +55,421 @@ const agents = [
   },
 ]
 
-const avatarColors = [
-  'linear-gradient(135deg, #ec4899, #f472b6)',
-  'linear-gradient(135deg, #8b5cf6, #a78bfa)',
-  'linear-gradient(135deg, #3b82f6, #60a5fa)',
-  'linear-gradient(135deg, #10b981, #34d399)',
-  'linear-gradient(135deg, #f59e0b, #fbbf24)',
-]
+  const agents = [
+    {
+      id: 'data-analysis',
+      title: 'Data Analysis Agent',
+      description: 'A reasoning agent that answers questions from your data warehouse.',
+      icon: '📊',
+      color: '#3B82F6',
+      team: ['Aron', 'Katherine', 'Max'],
+      teamColors: ['#6366F1', '#EC4899', '#10B981'],
+      teamLabel: 'Data'
+    },
+    {
+      id: 'support',
+      title: 'Support Agent',
+      description: 'An agent that triages bugs, creates tickets, and spots support patterns automatically.',
+      icon: '💬',
+      color: '#10B981',
+      team: ['Gonzalo', 'Katherine', 'Marcelo'],
+      teamColors: ['#8B5CF6', '#EC4899', '#F59E0B'],
+      teamLabel: 'Support'
+    },
+    {
+      id: 'crm',
+      title: 'CRM Agent',
+      description: 'Automate Salesforce entry, enrich leads, and draft personalized follow-up sequences.',
+      icon: '💼',
+      color: '#F59E0B',
+      team: ['Mike', 'Lizzy'],
+      teamColors: ['#3B82F6', '#EC4899'],
+      teamLabel: 'Sales'
+    },
+    {
+      id: 'meeting-prep',
+      title: 'Meeting Prep Agent',
+      description: 'Generates comprehensive dossiers on prospects before your sales calls.',
+      icon: '📝',
+      color: '#8B5CF6',
+      team: ['Aron'],
+      teamColors: ['#6366F1'],
+      teamLabel: 'Sales'
+    },
+    {
+      id: 'call-analysis',
+      title: 'Call Analysis Agent',
+      description: 'An agent that analyzes call recordings to surface objection patterns, coaching insights, and competitive intelligence.',
+      icon: '📞',
+      color: '#EC4899',
+      team: ['Aron', 'Katherine', 'Marcelo'],
+      teamColors: ['#6366F1', '#EC4899', '#F59E0B'],
+      teamLabel: 'Sales'
+    }
+  ]
 
-function SupportDemo() {
-  return (
-    <div className="agent-demo-scene">
-      <div className="agent-demo-card agent-demo-main">
-        <p className="demo-status-line">Found 4 related tickets. Linking them to <strong>BUG-4192</strong> now.</p>
-        <div className="demo-success-row">
-          <span className="demo-check">✓</span>
-          <span><strong>BUG-4192</strong> is now linked to the following existing CSV export issues:</span>
+  const renderPreview = () => {
+    const agent = agents[activeTab]
+
+    /* ---------- Data Analysis Agent ---------- */
+    if (agent.id === 'data-analysis') {
+      return (
+        <div className="preview-content data-preview">
+          <div className="chat-row user">
+            <div className="chat-bubble user-bubble">
+              Where are we losing people in the onboarding flow?
+            </div>
+            <div className="chat-avatar">👤</div>
+          </div>
+
+          <div className="agent-block">
+            <div className="steps-row">
+              <span className="steps-dot"></span>
+              <span>4 Steps</span>
+            </div>
+            <p className="agent-intro">Here's where you're losing people:</p>
+
+            <div className="alert critical">
+              <strong>🚨 Biggest drop-off:</strong> Dashboard → Attempted Integration{' '}
+              <strong>46% of users</strong> who view the dashboard never even try to connect an
+              integration — that's 1,432 people falling off in a single step. This is your #1 problem.
+            </div>
+
+            <div className="alert warning">
+              <strong>⚠️ Secondary drop-off:</strong> Attempted → Completed Integration Of the
+              users who do try, <strong>37% fail to complete it</strong>. Combined, only 22% of
+              signups make it through the integration step at all.
+            </div>
+
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Users</th>
+                  <th>Drop-off</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Signed Up</td><td>4,820</td><td>—</td></tr>
+                <tr><td>Completed Profile</td><td>3,040</td><td>37%</td></tr>
+                <tr><td>Viewed Dashboard</td><td>2,810</td><td>8%</td></tr>
+                <tr><td>Attempted Integration</td><td>1,518</td><td>46%</td></tr>
+                <tr><td>Completed Integration</td><td>956</td><td>37%</td></tr>
+              </tbody>
+            </table>
+
+            <div className="chart-card">
+              <div className="chart-label">Weekly Active Users</div>
+              <div className="bars">
+                {[45, 52, 38, 65, 48, 72, 55, 68, 42, 58, 75, 50, 62, 70, 48, 55, 80, 60, 68, 45].map(
+                  (h, i) => (
+                    <div
+                      key={i}
+                      className={`bar ${i === 11 ? 'bar-highlight' : ''}`}
+                      style={{ height: `${h}%` }}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-        <table className="demo-table">
-          <thead>
-            <tr>
-              <th>Ticket</th>
-              <th>Account</th>
-              <th>Status</th>
-              <th>Reported</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>BUG-3874</td><td>Thrift Bank</td><td><span className="status-pill open">Open</span></td><td>Feb 14</td></tr>
-            <tr><td>BUG-3911</td><td>Meridian Corp</td><td><span className="status-pill progress">In Progress</span></td><td>Feb 18</td></tr>
-            <tr><td>BUG-4022</td><td>Northwind</td><td><span className="status-pill open">Open</span></td><td>Feb 22</td></tr>
-            <tr><td>BUG-4105</td><td>Acme Inc</td><td><span className="status-pill open">Open</span></td><td>Mar 1</td></tr>
-          </tbody>
-        </table>
-        <p className="demo-analysis">
-          This is the 5th reported instance of CSV export issues in the last month across 4 accounts.
-          Looks like this may be a systemic issue with the export timeout on large datasets.
-        </p>
-        <p className="demo-question">
-          Want me to escalate this cluster to the engineering team, or flag it for prioritization on the product side?
-        </p>
-      </div>
-      <div className="agent-demo-card agent-demo-float">
-        <div className="float-ticket-title">Fix CSV Exporting Timeout Bug</div>
-        <div className="float-ticket-id">ENG-1847</div>
-        <div className="float-ticket-field">
-          <span className="float-label">Summary</span>
-          <span className="float-value">CSV export fails on datasets over 10k rows</span>
+      )
+    }
+
+    /* ---------- Support Agent (matches Gumloop screenshot) ---------- */
+    if (agent.id === 'support') {
+      return (
+        <div className="preview-content support-preview">
+          <div className="chat-row user">
+            <div className="chat-bubble user-bubble">
+              Meridian Corp is reporting a broken CSV export — can you create a bug ticket?
+            </div>
+            <div className="chat-avatar">👤</div>
+          </div>
+
+          <div className="agent-block">
+            <div className="steps-row">
+              <span className="steps-icons">
+                <span className="si">📋</span>
+                <span className="si">🔗</span>
+                <span className="si">✅</span>
+              </span>
+              <span>5 Steps</span>
+            </div>
+
+            <p className="agent-intro">Done — here's what I created:</p>
+
+            <div className="ticket-created">
+              <div className="ticket-header-line">
+                <span className="bug-icon">🐛</span>
+                <strong>BUG-4192</strong> — Meridian Corp: Broken CSV Export
+                <span className="priority-tag">Priority: High</span>
+              </div>
+              <div className="ticket-meta-line">
+                Type: Bug · Tags:{' '}
+                <span className="tag">csv-export</span>{' '}
+                <span className="tag">meridian-corp</span>
+              </div>
+              <p className="ticket-summary-text">
+                <strong>Summary:</strong> Meridian Corp users are unable to successfully export data
+                as CSV. Export either fails or produces an unusable file.
+              </p>
+              <div className="logged-details">
+                <strong>Logged details:</strong>
+                <ul>
+                  <li>Account: Meridian Corp</li>
+                  <li>Source: Slack (via Support Agent)</li>
+                  <li>Severity: High</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="agent-followup">
+              Want me to assign this to a specific engineer, link it to any related tickets, or
+              escalate?
+            </p>
+
+            <div className="eng-card">
+              <div className="eng-card-left">
+                <div className="eng-icon">🔧</div>
+                <div>
+                  <div className="eng-title">Fix CSV Exporting Timeout Bug</div>
+                  <div className="eng-id">ENG-1847</div>
+                  <div className="eng-summary-label">Summary</div>
+                  <div className="eng-summary">
+                    The CSV export feature has been experiencing timeout issues for the past few
+                    days.
+                  </div>
+                </div>
+              </div>
+              <div className="eng-card-right">
+                <div className="eng-status">
+                  <span className="status-dot"></span> In Progress
+                </div>
+                <div className="eng-priority">↑ High</div>
+                <div className="eng-assignee">
+                  <span className="assignee-av">M</span> Marcelo
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="float-ticket-sidebar">
-          <div><span className="float-label">Status</span><span className="float-value">In Progress</span></div>
-          <div><span className="float-label">Priority</span><span className="float-value">High</span></div>
-          <div><span className="float-label">Assignee</span><span className="float-value">Marcelo</span></div>
+      )
+    }
+
+    /* ---------- Call Analysis Agent ---------- */
+    if (agent.id === 'call-analysis') {
+      return (
+        <div className="preview-content call-preview">
+          <div className="chat-row user">
+            <div className="chat-bubble user-bubble">
+              What were the top objections in Q1 sales calls?
+            </div>
+            <div className="chat-avatar">👤</div>
+          </div>
+
+          <div className="agent-block">
+            <div className="steps-row">
+              <span className="steps-dot"></span>
+              <span>3 Steps</span>
+            </div>
+            <p className="agent-intro">Analyzed 143 calls in Q1 — top objections surfaced:</p>
+
+            <table className="data-table objections-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Objection</th>
+                  <th>Calls</th>
+                  <th>Win Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Pricing / Budget</td>
+                  <td>61 (43%)</td>
+                  <td>38%</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Implementation Timeline</td>
+                  <td>41 (29%)</td>
+                  <td>22%</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Feature Gaps</td>
+                  <td>28 (20%)</td>
+                  <td>31%</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div className="insight-box">
+              <strong>Insight:</strong> Pricing objections with a clear ROI case study closed at 52%
+              win rate vs 28% without one. Recommend adding ROI one-pager to discovery decks.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  )
-}
+      )
+    }
 
-function DataAnalysisDemo() {
-  return (
-    <div className="agent-demo-scene">
-      <div className="agent-demo-card agent-demo-main">
-        <p className="demo-status-line">Analyzing onboarding funnel data from your warehouse…</p>
-        <div className="demo-alert demo-alert-red">
-          <span>🔴</span>
-          <span><strong>Biggest drop-off: Dashboard → Attempted Integration</strong> — 46% of users never try to connect an integration.</span>
+    /* ---------- CRM Agent ---------- */
+    if (agent.id === 'crm') {
+      return (
+        <div className="preview-content crm-preview">
+          <div className="chat-row user">
+            <div className="chat-bubble user-bubble">
+              New lead from webinar: jane@acme.io — enrich and create Salesforce opportunity
+            </div>
+            <div className="chat-avatar">👤</div>
+          </div>
+
+          <div className="agent-block">
+            <div className="steps-row">
+              <span className="steps-dot"></span>
+              <span>4 Steps</span>
+            </div>
+            <p className="agent-intro">Done. Here's what I added:</p>
+
+            <div className="crm-card">
+              <div className="crm-row">
+                <span className="crm-label">Contact</span>
+                <span>Jane Doe · jane@acme.io</span>
+              </div>
+              <div className="crm-row">
+                <span className="crm-label">Company</span>
+                <span>Acme Inc · 240 employees · SaaS</span>
+              </div>
+              <div className="crm-row">
+                <span className="crm-label">Opportunity</span>
+                <span>OPP-9921 · $48k · Stage: Discovery</span>
+              </div>
+              <div className="crm-row">
+                <span className="crm-label">Owner</span>
+                <span>Assigned to Lizzy</span>
+              </div>
+            </div>
+
+            <p className="agent-followup">
+              I also drafted a follow-up email. Want me to send it or put it in her drafts?
+            </p>
+          </div>
         </div>
-        <table className="demo-table">
-          <thead><tr><th>Step</th><th>Users</th><th>Drop-off</th></tr></thead>
-          <tbody>
-            <tr><td>Signed Up</td><td>4,820</td><td>—</td></tr>
-            <tr><td>Completed Profile</td><td>3,940</td><td>18%</td></tr>
-            <tr><td>Viewed Dashboard</td><td>3,105</td><td>21%</td></tr>
-            <tr><td>Attempted Integration</td><td>1,673</td><td className="warn">⚠ 46%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
+      )
+    }
 
-function CrmDemo() {
-  return (
-    <div className="agent-demo-scene">
-      <div className="agent-demo-card agent-demo-main">
-        <p className="demo-status-line">Q1 pipeline snapshot — 38 active deals, $2.4M total</p>
-        <table className="demo-table">
-          <thead><tr><th>Deal</th><th>Account</th><th>Stage</th><th>Amount</th></tr></thead>
-          <tbody>
-            <tr><td>Enterprise Expansion</td><td>Meridian Health</td><td>Negotiation</td><td>$142,000</td></tr>
-            <tr><td>Platform Rollout</td><td>Torchlight Systems</td><td>Proposal Sent</td><td>$98,500</td></tr>
-            <tr><td>Annual Renewal</td><td>Northwind</td><td>Discovery</td><td>$64,000</td></tr>
-          </tbody>
-        </table>
-        <div className="demo-bars">
-          <div className="demo-bar-row"><span>Discovery</span><div className="demo-bar-track"><div className="demo-bar demo-bar-green" style={{ width: '65%' }}>$540K</div></div></div>
-          <div className="demo-bar-row"><span>Solution Fit</span><div className="demo-bar-track"><div className="demo-bar demo-bar-purple" style={{ width: '78%' }}>$680K</div></div></div>
-          <div className="demo-bar-row"><span>Security</span><div className="demo-bar-track"><div className="demo-bar demo-bar-blue" style={{ width: '52%' }}>$430K</div></div></div>
+    /* ---------- Meeting Prep Agent ---------- */
+    if (agent.id === 'meeting-prep') {
+      return (
+        <div className="preview-content meeting-preview">
+          <div className="chat-row user">
+            <div className="chat-bubble user-bubble">
+              Prep me for the call with Northwind at 2pm
+            </div>
+            <div className="chat-avatar">👤</div>
+          </div>
+
+          <div className="agent-block">
+            <div className="steps-row">
+              <span className="steps-dot"></span>
+              <span>5 Steps</span>
+            </div>
+            <p className="agent-intro">Here's your briefing for Northwind:</p>
+
+            <div className="brief-card">
+              <div className="brief-section">
+                <strong>Company</strong>
+                <p>Northwind Traders · Series B · 180 employees · Logistics SaaS</p>
+              </div>
+              <div className="brief-section">
+                <strong>Attendees</strong>
+                <p>Sarah Chen (VP Ops), Marcus Lee (Head of Procurement)</p>
+              </div>
+              <div className="brief-section">
+                <strong>Recent signals</strong>
+                <ul>
+                  <li>Opened pricing page 4× this week</li>
+                  <li>Competitor eval vs ShipBob mentioned in last email</li>
+                  <li>Current contract with legacy vendor ends Aug 2026</li>
+                </ul>
+              </div>
+              <div className="brief-section">
+                <strong>Suggested angle</strong>
+                <p>Lead with ROI on warehouse throughput + migration timeline under 6 weeks.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  )
-}
+      )
+    }
 
-function MeetingPrepDemo() {
-  return (
-    <div className="agent-demo-scene">
-      <div className="agent-demo-card agent-demo-main">
-        <p className="demo-status-line">Briefing ready for your 2pm call with Torchlight Systems</p>
-        <table className="demo-table">
-          <thead><tr><th>Detail</th><th>Info</th></tr></thead>
-          <tbody>
-            <tr><td>Company</td><td>Torchlight Systems — Series B, 220 employees</td></tr>
-            <tr><td>Contact</td><td>Sarah Chen, VP Engineering</td></tr>
-            <tr><td>Deal Stage</td><td>Proposal Sent — $98,500</td></tr>
-            <tr><td>Last Touch</td><td>Demo call March 5 — positive feedback</td></tr>
-          </tbody>
-        </table>
-        <ul className="demo-checklist">
-          <li>Address security compliance questions from last call</li>
-          <li>Share case study: similar deployment at Meridian Health</li>
-          <li>Discuss Q2 launch timeline</li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-function CallAnalysisDemo() {
-  return (
-    <div className="agent-demo-scene">
-      <div className="agent-demo-card agent-demo-main">
-        <p className="demo-status-line">Analyzed 143 calls in Q1 — top objections surfaced</p>
-        <table className="demo-table">
-          <thead><tr><th>#</th><th>Objection</th><th>Calls</th><th>Win Rate</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>Pricing / Budget</td><td>61 (43%)</td><td>38%</td></tr>
-            <tr><td>2</td><td>Implementation Timeline</td><td>41 (29%)</td><td>22%</td></tr>
-            <tr><td>3</td><td>Feature Gaps</td><td>28 (20%)</td><td>31%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-
-const demoComponents = {
-  'data-analysis': DataAnalysisDemo,
-  support: SupportDemo,
-  crm: CrmDemo,
-  'meeting-prep': MeetingPrepDemo,
-  'call-analysis': CallAnalysisDemo,
-}
-
-export default function AgentsShowcase() {
-  const [activeId, setActiveId] = useState('support')
-  const activeAgent = agents.find((a) => a.id === activeId)
-  const DemoComponent = demoComponents[activeId]
+    return null
+  }
 
   return (
     <section className="agents-showcase-section">
       <div className="container">
         <div className="showcase-grid">
-          <div className="showcase-left">
+          {/* Left accordion */}
+          <div className="showcase-accordion">
             <h2 className="showcase-heading">
-              Roll out specialized<br />agents in minutes
+              Roll out specialized
+              <br />
+              agents in minutes
             </h2>
-            <div className="agent-list">
-              {agents.map((agent) => {
-                const isActive = agent.id === activeId
+
+            <div className="accordion-list">
+              {agents.map((agent, idx) => {
+                const isActive = activeTab === idx
                 return (
-                  <button
+                  <div
                     key={agent.id}
-                    type="button"
-                    className={`agent-list-item ${isActive ? 'active' : ''}`}
-                    onClick={() => setActiveId(agent.id)}
+                    className={`accordion-item ${isActive ? 'active' : ''}`}
+                    onClick={() => setActiveTab(idx)}
                   >
-                    <div className="agent-list-header">
-                      {isActive && <span className="agent-icon-box">{agent.icon}</span>}
-                      <h3 className="agent-list-title">{agent.title}</h3>
-                    </div>
-                    <AnimatePresence initial={false}>
+                    <div className="accordion-header">
                       {isActive && (
-                        <motion.div
-                          className="agent-list-expand"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.28, ease: 'easeOut' }}
-                        >
-                          <p className="agent-list-desc">{agent.description}</p>
-                          <div
-                            className="agent-badge"
-                            style={{ background: agent.badgeColor, color: agent.badgeText }}
-                          >
-                            <div className="badge-avatars">
-                              {agent.creators.map((name, i) => (
-                                <span
-                                  key={name}
-                                  className="badge-avatar"
-                                  style={{ background: avatarColors[i % avatarColors.length] }}
-                                >
-                                  {name.charAt(0)}
-                                </span>
-                              ))}
-                            </div>
-                            <span>{agent.team} · Built by {agent.creators.join(', ')}</span>
-                          </div>
-                        </motion.div>
+                        <div className="agent-icon-box" style={{ color: agent.color }}>
+                          {agent.icon}
+                        </div>
                       )}
-                    </AnimatePresence>
-                  </button>
+                      <h3 className="agent-title">{agent.title}</h3>
+                    </div>
+
+                    {isActive && (
+                      <div className="accordion-body">
+                        <p className="agent-desc">{agent.description}</p>
+                        <div className="agent-team">
+                          <div className="team-avatars">
+                            {agent.team.map((member, i) => (
+                              <div
+                                key={i}
+                                className="team-avatar"
+                                style={{ background: agent.teamColors[i] }}
+                                title={member}
+                              >
+                                {member.charAt(0)}
+                              </div>
+                            ))}
+                          </div>
+                          <span className="team-label">
+                            {agent.teamLabel} · Built by {agent.team.join(', ')}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )
               })}
             </div>
           </div>
 
-          <div className="showcase-right">
-            <div className="preview-gradient-wrap">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeId}
-                  className="preview-content"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <DemoComponent />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            <p className="preview-agent-label">{activeAgent?.title}</p>
+          {/* Right preview */}
+          <div className="showcase-preview-container">
+            <div className="preview-panel">{renderPreview()}</div>
           </div>
         </div>
       </div>
