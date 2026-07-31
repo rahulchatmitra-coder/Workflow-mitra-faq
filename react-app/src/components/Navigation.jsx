@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import FlowMitraLogo from './FlowMitraLogo'
+import SolutionsMegaMenu from './SolutionsMegaMenu'
 import './Navigation.css'
 
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false)
+  const solutionsTimeoutRef = useRef(null)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +18,47 @@ function Navigation() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close mega menu when route changes
+  useEffect(() => {
+    setIsSolutionsOpen(false)
+    setIsMobileMenuOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsSolutionsOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [])
+
+  const handleSolutionsEnter = () => {
+    clearTimeout(solutionsTimeoutRef.current)
+    setIsSolutionsOpen(true)
+  }
+
+  const handleSolutionsLeave = () => {
+    solutionsTimeoutRef.current = setTimeout(() => {
+      setIsSolutionsOpen(false)
+    }, 200)
+  }
+
+  const handleMegaMenuEnter = () => {
+    clearTimeout(solutionsTimeoutRef.current)
+  }
+
+  const handleMegaMenuLeave = () => {
+    solutionsTimeoutRef.current = setTimeout(() => {
+      setIsSolutionsOpen(false)
+    }, 200)
+  }
+
+  const closeSolutions = () => {
+    setIsSolutionsOpen(false)
+  }
 
   return (
     <>
@@ -27,8 +72,19 @@ function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="nav-links desktop-only">
-              <div className="nav-dropdown">
-                <button className="nav-link">Solutions <span className="chevron">▼</span></button>
+              <div 
+                className="nav-dropdown"
+                onMouseEnter={handleSolutionsEnter}
+                onMouseLeave={handleSolutionsLeave}
+              >
+                <Link 
+                  to="/solutions"
+                  className="nav-link"
+                  aria-expanded={isSolutionsOpen}
+                  aria-haspopup="true"
+                >
+                  Solutions <span className="chevron">▼</span>
+                </Link>
               </div>
               <div className="nav-dropdown">
                 <button className="nav-link">Resources <span className="chevron">▼</span></button>
@@ -71,6 +127,14 @@ function Navigation() {
             </div>
           )}
         </nav>
+
+        {/* Solutions Mega Menu */}
+        <SolutionsMegaMenu 
+          isOpen={isSolutionsOpen} 
+          onClose={closeSolutions}
+          onMouseEnter={handleMegaMenuEnter}
+          onMouseLeave={handleMegaMenuLeave}
+        />
       </div>
     </>
   )

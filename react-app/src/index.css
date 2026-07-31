@@ -19,9 +19,11 @@
 
   /* Colors - Base */
   --color-background: #ffffff;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafbfc;
   --color-surface: #ffffff;
   --color-surface-muted: #f9fafb;
-  --color-elevated: #f6f8fa;
+  --color-elevated: #f8fafc;
   
   /* Colors - Text */
   --color-text-primary: #0f172a;
