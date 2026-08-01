@@ -1,3 +1,4 @@
+import { FaEnvelope, FaChartBar, FaClipboardList } from 'react-icons/fa';
 import { useState } from 'react'
 import './Apps.css'
 
@@ -9,10 +10,10 @@ const allApps = [
   { id: 'netsuite', name: 'NetSuite', category: 'ERP', svg: 'netsuite', color: '#000000' },
   { id: 'salesforce', name: 'Salesforce', category: 'CRM', svg: 'salesforce', color: '#00A1E0' },
   { id: 'slack', name: 'Slack', category: 'Communication', svg: 'slack', color: '#4A154B' },
-  { id: 'gmail', name: 'Gmail', category: 'Communication', icon: '📧', color: '#EA4335' },
-  { id: 'sheets', name: 'Google Sheets', category: 'Productivity', icon: '📊', color: '#0F9D58' },
+  { id: 'gmail', name: 'Gmail', category: 'Communication', icon: '<FaEnvelope />', color: '#EA4335' },
+  { id: 'sheets', name: 'Google Sheets', category: 'Productivity', icon: '<FaChartBar />', color: '#0F9D58' },
   { id: 'discord', name: 'Discord', category: 'Communication', svg: 'discord', color: '#5865F2' },
-  { id: 'notion', name: 'Notion', category: 'Productivity', icon: '📝', color: '#000000' },
+  { id: 'notion', name: 'Notion', category: 'Productivity', icon: '<FaClipboardList />', color: '#000000' },
   { id: 'stripe', name: 'Stripe', category: 'Finance', svg: 'stripe', color: '#635BFF' },
   { id: 'github', name: 'GitHub', category: 'Development', svg: 'github', color: '#181717' },
   { id: 'jira', name: 'Jira', category: 'Productivity', svg: 'jira', color: '#0052CC' },

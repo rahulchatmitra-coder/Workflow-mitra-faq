@@ -9,10 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lobehub/fluent-emoji": "^4.1.0",
+    "@lobehub/icons": "^5.15.0",
+    "@lobehub/ui": "^5.24.0",
+    "antd": "^6.5.3",
     "framer-motion": "^12.43.0",
     "lucide-react": "^1.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.7.0",
     "react-router-dom": "^6.30.4"
   },
   "devDependencies": {

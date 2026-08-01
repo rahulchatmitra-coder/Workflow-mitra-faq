@@ -1,108 +1,147 @@
-import { Link } from 'react-router-dom'
-import './Pricing.css'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Pricing.css';
 
 function Pricing() {
+  const [activePlanOrder, setActivePlanOrder] = useState(0);
+
+  const handleCheckout = (planName) => {
+    // TODO: Wire up actual Stripe Checkout / Billing API flow here
+    alert(`Initiating checkout/upgrade flow for: ${planName}`);
+  };
+
+  const getCtaText = (plan) => {
+    if (plan.order > activePlanOrder) {
+      return `Upgrade to ${plan.name}`;
+    }
+    if (plan.order < activePlanOrder) {
+      return `Downgrade to ${plan.name}`;
+    }
+    return `Add a card to keep ${plan.name}`;
+  };
+
   const plans = [
     {
-      name: 'Free',
-      price: '$0',
-      period: 'forever',
-      description: 'Perfect for trying out FlowMitra',
+      order: 0,
+      name: 'Starter',
+      price: '₹999',
+      period: 'mo',
+      trialNote: 'Free for 11 days more',
       features: [
-        '100 tasks per month',
-        '5 active workflows',
-        'Basic integrations',
-        'Community support',
-        '1 team member'
-      ],
-      cta: 'Get Started',
-      highlighted: false
+        <><strong key="1">10,000</strong> credits / month (1 credit = 1 run)</>,
+        'Unlimited active workflows',
+        <>Up to <strong key="2">5</strong> team seats</>,
+        'All node types & integrations',
+        'Full-text execution log search',
+        'Community support'
+      ]
     },
     {
-      name: 'Pro',
-      price: '$29',
-      period: 'per month',
-      description: 'For growing teams and businesses',
+      order: 1,
+      name: 'Growth',
+      price: '₹2,500',
+      period: 'mo',
       features: [
-        '10,000 tasks per month',
-        'Unlimited workflows',
-        'All integrations',
-        'Priority support',
-        '10 team members',
-        'Advanced analytics',
-        'Custom branding'
-      ],
-      cta: 'Start Free Trial',
-      highlighted: true
+        <><strong key="3">30,000</strong> credits / month</>,
+        'Everything in Starter',
+        <>Up to <strong key="4">10</strong> team seats</>,
+        'High-priority workflow execution',
+        'Email support'
+      ]
     },
     {
+      order: 2,
+      name: 'Scale',
+      price: '₹5,000',
+      period: 'mo',
+      features: [
+        <><strong key="5">70,000</strong> credits / month</>,
+        'Everything in Growth',
+        <>Up to <strong key="6">25</strong> team seats</>,
+        'Higher rate limits',
+        'Priority support'
+      ]
+    },
+    {
+      order: 3,
       name: 'Enterprise',
-      price: 'Custom',
-      period: 'contact us',
-      description: 'For large organizations',
+      price: '₹10,000',
+      period: 'mo',
       features: [
-        'Unlimited tasks',
-        'Unlimited workflows',
-        'All integrations',
-        'Dedicated support',
-        'Unlimited team members',
-        'Advanced security',
-        'SLA guarantee',
-        'Custom integrations'
-      ],
-      cta: 'Contact Sales',
-      highlighted: false
+        <><strong key="7">200,000</strong> credits / month</>,
+        'Everything in Scale',
+        <>Up to <strong key="8">100</strong> team seats</>,
+        'Dedicated support & onboarding',
+        'SLA available'
+      ]
     }
-  ]
+  ];
 
   return (
     <div className="pricing-page">
-      <section className="pricing-hero">
-        <div className="container">
-          <h1 className="page-title">Simple, Transparent Pricing</h1>
-          <p className="page-subtitle">
-            Choose the plan that fits your needs. Upgrade or downgrade at any time.
+      <section className="pricing-section">
+        <div className="pricing-header">
+          <span className="pricing-eyebrow">Pricing</span>
+          <h1>Simple pricing that scales with your team</h1>
+          <p className="pricing-subhead">
+            Start free on Starter, then upgrade whenever your workflows need more room to run.
           </p>
         </div>
-      </section>
 
-      <section className="pricing-plans">
-        <div className="container">
-          <div className="plans-grid">
-            {plans.map((plan, index) => (
+
+
+        <div className="pricing-plans-grid">
+          {plans.map((plan) => {
+            const isActive = plan.order === activePlanOrder;
+            
+            return (
               <div 
-                key={index} 
-                className={`pricing-card ${plan.highlighted ? 'highlighted' : ''}`}
+                key={plan.order} 
+                className={`pricing-plan ${isActive ? 'active' : ''}`}
+                onClick={() => setActivePlanOrder(plan.order)}
+                style={{ cursor: 'pointer' }}
               >
-                {plan.highlighted && <div className="badge">Most Popular</div>}
-                <div className="plan-header">
-                  <h3 className="plan-name">{plan.name}</h3>
-                  <div className="plan-price">
-                    <span className="price">{plan.price}</span>
-                    <span className="period">/{plan.period}</span>
-                  </div>
-                  <p className="plan-description">{plan.description}</p>
+                <div className="plan-top">
+                  <span className="plan-name">{plan.name}</span>
+                  {isActive && plan.order === 0 && <span className="plan-badge">Your trial</span>}
+                  {isActive && plan.order > 0 && <span className="plan-badge">Current Plan</span>}
                 </div>
-                <ul className="plan-features">
+                
+                <div className="price-row">
+                  <span className="price">{plan.price}</span>
+                  <span className="period">/{plan.period}</span>
+                </div>
+                
+                {plan.trialNote && isActive ? (
+                  <p className="trial-note">{plan.trialNote}</p>
+                ) : (
+                  <div className="price-spacer"></div>
+                )}
+                
+                <ul className="plan-features-list">
                   {plan.features.map((feature, idx) => (
                     <li key={idx}>
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="10" fill="#10b981" opacity="0.1"/>
-                        <path d="M14 7L8.5 12.5L6 10" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg className="plan-check" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <circle cx="10" cy="10" r="10" fill="var(--green-soft)" />
+                        <path d="M6 10.2l2.6 2.6L14.2 7" stroke="var(--green)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      {feature}
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <Link 
-                  to="/contact" 
-                  className={`btn ${plan.highlighted ? 'btn-primary' : 'btn-secondary'} btn-large btn-full`}
+                
+                <button 
+                  className="plan-cta"
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent clicking the button from also clicking the card
+                    handleCheckout(plan.name);
+                  }}
                 >
-                  {plan.cta}
-                </Link>
+                  {getCtaText(plan)}
+                </button>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 

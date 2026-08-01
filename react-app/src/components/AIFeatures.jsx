@@ -1,3 +1,4 @@
+import { FaBullhorn, FaBullseye, FaLock } from 'react-icons/fa';
 import './AIFeatures.css'
 
 const aiModels = [
@@ -37,9 +38,9 @@ const integrations = [
 ]
 
 const scheduledTasks = [
-  { name: 'Social Presence', schedule: 'Mondays at 8 AM PST', icon: '📣', showMonitoring: true },
-  { name: 'Lead Qualifier', schedule: 'Every form submission', icon: '🎯' },
-  { name: 'Security Audit', schedule: 'Every 8 hours', icon: '🔒', showAlert: true },
+  { name: 'Social Presence', schedule: 'Mondays at 8 AM PST', icon: '<FaBullhorn />', showMonitoring: true },
+  { name: 'Lead Qualifier', schedule: 'Every form submission', icon: '<FaBullseye />' },
+  { name: 'Security Audit', schedule: 'Every 8 hours', icon: '<FaLock />', showAlert: true },
 ]
 
 function AIFeatures() {

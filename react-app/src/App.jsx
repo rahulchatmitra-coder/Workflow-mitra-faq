@@ -14,6 +14,9 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Apps from './pages/Apps'
 import TemplateDetail from './pages/TemplateDetail'
+import TestPage from './pages/TestPage'
+import Templates from './pages/Templates'
+import Integrations from './pages/Integrations'
 import './App.css'
 
 function App() {
@@ -31,10 +34,13 @@ function App() {
           <Route path="/solutions/engineering" element={<SolutionEngineering />} />
           <Route path="/solutions/support" element={<SolutionSupport />} />
           <Route path="/solutions/security" element={<SolutionSecurity />} />
+          <Route path="/test" element={<TestPage />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/template/:templateId" element={<TemplateDetail />} />
+          <Route path="/templates" element={<Templates />} />
+          <Route path="/integrations" element={<Integrations />} />
         </Routes>
         <Footer />
       </div>

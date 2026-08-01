@@ -1,47 +1,49 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaChartBar, FaLifeRing, FaCog, FaClipboardList, FaExclamationTriangle, FaCircle, FaBug, FaCube } from 'react-icons/fa'
+import { getBrandIcon } from '../utils/brandIcons'
 import './PremiumHero.css'
 
 const agents = [
   {
     id: 'data-analysis',
     title: 'Data Analysis Agent',
-    icon: '📊',
+    icon: <FaChartBar />,
     description: 'A reasoning agent that answers questions from your data warehouse, surfaces insights, and visualizes trends.',
     team: 'Data',
-    creators: ['Aron', 'Katherine', 'Max'],
+    integrations: ['Snowflake', 'Datadog', 'Google Sheets'],
   },
   {
     id: 'support',
     title: 'Support Agent',
-    icon: '🛟',
+    icon: <FaLifeRing />,
     description: 'An agent that triages bugs, creates tickets, and spots support patterns automatically.',
     team: 'Support',
-    creators: ['Gonzalo', 'Katherine', 'Marcelo'],
+    integrations: ['Zendesk', 'Slack', 'Jira'],
   },
   {
     id: 'crm',
     title: 'CRM Agent',
-    icon: '⚙️',
+    icon: <FaCog />,
     description: 'An agent that manages deals, researches prospects, and keeps your CRM up to date.',
     team: 'Sales',
-    creators: ['Aron', 'Aron', 'Rahul'],
+    integrations: ['Salesforce', 'Hubspot', 'Apollo'],
   },
   {
     id: 'meeting-prep',
     title: 'Meeting Prep Agent',
-    icon: '📋',
+    icon: <FaClipboardList />,
     description: 'Prepares briefings, talking points, and background research before every meeting.',
     team: 'Ops',
-    creators: ['Sarah', 'Dev', 'Priya'],
+    integrations: ['Google Meet', 'Zoom', 'Notion'],
   },
   {
     id: 'call-analysis',
     title: 'Call Analysis Agent',
-    icon: '⚠️',
+    icon: <FaExclamationTriangle />,
     description: 'An agent that analyzes call recordings to surface objection patterns, coaching insights, and competitive intelligence.',
     team: 'Sales',
-    creators: ['Aron', 'Katherine', 'Marcelo'],
+    integrations: ['Gong', 'Zoom', 'Salesforce'],
   },
 ]
 
@@ -49,7 +51,7 @@ const demoData = {
   'data-analysis': {
     question: 'Where are we losing people in the onboarding flow?',
     steps: '4 Steps',
-    stepIcons: ['🔵', '📊', '🟠'],
+    stepIcons: [<FaCircle color="#3b82f6"/>, <FaChartBar color="#6b7280"/>, <FaCircle color="#f97316"/>],
     responseHeading: "Here's what's happening in your onboarding funnel this month:",
     content: (
       <>
@@ -113,13 +115,13 @@ const demoData = {
   'support': {
     question: 'Meridian Corp is reporting a broken CSV export — can you create a bug ticket?',
     steps: '5 Steps',
-    stepIcons: ['🔵', '🟠', '🔴'],
+    stepIcons: [<FaCircle color="#3b82f6"/>, <FaCircle color="#f97316"/>, <FaCircle color="#ef4444"/>],
     responseHeading: "Done — here's what I created:",
     content: (
       <>
         <div className="gum-content-block gum-ticket-block">
           <div className="gum-ticket-header">
-            <span className="gum-ticket-icon">🐛</span>
+            <span className="gum-ticket-icon"><FaBug style={{verticalAlign: 'middle', marginRight: '6px'}}/></span>
             <span><strong>BUG-4192</strong> — <em>Meridian Corp: Broken CSV Export</em></span>
           </div>
           <div className="gum-ticket-meta">
@@ -146,7 +148,7 @@ const demoData = {
   'crm': {
     question: "How's our Q1 pipeline looking? Anything at risk?",
     steps: '3 Steps',
-    stepIcons: ['🔵', '🟡'],
+    stepIcons: [<FaCircle color="#3b82f6"/>, <FaCircle color="#eab308"/>],
     responseHeading: "Here's your Q1 pipeline snapshot as of today (March 11):",
     content: (
       <>
@@ -204,7 +206,7 @@ const demoData = {
   'meeting-prep': {
     question: 'Prep me for my 2pm call with Torchlight Systems.',
     steps: '4 Steps',
-    stepIcons: ['🔵', '📋', '🟠'],
+    stepIcons: [<FaCircle color="#3b82f6"/>, <FaClipboardList color="#6b7280"/>, <FaCircle color="#f97316"/>],
     responseHeading: "Here's your briefing for the Torchlight Systems call:",
     content: (
       <>
@@ -251,7 +253,7 @@ const demoData = {
   'call-analysis': {
     question: 'What objections keep coming up on our calls this quarter?',
     steps: '5 Steps',
-    stepIcons: ['🔵', '⚙️', '🔴'],
+    stepIcons: [<FaCircle color="#3b82f6"/>, <FaCog color="#6b7280"/>, <FaCircle color="#ef4444"/>],
     responseHeading: "Here's what's coming up across 143 calls analyzed in Q1 2026:",
     content: (
       <>
@@ -376,19 +378,22 @@ const PremiumHero = () => {
                             <p className="gum-agent-details-desc">{agent.description}</p>
                             <div className="gum-agent-team">
                               <div className="gum-avatars">
-                                {agent.creators.map((name, i) => (
-                                  <div
-                                    key={i}
-                                    className="gum-avatar"
-                                    style={{ background: avatarColors[i % avatarColors.length] }}
-                                    title={name}
-                                  >
-                                    {name.charAt(0)}
-                                  </div>
-                                ))}
+                                {agent.integrations.map((integration, i) => {
+                                  const brand = getBrandIcon(integration, { size: 16, color: '#ffffff' });
+                                  return (
+                                    <div
+                                      key={i}
+                                      className="gum-avatar"
+                                      style={{ background: brand ? brand.color : '#888', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                      title={integration}
+                                    >
+                                      {brand ? brand.component : integration.charAt(0)}
+                                    </div>
+                                  );
+                                })}
                               </div>
                               <span className="gum-team-label">
-                                {agent.team} - Built by {agent.creators.join(', ')}
+                                {agent.team} - Integrates with {agent.integrations.join(', ')}
                               </span>
                             </div>
                           </div>

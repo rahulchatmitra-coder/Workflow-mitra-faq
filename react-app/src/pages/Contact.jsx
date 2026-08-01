@@ -1,3 +1,4 @@
+import { FaEnvelope, FaCommentDots, FaPhoneAlt, FaBuilding, FaCheck } from 'react-icons/fa';
 import { useState } from 'react'
 import './Contact.css'
 
@@ -40,19 +41,19 @@ function Contact() {
             <div className="contact-info">
               <h2>Contact Information</h2>
               <div className="info-item">
-                <h3>📧 Email</h3>
+                <h3><FaEnvelope /> Email</h3>
                 <p>hello@flowmitra.com</p>
               </div>
               <div className="info-item">
-                <h3>💬 Live Chat</h3>
+                <h3><FaCommentDots /> Live Chat</h3>
                 <p>Available Monday-Friday, 9am-6pm EST</p>
               </div>
               <div className="info-item">
-                <h3>📞 Phone</h3>
+                <h3><FaPhoneAlt /> Phone</h3>
                 <p>+1 (555) 123-4567</p>
               </div>
               <div className="info-item">
-                <h3>🏢 Office</h3>
+                <h3><FaBuilding /> Office</h3>
                 <p>123 Innovation Drive<br/>San Francisco, CA 94105</p>
               </div>
             </div>
@@ -112,7 +113,7 @@ function Contact() {
 
                 {isSubmitted ? (
                   <div style={{ textAlign: 'center', padding: '2rem', background: '#f0fdf4', borderRadius: '12px', border: '1px solid #bbf7d0' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✓</div>
+                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}><FaCheck /></div>
                     <p style={{ fontWeight: 600, color: '#166534', marginBottom: '0.25rem' }}>Message sent successfully!</p>
                     <p style={{ color: '#4b5563', fontSize: '0.9rem' }}>We'll get back to you within 24 hours.</p>
                   </div>
