@@ -1,4 +1,4 @@
-/* Navigation - Gumloop Floating Pill Design */
+/* Navigation - New Layout */
 
 .nav-wrapper {
   position: sticky;
@@ -9,18 +9,96 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  --ink: #16181d;
+  --border: #e6e7eb;
 }
 
-.nav-backdrop-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(180deg, rgba(252, 231, 243, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-  z-index: 0;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition-base) var(--transition-smooth);
+}
+
+.navbar.scrolled {
+  box-shadow: var(--shadow-floating-nav);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.logo-mark {
+  width: 22px; height: 22px;
+  border-radius: 7px;
+  background: var(--ink);
+  display: inline-flex; align-items:center; justify-content:center;
+  color: white;
+}
+.logo-mark svg { width: 13px; height: 13px; }
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.navbar .nav-links li, .navbar .nav-links a {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #3b3d45;
+  display: flex; align-items: center; gap: 4px;
+  text-decoration: none;
+}
+.navbar .nav-links svg { width: 10px; height: 10px; opacity: 0.6; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.talk-to-sales {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #3b3d45;
+  text-decoration: none;
+}
+.get-started {
+  background: var(--ink);
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.badge-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0;
+}
+.badge {
+  background: linear-gradient(90deg, #7c8ef0, #9b8cf2);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 7px 18px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px -4px rgba(124, 142, 240, 0.45);
 }
 
 .navigation {
@@ -98,6 +176,45 @@
 
 .nav-link:hover {
   color: var(--color-text-primary);
+}
+
+.simple-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px -6px rgba(0,0,0,0.1);
+  padding: 8px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-dropdown:hover .simple-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.simple-dropdown-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.simple-dropdown-item:hover {
+  background: var(--color-elevated);
 }
 
 /* CTA Buttons */

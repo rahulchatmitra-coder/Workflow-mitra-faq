@@ -43,6 +43,30 @@
   --color-brand-orange: #F97316;
   --color-brand-yellow: #EAB308;
 
+  /* Shared Section Tokens (How It Works & Pricing) */
+  --bg-a: #fff7f3;
+  --bg-b: #f4f0fd;
+  --bg-c: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #ece6f7;
+  --card-border-active: #161320;
+  --card-shadow: rgba(84, 61, 163, 0.10);
+  --card-shadow-hover: rgba(84, 61, 163, 0.18);
+  --section-text-primary: #161320;
+  --section-text-secondary: #6c6478;
+  --section-text-muted: #9d96a8;
+  --accent-orange: #e8622c;
+  --accent-orange-soft: #ffe4d6;
+  --accent-purple: #6c5ce7;
+  --accent-purple-soft: #efe9ff;
+  --green: #1da35b;
+  --green-soft: #e4f6ec;
+  --panel-a: #f4ecff;
+  --panel-b: #ffe9df;
+  --dot: #d9cdfb;
+  --btn-bg: #161320;
+  --btn-text: #ffffff;
+
   /* Borders */
   --color-border: #e2e8f0;
   --color-border-default: #e2e8f0;

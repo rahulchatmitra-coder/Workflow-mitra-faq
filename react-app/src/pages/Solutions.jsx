@@ -1,3 +1,4 @@
+import { FaBullseye, FaLock, FaChartBar, FaCommentDots, FaPhoneAlt, FaBullhorn, FaBriefcase, FaCog, FaLaptop, FaCalendarAlt, FaHeadphones, FaSearch, FaMobileAlt, FaPen, FaAddressCard, FaGift, FaShoppingBag, FaUsers, FaLightbulb } from 'react-icons/fa';
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Solutions.css'
@@ -8,42 +9,42 @@ function Solutions() {
   const roles = [
     {
       id: 'marketing',
-      icon: '📢',
+      icon: '<FaBullhorn />',
       title: 'Marketing',
       description: 'Automate content, SEO, ads, and reporting',
       color: '#ec4899'
     },
     {
       id: 'sales',
-      icon: '💼',
+      icon: '<FaBriefcase />',
       title: 'Sales',
       description: 'Run AI agents across every sales motion',
       color: '#8b5cf6'
     },
     {
       id: 'operations',
-      icon: '⚙️',
+      icon: '<FaCog />️',
       title: 'Operations',
       description: 'Eliminate busywork and reduce manual errors',
       color: '#10b981'
     },
     {
       id: 'engineering',
-      icon: '💻',
+      icon: '<FaLaptop />',
       title: 'Engineering',
       description: 'Production-grade automations, ship faster',
       color: '#3b82f6'
     },
     {
       id: 'support',
-      icon: '💬',
+      icon: '<FaCommentDots />',
       title: 'Support',
       description: 'Triage tickets, spot trends, stop churn',
       color: '#f59e0b'
     },
     {
       id: 'security',
-      icon: '🔒',
+      icon: '<FaLock />',
       title: 'Security',
       description: 'Security, compliance, and data governance',
       color: '#ef4444'
@@ -53,84 +54,84 @@ function Solutions() {
   const useCases = [
     {
       id: 'data-analysis',
-      icon: '📊',
+      icon: '<FaChartBar />',
       title: 'Data Analysis Agent',
       description: 'Query your data warehouse from Slack',
       color: '#8b5cf6'
     },
     {
       id: 'meeting-prep',
-      icon: '📅',
+      icon: '<FaCalendarAlt />',
       title: 'Meeting Prep Agent',
       description: 'Get context before every meeting',
       color: '#ec4899'
     },
     {
       id: 'support-agent',
-      icon: '🎧',
+      icon: '<FaHeadphones />',
       title: 'Support Agent',
       description: 'Triage tickets through natural conversation',
       color: '#10b981'
     },
     {
       id: 'seo-automation',
-      icon: '🔍',
+      icon: '<FaSearch />',
       title: 'SEO Automation',
       description: 'Automate every SEO workflow',
       color: '#f59e0b'
     },
     {
       id: 'lead-qualification',
-      icon: '🎯',
+      icon: '<FaBullseye />',
       title: 'Lead Qualification Agent',
       description: 'Qualify and route inbound leads',
       color: '#3b82f6'
     },
     {
       id: 'ad-campaign',
-      icon: '📱',
+      icon: '<FaMobileAlt />',
       title: 'Ad Campaign Management',
       description: 'Track accounts and report on spend',
       color: '#ec4899'
     },
     {
       id: 'content-creation',
-      icon: '✍️',
+      icon: '<FaPen />️',
       title: 'Content Creation',
       description: 'Agents for your content workflows',
       color: '#8b5cf6'
     },
     {
       id: 'competitor-analysis',
-      icon: '🔎',
+      icon: '<FaSearch />',
       title: 'Competitor Analysis',
       description: 'Track competitors across every channel',
       color: '#10b981'
     },
     {
       id: 'crm-agent',
-      icon: '📇',
+      icon: '<FaAddressCard />',
       title: 'CRM Agent',
       description: 'Keep your sales pipeline up to date',
       color: '#f59e0b'
     },
     {
       id: 'call-analysis',
-      icon: '📞',
+      icon: '<FaPhoneAlt />',
       title: 'Call Analysis Agent',
       description: 'Insights from every sales call',
       color: '#3b82f6'
     },
     {
       id: 'lead-generation',
-      icon: '🎁',
+      icon: '<FaGift />',
       title: 'Lead Generation Agent',
       description: 'Find, enrich, and prioritize every lead',
       color: '#ec4899'
     },
     {
       id: 'shopify-stores',
-      icon: '🛍️',
+      icon: '<FaShoppingBag />️',
       title: 'Shopify Stores',
       description: 'AI agents for Shopify merchants',
       color: '#10b981'
@@ -174,14 +175,14 @@ function Solutions() {
             className={`tab-button ${activeTab === 'roles' ? 'active' : ''}`}
             onClick={() => setActiveTab('roles')}
           >
-            <span className="tab-icon">👥</span>
+            <span className="tab-icon"><FaUsers /></span>
             <span className="tab-label">ROLES</span>
           </button>
           <button
             className={`tab-button ${activeTab === 'use-cases' ? 'active' : ''}`}
             onClick={() => setActiveTab('use-cases')}
           >
-            <span className="tab-icon">💡</span>
+            <span className="tab-icon"><FaLightbulb /></span>
             <span className="tab-label">USE CASES</span>
           </button>
         </div>

@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
+import { FaCube } from 'react-icons/fa'
 import '../styles/IntegrationStrip.css'
+import { getBrandIcon } from '../utils/brandIcons'
 
 function IntegrationStrip({ integrations, color }) {
   return (
@@ -19,28 +21,32 @@ function IntegrationStrip({ integrations, color }) {
         </motion.div>
 
         <div className="integration-strip-grid">
-          {integrations.map((integration, index) => (
-            <motion.div
-              key={integration}
-              className="integration-strip-item"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)'
-              }}
-            >
-              <div className="integration-strip-item-icon" style={{ 
-                backgroundColor: `${color}15`,
-                color
-              }}>
-                {integration.charAt(0).toUpperCase()}
-              </div>
-              <span className="integration-strip-item-name">{integration}</span>
-            </motion.div>
-          ))}
+          {integrations.map((integration, index) => {
+            const brandData = getBrandIcon(integration, { size: 24, color: color });
+            
+            return (
+              <motion.div
+                key={integration}
+                className="integration-strip-item"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)'
+                }}
+              >
+                <div className="integration-strip-item-icon" style={{ 
+                  backgroundColor: `${color}15`,
+                  color
+                }}>
+                  {brandData ? brandData.component : <FaCube />}
+                </div>
+                <span className="integration-strip-item-name">{integration}</span>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

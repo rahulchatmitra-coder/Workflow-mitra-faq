@@ -1,8 +1,10 @@
+import { FaBullhorn, FaClipboardList, FaSearch, FaBalanceScale, FaAddressCard, FaEnvelope, FaBell, FaClock, FaChartBar, FaSyncAlt, FaChartLine, FaCommentDots, FaLightbulb, FaRobot, FaCheckCircle, FaGlobe, FaLink, FaBriefcase, FaCrosshairs, FaBuilding, FaUserCircle, FaCalendarAlt, FaNewspaper } from 'react-icons/fa';
+
 export const solutionsData = {
   marketing: {
     id: 'marketing',
     title: 'Marketing',
-    icon: '📢',
+    icon: <FaBullhorn />,
     eyebrow: 'FLOWMITRA FOR MARKETING',
     headline: 'Stop manually moving data between your marketing tools',
     description: 'Your team already uses HubSpot, Google Sheets, Mailchimp, and a dozen other tools. FlowMitra connects them so form submissions automatically enrich in Clearbit, sync to your CRM, trigger email sequences, and update your reports—without touching a spreadsheet.',
@@ -18,12 +20,12 @@ export const solutionsData = {
         title: 'Lead Capture + Enrichment',
         description: 'Route inbound leads through scoring, enrichment, and CRM checks before they hit sales',
         workflow: [
-          { icon: '📝', title: 'Form Submit', subtitle: 'Webflow, Typeform, or landing page' },
-          { icon: '🔍', title: 'Enrich Company', subtitle: 'Pull firmographic data from Clearbit' },
-          { icon: '⚖️', title: 'Score Lead', subtitle: 'Check against ICP criteria' },
-          { icon: '📇', title: 'CRM Lookup', subtitle: 'Prevent duplicate records' },
-          { icon: '✉️', title: 'Generate Email', subtitle: 'AI writes personalized intro' },
-          { icon: '🔔', title: 'Notify Rep', subtitle: 'Slack message with context' }
+          { icon: <FaClipboardList />, title: 'Form Submit', subtitle: 'Webflow, Typeform, or landing page' },
+          { icon: <FaSearch />, title: 'Enrich Company', subtitle: 'Pull firmographic data from Clearbit' },
+          { icon: <FaBalanceScale />, title: 'Score Lead', subtitle: 'Check against ICP criteria' },
+          { icon: <FaAddressCard />, title: 'CRM Lookup', subtitle: 'Prevent duplicate records' },
+          { icon: <FaEnvelope />, title: 'Generate Email', subtitle: 'AI writes personalized intro' },
+          { icon: <FaBell />, title: 'Notify Rep', subtitle: 'Slack message with context' }
         ]
       },
       {
@@ -31,11 +33,11 @@ export const solutionsData = {
         title: 'Weekly Campaign Report',
         description: 'Pull performance data from Google, Facebook, LinkedIn and compile it into one Slack post',
         workflow: [
-          { icon: '⏰', title: 'Monday 9am', subtitle: 'Scheduled trigger' },
-          { icon: '📊', title: 'Fetch Metrics', subtitle: 'API calls to ad platforms' },
-          { icon: '🔄', title: 'Normalize Data', subtitle: 'Standardize field names' },
-          { icon: '📈', title: 'Calculate Trends', subtitle: 'Week-over-week deltas' },
-          { icon: '💬', title: 'Post to Slack', subtitle: 'Formatted table with charts' }
+          { icon: <FaClock />, title: 'Monday 9am', subtitle: 'Scheduled trigger' },
+          { icon: <FaChartBar />, title: 'Fetch Metrics', subtitle: 'API calls to ad platforms' },
+          { icon: <FaSyncAlt />, title: 'Normalize Data', subtitle: 'Standardize field names' },
+          { icon: <FaChartLine />, title: 'Calculate Trends', subtitle: 'Week-over-week deltas' },
+          { icon: <FaCommentDots />, title: 'Post to Slack', subtitle: 'Formatted table with charts' }
         ]
       },
       {
@@ -43,12 +45,12 @@ export const solutionsData = {
         title: 'Content Publishing Flow',
         description: 'Draft blog posts with AI, route for approval, then publish to CMS and social',
         workflow: [
-          { icon: '💡', title: 'Notion Request', subtitle: 'Content brief created' },
-          { icon: '🤖', title: 'AI Outline', subtitle: 'GPT generates structure' },
-          { icon: '✅', title: 'Approval Check', subtitle: 'Manager reviews in Slack' },
-          { icon: '📝', title: 'Final Draft', subtitle: 'Writer adds edits' },
-          { icon: '🌐', title: 'Publish to CMS', subtitle: 'Webflow or WordPress API' },
-          { icon: '🔗', title: 'Cross-post', subtitle: 'LinkedIn + Twitter scheduled' }
+          { icon: <FaLightbulb />, title: 'Notion Request', subtitle: 'Content brief created' },
+          { icon: <FaRobot />, title: 'AI Outline', subtitle: 'GPT generates structure' },
+          { icon: <FaCheckCircle />, title: 'Approval Check', subtitle: 'Manager reviews in Slack' },
+          { icon: <FaClipboardList />, title: 'Final Draft', subtitle: 'Writer adds edits' },
+          { icon: <FaGlobe />, title: 'Publish to CMS', subtitle: 'Webflow or WordPress API' },
+          { icon: <FaLink />, title: 'Cross-post', subtitle: 'LinkedIn + Twitter scheduled' }
         ]
       }
     ],
@@ -85,7 +87,7 @@ export const solutionsData = {
   sales: {
     id: 'sales',
     title: 'Sales',
-    icon: '💼',
+    icon: <FaBriefcase />,
     eyebrow: 'FLOWMITRA FOR SALES',
     headline: 'Your reps should not spend half their day on data entry',
     description: 'FlowMitra watches your inbox and calendar, then updates Salesforce, schedules follow-ups, researches accounts, and drafts personalized emails. Your team closes deals while the system handles admin work.',
@@ -101,13 +103,13 @@ export const solutionsData = {
         title: 'Inbound Lead Routing',
         description: 'Score, enrich, and assign leads to the right rep within seconds of form submission',
         workflow: [
-          { icon: '🎯', title: 'Demo Request', subtitle: 'Form submitted on site' },
-          { icon: '🔍', title: 'Enrich Contact', subtitle: 'Apollo lookups company + role' },
-          { icon: '🏢', title: 'Check Domain', subtitle: 'Verify company size, industry' },
-          { icon: '⚖️', title: 'Score Fit', subtitle: 'Compare against ICP criteria' },
-          { icon: '📇', title: 'Create in CRM', subtitle: 'Salesforce record with fields' },
-          { icon: '👤', title: 'Assign Rep', subtitle: 'Round-robin by territory' },
-          { icon: '🔔', title: 'Slack Alert', subtitle: 'Rep gets notified with context' }
+          { icon: <FaCrosshairs />, title: 'Demo Request', subtitle: 'Form submitted on site' },
+          { icon: <FaSearch />, title: 'Enrich Contact', subtitle: 'Apollo lookups company + role' },
+          { icon: <FaBuilding />, title: 'Check Domain', subtitle: 'Verify company size, industry' },
+          { icon: <FaBalanceScale />, title: 'Score Fit', subtitle: 'Compare against ICP criteria' },
+          { icon: <FaAddressCard />, title: 'Create in CRM', subtitle: 'Salesforce record with fields' },
+          { icon: <FaUserCircle />, title: 'Assign Rep', subtitle: 'Round-robin by territory' },
+          { icon: <FaBell />, title: 'Slack Alert', subtitle: 'Rep gets notified with context' }
         ]
       },
       {
@@ -115,12 +117,12 @@ export const solutionsData = {
         title: 'Pre-Call Research Brief',
         description: 'Pull account history, recent emails, and company news before every call',
         workflow: [
-          { icon: '📅', title: 'Calendar Sync', subtitle: 'Meeting in 1 hour' },
-          { icon: '🔍', title: 'Lookup Account', subtitle: 'Fetch CRM activity log' },
-          { icon: '📰', title: 'News Search', subtitle: 'Google recent announcements' },
-          { icon: '📊', title: 'Engagement Data', subtitle: 'Email opens, site visits' },
-          { icon: '📝', title: 'Generate Brief', subtitle: 'GPT summarizes context' },
-          { icon: '💬', title: 'Send to Rep', subtitle: 'Slack DM 15 min before call' }
+          { icon: <FaCalendarAlt />, title: 'Calendar Sync', subtitle: 'Meeting in 1 hour' },
+          { icon: <FaSearch />, title: 'Lookup Account', subtitle: 'Fetch CRM activity log' },
+          { icon: <FaNewspaper />, title: 'News Search', subtitle: 'Google recent announcements' },
+          { icon: <FaChartBar />, title: 'Engagement Data', subtitle: 'Email opens, site visits' },
+          { icon: <FaClipboardList />, title: 'Generate Brief', subtitle: 'GPT summarizes context' },
+          { icon: <FaCommentDots />, title: 'Send to Rep', subtitle: 'Slack DM 15 min before call' }
         ]
       },
       {
@@ -129,10 +131,10 @@ export const solutionsData = {
         description: 'Monitor Gmail replies and move deals through stages without manual logging',
         workflow: [
           { icon: '📧', title: 'Reply Received', subtitle: 'Gmail webhook fires' },
-          { icon: '🤖', title: 'AI Intent Check', subtitle: 'Classify as interested/no/question' },
-          { icon: '📇', title: 'Update Stage', subtitle: 'Move deal in Salesforce' },
-          { icon: '⏰', title: 'Set Task', subtitle: 'Create follow-up reminder' },
-          { icon: '💬', title: 'Log Activity', subtitle: 'Append to timeline' }
+          { icon: <FaRobot />, title: 'AI Intent Check', subtitle: 'Classify as interested/no/question' },
+          { icon: <FaAddressCard />, title: 'Update Stage', subtitle: 'Move deal in Salesforce' },
+          { icon: <FaClock />, title: 'Set Task', subtitle: 'Create follow-up reminder' },
+          { icon: <FaCommentDots />, title: 'Log Activity', subtitle: 'Append to timeline' }
         ]
       }
     ],
@@ -185,12 +187,12 @@ export const solutionsData = {
         title: 'Approval Request Flow',
         description: 'Route purchase orders through Slack approvals and log outcomes in Airtable',
         workflow: [
-          { icon: '📝', title: 'Form Submit', subtitle: 'Employee files PO request' },
-          { icon: '✅', title: 'Validate Fields', subtitle: 'Check required data present' },
+          { icon: <FaClipboardList />, title: 'Form Submit', subtitle: 'Employee files PO request' },
+          { icon: <FaCheckCircle />, title: 'Validate Fields', subtitle: 'Check required data present' },
           { icon: '💾', title: 'Create Record', subtitle: 'Add row to Airtable' },
           { icon: '📄', title: 'Generate PDF', subtitle: 'Render purchase order doc' },
-          { icon: '👤', title: 'Slack Approval', subtitle: 'Manager gets yes/no buttons' },
-          { icon: '🔔', title: 'Notify Requester', subtitle: 'Email outcome to employee' }
+          { icon: <FaUserCircle />, title: 'Slack Approval', subtitle: 'Manager gets yes/no buttons' },
+          { icon: <FaBell />, title: 'Notify Requester', subtitle: 'Email outcome to employee' }
         ]
       },
       {
@@ -198,12 +200,12 @@ export const solutionsData = {
         title: 'Cross-System Data Sync',
         description: 'When inventory updates in Sheets, push changes to Airtable and ping warehouse',
         workflow: [
-          { icon: '📊', title: 'Row Updated', subtitle: 'Google Sheets webhook' },
-          { icon: '🔄', title: 'Map Fields', subtitle: 'Transform column names' },
-          { icon: '✅', title: 'Validate Quantity', subtitle: 'Ensure number is valid' },
+          { icon: <FaChartBar />, title: 'Row Updated', subtitle: 'Google Sheets webhook' },
+          { icon: <FaSyncAlt />, title: 'Map Fields', subtitle: 'Transform column names' },
+          { icon: <FaCheckCircle />, title: 'Validate Quantity', subtitle: 'Ensure number is valid' },
           { icon: '💾', title: 'Update Airtable', subtitle: 'Find record and patch' },
-          { icon: '📝', title: 'Log to Notion', subtitle: 'Append to audit log' },
-          { icon: '💬', title: 'Slack Alert', subtitle: 'Notify warehouse if low stock' }
+          { icon: <FaClipboardList />, title: 'Log to Notion', subtitle: 'Append to audit log' },
+          { icon: <FaCommentDots />, title: 'Slack Alert', subtitle: 'Notify warehouse if low stock' }
         ]
       },
       {
@@ -211,11 +213,11 @@ export const solutionsData = {
         title: 'Weekly Ops Report',
         description: 'Compile metrics from Asana, Jira, and Sheets into one Slack summary',
         workflow: [
-          { icon: '⏰', title: 'Friday 5pm', subtitle: 'Scheduled cron trigger' },
-          { icon: '📊', title: 'Query Systems', subtitle: 'API calls to Asana/Jira' },
-          { icon: '🔄', title: 'Aggregate Metrics', subtitle: 'Combine task counts' },
-          { icon: '📈', title: 'Build Table', subtitle: 'Format as markdown' },
-          { icon: '💬', title: 'Post to Slack', subtitle: 'Send to #ops channel' }
+          { icon: <FaClock />, title: 'Friday 5pm', subtitle: 'Scheduled cron trigger' },
+          { icon: <FaChartBar />, title: 'Query Systems', subtitle: 'API calls to Asana/Jira' },
+          { icon: <FaSyncAlt />, title: 'Aggregate Metrics', subtitle: 'Combine task counts' },
+          { icon: <FaChartLine />, title: 'Build Table', subtitle: 'Format as markdown' },
+          { icon: <FaCommentDots />, title: 'Post to Slack', subtitle: 'Send to #ops channel' }
         ]
       }
     ],
@@ -268,13 +270,13 @@ export const solutionsData = {
         title: 'Webhook Router',
         description: 'Receive webhooks from Stripe or GitHub, validate them, and trigger downstream actions',
         workflow: [
-          { icon: '🔗', title: 'POST /webhook', subtitle: 'HTTP request arrives' },
-          { icon: '✅', title: 'Verify Signature', subtitle: 'Check HMAC is valid' },
+          { icon: <FaLink />, title: 'POST /webhook', subtitle: 'HTTP request arrives' },
+          { icon: <FaCheckCircle />, title: 'Verify Signature', subtitle: 'Check HMAC is valid' },
           { icon: '💾', title: 'Database Lookup', subtitle: 'Find customer record' },
           { icon: '⚙️', title: 'Run Business Logic', subtitle: 'Conditional branches' },
-          { icon: '🌐', title: 'Call External API', subtitle: 'Update third-party service' },
+          { icon: <FaGlobe />, title: 'Call External API', subtitle: 'Update third-party service' },
           { icon: '💾', title: 'Write to DB', subtitle: 'Log event for audit' },
-          { icon: '💬', title: 'Slack Message', subtitle: 'Notify #eng channel' }
+          { icon: <FaCommentDots />, title: 'Slack Message', subtitle: 'Notify #eng channel' }
         ]
       },
       {
@@ -285,8 +287,8 @@ export const solutionsData = {
           { icon: '🔀', title: 'main Branch Merge', subtitle: 'GitHub webhook fires' },
           { icon: '🏗️', title: 'Run Jest Tests', subtitle: 'CI check passes' },
           { icon: '🚀', title: 'Deploy to Vercel', subtitle: 'API call triggers build' },
-          { icon: '📊', title: 'Health Check', subtitle: 'Poll /api/health endpoint' },
-          { icon: '💬', title: 'Post to Slack', subtitle: 'Success or failure message' }
+          { icon: <FaChartBar />, title: 'Health Check', subtitle: 'Poll /api/health endpoint' },
+          { icon: <FaCommentDots />, title: 'Post to Slack', subtitle: 'Success or failure message' }
         ]
       },
       {
@@ -295,10 +297,10 @@ export const solutionsData = {
         description: 'Parse PagerDuty alerts, create Jira tickets, pull logs from Datadog',
         workflow: [
           { icon: '🚨', title: 'PagerDuty Alert', subtitle: 'High-priority incident' },
-          { icon: '🤖', title: 'Parse Severity', subtitle: 'Critical vs warning' },
-          { icon: '📝', title: 'Create Jira Ticket', subtitle: 'Auto-populate fields' },
-          { icon: '💬', title: 'Page On-Call', subtitle: 'Slack DM to engineer' },
-          { icon: '📊', title: 'Fetch Logs', subtitle: 'Datadog API last 15min' }
+          { icon: <FaRobot />, title: 'Parse Severity', subtitle: 'Critical vs warning' },
+          { icon: <FaClipboardList />, title: 'Create Jira Ticket', subtitle: 'Auto-populate fields' },
+          { icon: <FaCommentDots />, title: 'Page On-Call', subtitle: 'Slack DM to engineer' },
+          { icon: <FaChartBar />, title: 'Fetch Logs', subtitle: 'Datadog API last 15min' }
         ]
       }
     ],
@@ -335,7 +337,7 @@ export const solutionsData = {
   support: {
     id: 'support',
     title: 'Support',
-    icon: '💬',
+    icon: <FaCommentDots />,
     eyebrow: 'FLOWMITRA FOR SUPPORT',
     headline: 'Route tickets faster than your agents can read them',
     description: 'When a ticket arrives in Zendesk, FlowMitra checks the customer plan in Salesforce, scans past conversations, classifies urgency with GPT, and assigns the right agent—before anyone clicks refresh.',
@@ -352,11 +354,11 @@ export const solutionsData = {
         description: 'Parse ticket content, check account tier, and assign to the agent with capacity',
         workflow: [
           { icon: '📧', title: 'Zendesk Ticket', subtitle: 'New email from customer' },
-          { icon: '🤖', title: 'GPT Categorize', subtitle: 'Billing/tech/account question' },
+          { icon: <FaRobot />, title: 'GPT Categorize', subtitle: 'Billing/tech/account question' },
           { icon: '⚠️', title: 'Urgency Check', subtitle: 'Scan for "urgent" or "down"' },
-          { icon: '👤', title: 'CRM Lookup', subtitle: 'Find customer in Salesforce' },
-          { icon: '🎯', title: 'Assign Agent', subtitle: 'Route by specialty + workload' },
-          { icon: '🔔', title: 'Slack DM', subtitle: 'Notify agent with context' },
+          { icon: <FaUserCircle />, title: 'CRM Lookup', subtitle: 'Find customer in Salesforce' },
+          { icon: <FaCrosshairs />, title: 'Assign Agent', subtitle: 'Route by specialty + workload' },
+          { icon: <FaBell />, title: 'Slack DM', subtitle: 'Notify agent with context' },
           { icon: '💾', title: 'Log to CRM', subtitle: 'Append interaction to timeline' }
         ]
       },
@@ -365,12 +367,12 @@ export const solutionsData = {
         title: 'Auto-Resolve Common Requests',
         description: 'Answer password resets and billing questions without human triage',
         workflow: [
-          { icon: '💬', title: 'Customer Email', subtitle: '"I need to reset my password"' },
-          { icon: '🤖', title: 'Intent Detection', subtitle: 'GPT classifies as password reset' },
+          { icon: <FaCommentDots />, title: 'Customer Email', subtitle: '"I need to reset my password"' },
+          { icon: <FaRobot />, title: 'Intent Detection', subtitle: 'GPT classifies as password reset' },
           { icon: '📚', title: 'Knowledge Base', subtitle: 'Pull reset link instructions' },
           { icon: '✍️', title: 'GPT Response', subtitle: 'Write personalized reply' },
           { icon: '📧', title: 'Send via Zendesk', subtitle: 'Email goes out automatically' },
-          { icon: '✅', title: 'Mark Solved', subtitle: 'Close ticket, tag as auto-resolved' }
+          { icon: <FaCheckCircle />, title: 'Mark Solved', subtitle: 'Close ticket, tag as auto-resolved' }
         ]
       },
       {
@@ -378,11 +380,11 @@ export const solutionsData = {
         title: 'SLA Breach Alert',
         description: 'Monitor first-response time and escalate before you miss SLA',
         workflow: [
-          { icon: '⏰', title: 'Cron Every 5min', subtitle: 'Check open tickets' },
+          { icon: <FaClock />, title: 'Cron Every 5min', subtitle: 'Check open tickets' },
           { icon: '⚠️', title: 'Find Overdue', subtitle: 'Approaching SLA deadline' },
           { icon: '🔼', title: 'Bump Priority', subtitle: 'Change to "urgent" in Zendesk' },
-          { icon: '👤', title: 'Notify Supervisor', subtitle: 'Email manager with ticket link' },
-          { icon: '💬', title: 'Slack #support', subtitle: 'Post alert in channel' }
+          { icon: <FaUserCircle />, title: 'Notify Supervisor', subtitle: 'Email manager with ticket link' },
+          { icon: <FaCommentDots />, title: 'Slack #support', subtitle: 'Post alert in channel' }
         ]
       }
     ],
@@ -435,12 +437,12 @@ export const solutionsData = {
         title: 'User Onboarding Flow',
         description: 'New hire gets added to HR system, workflow provisions accounts across tools',
         workflow: [
-          { icon: '👤', title: 'BambooHR Webhook', subtitle: 'New employee record created' },
-          { icon: '✅', title: 'Check Approval', subtitle: 'Verify manager signed off' },
+          { icon: <FaUserCircle />, title: 'BambooHR Webhook', subtitle: 'New employee record created' },
+          { icon: <FaCheckCircle />, title: 'Check Approval', subtitle: 'Verify manager signed off' },
           { icon: '🔐', title: 'Create Okta Account', subtitle: 'Provision SSO identity' },
           { icon: '📧', title: 'Send Welcome Email', subtitle: 'Include onboarding docs' },
-          { icon: '📝', title: 'Audit Log', subtitle: 'Record who approved + when' },
-          { icon: '💬', title: 'Notify IT', subtitle: 'Slack confirmation to ops' }
+          { icon: <FaClipboardList />, title: 'Audit Log', subtitle: 'Record who approved + when' },
+          { icon: <FaCommentDots />, title: 'Notify IT', subtitle: 'Slack confirmation to ops' }
         ]
       },
       {
@@ -449,11 +451,11 @@ export const solutionsData = {
         description: 'AWS CloudTrail sends alert, workflow creates incident and pages on-call',
         workflow: [
           { icon: '🚨', title: 'CloudTrail Alert', subtitle: 'Suspicious API call detected' },
-          { icon: '🤖', title: 'Classify Severity', subtitle: 'High/medium/low risk' },
-          { icon: '📝', title: 'Create Incident', subtitle: 'Jira ticket with context' },
-          { icon: '💬', title: 'Page Security Team', subtitle: 'PagerDuty alert' },
-          { icon: '📊', title: 'Pull Logs', subtitle: 'Datadog last 30min' },
-          { icon: '📝', title: 'Audit Trail', subtitle: 'Log response actions' }
+          { icon: <FaRobot />, title: 'Classify Severity', subtitle: 'High/medium/low risk' },
+          { icon: <FaClipboardList />, title: 'Create Incident', subtitle: 'Jira ticket with context' },
+          { icon: <FaCommentDots />, title: 'Page Security Team', subtitle: 'PagerDuty alert' },
+          { icon: <FaChartBar />, title: 'Pull Logs', subtitle: 'Datadog last 30min' },
+          { icon: <FaClipboardList />, title: 'Audit Trail', subtitle: 'Log response actions' }
         ]
       },
       {
@@ -461,10 +463,10 @@ export const solutionsData = {
         title: 'Compliance Reporting',
         description: 'Generate access logs and workflow execution history for audits',
         workflow: [
-          { icon: '⏰', title: 'Monthly Schedule', subtitle: 'First of every month' },
-          { icon: '📊', title: 'Query Audit Logs', subtitle: 'Fetch execution history' },
-          { icon: '🔄', title: 'Aggregate Data', subtitle: 'Group by user, workflow' },
-          { icon: '📈', title: 'Generate Report', subtitle: 'CSV + PDF format' },
+          { icon: <FaClock />, title: 'Monthly Schedule', subtitle: 'First of every month' },
+          { icon: <FaChartBar />, title: 'Query Audit Logs', subtitle: 'Fetch execution history' },
+          { icon: <FaSyncAlt />, title: 'Aggregate Data', subtitle: 'Group by user, workflow' },
+          { icon: <FaChartLine />, title: 'Generate Report', subtitle: 'CSV + PDF format' },
           { icon: '📧', title: 'Email Compliance', subtitle: 'Send to security team' },
           { icon: '💾', title: 'Store in S3', subtitle: 'Archive for retention' }
         ]

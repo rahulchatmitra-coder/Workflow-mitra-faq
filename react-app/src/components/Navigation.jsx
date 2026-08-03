@@ -63,41 +63,49 @@ function Navigation() {
   return (
     <>
       <div className="nav-wrapper">
-        <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="nav-content">
-            {/* Logo */}
-            <Link to="/" className="nav-logo">
-              <FlowMitraLogo size="sm" variant="full" />
-            </Link>
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+          {/* Logo */}
+          <Link to="/" className="logo">
+            <span className="logo-mark">
+              <FlowMitraLogo size="sm" variant="icon" />
+            </span>
+            FlowMitra
+          </Link>
 
-            {/* Desktop Navigation */}
-            <div className="nav-links desktop-only">
-              <div 
-                className="nav-dropdown"
-                onMouseEnter={handleSolutionsEnter}
-                onMouseLeave={handleSolutionsLeave}
+          {/* Desktop Navigation */}
+          <ul className="nav-links desktop-only">
+            <li 
+              className="nav-dropdown"
+              onMouseEnter={handleSolutionsEnter}
+              onMouseLeave={handleSolutionsLeave}
+            >
+              <Link 
+                to="/solutions"
+                aria-expanded={isSolutionsOpen}
+                aria-haspopup="true"
               >
-                <Link 
-                  to="/solutions"
-                  className="nav-link"
-                  aria-expanded={isSolutionsOpen}
-                  aria-haspopup="true"
-                >
-                  Solutions <span className="chevron">▼</span>
-                </Link>
+                Solutions <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#6b7280" strokeWidth="1.4" fill="none"/></svg>
+              </Link>
+            </li>
+            <li className="nav-dropdown">
+              <span className="nav-link" style={{cursor: 'pointer'}}>
+                Resources <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#6b7280" strokeWidth="1.4" fill="none"/></svg>
+              </span>
+              <div className="simple-dropdown-menu">
+                <Link to="/templates" className="simple-dropdown-item">Templates</Link>
+                <Link to="/integrations" className="simple-dropdown-item">Integrations</Link>
               </div>
-              <div className="nav-dropdown">
-                <button className="nav-link">Resources <span className="chevron">▼</span></button>
-              </div>
-              <Link to="/pricing" className="nav-link">Enterprise</Link>
-              <Link to="/pricing" className="nav-link">Pricing</Link>
-            </div>
+            </li>
+            <li><Link to="/pricing">Enterprise</Link></li>
+            <li><Link to="/apps">Flowstack</Link></li>
+            <li><Link to="/pricing">Pricing</Link></li>
+          </ul>
 
-            {/* CTA Buttons */}
-            <div className="nav-actions desktop-only">
-              <Link to="/contact" className="nav-btn nav-btn-ghost">Talk to Sales</Link>
-              <Link to="/contact" className="nav-btn nav-btn-primary">Get Started</Link>
-            </div>
+          {/* CTA Buttons */}
+          <div className="nav-right desktop-only">
+            <Link to="/contact" className="talk-to-sales">Talk to Sales</Link>
+            <Link to="/contact" className="get-started">Get Started</Link>
+          </div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -111,8 +119,6 @@ function Navigation() {
                 <span></span>
               </span>
             </button>
-          </div>
-
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
             <div className="mobile-menu">
@@ -127,6 +133,7 @@ function Navigation() {
             </div>
           )}
         </nav>
+
 
         {/* Solutions Mega Menu */}
         <SolutionsMegaMenu 
