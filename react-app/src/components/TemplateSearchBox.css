@@ -1,0 +1,39 @@
+/* TemplateSearchBox CSS */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 10px 16px;
+  min-width: 260px;
+  flex: 0 1 320px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--color-brand-cyan, #14b8a6);
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15); /* Accent tint */
+}
+
+.search-box svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-family: var(--font-family);
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.search-box input::placeholder {
+  color: var(--color-text-tertiary);
+}

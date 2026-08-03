@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
 import CustomerLogos from '../components/CustomerLogos'
 import AgentsShowcase from '../components/AgentsShowcase'
-import AIFeatures from '../components/AIFeatures'
+import AIAgentsFeatureSection from '../components/AIAgentsFeatureSection'
 import IntegrationsShowcase from '../components/IntegrationsShowcase'
 import './Home.css'
 
@@ -102,7 +102,7 @@ function Home() {
       
       <AgentsShowcase />
       
-      <AIFeatures />
+      <AIAgentsFeatureSection />
       
       <IntegrationsShowcase />
       

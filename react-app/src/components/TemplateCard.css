@@ -1,0 +1,114 @@
+/* TemplateCard CSS (from chatmitra-templates.html) */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--color-border, #e8e9ec);
+  border-radius: var(--radius-lg, 14px);
+  padding: 16px 18px 18px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+  transform: translateY(-1px);
+}
+
+.icon-strip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 4px;
+  padding: 22px 16px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-md, 10px);
+  background-color: var(--strip-bg, #e9ebf3);
+  background-image: radial-gradient(var(--strip-dot, #cfd2e0) 1px, transparent 1px);
+  background-size: 9px 9px;
+}
+
+.icon-strip::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 50%;
+  border-top: 1.5px dashed var(--strip-line, #c7cadb);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.step-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #fff;
+  border: 1px solid #eceef1;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  color: var(--color-text-primary, #111318);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #3a3d45;
+  background: #eef0f4;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-bottom: 9px;
+  width: fit-content;
+}
+
+.card h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.35;
+  color: var(--color-text-primary, #111318);
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text-secondary, #6b7280);
+  margin: 0;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.card-footer .meta {
+  font-size: 12px;
+  color: var(--color-text-tertiary, #9aa0ab);
+}
+
+.use-btn {
+  background: var(--btn-bg, #15161a);
+  color: #fff;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 8px;
+  transition: background 0.12s ease;
+}
+
+.use-btn:hover {
+  background: var(--btn-bg-hover, #000000);
+}

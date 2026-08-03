@@ -96,15 +96,14 @@ function Navigation() {
                 <Link to="/integrations" className="simple-dropdown-item">Integrations</Link>
               </div>
             </li>
-            <li><Link to="/pricing">Enterprise</Link></li>
-            <li><Link to="/apps">Flowstack</Link></li>
+            <li><Link to="/integrations">Integrations</Link></li>
             <li><Link to="/pricing">Pricing</Link></li>
           </ul>
 
           {/* CTA Buttons */}
           <div className="nav-right desktop-only">
-            <Link to="/contact" className="talk-to-sales">Talk to Sales</Link>
-            <Link to="/contact" className="get-started">Get Started</Link>
+            <Link to="/login" className="talk-to-sales">Login</Link>
+            <Link to="/signup" className="get-started">Signup</Link>
           </div>
 
             {/* Mobile Menu Toggle */}
@@ -124,11 +123,11 @@ function Navigation() {
             <div className="mobile-menu">
               <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
               <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Resources</Link>
-              <Link to="/pricing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Enterprise</Link>
+              <Link to="/integrations" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
               <Link to="/pricing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
               <div className="mobile-menu-actions">
-                <Link to="/contact" className="nav-btn nav-btn-ghost" onClick={() => setIsMobileMenuOpen(false)}>Talk to Sales</Link>
-                <Link to="/contact" className="nav-btn nav-btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
+                <Link to="/login" className="nav-btn nav-btn-ghost" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                <Link to="/signup" className="nav-btn nav-btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Signup</Link>
               </div>
             </div>
           )}

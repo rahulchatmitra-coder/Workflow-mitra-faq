@@ -1,0 +1,361 @@
+.ai-agents-section {
+  --bg: #ffffff;
+  --ink: #14161f;
+  --ink-soft: #3b3e48;
+  --muted: #93969f;
+  --muted-light: #c7c9d1;
+  --line: #eceef1;
+  --card-white: #fdfdfc;
+  --accent: #ff5a34;
+  --grad-a: #fbe7e0;
+  --grad-b: #e7e1f6;
+  --grad-c: #dbebf8;
+  --grad-d: #fdeee6;
+  --shadow: 0 1px 2px rgba(20,22,31,.04), 0 12px 24px -12px rgba(20,22,31,.08);
+  
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ai-agents-section .wrap { 
+  max-width: 1120px; 
+  margin: 0 auto; 
+  padding: 100px 24px 130px; 
+}
+
+.ai-agents-section h1.title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(30px, 4.6vw, 50px);
+  letter-spacing: -0.015em;
+  text-align: center;
+  line-height: 1.15;
+  margin: 0 0 56px;
+  color: var(--ink);
+}
+
+.ai-agents-section .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.ai-agents-section .card {
+  position: relative;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: var(--card-white);
+  padding: 40px 34px 34px;
+  min-height: 392px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .35s ease, transform .35s ease;
+}
+
+.ai-agents-section .card:hover { 
+  box-shadow: var(--shadow); 
+  transform: translateY(-2px); 
+}
+
+.ai-agents-section .card.gradient {
+  border: none;
+  background: linear-gradient(150deg, var(--grad-a) 0%, var(--grad-b) 38%, var(--grad-c) 68%, var(--grad-d) 100%);
+}
+.ai-agents-section .card.gradient::after {
+  content: "";
+  position: absolute; 
+  inset: 0;
+  background: radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+.ai-agents-section .card h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.35;
+  text-align: center;
+  letter-spacing: -0.005em;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  color: var(--ink);
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- CARD 1 : model logos ---------- */
+.ai-agents-section .logo-row {
+  position: relative; 
+  z-index: 2;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 0 6px 18px;
+}
+.ai-agents-section .logo-token {
+  width: 58px; 
+  height: 58px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(20,20,30,.06), 0 8px 18px -8px rgba(20,20,30,.14);
+  flex: 0 0 auto;
+}
+.ai-agents-section .logo-token svg { 
+  display: block; 
+}
+
+/* ---------- CARD 2 : integrations grid ---------- */
+.ai-agents-section .icon-field {
+  position: relative; 
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 14px;
+  align-content: center;
+}
+.ai-agents-section .cell { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.ai-agents-section .tile {
+  width: 44px; 
+  height: 44px;
+  border-radius: 13px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  box-shadow: 0 6px 14px -8px rgba(20,20,30,.25);
+}
+.ai-agents-section .tile.ghost {
+  width: 44px; 
+  height: 44px;
+  border-radius: 13px;
+  background: #f3f4f6;
+  box-shadow: none;
+}
+
+/* ---------- CARD 3 : recurring tasks ---------- */
+.ai-agents-section .tasks {
+  position: relative; 
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: 6px;
+  flex: 1;
+}
+.ai-agents-section .task-row {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  gap: 18px;
+}
+.ai-agents-section .task-id { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+.ai-agents-section .task-icon {
+  width: 22px; 
+  height: 22px;
+  border-radius: 6px;
+  background: var(--ink);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.ai-agents-section .task-icon svg { 
+  width: 12px; 
+  height: 12px; 
+}
+.ai-agents-section .task-text { 
+  line-height: 1.3; 
+}
+.ai-agents-section .task-text .name { 
+  font-size: 13.5px; 
+  font-weight: 600; 
+  color: var(--ink); 
+}
+.ai-agents-section .task-text .schedule { 
+  font-size: 12px; 
+  color: var(--muted); 
+  margin-top: 1px; 
+}
+
+.ai-agents-section .timeline { 
+  position: relative; 
+  height: 22px; 
+}
+.ai-agents-section .timeline .track {
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 50%;
+  height: 1px; 
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.ai-agents-section .timeline .dot {
+  position: absolute; 
+  top: 50%; 
+  width: 7px; 
+  height: 7px; 
+  border-radius: 50%;
+  background: var(--muted-light);
+  transform: translate(-50%,-50%);
+}
+.ai-agents-section .timeline .dot.on { 
+  background: var(--ink); 
+  width: 8px; 
+  height: 8px; 
+}
+.ai-agents-section .timeline .tag {
+  position: absolute; 
+  top: -26px; 
+  font-size: 10.5px; 
+  font-weight: 500; 
+  padding: 3px 8px; 
+  border-radius: 7px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.25);
+}
+
+.ai-agents-section .axis {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  margin-top: 2px;
+}
+.ai-agents-section .axis .labels {
+  display: flex; 
+  justify-content: space-between;
+  font-size: 10.5px; 
+  color: var(--muted-light);
+  grid-column: 2;
+}
+
+/* ---------- CARD 4 : canvas ---------- */
+.ai-agents-section .canvas {
+  position: relative; 
+  z-index: 2;
+  flex: 1;
+  min-height: 250px;
+  margin-top: 8px;
+}
+.ai-agents-section .node {
+  position: absolute;
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px;
+  background: #fff;
+  padding: 8px 12px 8px 8px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px -8px rgba(20,20,30,.28);
+  font-size: 12.5px; 
+  font-weight: 600; 
+  color: var(--ink);
+  white-space: nowrap;
+}
+.ai-agents-section .node .avatar {
+  width: 22px; 
+  height: 22px; 
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.ai-agents-section .node .avatar svg { 
+  width: 12px; 
+  height: 12px; 
+}
+.ai-agents-section .node .mini {
+  display: flex; 
+  gap: 3px; 
+  margin-left: 2px;
+}
+.ai-agents-section .node .mini span {
+  width: 15px; 
+  height: 15px; 
+  border-radius: 5px;
+  display: inline-block;
+}
+.ai-agents-section .n1 { top: 2%; left: 50%; transform: translateX(-50%); }
+.ai-agents-section .n2 { bottom: 12%; left: 0%; }
+.ai-agents-section .n3 { bottom: 0%; right: 2%; }
+
+.ai-agents-section .tag-float {
+  position: absolute;
+  background: #fff; 
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 10.5px; 
+  font-weight: 500;
+  padding: 3px 9px; 
+  border-radius: 7px;
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.25);
+  white-space: nowrap;
+}
+.ai-agents-section .t1 { top: 30%; left: 26%; }
+.ai-agents-section .t2 { top: 48%; right: 14%; }
+
+.ai-agents-section .cursor {
+  position: absolute;
+  width: 20px; 
+  height: 20px;
+  left: 38%; 
+  top: 63%;
+  filter: drop-shadow(0 4px 6px rgba(255,90,52,.35));
+  animation: drift 3.6s ease-in-out infinite;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(6px,-6px); }
+}
+
+.ai-agents-section svg.paths { 
+  position: absolute; 
+  inset: 0; 
+  width: 100%; 
+  height: 100%; 
+  overflow: visible; 
+}
+.ai-agents-section .flow {
+  fill: none; 
+  stroke: #c9cbd3; 
+  stroke-width: 1.6;
+  stroke-dasharray: 1 7; 
+  stroke-linecap: round;
+  animation: march 1.4s linear infinite;
+}
+@keyframes march { 
+  to { stroke-dashoffset: -16; } 
+}
+
+@media (max-width: 860px) {
+  .ai-agents-section .grid { grid-template-columns: 1fr; }
+  .ai-agents-section .card { min-height: auto; padding: 32px 24px 30px; }
+  .ai-agents-section .task-row { grid-template-columns: 130px 1fr; }
+  .ai-agents-section .axis { grid-template-columns: 130px 1fr; }
+  .ai-agents-section .canvas { min-height: 230px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-agents-section .cursor, 
+  .ai-agents-section .flow { 
+    animation: none; 
+  }
+}

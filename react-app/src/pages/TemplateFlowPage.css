@@ -1,0 +1,23 @@
+.tfp-page {
+  min-height: calc(100vh - 160px);
+  background: #f7f8fa;
+  padding: 40px 0 80px;
+}
+
+.tfp-not-found {
+  max-width: 480px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 0 24px;
+}
+.tfp-not-found h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #111318;
+}
+
+/* Make the FlowPreview section fill the page nicely */
+.tfp-page .fp-section {
+  background: transparent;
+  padding-top: 0;
+}
