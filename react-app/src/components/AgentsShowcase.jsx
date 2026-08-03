@@ -156,7 +156,7 @@ export default function AgentsShowcase() {
               
               {activeAgent.callouts.map((c, i) => (
                 <div key={i} className={`reveal callout ${!isSwitching ? 'show' : ''}`} style={getDelay(3 + i)}>
-                  <span className="callout-icon">{c.icon}</span>
+                  {c.icon && <span className="callout-icon">{c.icon}</span>}
                   <p><strong>{c.strong}</strong> {c.text}</p>
                 </div>
               ))}

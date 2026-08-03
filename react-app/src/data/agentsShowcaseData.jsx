@@ -12,8 +12,8 @@ export const agentsShowcaseData = [
     question: 'Where are we losing people in the onboarding flow?',
     lead: "Here's where you're losing people:",
     callouts: [
-      { icon: '🔴', strong: 'Biggest drop-off: Dashboard → Attempted Integration — 46%', text: "of users who view the dashboard never try to connect an integration — that's 1,432 people falling off in a single step. This is problem #1." },
-      { icon: '⚠️', strong: 'Secondary drop-off: Attempted → Completed Integration.', text: "Of the users who try, 37% fail to finish. Combined, only 22% of signups make it through the integration step at all." }
+      { strong: 'Biggest drop-off: Dashboard → Attempted Integration — 46%', text: "of users who view the dashboard never try to connect an integration — that's 1,432 people falling off in a single step. This is problem #1." },
+      { strong: 'Secondary drop-off: Attempted → Completed Integration.', text: "Of the users who try, 37% fail to finish. Combined, only 22% of signups make it through the integration step at all." }
     ],
     table: {
       headers: ['Step', 'Users', 'Drop-off'],
@@ -40,8 +40,8 @@ export const agentsShowcaseData = [
     question: 'Why are refund tickets taking so long to close?',
     lead: "Here's what's slowing your refund tickets down:",
     callouts: [
-      { icon: '🔴', strong: 'Biggest bottleneck: Awaiting Manager Approval — 52%', text: "of refund tickets sit in this stage for over 2 days before anyone reviews them. This is your #1 delay." },
-      { icon: '⚠️', strong: 'Secondary bottleneck: Payment Reconciliation.', text: "Of tickets that clear approval, 29% wait on finance to confirm the charge before closing." }
+      { strong: 'Biggest bottleneck: Awaiting Manager Approval — 52%', text: "of refund tickets sit in this stage for over 2 days before anyone reviews them. This is your #1 delay." },
+      { strong: 'Secondary bottleneck: Payment Reconciliation.', text: "Of tickets that clear approval, 29% wait on finance to confirm the charge before closing." }
     ],
     table: {
       headers: ['Step', 'Tickets', 'Avg Wait'],
@@ -68,8 +68,8 @@ export const agentsShowcaseData = [
     question: 'Which deals are most likely to slip this quarter?',
     lead: "Here's where deals are at risk:",
     callouts: [
-      { icon: '🔴', strong: 'Highest risk: Proposal Sent → Negotiation — 41%', text: "of deals stall here past their expected close date, worth $48k in pipeline." },
-      { icon: '⚠️', strong: 'Secondary risk: Negotiation → Closed Won.', text: "26% of deals in negotiation go quiet for over 10 days before any follow-up." }
+      { strong: 'Highest risk: Proposal Sent → Negotiation — 41%', text: "of deals stall here past their expected close date, worth $48k in pipeline." },
+      { strong: 'Secondary risk: Negotiation → Closed Won.', text: "26% of deals in negotiation go quiet for over 10 days before any follow-up." }
     ],
     table: {
       headers: ['Stage', 'Deals', 'At Risk'],
@@ -96,8 +96,8 @@ export const agentsShowcaseData = [
     question: 'What should I know before my 3pm call with Meera?',
     lead: "Here's your briefing for the 3pm call:",
     callouts: [
-      { icon: '🔴', strong: 'Last touchpoint: 12 days ago.', text: "The account raised a pricing concern that was never formally closed — flag this early." },
-      { icon: '⚠️', strong: 'Open item: bulk export request.', text: "A feature request for bulk export is still marked pending from the last call." }
+      { strong: 'Last touchpoint: 12 days ago.', text: "The account raised a pricing concern that was never formally closed — flag this early." },
+      { strong: 'Open item: bulk export request.', text: "A feature request for bulk export is still marked pending from the last call." }
     ],
     table: {
       headers: ['Meeting', 'Date', 'Outcome'],
@@ -124,8 +124,8 @@ export const agentsShowcaseData = [
     question: 'Which support calls this week need a manager review?',
     lead: "Here are the calls flagged for review:",
     callouts: [
-      { icon: '🔴', strong: '3 calls scored below 40 sentiment,', text: "all involving the same billing issue repeated across customers." },
-      { icon: '⚠️', strong: '2 calls ran over 22 minutes', text: "with no resolution logged — likely candidates for a follow-up ticket." }
+      { strong: '3 calls scored below 40 sentiment,', text: "all involving the same billing issue repeated across customers." },
+      { strong: '2 calls ran over 22 minutes', text: "with no resolution logged — likely candidates for a follow-up ticket." }
     ],
     table: {
       headers: ['Call', 'Agent', 'Score'],
