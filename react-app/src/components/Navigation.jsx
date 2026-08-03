@@ -102,8 +102,8 @@ function Navigation() {
 
           {/* CTA Buttons */}
           <div className="nav-right desktop-only">
-            <Link to="/login" className="talk-to-sales">Login</Link>
-            <Link to="/signup" className="get-started">Signup</Link>
+            <a href="https://app.workflowmitra.com/login" className="talk-to-sales">Login</a>
+            <a href="https://app.workflowmitra.com/signup" className="get-started">Signup</a>
           </div>
 
             {/* Mobile Menu Toggle */}
@@ -126,8 +126,8 @@ function Navigation() {
               <Link to="/integrations" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
               <Link to="/pricing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
               <div className="mobile-menu-actions">
-                <Link to="/login" className="nav-btn nav-btn-ghost" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
-                <Link to="/signup" className="nav-btn nav-btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Signup</Link>
+                <a href="https://app.workflowmitra.com/login" className="nav-btn nav-btn-ghost" onClick={() => setIsMobileMenuOpen(false)}>Login</a>
+                <a href="https://app.workflowmitra.com/signup" className="nav-btn nav-btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Signup</a>
               </div>
             </div>
           )}

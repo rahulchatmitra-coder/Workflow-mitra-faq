@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaFacebook, FaSlack, FaLinkedin, FaWhatsapp, FaRss, FaTruck, FaUsers, FaUser, FaShopify } from 'react-icons/fa';
 import { SiHubspot, SiGmail } from 'react-icons/si';
-import { BsStars, BsZap } from 'react-icons/bs';
+import { BsStars, BsLightningChargeFill } from 'react-icons/bs';
 import './FlowDiagram.css';
 
 const R = 36;  // node circle radius
@@ -28,11 +28,6 @@ const IfSVG = () => (
     <path d="M3 6h6m0 0l4-4m-4 4 4 4M21 18h-6m0 0-4-4m4 4-4 4M12 10v4"/>
   </svg>
 );
-const WhatsAppSVG = () => (
-  <svg width={ICON} height={ICON} viewBox="0 0 24 24" fill="white">
-    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.74.45 3.38 1.24 4.8L2 22l5.35-1.19A9.95 9.95 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.1 14.28c-.22.61-1.24 1.14-1.72 1.21-.46.06-1.03.09-2.99-.74-2.35-.99-3.87-3.44-3.99-3.6-.11-.16-.95-1.27-.95-2.42s.6-1.72.82-1.95c.21-.23.46-.28.61-.28.15 0 .3 0 .44.01.14.01.32-.05.5.4.18.45.62 1.5.68 1.62.05.12.09.26.02.41-.08.16-.11.25-.22.37-.11.12-.23.25-.32.34-.11.1-.21.21-.09.41.11.2.49.82 1.03 1.31.7.64 1.31.84 1.51.94.2.1.32.08.43-.05.11-.13.5-.59.64-.79.13-.2.29-.17.47-.11.18.06 1.16.55 1.36.65.2.1.33.15.38.23.04.09.04.49-.18 1.1z"/>
-  </svg>
-);
 
 const AppIcon = ({ app }) => {
   const white = { color: 'white' };
@@ -46,15 +41,15 @@ const AppIcon = ({ app }) => {
     case 'sheets':        return <SheetsSVG />;
     case 'shopify':       return <FaShopify size={ICON} style={white}/>;
     case 'zoho':          return <ZohoSVG />;
-    case 'whatsapp':      return <WhatsAppSVG />;
+    case 'whatsapp':      return <FaWhatsapp size={ICON} style={white}/>;
     case 'truck':         return <FaTruck size={ICON} style={white}/>;
     case 'zendesk':       return <ZendeskSVG />;
     case 'sparkles':      return <BsStars size={ICON} style={white}/>;
     case 'rss':           return <FaRss size={ICON} style={white}/>;
     case 'linkedin':      return <FaLinkedin size={ICON} style={white}/>;
-    case 'zap':           return <BsZap size={ICON} style={white}/>;
+    case 'zap':           return <BsLightningChargeFill size={ICON} style={white}/>;
     case 'user-orange':   return <FaUser size={ICON} style={white}/>;
-    default:              return <BsZap size={ICON} style={white}/>;
+    default:              return <BsLightningChargeFill size={ICON} style={white}/>;
   }
 };
 

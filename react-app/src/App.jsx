@@ -18,8 +18,6 @@ import TemplateFlowPage from './pages/TemplateFlowPage'
 import TestPage from './pages/TestPage'
 import Templates from './pages/Templates'
 import Integrations from './pages/Integrations'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
 import './App.css'
 
 function App() {
@@ -44,8 +42,6 @@ function App() {
           <Route path="/template/:templateId" element={<TemplateFlowPage />} />
           <Route path="/templates" element={<Templates />} />
           <Route path="/integrations" element={<Integrations />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
       </div>
