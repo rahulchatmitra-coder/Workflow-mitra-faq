@@ -1,0 +1,57 @@
+/* Docs section theme.
+ *
+ * The page CHROME uses the site's own tokens (index.css) so docs look like the
+ * rest of workflowmitra.com — same ink, borders, pink/purple accents, and the
+ * real Navigation/Footer wrap every page.
+ *
+ * The EDITOR RECREATION is different: it recreates a screenshot of the actual
+ * product, so it carries the product's own tokens (--wm-*), taken verbatim from
+ * workflow/apps/web/src/styles/tailwind.css. Those are scoped to .wm-shot and
+ * must never leak into the page around them.
+ */
+.docs-shell {
+  --docs-ink: var(--color-text-primary, #0f172a);
+  --docs-ink-soft: var(--color-text-secondary, #475569);
+  --docs-muted: var(--color-text-tertiary, #94a3b8);
+  --docs-line: var(--color-border, #e2e8f0);
+  --docs-surface: var(--color-surface, #ffffff);
+
+  --docs-pink: var(--color-brand-pink, #E8388A);
+  --docs-pink-ink: #9c1f60;
+  --docs-pink-bg: #fdeaf3;
+  --docs-purple: var(--color-brand-purple, #8B5CF6);
+  --docs-purple-bg: #f1ecfe;
+  --docs-teal: var(--color-brand-teal, #0f766e);
+  --docs-teal-bg: #e6f5f3;
+  --docs-warm: var(--bg-a, #fff7f3);
+  --docs-violet: var(--bg-b, #f4f0fd);
+  --docs-shadow-card: 0 4px 20px rgba(15, 23, 42, 0.08);
+
+  color: var(--docs-ink);
+}
+
+/* Product tokens — the editor screenshot only. Verbatim from the real
+   tailwind.css so the recreation matches the product pixel for pixel. */
+.wm-shot {
+  --wm-primary: #0A0A0A;
+  --wm-primary-light: #6B6B6B;
+  --wm-secondary: #ff9e43;
+  --wm-error: #FF3D57;
+  --wm-warning: #ff9800;
+  --wm-bg-default: #f8fafc;
+  --wm-surface: #ffffff;
+  --wm-text-primary: #0A0A0A;
+  --wm-text-secondary: rgba(10, 10, 10, 0.58);
+  --wm-text-disabled: rgba(10, 10, 10, 0.40);
+  --wm-gray-200: #e5e7eb;
+  --wm-gray-100: #f3f4f6;
+  --wm-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --wm-shadow-elevated: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+  font-family: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+}
+
+.docs-shell :focus-visible {
+  outline: 2px solid var(--docs-pink);
+  outline-offset: 2px;
+}

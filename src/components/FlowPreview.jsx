@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import FlowDiagram from './FlowDiagram';
+import { docsPathForApp } from '../utils/docs/appLinkable';
+import integrationRegistry from '../data/integrationRegistry';
 import './FlowPreview.css';
+
+const APP_ALIAS_MAP = { sheets: 'google-sheets', zoho: 'zoho-books', truck: 'shiprocket' };
 
 // Inlined SVG icon renderer — reuses same symbols from Templates.jsx sprite sheet
 const NodeIcon = ({ app, size = 28 }) => (
@@ -106,20 +111,22 @@ const FlowPreview = ({ flow, template, onBack }) => {
           <ol className="fp-steps-list">
             {flow.steps.map((step, i) => {
               const node = flow.nodes.find(n => n.id === step.nodeId);
+              const docsPath = node ? docsPathForApp(node.app, { registry: integrationRegistry, aliasMap: APP_ALIAS_MAP }) : null;
+              const nodeLabel = node && (
+                <div className="fp-step-node-label">
+                  <span
+                    className="fp-step-dot"
+                    style={{ background: node.bg || '#111318' }}
+                  ></span>
+                  <span className="fp-step-name">{node.title}</span>
+                  <code className="fp-step-sub">{node.subtitle}</code>
+                </div>
+              );
               return (
                 <li key={step.nodeId} className="fp-step-item">
                   <div className="fp-step-num">{i + 1}</div>
                   <div className="fp-step-content">
-                    {node && (
-                      <div className="fp-step-node-label">
-                        <span
-                          className="fp-step-dot"
-                          style={{ background: node.bg || '#111318' }}
-                        ></span>
-                        <span className="fp-step-name">{node.title}</span>
-                        <code className="fp-step-sub">{node.subtitle}</code>
-                      </div>
-                    )}
+                    {docsPath ? <Link to={docsPath} className="fp-step-node-link">{nodeLabel}</Link> : nodeLabel}
                     <p className="fp-step-body">{step.body}</p>
                   </div>
                 </li>

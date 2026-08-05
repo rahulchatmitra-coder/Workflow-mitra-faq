@@ -1,20 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getBrandIcon } from '../utils/brandIcons';
 import { agentsShowcaseData as agents } from '../data/agentsShowcaseData';
-import { FaUserCircle } from 'react-icons/fa';
+import FlowCanvas from './FlowCanvas';
 import './AgentsShowcase.css';
 
-const CYCLE_MS = 6500;
-const TICK_MS = 100;
+const CYCLE_MS = 7000;   // how long one automation holds the stage
+const TICK_MS = 100;     // progress rail + run clock resolution
+const STEP_MS = 1250;    // how long each node executes for
+const STEP_COUNT = 5;
+const NODE_KEYS = ['n1', 'n2', 'n3', 'n4', 'n5'];
 
 export default function AgentsShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isSwitching, setIsSwitching] = useState(false);
-  
+
   // Track the actual displayed agent to allow for fade out before changing content
   const [displayIndex, setDisplayIndex] = useState(0);
+
+  // The run: which node is executing, how long it has been going, and a run
+  // number that increments so the card reads like a live queue.
+  const [step, setStep] = useState(0);
+  const [runMs, setRunMs] = useState(0);
+  const [runNo, setRunNo] = useState(8841);
 
   // We use refs to safely access state inside the interval without recreating it
   const stateRef = useRef({ activeIndex, elapsed, isPaused, isSwitching });
@@ -25,8 +34,10 @@ export default function AgentsShowcase() {
   useEffect(() => {
     const timer = setInterval(() => {
       const { activeIndex: currentIdx, elapsed: currentElapsed, isPaused: currentPaused, isSwitching: currentSwitching } = stateRef.current;
-      
+
       if (currentPaused || currentSwitching) return;
+
+      setRunMs((ms) => ms + TICK_MS);
 
       const newElapsed = currentElapsed + TICK_MS;
       if (newElapsed >= CYCLE_MS) {
@@ -39,17 +50,38 @@ export default function AgentsShowcase() {
     return () => clearInterval(timer);
   }, []);
 
+  // Walk the graph. Finishing a pass banks a run, which is what makes the
+  // counter on the status card climb while someone is watching.
+  useEffect(() => {
+    const stepper = setInterval(() => {
+      if (stateRef.current.isPaused || stateRef.current.isSwitching) return;
+      setStep((s) => {
+        const next = (s + 1) % STEP_COUNT;
+        if (next === 0) {
+          setRunNo((n) => n + 1);
+          setRunMs(0);
+        }
+        return next;
+      });
+    }, STEP_MS);
+
+    return () => clearInterval(stepper);
+  }, []);
+
   const handleAgentChange = (newIndex) => {
     if (newIndex === stateRef.current.activeIndex) return;
-    
+
     // Start transition
     setIsSwitching(true);
     setElapsed(0);
     setActiveIndex(newIndex);
-    
+
     // Wait for fade out, then swap content and fade in
     setTimeout(() => {
       setDisplayIndex(newIndex);
+      setStep(0);
+      setRunMs(0);
+      setRunNo((n) => n + 1);
       setIsSwitching(false);
     }, 180);
   };
@@ -59,29 +91,29 @@ export default function AgentsShowcase() {
   };
 
   const activeAgent = agents[displayIndex];
-
-  // Helper to get stagger delay for reveal animations
-  const getDelay = (step) => ({
-    transitionDelay: `${step * 180}ms`,
-    animationDelay: `${step * 180}ms`
-  });
+  const nodeLabels = NODE_KEYS.map((k) => activeAgent.nodes[k].label);
+  const progressPct = Math.round(((step + 1) / STEP_COUNT) * 100);
 
   return (
-    <section 
+    <section
       className="agents-section"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="agents-grid">
-        
+
         {/* Left Column: Accordion / List */}
         <div className="agents-list-col">
-          <h2>Roll out specialized<br/>agents in minutes</h2>
+          <h2>Popular automations,<br/>running in minutes</h2>
+          <p className="agents-sub">
+            Five flows teams start with. Every one is a real template — open it,
+            connect your accounts, run it.
+          </p>
           <ul className="agent-list">
             {agents.map((agent, i) => {
               const isActive = i === activeIndex;
               const progressWidth = isActive ? Math.min(100, (elapsed / CYCLE_MS) * 100) : 0;
-              
+
               return (
                 <li key={agent.id} className={`agent-item ${isActive ? 'active' : ''}`}>
                   <button className="agent-toggle" onClick={() => handleManualClick(i)}>
@@ -90,7 +122,7 @@ export default function AgentsShowcase() {
                     </span>
                     <span className="agent-name">{agent.name}</span>
                   </button>
-                  
+
                   <div className="agent-details">
                     <p className="agent-desc">{agent.desc}</p>
                     <div className="agent-meta">
@@ -98,8 +130,8 @@ export default function AgentsShowcase() {
                         {agent.integrations.map((integration, idx) => {
                           const brand = getBrandIcon(integration, { size: 12, color: '#ffffff' });
                           return (
-                            <span 
-                              key={idx} 
+                            <span
+                              key={idx}
                               style={{ background: brand ? brand.color : '#888' }}
                               title={integration}
                             >
@@ -113,10 +145,10 @@ export default function AgentsShowcase() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="progress-track">
-                    <div 
-                      className="progress-fill" 
+                    <div
+                      className="progress-fill"
                       style={{ width: `${progressWidth}%` }}
                     />
                   </div>
@@ -126,79 +158,61 @@ export default function AgentsShowcase() {
           </ul>
         </div>
 
-        {/* Right Column: Animated Demo Preview */}
+        {/* Right Column: the automation running, node by node */}
         <div className="demo-col">
           <div className="demo-glow"></div>
-          
-          {/* Chat Card */}
-          <div className={`chat-card ${isSwitching ? 'switching' : ''}`}>
-            
-            <div className={`reveal user-msg-row ${!isSwitching ? 'show' : ''}`} style={getDelay(0)}>
-              <div className="user-bubble">{activeAgent.question}</div>
-              <div className="user-avatar">
-                <FaUserCircle size={26} color="#ffffff" />
-              </div>
+
+          <div className={`flow-card ${isSwitching ? 'switching' : ''}`}>
+            <div className="fcard-head">
+              <span className="fcard-title">{activeAgent.cardTitle}</span>
+              <span className="fcard-live"><i></i>running</span>
             </div>
 
-            <div className={`reveal assistant-header ${!isSwitching ? 'show' : ''}`} style={getDelay(1)}>
-              <span className="assistant-logo">F</span>
-              <span className="assistant-name">FlowMitra</span>
-            </div>
+            <FlowCanvas
+              nodes={activeAgent.nodes}
+              tags={activeAgent.tags}
+              payloads={activeAgent.payloads}
+              step={step}
+            />
 
-            <div className={`reveal steps-toggle ${!isSwitching ? 'show' : ''}`} style={getDelay(1)}>
-              ⌄ &nbsp;{activeAgent.callouts.length + activeAgent.table.rows.length} Steps
+            <div className="fcard-foot">
+              <span className="fcard-step">
+                <b>Step {step + 1}/{STEP_COUNT}</b> · {activeAgent.steps[step]}
+              </span>
+              <span className="fcard-json">{activeAgent.json}</span>
             </div>
-
-            <div className="assistant-response">
-              <p className={`reveal response-lead ${!isSwitching ? 'show' : ''}`} style={getDelay(2)}>
-                {activeAgent.lead}
-              </p>
-              
-              {activeAgent.callouts.map((c, i) => (
-                <div key={i} className={`reveal callout ${!isSwitching ? 'show' : ''}`} style={getDelay(3 + i)}>
-                  {c.icon && <span className="callout-icon">{c.icon}</span>}
-                  <p><strong>{c.strong}</strong> {c.text}</p>
-                </div>
-              ))}
-              
-              <div className={`reveal table-wrap ${!isSwitching ? 'show' : ''}`} style={getDelay(3 + activeAgent.callouts.length)}>
-                <table>
-                  <thead>
-                    <tr>
-                      {activeAgent.table.headers.map((h, i) => <th key={i}>{h}</th>)}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {activeAgent.table.rows.map((row, i) => (
-                      <tr key={i}>
-                        {row.map((cell, j) => <td key={j}>{cell}</td>)}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="table-fade"></div>
-              </div>
-            </div>
-            
           </div>
 
-          {/* Floating Stat Card */}
-          <div className={`wau-card ${isSwitching ? 'switching' : ''}`}>
-            <p className="wau-title">{activeAgent.stat.title}</p>
-            <div className="wau-bars">
-              {activeAgent.stat.data.map((val, i) => (
-                <div 
-                  key={i} 
-                  className={`bar ${i === activeAgent.stat.peak ? 'peak' : ''}`}
-                  style={{ 
-                    height: !isSwitching ? `${val}%` : '0%',
-                    transitionDelay: !isSwitching ? `${150 + (i * 20)}ms` : '0ms' 
-                  }}
-                />
-              ))}
+          <div className={`stat-card ${isSwitching ? 'switching' : ''}`}>
+            <div className="sc-top">
+              <span className="sc-pill"><i></i>running</span>
+              <span className="sc-run">#{runNo}</span>
+              <span className="sc-ms">{(runMs / 1000).toFixed(1)}s</span>
             </div>
-            <div className="wau-axis">
-              <span>W1</span><span>W5</span><span>W12</span><span>W18</span><span>W24</span>
+
+            <div className="sc-bar">
+              <span style={{ width: `${progressPct}%` }} />
+            </div>
+
+            <p className="sc-now">
+              Step <b>{step + 1} of {STEP_COUNT}</b> · <b>{nodeLabels[step]}</b>
+            </p>
+
+            <div className="sc-stats">
+              <div className="sc-stat">
+                <span className="sc-num">
+                  {activeAgent.live.runs.toLocaleString('en-IN')} <em>▲</em>
+                </span>
+                <span className="sc-cap">{activeAgent.live.unit} this week</span>
+              </div>
+              <div className="sc-stat">
+                <span className="sc-num">{activeAgent.live.ok}%</span>
+                <span className="sc-cap">succeeded</span>
+              </div>
+              <div className="sc-stat">
+                <span className="sc-num">{activeAgent.live.avg}s</span>
+                <span className="sc-cap">avg run</span>
+              </div>
             </div>
           </div>
 

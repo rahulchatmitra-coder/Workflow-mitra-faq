@@ -1,15 +1,18 @@
 import {
-  SiHubspot, SiGmail, SiGooglesheets, 
-  SiDiscord, SiNotion, SiStripe, SiGithub, SiJira, SiAirtable, 
-  SiZendesk, SiAsana, SiMailchimp, SiMeta, 
-  SiTypeform, SiCalendly, SiZapier, SiTrello, 
-  SiAtlassian, SiVercel, SiSentry, SiCircleci, SiIntercom, 
-  SiHelpscout, SiOkta, SiAuth0, SiDatadog, SiPagerduty, 
+  SiHubspot, SiGmail, SiGooglesheets,
+  SiDiscord, SiNotion, SiStripe, SiGithub, SiJira, SiAirtable,
+  SiZendesk, SiAsana, SiMailchimp, SiMeta,
+  SiTypeform, SiCalendly, SiZapier, SiTrello,
+  SiAtlassian, SiVercel, SiSentry, SiCircleci, SiIntercom,
+  SiHelpscout, SiOkta, SiAuth0, SiDatadog, SiPagerduty,
   SiSplunk, SiGoogle, SiGooglecalendar, SiGooglemeet, SiLinear,
   SiDropbox, SiFigma,
   SiShopify, SiWoo, SiMailgun, SiMixpanel, SiZoom,
   SiSnowflake, SiMiro,
-  SiWebflow, SiApollographql
+  SiWebflow, SiApollographql,
+  SiTelegram, SiWhatsapp,
+  SiRazorpay, SiZoho, SiMongodb, SiGooglegemini, SiAnthropic, SiFacebook,
+  SiPostgresql, SiMysql, SiRedis
 } from 'react-icons/si';
 
 import { 
@@ -80,7 +83,30 @@ const BRAND_ICONS = {
   snowflake: { icon: SiSnowflake, color: '#29B5E8' },
   miro: { icon: SiMiro, color: '#050038' },
   apollo: { icon: SiApollographql, color: '#311C87' },
-  gong: { icon: FaPhoneAlt, color: '#FF4F79' }
+  gong: { icon: FaPhoneAlt, color: '#FF4F79' },
+  telegram: { icon: SiTelegram, color: '#26A5E4' },
+  whatsapp: { icon: SiWhatsapp, color: '#25D366' },
+
+  // Hero clusters. Colours are the product's own, verbatim from the editor's
+  // node registry — WhatsApp green, Zoho red, Slack aubergine and so on.
+  razorpay: { icon: SiRazorpay, color: '#0C2451' },
+  zoho: { icon: SiZoho, color: '#E42527' },
+  zohocrm: { icon: SiZoho, color: '#E42527' },
+  zohobooks: { icon: SiZoho, color: '#E42527' },
+  mongodb: { icon: SiMongodb, color: '#47A248' },
+  googlegemini: { icon: SiGooglegemini, color: '#8E75B2' },
+  gemini: { icon: SiGooglegemini, color: '#8E75B2' },
+  anthropic: { icon: SiAnthropic, color: '#191919' },
+  claude: { icon: SiAnthropic, color: '#191919' },
+  facebook: { icon: SiFacebook, color: '#0866FF' },
+  googlemeet: { icon: SiGooglemeet, color: '#00897B' },
+
+  // Database nodes. The engine ships one for each of these, so the AI
+  // section's integration grid can claim them honestly.
+  postgresql: { icon: SiPostgresql, color: '#4169E1' },
+  postgres: { icon: SiPostgresql, color: '#4169E1' },
+  mysql: { icon: SiMysql, color: '#4479A1' },
+  redis: { icon: SiRedis, color: '#DC382D' }
 };
 
 export function getBrandIcon(name, props = {}) {

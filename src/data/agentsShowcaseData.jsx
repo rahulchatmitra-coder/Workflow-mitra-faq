@@ -1,144 +1,153 @@
-import { FaChartBar, FaCommentDots, FaBriefcase, FaClipboardList, FaPhoneAlt } from 'react-icons/fa'
+import { FaCommentDots, FaRegCalendarCheck, FaPhoneAlt, FaChartBar, FaBolt } from 'react-icons/fa'
 
+/**
+ * The five automations shown in the showcase. Each maps to a real curated
+ * template and uses real node types — the graph is abridged to five discs, and
+ * `live.dur` is the per-step timing the run-status card counts through.
+ *
+ * NOTE: the `live` figures are DEMO VALUES, not platform telemetry. They exist
+ * to make the card read as a running system. Replace them with real numbers, or
+ * drop the card's counters, before treating them as a public claim.
+ */
 export const agentsShowcaseData = [
-  {
-    id: 'data-analysis',
-    name: 'Data Analysis Agent',
-    desc: 'A reasoning agent that answers questions from your data warehouse.',
-    icon: <FaChartBar />,
-    color: '#3B82F6',
-    integrations: ['Snowflake', 'Datadog', 'Google Sheets'],
-    teamLabel: 'Data',
-    question: 'Where are we losing people in the onboarding flow?',
-    lead: "Here's where you're losing people:",
-    callouts: [
-      { strong: 'Biggest drop-off: Dashboard → Attempted Integration — 46%', text: "of users who view the dashboard never try to connect an integration — that's 1,432 people falling off in a single step. This is problem #1." },
-      { strong: 'Secondary drop-off: Attempted → Completed Integration.', text: "Of the users who try, 37% fail to finish. Combined, only 22% of signups make it through the integration step at all." }
-    ],
-    table: {
-      headers: ['Step', 'Users', 'Drop-off'],
-      rows: [
-        ['Signed Up', '4,820', '—'],
-        ['Completed Profile', '3,940', '-18%'],
-        ['Attempted Integration', '2,110', '-46%']
-      ]
-    },
-    stat: {
-      title: 'Weekly Active Users',
-      data: [38, 55, 60, 48, 66, 72, 58, 64, 70, 50, 62, 68, 56, 44, 60, 30, 58, 64, 52, 46, 62, 54],
-      peak: 16
-    }
-  },
   {
     id: 'support',
     name: 'Support Agent',
-    desc: 'A support agent that drafts replies from your help docs and past tickets.',
+    desc: 'Reads every new ticket, decides how urgent it is, and gets it to the right person.',
     icon: <FaCommentDots />,
     color: '#10B981',
-    integrations: ['Zendesk', 'Slack', 'Jira'],
+    integrations: ['Zendesk', 'Slack'],
     teamLabel: 'Support',
-    question: 'Why are refund tickets taking so long to close?',
-    lead: "Here's what's slowing your refund tickets down:",
-    callouts: [
-      { strong: 'Biggest bottleneck: Awaiting Manager Approval — 52%', text: "of refund tickets sit in this stage for over 2 days before anyone reviews them. This is your #1 delay." },
-      { strong: 'Secondary bottleneck: Payment Reconciliation.', text: "Of tickets that clear approval, 29% wait on finance to confirm the charge before closing." }
-    ],
-    table: {
-      headers: ['Step', 'Tickets', 'Avg Wait'],
-      rows: [
-        ['Opened', '612', '—'],
-        ['Approved', '390', '2.1 days'],
-        ['Refunded', '276', '0.6 days']
-      ]
+    cardTitle: 'Support ticket triage',
+    nodes: {
+      n1: { type: 'zendesk', label: 'New ticket' },
+      n2: { type: 'ai', label: 'AI triage' },
+      n3: { type: 'if', label: 'Urgent?' },
+      n4: { type: 'slack', label: 'Alert #support' },
+      n5: { type: 'assign', label: 'Assign agent' },
     },
-    stat: {
-      title: 'Tickets Resolved',
-      data: [42, 50, 46, 58, 64, 60, 70, 66, 52, 48, 60, 66, 72, 68, 54, 60, 64, 58, 50, 62, 66, 70],
-      peak: 12
-    }
+    tags: { n4: 'urgent', n5: 'else' },
+    steps: [
+      'Zendesk fires on ticket.created',
+      'Claude reads it and scores urgency',
+      'Routes on urgency = high',
+      'Posts to the on-call channel',
+      'Hands to next agent in rota',
+    ],
+    payloads: ['ticket_id: 8841', 'subject, body', 'urgency: "high"', '→ #support-urgent'],
+    json: '{ ticket_id, subject, urgency }',
+    live: { runs: 1284, ok: 99.4, avg: 4.2, unit: 'tickets', dur: [0.2, 2.4, 0.1, 0.9, 0.6] },
   },
   {
-    id: 'crm',
-    name: 'CRM Agent',
-    desc: 'A CRM agent that enriches leads and updates deal stages automatically.',
-    icon: <FaBriefcase />,
-    color: '#F59E0B',
-    integrations: ['Salesforce', 'Hubspot', 'Apollo'],
-    teamLabel: 'Sales',
-    question: 'Which deals are most likely to slip this quarter?',
-    lead: "Here's where deals are at risk:",
-    callouts: [
-      { strong: 'Highest risk: Proposal Sent → Negotiation — 41%', text: "of deals stall here past their expected close date, worth $48k in pipeline." },
-      { strong: 'Secondary risk: Negotiation → Closed Won.', text: "26% of deals in negotiation go quiet for over 10 days before any follow-up." }
-    ],
-    table: {
-      headers: ['Stage', 'Deals', 'At Risk'],
-      rows: [
-        ['Proposal Sent', '64', '—'],
-        ['Negotiation', '38', '41%'],
-        ['Contract Sent', '19', '12%']
-      ]
-    },
-    stat: {
-      title: 'Pipeline Value ($K)',
-      data: [30, 44, 40, 52, 58, 50, 62, 56, 48, 54, 60, 58, 50, 44, 52, 38, 48, 54, 46, 50, 56, 60],
-      peak: 6
-    }
-  },
-  {
-    id: 'meeting-prep',
-    name: 'Meeting Prep Agent',
-    desc: 'A meeting agent that reads past notes and briefs you before every call.',
-    icon: <FaClipboardList />,
+    id: 'meeting',
+    name: 'Meeting automation',
+    desc: 'Turns a booking into a room, an invite and a logged record — before you open your laptop.',
+    icon: <FaRegCalendarCheck />,
     color: '#8B5CF6',
-    integrations: ['Google Meet', 'Zoom', 'Notion'],
-    teamLabel: 'Ops',
-    question: 'What should I know before my 3pm call with Meera?',
-    lead: "Here's your briefing for the 3pm call:",
-    callouts: [
-      { strong: 'Last touchpoint: 12 days ago.', text: "The account raised a pricing concern that was never formally closed — flag this early." },
-      { strong: 'Open item: bulk export request.', text: "A feature request for bulk export is still marked pending from the last call." }
-    ],
-    table: {
-      headers: ['Meeting', 'Date', 'Outcome'],
-      rows: [
-        ['Kickoff Call', '14 Jun', 'Positive'],
-        ['Pricing Review', '3 Jul', 'Open concern'],
-        ['Check-in', '19 Jul', 'No response']
-      ]
+    integrations: ['Calendly', 'Google Meet'],
+    teamLabel: 'Sales',
+    cardTitle: 'Meeting scheduling',
+    nodes: {
+      n1: { type: 'calendly', label: 'Booking made' },
+      n2: { type: 'googlemeet', label: 'Create room' },
+      n3: { type: 'gmail', label: 'Send invite' },
+      n4: { type: 'google-sheets', label: 'Log meeting' },
+      n5: { type: 'slack', label: 'Notify owner' },
     },
-    stat: {
-      title: 'Meetings Briefed',
-      data: [20, 28, 24, 34, 30, 38, 32, 40, 36, 30, 42, 38, 34, 28, 36, 24, 32, 38, 30, 34, 40, 36],
-      peak: 11
-    }
+    tags: {},
+    steps: [
+      'Calendly webhook on invitee.created',
+      'Google Meet room is created',
+      'Invite goes out with the link',
+      'Row appended to the tracker',
+      'Owner pinged in Slack',
+    ],
+    payloads: ['invitee, start_time', 'meet_link', 'calendar_event_id', '→ #sales'],
+    json: '{ invitee, start_time, meet_link }',
+    live: { runs: 412, ok: 99.8, avg: 3.1, unit: 'meetings', dur: [0.1, 1.1, 0.8, 0.6, 0.5] },
   },
   {
-    id: 'call-analysis',
-    name: 'Call Analysis Agent',
-    desc: 'A call agent that scores conversations and flags at-risk accounts.',
+    id: 'calls',
+    name: 'Calling automation',
+    desc: 'Every call ends with a written summary in the CRM and a note to the team.',
     icon: <FaPhoneAlt />,
-    color: '#EC4899',
-    integrations: ['Gong', 'Zoom', 'Salesforce'],
+    color: '#F97316',
+    integrations: ['HubSpot', 'Slack'],
     teamLabel: 'Sales',
-    question: 'Which support calls this week need a manager review?',
-    lead: "Here are the calls flagged for review:",
-    callouts: [
-      { strong: '3 calls scored below 40 sentiment,', text: "all involving the same billing issue repeated across customers." },
-      { strong: '2 calls ran over 22 minutes', text: "with no resolution logged — likely candidates for a follow-up ticket." }
-    ],
-    table: {
-      headers: ['Call', 'Agent', 'Score'],
-      rows: [
-        ['#4821', 'Rohan', '32'],
-        ['#4835', 'Priya', '38'],
-        ['#4902', 'Karan', '61']
-      ]
+    cardTitle: 'Call follow-up',
+    nodes: {
+      n1: { type: 'call', label: 'Call ended' },
+      n2: { type: 'ai', label: 'Summarise' },
+      n3: { type: 'hubspot', label: 'Log to CRM' },
+      n4: { type: 'slack', label: 'Share summary' },
+      n5: { type: 'gmail', label: 'Send recap' },
     },
-    stat: {
-      title: 'Calls Reviewed',
-      data: [34, 40, 36, 46, 50, 44, 54, 48, 40, 46, 52, 48, 42, 36, 44, 30, 38, 44, 36, 40, 46, 50],
-      peak: 8
-    }
-  }
-];
+    tags: {},
+    steps: [
+      'Webhook fires when the call hangs up',
+      'Claude summarises the transcript',
+      'Note attached to the CRM deal',
+      'Summary posted to the team',
+      'Recap emailed to the prospect',
+    ],
+    payloads: ['call_id, duration', 'summary, next_step', 'deal_id', '→ prospect'],
+    json: '{ call_id, duration, summary }',
+    live: { runs: 867, ok: 98.9, avg: 6.8, unit: 'calls', dur: [0.2, 4.1, 0.9, 0.8, 0.8] },
+  },
+  {
+    id: 'data',
+    name: 'Data analysis automation',
+    desc: 'Pulls the numbers every morning, writes the summary, and posts it before standup.',
+    icon: <FaChartBar />,
+    color: '#3B82F6',
+    integrations: ['PostgreSQL', 'Slack'],
+    teamLabel: 'Data',
+    cardTitle: 'Daily data digest',
+    nodes: {
+      n1: { type: 'schedule', label: '9:00 AM' },
+      n2: { type: 'postgresql', label: 'Query metrics' },
+      n3: { type: 'ai', label: 'Summarise' },
+      n4: { type: 'slack', label: 'Post digest' },
+      n5: { type: 'google-sheets', label: 'Append row' },
+    },
+    tags: {},
+    steps: [
+      'Schedule fires at 09:00 IST',
+      'Runs the metrics query',
+      'Claude writes a plain-English digest',
+      'Posted to the leadership channel',
+      'Same numbers appended for history',
+    ],
+    payloads: ['—', 'signups: 412', 'churn 1.8% · mrr ₹8.4L', '→ #leadership'],
+    json: '{ signups, churn, mrr }',
+    live: { runs: 96, ok: 100, avg: 9.4, unit: 'reports', dur: [0.1, 3.2, 4.6, 0.9, 0.6] },
+  },
+  {
+    id: 'leads',
+    name: 'Lead capture → conversion',
+    desc: 'Scores every form submission and answers the hot ones on WhatsApp within seconds.',
+    icon: <FaBolt />,
+    color: '#E8388A',
+    integrations: ['HubSpot', 'WhatsApp'],
+    teamLabel: 'Growth',
+    cardTitle: 'Lead capture → conversion',
+    nodes: {
+      n1: { type: 'webhook-trigger', label: 'Form submit' },
+      n2: { type: 'ai', label: 'Qualify + score' },
+      n3: { type: 'if', label: 'Score > 70?' },
+      n4: { type: 'whatsapp', label: 'WhatsApp in 5s' },
+      n5: { type: 'gmail', label: 'Nurture sequence' },
+    },
+    tags: { n4: 'hot', n5: 'else' },
+    steps: [
+      'Your site form posts to the webhook',
+      'Claude scores intent and fit',
+      'Splits hot leads from the rest',
+      'Hot leads get an instant WhatsApp',
+      'The rest enter the email sequence',
+    ],
+    payloads: ['name, phone', 'score: 82', 'intent: "pricing"', '→ +91 98•• ••••'],
+    json: '{ name, phone, score, intent }',
+    live: { runs: 2318, ok: 99.6, avg: 2.6, unit: 'leads', dur: [0.1, 1.2, 0.1, 0.8, 0.4] },
+  },
+]

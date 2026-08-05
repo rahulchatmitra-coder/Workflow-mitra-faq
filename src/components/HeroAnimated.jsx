@@ -3,74 +3,54 @@ import AgentDecoration from './AgentDecoration'
 import './HeroAnimated.css'
 
 function HeroAnimated() {
+  // Six real integrations per cluster. Indices 0-3 are the prominent chips,
+  // 4-5 sit further out and dimmer. Every name resolves in brandIcons.jsx.
   const decorations = [
     {
-      id: 'agent-1',
-      shape: 'blob',
-      color: '#fbb6ce', // pink base
-      position: { top: '10%', left: '5%' },
-      badges: ['gmail', 'slack', 'sheets', 'drive', 'zapier'],
-      cursors: [
-        { name: 'Katherine', color: '#E8388A' },
-        { name: 'Max', color: '#10b981' }
-      ],
+      id: 'cluster-1',
+      mascot: 0,
+      position: { top: '34px', left: '2px' },
+      logos: ['facebook', 'googlegemini', 'hubspot', 'whatsapp', 'googlesheets', 'telegram'],
+      cursor: { name: 'Katherine', color: '#E8388A' },
       delay: 0,
-      scale: 0.9
     },
     {
-      id: 'agent-2',
-      shape: 'cross',
-      color: '#93c5fd', // blue base
-      position: { top: '15%', right: '5%' },
-      badges: ['airtable', 'discord', 'slack', 'sheets', 'gmail'],
-      cursors: [
-        { name: 'Gonzalo', color: '#3B82F6' },
-        { name: 'Aron', color: '#EAB308' }
-      ],
+      id: 'cluster-2',
+      mascot: 1,
+      position: { top: '20px', right: '2px' },
+      logos: ['shopify', 'razorpay', 'zoho', 'whatsapp', 'stripe', 'woocommerce'],
+      cursor: { name: 'Aron', color: '#EAB308' },
       delay: 0.5,
-      scale: 0.8
     },
     {
-      id: 'agent-3',
-      shape: 'square',
-      color: '#c4b5fd', // purple base
-      position: { bottom: '15%', left: '10%' },
-      badges: ['drive', 'zapier', 'airtable', 'slack', 'discord'],
-      cursors: [
-        { name: 'Lizzy', color: '#8B5CF6' },
-        { name: 'Sam', color: '#F97316' }
-      ],
+      id: 'cluster-3',
+      mascot: 2,
+      position: { bottom: '26px', left: '30px' },
+      logos: ['gmail', 'anthropic', 'slack', 'googlesheets', 'zendesk', 'discord'],
+      cursor: { name: 'Marcelo', color: '#8B5CF6' },
       delay: 1,
-      scale: 0.85
     },
     {
-      id: 'agent-4',
-      shape: 'organic',
-      color: '#d1d5db', // gray/black base
-      position: { bottom: '10%', right: '10%' },
-      badges: ['sheets', 'gmail', 'discord', 'drive', 'airtable'],
-      cursors: [
-        { name: 'Alex', color: '#000000' },
-        { name: 'Sarah', color: '#E8388A' }
-      ],
+      id: 'cluster-4',
+      mascot: 3,
+      position: { bottom: '16px', right: '30px' },
+      logos: ['calendly', 'zoom', 'mongodb', 'slack', 'googlemeet', 'telegram'],
+      cursor: { name: 'Rahul', color: '#F97316' },
       delay: 1.5,
-      scale: 0.95
-    }
+    },
   ]
 
   return (
     <section className="hero-animated">
       <div className="hero-decorations desktop-only">
         {decorations.map((dec) => (
-          <AgentDecoration 
+          <AgentDecoration
             key={dec.id}
-            shape={dec.shape}
-            color={dec.color}
+            logos={dec.logos}
+            mascot={dec.mascot}
             position={dec.position}
-            badges={dec.badges}
-            cursors={dec.cursors}
+            cursor={dec.cursor}
             delay={dec.delay}
-            scale={dec.scale}
           />
         ))}
       </div>

@@ -1,254 +1,267 @@
-import React from 'react';
-import { 
-  SiAirtable, 
-  SiNotion,
-  SiGmail,
-  SiJira,
-  SiHuggingface,
-  SiMeta,
-  SiHubspot,
-  SiTypeform,
-  SiDatadog
-} from 'react-icons/si';
-import { FaSlack, FaGithub, FaSalesforce, FaLinkedin } from 'react-icons/fa';
-import { OpenAI, Anthropic, Google, Meta, DeepSeek } from '@lobehub/icons';
-import './AIAgentsFeatureSection.css';
 import { useState, useEffect } from 'react';
+import { getBrandIcon } from '../utils/brandIcons';
+import {
+  MODELS, MODEL_PROVIDERS, INTEGRATIONS, INTEGRATION_COUNT,
+  TASKS, TIMELINE_STOPS, AXIS_LABELS,
+  AGENTS, BRANCH_LABELS, CANVAS_CAPTIONS,
+} from '../data/aiSectionData';
+import './AIAgentsFeatureSection.css';
 
-const TimelineRow = ({ name, schedule, icon, iconBg, activeColor, activeText, intervalMs, delayMs }) => {
-  const [position, setPosition] = useState(0);
-  const [status, setStatus] = useState('hidden'); // 'event', 'monitoring', 'hidden'
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+/** How long a row waits before its first run, and between runs after that. */
+const FIRST_RUN_MS = 700;
+const STAGGER_MS = 1500;
+const INTERVAL_MS = 5200;
+const INTERVAL_STEP_MS = 1300;
+const OUTCOME_HOLD_MS = 2600;
+
+/**
+ * One recurring schedule.
+ *
+ * Each tick walks the position one stop along the day, names what the run
+ * produced, and banks it on the counter. The outcome holds for a moment and
+ * then falls back to "Watching…" — the point being that the row is doing
+ * something between runs, not that it is idle.
+ */
+function TimelineRow({ task }) {
+  const [position, setPosition] = useState(-1);
+  const [firing, setFiring] = useState(false);
+  // Starts at -1 so the first tick lands on outcomes[0]. React applies the
+  // increment before this renders, so starting at 0 would skip the first line.
+  const [cycle, setCycle] = useState(-1);
+  const [runs, setRuns] = useState(task.live.runs);
+  const [stillMotion, setStillMotion] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    if (mediaQuery.matches) {
-      setStatus('monitoring');
-    }
-    
-    const listener = (e) => {
-      setPrefersReducedMotion(e.matches);
-      if (e.matches) setStatus('monitoring');
-    };
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setStillMotion(query.matches);
+    const onChange = (e) => setStillMotion(e.matches);
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (stillMotion) return undefined;
 
     let interval;
-    let eventTimeout;
-    let monitoringTimeout;
+    let hold;
 
     const tick = () => {
-      setStatus('event');
-      setPosition(p => (p + 1) % 5);
-      
-      eventTimeout = setTimeout(() => {
-        setStatus('monitoring');
-        
-        monitoringTimeout = setTimeout(() => {
-          setStatus('hidden');
-        }, 2000);
-      }, 3000);
+      setPosition((p) => (p + 1) % TIMELINE_STOPS.length);
+      setCycle((c) => c + 1);
+      setRuns((r) => r + 1);
+      setFiring(true);
+      hold = setTimeout(() => setFiring(false), OUTCOME_HOLD_MS);
     };
 
-    const startSequence = () => {
+    const start = setTimeout(() => {
       tick();
-      interval = setInterval(tick, intervalMs);
-    };
-
-    const initialDelay = setTimeout(startSequence, delayMs);
+      interval = setInterval(tick, INTERVAL_MS + task.index * INTERVAL_STEP_MS);
+    }, FIRST_RUN_MS + task.index * STAGGER_MS);
 
     return () => {
-      clearTimeout(initialDelay);
+      clearTimeout(start);
+      clearTimeout(hold);
       clearInterval(interval);
-      clearTimeout(eventTimeout);
-      clearTimeout(monitoringTimeout);
     };
-  }, [intervalMs, delayMs, prefersReducedMotion]);
+  }, [stillMotion, task.index]);
 
-  const leftPercents = [2, 26, 50, 74, 98];
-  const currentLeft = leftPercents[position];
+  const at = Math.max(position, 0);
+  const badge = getBrandIcon(task.brand, { size: 13, color: '#ffffff' });
+  const label = firing ? task.outcomes[cycle % task.outcomes.length] : 'Watching…';
 
   return (
     <div className="task-row">
       <div className="task-id">
-        <div className="task-icon" style={{ background: iconBg }}>
-          {icon}
-        </div>
-        <div className="task-text">
-          <div className="name">{name}</div>
-          <div className="schedule">{schedule}</div>
-        </div>
+        <span className="task-icon" style={{ background: task.badgeBg }}>
+          {badge?.component}
+        </span>
+        <span className="task-text">
+          <span className="name">{task.name}</span>
+          <span className="schedule">{task.schedule}</span>
+        </span>
       </div>
+
       <div className="timeline">
-        <div className="track"></div>
-        {[0, 1, 2, 3, 4].map((i) => {
-          const isEventActive = i === position && status === 'event';
+        <div className="track" />
+        <div
+          className="fill"
+          style={{ width: `${TIMELINE_STOPS[at]}%`, background: task.color }}
+        />
+
+        {TIMELINE_STOPS.map((left, i) => {
+          const state = i < position ? ' done' : i === position && firing ? ' now' : '';
           return (
-            <div 
-              key={i} 
-              className={`dot ${i <= position ? 'on' : ''}`} 
+            <span
+              key={left}
+              className={`dot${state}`}
               style={{
-                left: `${leftPercents[i]}%`,
-                transition: 'all 0.3s ease',
-                ...(isEventActive ? {
-                  background: activeColor,
-                  width: '9px',
-                  height: '9px',
-                  boxShadow: `0 0 0 4px ${activeColor}33`
-                } : {})
+                left: `${left}%`,
+                ...(state === ' now'
+                  ? { background: task.color, boxShadow: `0 0 0 4px ${task.color}2e` }
+                  : {}),
               }}
-            ></div>
+            />
           );
         })}
-        
-        <div 
+
+        <span
           className="tag"
           style={{
-            left: `${currentLeft}%`,
-            opacity: status === 'hidden' ? 0 : 1,
-            transform: `translateX(-50%) translateY(${status === 'hidden' ? '8px' : '0'}) scale(${status === 'hidden' ? '0.95' : '1'})`,
-            color: status === 'event' ? activeColor : 'var(--ink-soft)',
-            borderColor: status === 'event' ? activeColor : 'var(--line)',
-            background: status === 'event' ? `${activeColor}11` : '#fff',
-            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            left: `${TIMELINE_STOPS[at]}%`,
+            opacity: position < 0 ? 0 : 1,
+            color: firing ? task.color : undefined,
+            borderColor: firing ? `${task.color}55` : undefined,
+            background: firing ? `${task.color}10` : undefined,
           }}
         >
-          {status === 'event' ? activeText : 'Monitoring…'}
-        </div>
+          {label}
+        </span>
+      </div>
+
+      <div className="runs">
+        <b>{runs.toLocaleString('en-IN')}</b>
+        <span>{task.live.unit}</span>
       </div>
     </div>
   );
-};
+}
 
-const AIAgentsFeatureSection = () => {
+export default function AIAgentsFeatureSection() {
   return (
     <section className="ai-agents-section">
       <div className="wrap">
         <h1 className="title">Everything you need to make AI work</h1>
+        <p className="section-sub">
+          Your models, your apps, your data — wired into flows that keep running
+          after you close the tab.
+        </p>
 
         <div className="grid">
-          {/* CARD 1 — model logos */}
+
+          {/* CARD 1 — every provider the AI node can dial, plus what they serve */}
           <div className="card gradient">
-            <h2>Every model out of the box<br/>no vendor lock-in</h2>
-            <div className="logo-row">
-              <div className="logo-token"><Meta.Color size={26} /></div>
-              <div className="logo-token"><Anthropic size={30} /></div>
-              <div className="logo-token"><SiHuggingface size={32} color="#FFD21E" /></div>
-              <div className="logo-token"><OpenAI size={42} /></div>
-              <div className="logo-token"><Google.Color size={34} /></div>
-              <div className="logo-token"><DeepSeek.Color size={28} /></div>
-              <div className="logo-token"><SiNotion size={26} color="#000" /></div>
+            <h2>Every model out of the box<br />no vendor lock-in</h2>
+            <p className="h2sub">Switch provider on any AI node. Nothing else in the flow changes.</p>
+
+            <div className="logo-arc">
+              {MODELS.map(({ key, Icon, color, share }) => {
+                const lift = Math.round(share * 22);
+                return (
+                  <span
+                    key={key}
+                    className="logo-token"
+                    style={{
+                      width: `calc(var(--tok) * ${share})`,
+                      height: `calc(var(--tok) * ${share})`,
+                      zIndex: Math.round(share * 100),
+                      boxShadow: `0 2px 4px rgba(20,20,30,.06), 0 ${lift}px ${lift + 10}px -${Math.round(lift * 0.6)}px rgba(20,20,30,.26)`,
+                    }}
+                  >
+                    <span
+                      className="logo-glyph"
+                      style={{ color, fontSize: `calc(var(--tok) * ${(share * 0.46).toFixed(3)})` }}
+                    >
+                      <Icon />
+                    </span>
+                  </span>
+                );
+              })}
             </div>
+
+            <p className="model-caption">
+              <b>{MODEL_PROVIDERS.length} providers</b> · {MODEL_PROVIDERS.join(', ')}
+            </p>
           </div>
 
-          {/* CARD 2 — integrations */}
+          {/* CARD 2 — integrations, bleeding past both edges under a fade */}
           <div className="card">
-            <h2>Connect to internal<br/>and external data</h2>
-            <div className="icon-field">
-              <div className="cell"></div>
-              <div className="cell"></div>
-              <div className="cell"><div className="tile ghost"></div></div>
-              <div className="cell"><div className="tile" style={{background:'#eef1ff'}}><FaSlack size={20} color="#4A154B" /></div></div>
-              <div className="cell"><div className="tile" style={{background:'#f0eefc'}}><FaGithub size={20} color="#181717" /></div></div>
+            <h2>Connect to internal<br />and external data</h2>
+            <p className="h2sub">Native nodes for the apps Indian businesses actually run on.</p>
 
-              <div className="cell"><div className="tile" style={{background:'#0f6fde'}}><SiJira size={20} color="#fff" /></div></div>
-              <div className="cell"><div className="tile ghost"></div></div>
-              <div className="cell"></div>
-              <div className="cell"><div className="tile" style={{background:'#fdece6'}}><SiGmail size={20} color="#EA4335" /></div></div>
-              <div className="cell"><div className="tile ghost"></div></div>
-
-              <div className="cell"></div>
-              <div className="cell"><div className="tile" style={{background:'#14161f'}}><SiNotion size={20} color="#fff" /></div></div>
-              <div className="cell"><div className="tile ghost"></div></div>
-              <div className="cell"><div className="tile" style={{background:'#fff2e2'}}><FaSalesforce size={20} color="#00A1E0" /></div></div>
-              <div className="cell"><div className="tile" style={{background:'#14161f'}}><SiMeta size={20} color="#fff" /></div></div>
-
-              <div className="cell"><div className="tile" style={{background:'#f2f2f2', boxShadow:'none'}}><SiHubspot size={20} color="#FF7A59" /></div></div>
-              <div className="cell"></div>
-              <div className="cell"><div className="tile" style={{background:'#e6f7f2'}}><SiAirtable size={20} color="#18BFFF" /></div></div>
-              <div className="cell"></div>
-              <div className="cell"><div className="tile" style={{background:'#ffb340'}}><FaLinkedin size={20} color="#fff" /></div></div>
+            <div className="field-mask">
+              <div className="icon-field">
+                {INTEGRATIONS.map((name, i) => {
+                  if (!name) return <span key={`ghost-${i}`} className="tile ghost" />;
+                  // getBrandIcon fails open — a missing key would render an
+                  // empty white tile that reads as a deliberate blank. The data
+                  // module's test asserts every key here resolves.
+                  const icon = getBrandIcon(name, { size: 21 });
+                  return (
+                    <span key={name} className="tile" title={name}>
+                      {icon?.component}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
+
+            <p className="field-foot">
+              <b>{INTEGRATION_COUNT} apps out of the box</b> · plus any REST API
+            </p>
           </div>
 
-          {/* CARD 3 — recurring tasks */}
+          {/* CARD 3 — the schedules a business turns on first */}
           <div className="card">
-            <h2>Recurring tasks to keep your agents<br/>running in the background</h2>
+            <h2>Recurring tasks to keep your agents<br />running in the background</h2>
+            <p className="h2sub">Live, and named by what each run actually produced.</p>
+
             <div className="tasks">
-              <TimelineRow 
-                name="Social Presence" 
-                schedule="Mondays at 8 AM PST"
-                icon={<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="#fff" strokeWidth="2"/></svg>}
-                iconBg="#14161f"
-                activeColor="#10b981"
-                activeText="New Mention"
-                intervalMs={8000}
-                delayMs={1000}
-              />
-              <TimelineRow 
-                name="Lead Qualifier" 
-                schedule="Every form submission"
-                icon={<svg viewBox="0 0 24 24"><path d="M6 12l4 4 8-8" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-                iconBg="#ff5a34"
-                activeColor="#8b5cf6"
-                activeText="New Opportunity"
-                intervalMs={9500}
-                delayMs={4000}
-              />
-              <TimelineRow 
-                name="Security Audit" 
-                schedule="Every 8 hours"
-                icon={<svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round"/></svg>}
-                iconBg="#3f8cff"
-                activeColor="#ef4444"
-                activeText="New Risk Identified"
-                intervalMs={11000}
-                delayMs={7000}
-              />
+              {TASKS.map((task, index) => (
+                <TimelineRow key={task.id} task={{ ...task, index }} />
+              ))}
             </div>
+
             <div className="axis">
               <div className="labels">
-                <span>0H</span><span>2H</span><span>4H</span><span>6H</span><span>8H</span>
+                {AXIS_LABELS.map((l) => <span key={l}>{l}</span>)}
               </div>
             </div>
           </div>
 
-          {/* CARD 4 — canvas / workflow */}
+          {/* CARD 4 — one inbox, three agents, a rule that decides who answers.
+              All motion is CSS so the page keeps three timers, not four. */}
           <div className="card gradient">
-            <h2>A canvas to orchestrate<br/>multi-agent workflows</h2>
+            <h2>A canvas to orchestrate<br />multi-agent workflows</h2>
+            <p className="h2sub">One inbox, three agents, and a rule that decides who answers.</p>
+
             <div className="canvas">
-              <svg className="paths" viewBox="0 0 460 250" preserveAspectRatio="none">
-                <path className="flow" d="M230 30 L230 90 L90 90 L90 175"></path>
-                <path className="flow" d="M230 30 L230 120 L370 120 L370 225"></path>
+              <svg className="paths" viewBox="0 0 460 258" preserveAspectRatio="none" aria-hidden="true">
+                <path className="flow" d="M230 34 L230 96 Q230 104 222 104 L96 104 Q88 104 88 112 L88 176" />
+                <path className="flow" d="M230 34 L230 128 Q230 136 238 136 L364 136 Q372 136 372 144 L372 226" />
               </svg>
 
-              <div className="node n1">
-                <div className="avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="#fff" strokeWidth="2"/></svg></div>
-                Social Presence Agent
-                <div className="mini"><span style={{background:'#ff5a34'}}></span><span style={{background:'#3f8cff'}}></span><span style={{background:'#14161f'}}></span></div>
-              </div>
+              <span className="packet a" aria-hidden="true" />
+              <span className="packet b" aria-hidden="true" />
 
-              <div className="tag-float t1">Good Review?</div>
-              <div className="tag-float t2">Mentions Support?</div>
+              {AGENTS.map((agent, i) => {
+                const avatar = getBrandIcon(agent.brand, { size: 13, color: '#ffffff' });
+                return (
+                  <span key={agent.id} className={`node n${i + 1}`}>
+                    <span className="avatar" style={{ background: agent.badgeBg }}>
+                      {avatar?.component}
+                    </span>
+                    <span className="node-label">{agent.label}</span>
+                    <span className="mini">
+                      {agent.minis.map((m) => (
+                        <i key={m}>{getBrandIcon(m, { size: 11 })?.component}</i>
+                      ))}
+                    </span>
+                  </span>
+                );
+              })}
 
-              <div className="node n2">
-                <div className="avatar" style={{background:'#ff5a34'}}><svg viewBox="0 0 24 24"><path d="M4 12l4 4L20 4" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
-                Marketing Agent
-                <div className="mini"><span style={{background:'#ffb340'}}></span><span style={{background:'#3f8cff'}}></span><span style={{background:'#d768e0'}}></span></div>
-              </div>
+              {BRANCH_LABELS.map((label, i) => (
+                <span key={label} className={`tag-float t${i + 1}`}>{label}</span>
+              ))}
 
-              <div className="node n3">
-                <div className="avatar" style={{background:'#3f8cff'}}><svg viewBox="0 0 24 24"><path d="M4 18c0-4 3-6 8-6s8 2 8 6" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="8" r="3" fill="#fff"/></svg></div>
-                Customer Support Agent
-                <div className="mini"><span style={{background:'#22b88a'}}></span><span style={{background:'#8b6ef0'}}></span><span style={{background:'#ffb340'}}></span></div>
-              </div>
-
-              <svg className="cursor" viewBox="0 0 24 24"><path d="M4 3l16 7-6.5 2-2 6.5z" fill="#ff5a34"/></svg>
+              <span className="canvas-foot">
+                <span className="pulse" aria-hidden="true" />
+                {CANVAS_CAPTIONS.map((caption, i) => (
+                  <span key={caption} className="cap" style={{ animationDelay: `${i * 2.333}s` }}>
+                    {caption}
+                  </span>
+                ))}
+              </span>
             </div>
           </div>
 
@@ -256,6 +269,4 @@ const AIAgentsFeatureSection = () => {
       </div>
     </section>
   );
-};
-
-export default AIAgentsFeatureSection;
+}

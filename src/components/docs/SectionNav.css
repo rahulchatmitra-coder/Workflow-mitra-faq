@@ -1,0 +1,30 @@
+/* Sticky "on this page" nav.
+   Light and site-themed now that docs sit inside the real Navigation/Footer —
+   the earlier dark rail belonged to the standalone-docs direction we dropped.
+   `top` clears the site's sticky header. */
+.section-nav {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+  padding: 1.7rem 0;
+}
+.section-nav h5 {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin: 0 0 0.8rem 0.9rem;
+  color: var(--docs-muted);
+}
+.section-nav a {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.4rem 0 0.4rem 0.9rem;
+  border-left: 2px solid var(--docs-line);
+  color: var(--docs-ink-soft);
+}
+.section-nav a:hover { color: var(--docs-ink); }
+.section-nav a.active { border-left-color: var(--docs-pink); color: var(--docs-ink); }
+@media (max-width: 980px) { .section-nav { display: none; } }

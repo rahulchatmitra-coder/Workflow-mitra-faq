@@ -52,6 +52,7 @@ function Footer() {
                 <li><Link to="/contact">Support</Link></li>
                 <li><Link to="/apps">App Directory</Link></li>
                 <li><Link to="/solutions">Use Cases</Link></li>
+                <li><Link to="/docs">Documentation</Link></li>
               </ul>
             </div>
 

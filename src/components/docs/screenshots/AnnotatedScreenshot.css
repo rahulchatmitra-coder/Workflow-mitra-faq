@@ -1,0 +1,45 @@
+.ds-frame {
+  border: 1px solid var(--docs-line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--docs-shadow-card);
+  background: var(--docs-surface);
+}
+.ds-frame__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--docs-warm);
+  border-bottom: 1px solid var(--docs-line);
+}
+.ds-frame__dots { display: flex; gap: 0.3rem; }
+.ds-frame__dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--docs-line); display: block; }
+.ds-frame__url {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--docs-ink-soft);
+}
+.ds-frame__body { padding: 1rem 1.1rem; font-size: 0.85rem; }
+
+.pin-anchor { position: relative; }
+.ds-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px #fff, 0 4px 10px rgba(0, 0, 0, 0.35);
+  z-index: 5;
+}
+.ds-pin--cred { background: var(--docs-teal); }
+.ds-pin--flow { background: var(--docs-purple); }
+.ds-pin--top-right { top: -10px; right: -10px; }
+.ds-pin--top-left { top: -10px; left: -10px; }
+.ds-pin--bottom-right { bottom: -10px; right: -10px; }
+.ds-pin--bottom-left { bottom: -10px; left: -10px; }

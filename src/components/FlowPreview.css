@@ -243,6 +243,16 @@
   margin-bottom: 8px;
   flex-wrap: wrap;
 }
+/* Wraps .fp-step-node-label when a step's app has a live docs page —
+   same layout, no default link styling, underlines just the name on hover
+   so it still reads as clickable. */
+.fp-step-node-link {
+  text-decoration: none;
+  color: inherit;
+}
+.fp-step-node-link:hover .fp-step-name {
+  text-decoration: underline;
+}
 .fp-step-dot {
   width: 8px;
   height: 8px;

@@ -1,0 +1,28 @@
+.ds-crumb { font-size: 0.78rem; color: var(--docs-ink-soft); margin-bottom: 1.3rem; }
+.ds-crumb span { margin: 0 0.3rem; opacity: 0.5; }
+.ds-crumb b { color: var(--docs-ink); font-weight: 600; }
+.ds-hero { display: flex; gap: 1.2rem; align-items: flex-start; padding-bottom: 1.8rem; border-bottom: 1px solid var(--docs-line); margin-bottom: 1.9rem; }
+.ds-hero__tile { flex: none; width: 64px; height: 64px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--docs-shadow-card); border: 1px solid var(--docs-line); }
+.ds-hero h1 { font-size: clamp(1.7rem, 2.6vw, 2.15rem); font-weight: 700; }
+.ds-hero__sub { color: var(--docs-ink-soft); margin-top: 0.5rem; font-size: 1rem; max-width: 56ch; }
+.ds-section { margin-bottom: 2.8rem; scroll-margin-top: 6rem; }
+.ds-section h2 { font-size: 1.32rem; font-weight: 700; margin-bottom: 0.5rem; }
+.ds-lead { color: var(--docs-ink-soft); margin: 0 0 1.1rem; max-width: 72ch; }
+
+/* the two numbered tracks: get the credential, then configure the node */
+.ds-track {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem; border-radius: 999px; margin-bottom: 0.8rem;
+}
+.ds-track__b {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 50%; font-size: 0.6rem; font-weight: 800; color: #fff;
+}
+.ds-track--cred { background: var(--docs-teal-bg); color: var(--docs-teal); }
+.ds-track--cred .ds-track__b { background: var(--docs-teal); }
+.ds-track--flow { background: var(--docs-purple-bg); color: var(--docs-purple); }
+.ds-track--flow .ds-track__b { background: var(--docs-purple); }
+.ds-steplist { list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
+.ds-steplist li { display: flex; gap: 0.7rem; font-size: 0.92rem; }
+.ds-steplist__n { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--docs-teal); color: #fff; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }
