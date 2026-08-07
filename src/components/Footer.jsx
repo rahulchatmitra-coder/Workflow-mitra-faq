@@ -9,7 +9,7 @@ function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <Link to="/" className="footer-logo">
+            <Link to="/" className="footer-logo" aria-label="FlowMitra home">
               <FlowMitraLogo size="md" variant="full" />
             </Link>
             <p className="footer-tagline">Build AI agents for your team</p>

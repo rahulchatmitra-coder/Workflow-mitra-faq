@@ -22,6 +22,8 @@ function FlowMitraLogo({ size = 'md', variant = 'full', className = '' }) {
         height={dimensions.height}
         className={`flowmitra-logo-icon ${className}`}
         fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
       >
         <g>
           <path
@@ -43,6 +45,8 @@ function FlowMitraLogo({ size = 'md', variant = 'full', className = '' }) {
       height={dimensions.height}
       className={`flowmitra-logo-full ${className}`}
       fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
     >
       <g>
         {/* Icon part */}

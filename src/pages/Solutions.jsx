@@ -144,11 +144,11 @@ function Solutions() {
       <section className="solutions-hero">
         <div className="solutions-hero-content">
           <h1 className="solutions-hero-title">
-            Build AI agents for every team
+            Build Powerful AI Workflows Without Coding
           </h1>
           <p className="solutions-hero-description">
-            FlowMitra helps you and your team build AI agents across all of your business operations — from marketing, sales, support, to engineering and more.
-          </p>
+WorkflowMitra helps businesses automate repetitive work, connect apps, integrate APIs, and build AI-powered workflows in minutes. Whether you're replacing manual tasks, creating business automations, or connecting hundreds of applications, WorkflowMitra makes automation simple, fast, and reliable. 
+ </p>
           <div className="solutions-hero-actions">
             <Link to="/contact" className="btn-primary-large">Get Started</Link>
             <Link to="/contact" className="btn-secondary-large">Talk to Sales</Link>

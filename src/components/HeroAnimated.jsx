@@ -42,7 +42,7 @@ function HeroAnimated() {
 
   return (
     <section className="hero-animated">
-      <div className="hero-decorations desktop-only">
+      <div className="hero-decorations desktop-only" aria-hidden="true">
         {decorations.map((dec) => (
           <AgentDecoration
             key={dec.id}
@@ -59,12 +59,11 @@ function HeroAnimated() {
         <div className="container">
           <div className="hero-text">
             <h1 className="hero-title">
-              Build AI agents <br />
-              <span className="strikethrough">for</span> by your team
+             Build Powerful AI Workflows  <br />
+              <span className="strikethrough">Without</span>  Coding
             </h1>
             <p className="hero-subtitle">
-              Understanding a task should be the only prerequisite to automating it.
-            </p>
+ automate repetitive work, connect apps, integrate APIs, and build AI-powered workflows in minutes.replacing manual tasks automation simple, fast, and reliable </p>
             <div className="hero-cta">
               <Link to="/contact" className="btn btn-primary btn-large">
                 Start building for free <span className="arrow">→</span>

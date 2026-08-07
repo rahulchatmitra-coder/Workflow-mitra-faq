@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
-import CustomerLogos from '../components/CustomerLogos'
-import AgentsShowcase from '../components/AgentsShowcase'
-import AIAgentsFeatureSection from '../components/AIAgentsFeatureSection'
-import IntegrationsShowcase from '../components/IntegrationsShowcase'
 import NodeChain from '../components/NodeChain'
+import DeferredHomeSection from '../components/DeferredHomeSection'
 import './Home.css'
+
+const IntegrationsShowcase = lazy(() => import('../components/IntegrationsShowcase'))
+const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
+const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
 
 function Home() {
   const navigate = useNavigate()
@@ -57,9 +58,21 @@ function Home() {
   return (
     <div className="home-page">
       <HeroAnimated />
-      <IntegrationsShowcase />
-       <AgentsShowcase />
-        <AIAgentsFeatureSection />
+      <DeferredHomeSection minHeight={520}>
+        <Suspense fallback={null}>
+          <IntegrationsShowcase />
+        </Suspense>
+      </DeferredHomeSection>
+      <DeferredHomeSection minHeight={900}>
+        <Suspense fallback={null}>
+          <AgentsShowcase />
+        </Suspense>
+      </DeferredHomeSection>
+      <DeferredHomeSection minHeight={1100}>
+        <Suspense fallback={null}>
+          <AIAgentsFeatureSection />
+        </Suspense>
+      </DeferredHomeSection>
 
       {/* Popular workflows — promoted above the fold-adjacent sections so a
           visitor sees what gets built before they see who else builds it. */}

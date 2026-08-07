@@ -1,4 +1,4 @@
-import { getBrandIcon } from '../utils/brandIcons'
+import { getHeroBrandIcon } from '../utils/heroBrandIcons'
 import './AgentDecoration.css'
 
 /**
@@ -63,7 +63,7 @@ export default function AgentDecoration({
     .map((name, i) => ({
       name,
       spot: SPOTS[i],
-      icon: getBrandIcon(name, { size: Math.round((SPOTS[i]?.size ?? 34) * 0.5) }),
+      icon: getHeroBrandIcon(name, { size: Math.round((SPOTS[i]?.size ?? 34) * 0.5) }),
     }))
     .filter((c) => c.spot && c.icon?.component)
 
