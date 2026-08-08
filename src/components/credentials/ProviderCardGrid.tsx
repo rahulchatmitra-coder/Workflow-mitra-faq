@@ -22,6 +22,28 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 import { CredentialProvider, PROVIDER_LIST } from "@/data/credentials-data";
+import {
+  Openai,
+  Slack,
+  WhatsappIcon,
+  Shopify,
+  Telegram,
+  Discord,
+  Google,
+  GithubDark,
+  Supabase,
+  VercelDark,
+  SanityDark,
+  HubSpotLogo,
+  ZohoLogo,
+  PipedriveLogo,
+  WooCommerceLogo,
+  ZohoBooksLogo,
+  ShiprocketLogo,
+  ZoomLogo,
+  CalComLogo,
+  WherebyLogo,
+} from "@/components/ui/svgs";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -37,6 +59,29 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
   Sparkles,
   Cpu,
+};
+
+const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  hubspot: HubSpotLogo,
+  zohocrm: ZohoLogo,
+  pipedrive: PipedriveLogo,
+  shopify: Shopify,
+  woocommerce: WooCommerceLogo,
+  zohobooks: ZohoBooksLogo,
+  shiprocket: ShiprocketLogo,
+  zoom: ZoomLogo,
+  calcom: CalComLogo,
+  whereby: WherebyLogo,
+  openai: Openai,
+  slack: Slack,
+  whatsapp: WhatsappIcon,
+  telegram: Telegram,
+  discord: Discord,
+  google: Google,
+  github: GithubDark,
+  supabase: Supabase,
+  vercel: VercelDark,
+  sanity: SanityDark,
 };
 
 interface ProviderCardGridProps {
@@ -181,7 +226,8 @@ export default function ProviderCardGrid({
       {/* CARDS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredProviders.map((p) => {
-          const IconComponent = ICON_MAP[p.iconName] || Building2;
+          const BrandIcon = BRAND_ICON_MAP[p.id.toLowerCase()];
+          const LucideIconComp = ICON_MAP[p.iconName] || Building2;
           return (
             <motion.div
               key={p.id}
@@ -192,6 +238,12 @@ export default function ProviderCardGrid({
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 group-hover:scale-105 transition-transform p-2.5">
+                    {BrandIcon ? (
+                      <BrandIcon className="h-6 w-6" />
+                    ) : (
+                      <LucideIconComp className={`h-6 w-6 ${currentColor.textClass}`} />
+                    )}
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700/80 transition-colors">
                     <IconComponent className={`h-5 w-5 ${currentColor.textClass}`} />
                   </div>

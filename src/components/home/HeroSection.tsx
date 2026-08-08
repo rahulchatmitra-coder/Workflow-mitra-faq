@@ -1,13 +1,29 @@
-"use client";
-
 import * as React from "react";
 import { motion } from "framer-motion";
-import { HelpCircle, MessageCircleQuestion, Sparkles, Search, ClipboardList } from "lucide-react";
-import { HERO_TAGS } from "@/data/home-data";
+import { HelpCircle, MessageCircleQuestion, Sparkles, Search, ClipboardList, Zap, Building2 } from "lucide-react";
+import { Openai, Slack, WhatsappIcon, Google } from "@/components/ui/svgs";
 
 interface HeroSectionProps {
   onOpenSearch: () => void;
 }
+
+const HERO_TAG_ICONS: Record<string, React.ReactNode> = {
+  OpenAI: <Openai className="h-4 w-4 shrink-0" />,
+  Webhooks: <Zap className="h-4 w-4 shrink-0 text-amber-500" />,
+  HubSpot: <Building2 className="h-4 w-4 shrink-0 text-orange-500" />,
+  Slack: <Slack className="h-4 w-4 shrink-0" />,
+  WhatsApp: <WhatsappIcon className="h-4 w-4 shrink-0" />,
+  Google: <Google className="h-4 w-4 shrink-0" />,
+};
+
+const HERO_TAG_LABELS: Record<string, string> = {
+  OpenAI: "AI Agents & OpenAI",
+  Webhooks: "Webhook Triggers",
+  HubSpot: "HubSpot CRM",
+  Slack: "Slack Alerts",
+  WhatsApp: "WhatsApp Cloud API",
+  Google: "Google Sheets",
+};
 
 export function HeroSection({ onOpenSearch }: HeroSectionProps) {
   return (
@@ -83,15 +99,16 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
             </div>
           </button>
 
-          {/* Quick Category Badges */}
+          {/* Quick Category Badges with REAL SVG Logos */}
           <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2">
-            {HERO_TAGS.map((tag, i) => (
+            {Object.keys(HERO_TAG_ICONS).map((key) => (
               <button
-                key={i}
+                key={key}
                 onClick={onOpenSearch}
-                className="rounded-full border border-zinc-200/80 bg-white/80 px-3 py-1 text-xs font-medium text-zinc-600 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800/80 dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 text-xs font-semibold text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800/80 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-all cursor-pointer shadow-xs"
               >
-                {tag.label}
+                {HERO_TAG_ICONS[key]}
+                <span>{HERO_TAG_LABELS[key]}</span>
               </button>
             ))}
           </div>
