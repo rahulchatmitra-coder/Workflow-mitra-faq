@@ -31,6 +31,9 @@ export { MysqlIconDark as Mysql } from "./mysqlIconDark";
 export { MongodbIconDark as Mongodb } from "./mongodbIconDark";
 export { Redis } from "./redis";
 
+export { AnthropicBlack as Claude } from "./anthropicBlack";
+export { Linkedin } from "./linkedin";
+
 export {
   HubSpotLogo,
   ZohoLogo,
@@ -49,4 +52,10 @@ export {
   ZendeskLogo,
   FreshdeskLogo,
   FacebookLogo,
+  SmtpLogo,
+  GroqLogo,
+  GeminiLogo,
+  OllamaLogo,
+  IntercomLogo,
+  ZohoDeskLogo,
 } from "./customLogos";

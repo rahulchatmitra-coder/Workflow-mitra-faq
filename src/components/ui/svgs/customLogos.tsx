@@ -160,3 +160,68 @@ export function FacebookLogo(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function SmtpLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#EA580C" />
+      <rect x="20" y="30" width="60" height="40" rx="6" stroke="#FFFFFF" strokeWidth="6" fill="none" />
+      <path d="M20 34l30 20 30-20" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function GroqLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#F97316" />
+      <path d="M50 24a26 26 0 1 0 26 26H50v-8h16.5A18 18 0 1 1 50 32" stroke="#FFFFFF" strokeWidth="7" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function GeminiLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#1E293B" />
+      <path d="M50 15C50 34.3 34.3 50 15 50C34.3 50 50 65.7 50 85C50 65.7 65.7 50 85 50C65.7 50 50 34.3 50 15Z" fill="url(#gemini-grad)" />
+      <defs>
+        <linearGradient id="gemini-grad" x1="15" y1="15" x2="85" y2="85" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#1B72E8" />
+          <stop offset="0.5" stopColor="#8E75FF" />
+          <stop offset="1" stopColor="#D9657B" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+export function OllamaLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#0F172A" />
+      <circle cx="50" cy="40" r="16" fill="#FFFFFF" />
+      <rect x="36" y="52" width="28" height="24" rx="8" fill="#FFFFFF" />
+    </svg>
+  );
+}
+
+export function IntercomLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#1F69FF" />
+      <path d="M30 35v30M40 28v44M50 25v50M60 28v44M70 35v30" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function ZohoDeskLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#2563EB" />
+      <path d="M30 45a20 20 0 0 1 40 0v20H30V45z" stroke="#FFFFFF" strokeWidth="7" fill="none" />
+      <rect x="22" y="52" width="10" height="16" rx="4" fill="#FFFFFF" />
+      <rect x="68" y="52" width="10" height="16" rx="4" fill="#FFFFFF" />
+    </svg>
+  );
+}
