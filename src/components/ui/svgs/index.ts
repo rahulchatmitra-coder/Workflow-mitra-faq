@@ -25,3 +25,15 @@ export { Shopify } from "./shopify";
 export { Telegram } from "./telegram";
 export { Discord } from "./discord";
 export { Google } from "./google";
+
+export {
+  HubSpotLogo,
+  ZohoLogo,
+  PipedriveLogo,
+  WooCommerceLogo,
+  ZohoBooksLogo,
+  ShiprocketLogo,
+  ZoomLogo,
+  CalComLogo,
+  WherebyLogo,
+} from "./customLogos";

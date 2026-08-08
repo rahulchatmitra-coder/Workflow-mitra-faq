@@ -29,6 +29,15 @@ import {
   Supabase,
   VercelDark,
   SanityDark,
+  HubSpotLogo,
+  ZohoLogo,
+  PipedriveLogo,
+  WooCommerceLogo,
+  ZohoBooksLogo,
+  ShiprocketLogo,
+  ZoomLogo,
+  CalComLogo,
+  WherebyLogo,
 } from "@/components/ui/svgs";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -44,10 +53,19 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  hubspot: HubSpotLogo,
+  zohocrm: ZohoLogo,
+  pipedrive: PipedriveLogo,
+  shopify: Shopify,
+  woocommerce: WooCommerceLogo,
+  zohobooks: ZohoBooksLogo,
+  shiprocket: ShiprocketLogo,
+  zoom: ZoomLogo,
+  calcom: CalComLogo,
+  whereby: WherebyLogo,
   openai: Openai,
   slack: Slack,
   whatsapp: WhatsappIcon,
-  shopify: Shopify,
   telegram: Telegram,
   discord: Discord,
   google: Google,
