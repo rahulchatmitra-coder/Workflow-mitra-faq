@@ -16,3 +16,12 @@ export { Vercel } from "./vercel";
 export { VercelDark } from "./vercelDark";
 export { VercelWordmark } from "./vercelWordmark";
 export { VercelWordmarkDark } from "./vercelWordmarkDark";
+
+export { Openai } from "./openai";
+export { OpenaiDark } from "./openaiDark";
+export { Slack } from "./slack";
+export { WhatsappIcon } from "./whatsappIcon";
+export { Shopify } from "./shopify";
+export { Telegram } from "./telegram";
+export { Discord } from "./discord";
+export { Google } from "./google";
