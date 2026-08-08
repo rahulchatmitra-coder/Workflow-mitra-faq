@@ -7,7 +7,7 @@ import { ThemeToggle } from "@/components/common/ThemeToggle";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/90 backdrop-blur-md dark:border-zinc-800 dark:bg-black/90 transition-colors duration-200">
+    <header className="w-full border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black transition-colors duration-200">
       <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo "WM" inside a perfectly rounded circle - Clicking navigates to Home (/) with no hover scaling */}
         <Link href="/" className="flex items-center cursor-pointer" title="Workflow Mitra Home">
