@@ -86,3 +86,142 @@ export function WherebyLogo(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function CalendlyLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <circle cx="50" cy="50" r="45" fill="#006BFF" />
+      <path d="M65 38a18 18 0 1 0 0 24" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
+export function MSTeamsLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#6264A7" />
+      <path d="M30 35h30M45 35v35" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function ZohoBookingsLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#D97706" />
+      <rect x="22" y="28" width="56" height="48" rx="8" stroke="#FFFFFF" strokeWidth="6" fill="none" />
+      <path d="M35 20v16M65 20v16M22 42h56" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function JitsiMeetLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#14B8A6" />
+      <circle cx="50" cy="50" r="24" stroke="#FFFFFF" strokeWidth="8" fill="none" />
+    </svg>
+  );
+}
+
+export function CiscoWebexLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#0284C7" />
+      <circle cx="38" cy="50" r="16" stroke="#FFFFFF" strokeWidth="7" fill="none" />
+      <circle cx="62" cy="50" r="16" stroke="#FFFFFF" strokeWidth="7" fill="none" />
+    </svg>
+  );
+}
+
+export function ZendeskLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#03363D" />
+      <path d="M26 32h48L26 68h48" stroke="#78A300" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+export function FreshdeskLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#10B981" />
+      <path d="M30 28h38M30 48h28M30 28v44" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function FacebookLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <circle cx="50" cy="50" r="45" fill="#1877F2" />
+      <path d="M56 35h9V22h-13c-12 0-16 8-16 18v10h-10v14h10v36h15V64h12l2-14H51V41c0-4 2-6 5-6z" fill="#FFFFFF" />
+    </svg>
+  );
+}
+
+export function SmtpLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#EA580C" />
+      <rect x="20" y="30" width="60" height="40" rx="6" stroke="#FFFFFF" strokeWidth="6" fill="none" />
+      <path d="M20 34l30 20 30-20" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function GroqLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#F97316" />
+      <path d="M50 24a26 26 0 1 0 26 26H50v-8h16.5A18 18 0 1 1 50 32" stroke="#FFFFFF" strokeWidth="7" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function GeminiLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#1E293B" />
+      <path d="M50 15C50 34.3 34.3 50 15 50C34.3 50 50 65.7 50 85C50 65.7 65.7 50 85 50C65.7 50 50 34.3 50 15Z" fill="url(#gemini-grad)" />
+      <defs>
+        <linearGradient id="gemini-grad" x1="15" y1="15" x2="85" y2="85" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#1B72E8" />
+          <stop offset="0.5" stopColor="#8E75FF" />
+          <stop offset="1" stopColor="#D9657B" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+export function OllamaLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#0F172A" />
+      <circle cx="50" cy="40" r="16" fill="#FFFFFF" />
+      <rect x="36" y="52" width="28" height="24" rx="8" fill="#FFFFFF" />
+    </svg>
+  );
+}
+
+export function IntercomLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#1F69FF" />
+      <path d="M30 35v30M40 28v44M50 25v50M60 28v44M70 35v30" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function ZohoDeskLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="100" height="100" rx="22" fill="#2563EB" />
+      <path d="M30 45a20 20 0 0 1 40 0v20H30V45z" stroke="#FFFFFF" strokeWidth="7" fill="none" />
+      <rect x="22" y="52" width="10" height="16" rx="4" fill="#FFFFFF" />
+      <rect x="68" y="52" width="10" height="16" rx="4" fill="#FFFFFF" />
+    </svg>
+  );
+}

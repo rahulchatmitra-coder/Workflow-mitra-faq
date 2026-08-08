@@ -14,10 +14,6 @@ import {
   Calendar,
   CreditCard,
   Package,
-  Mail,
-  Zap,
-  Sparkles,
-  Cpu,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -34,6 +30,12 @@ import {
   Supabase,
   VercelDark,
   SanityDark,
+  Postgresql,
+  Mysql,
+  Mongodb,
+  Redis,
+  Claude,
+  Linkedin,
   HubSpotLogo,
   ZohoLogo,
   PipedriveLogo,
@@ -43,6 +45,20 @@ import {
   ZoomLogo,
   CalComLogo,
   WherebyLogo,
+  CalendlyLogo,
+  MSTeamsLogo,
+  ZohoBookingsLogo,
+  JitsiMeetLogo,
+  CiscoWebexLogo,
+  ZendeskLogo,
+  FreshdeskLogo,
+  FacebookLogo,
+  SmtpLogo,
+  GroqLogo,
+  GeminiLogo,
+  OllamaLogo,
+  IntercomLogo,
+  ZohoDeskLogo,
 } from "@/components/ui/svgs";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -55,13 +71,19 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Calendar,
   CreditCard,
   Package,
-  Mail,
-  Zap,
-  Sparkles,
-  Cpu,
 };
 
 const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  whatsapp: WhatsappIcon,
+  smtp: SmtpLogo,
+  groq: GroqLogo,
+  gemini: GeminiLogo,
+  claude: Claude,
+  openai: Openai,
+  ollama: OllamaLogo,
+  slack: Slack,
+  discord: Discord,
+  telegram: Telegram,
   hubspot: HubSpotLogo,
   zohocrm: ZohoLogo,
   pipedrive: PipedriveLogo,
@@ -72,11 +94,28 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   zoom: ZoomLogo,
   calcom: CalComLogo,
   whereby: WherebyLogo,
-  openai: Openai,
-  slack: Slack,
-  whatsapp: WhatsappIcon,
-  telegram: Telegram,
-  discord: Discord,
+  calendly: CalendlyLogo,
+  msteams: MSTeamsLogo,
+  teams: MSTeamsLogo,
+  zohobookings: ZohoBookingsLogo,
+  jitsimeet: JitsiMeetLogo,
+  webex: CiscoWebexLogo,
+  ciscowebex: CiscoWebexLogo,
+  zendesk: ZendeskLogo,
+  freshdesk: FreshdeskLogo,
+  intercom: IntercomLogo,
+  zohodesk: ZohoDeskLogo,
+  linkedin: Linkedin,
+  facebookpage: FacebookLogo,
+  facebook: FacebookLogo,
+  postgresql: Postgresql,
+  postgres: Postgresql,
+  mysql: Mysql,
+  mongodb: Mongodb,
+  mongo: Mongodb,
+  redis: Redis,
+  googleoauth: Google,
+  googleserviceaccount: Google,
   google: Google,
   github: GithubDark,
   supabase: Supabase,
@@ -92,7 +131,7 @@ interface ProviderCardGridProps {
 
 export default function ProviderCardGrid({
   providers = PROVIDER_LIST,
-  title = "Supported Credentials & Service Providers (35+)",
+  title = "Supported Credentials & Service Providers (10+)",
   subtitle = "Click any provider below to open its dedicated step-by-step interactive onboarding guide.",
 }: ProviderCardGridProps) {
   const { currentColor } = useTextColor();
@@ -100,32 +139,9 @@ export default function ProviderCardGrid({
 
   const [searchFilter, setSearchFilter] = React.useState<string>("");
   const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
-
-  const categories = [
-    "All",
-    "CRM & Sales",
-    "AI Models",
-    "Communication",
-    "E-Commerce",
-    "Meetings",
-    "Databases",
-    "Customer Support",
-    "Social Media",
-  ];
-
   const tabsRef = React.useRef<HTMLDivElement>(null);
 
-  const scrollTabs = (direction: "left" | "right") => {
-    if (tabsRef.current) {
-      const scrollAmount = direction === "left" ? -220 : 220;
-      tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  const getCategoryCount = (cat: string) => {
-    if (cat === "All") return providers.length;
-    return providers.filter((p) => p.category === cat).length;
-  };
+  const categories = ["All", "CRM & Sales", "AI Models", "Communication", "E-Commerce"];
 
   const filteredProviders = providers.filter((p) => {
     const matchesSearch =
@@ -135,6 +151,18 @@ export default function ProviderCardGrid({
     const matchesCat = selectedCategory === "All" || p.category === selectedCategory;
     return matchesSearch && matchesCat;
   });
+
+  const getCategoryCount = (cat: string) => {
+    if (cat === "All") return providers.length;
+    return providers.filter((p) => p.category === cat).length;
+  };
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (tabsRef.current) {
+      const scrollAmount = direction === "left" ? -200 : 200;
+      tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   return (
     <section id="providers-grid" className="space-y-6 pt-6 border-t border-zinc-200 dark:border-zinc-800 scroll-mt-20">
@@ -165,8 +193,8 @@ export default function ProviderCardGrid({
         </div>
       </div>
 
-      {/* CATEGORY FILTER TABS WITH SMOOTH SCROLL BUTTONS */}
-      <div className="relative flex items-center group/scroll">
+      {/* CATEGORY FILTER TABS WITH SCROLL BUTTONS */}
+      <div className="relative flex items-center w-full">
         <button
           onClick={() => scrollTabs("left")}
           className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 mr-2 z-10 transition-transform active:scale-95 cursor-pointer"

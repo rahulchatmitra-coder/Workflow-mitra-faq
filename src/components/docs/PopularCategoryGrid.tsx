@@ -1,13 +1,7 @@
-"use client";
-
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
-  Bot,
-  BrainCircuit,
-  FileCheck,
-  ShieldCheck,
   ArrowRight,
   Clock,
   Calendar,
@@ -20,6 +14,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useTextColor } from "@/context/TextColorContext";
+import { Openai, Claude, GeminiLogo, GroqLogo } from "@/components/ui/svgs";
 
 interface ArticleItem {
   id: string;
@@ -56,7 +51,7 @@ export function PopularCategoryGrid() {
       title: "Essential Guide to OpenAI GPT-4o Autonomous AI Agents",
       category: "AI Agents",
       categorySlug: "ai-agents",
-      icon: Bot,
+      icon: Openai,
       readTime: "3 min read",
       lastUpdated: "11.02.2025",
       summary:
@@ -110,7 +105,7 @@ export function PopularCategoryGrid() {
       title: "How to Automate AI Email & Webhook Lead Routing",
       category: "AI Pipelines",
       categorySlug: "ai-lead-routing",
-      icon: BrainCircuit,
+      icon: Claude,
       readTime: "4 min read",
       lastUpdated: "10.02.2025",
       summary:
@@ -159,7 +154,7 @@ export function PopularCategoryGrid() {
       title: "How to Parse Invoices & PDFs using AI Vision Nodes",
       category: "AI Vision",
       categorySlug: "ai-vision",
-      icon: FileCheck,
+      icon: GeminiLogo,
       readTime: "3 min read",
       lastUpdated: "08.02.2025",
       summary:
@@ -205,7 +200,7 @@ export function PopularCategoryGrid() {
       title: "Building Self-Healing Workflows with AI Retry Logic",
       category: "AI Infrastructure",
       categorySlug: "ai-infrastructure",
-      icon: ShieldCheck,
+      icon: GroqLogo,
       readTime: "5 min read",
       lastUpdated: "05.02.2025",
       summary:
@@ -297,8 +292,8 @@ export function PopularCategoryGrid() {
                   >
                     {art.category}
                   </Badge>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white transition-transform group-hover:scale-110">
-                    <IconComp className="h-5 w-5" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white transition-transform group-hover:scale-110 p-2">
+                    <IconComp className="h-6 w-6" />
                   </div>
                 </div>
 
