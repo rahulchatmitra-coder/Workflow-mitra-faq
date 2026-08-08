@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   Sparkles,
@@ -12,9 +13,13 @@ import {
   MessageSquare,
   ShoppingCart,
   Send,
+  Calendar,
+  CreditCard,
+  Package,
   ThumbsUp,
   ThumbsDown,
   Maximize2,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -29,6 +34,9 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   MessageSquare,
   ShoppingCart,
   Send,
+  Calendar,
+  CreditCard,
+  Package,
 };
 
 interface ProviderGuideClientProps {
@@ -186,7 +194,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                       setIsFullscreenModal(true);
                     }}
                   >
-                    <div className="relative aspect-[16/10] w-full">
+                    <div className="relative aspect-[16/9] max-h-[380px] w-full">
                       <Image
                         src={s.image}
                         alt={`Step ${idx + 1}: ${s.title}`}
@@ -264,6 +272,48 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
           </div>
         </section>
       </div>
+
+      {/* FULLSCREEN LIGHTBOX MODAL FOR BOTTOM STEP CARDS */}
+      <AnimatePresence>
+        {isFullscreenModal && selectedImageModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-4 sm:p-6 backdrop-blur-xl"
+            onClick={() => setIsFullscreenModal(false)}
+          >
+            {/* MODAL HEADER */}
+            <div className="w-full max-w-7xl flex items-center justify-between z-50 text-white pb-2">
+              <div className="flex items-center gap-2">
+                <span className={`h-2.5 w-2.5 rounded-full ${currentColor.bgClass}`} />
+                <span className="text-sm sm:text-base font-black text-white">
+                  {provider.name} Screenshot Preview
+                </span>
+              </div>
+
+              <button
+                onClick={() => setIsFullscreenModal(false)}
+                className="rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700 shadow-lg"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* FULLSCREEN IMAGE */}
+            <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 p-2">
+              <Image
+                src={selectedImageModal}
+                alt={`${provider.name} Step Screenshot`}
+                fill
+                unoptimized
+                className="object-contain"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
+

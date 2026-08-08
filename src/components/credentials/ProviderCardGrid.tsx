@@ -12,6 +12,9 @@ import {
   ShoppingCart,
   Video,
   Send,
+  Calendar,
+  CreditCard,
+  Package,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTextColor } from "@/context/TextColorContext";
@@ -24,6 +27,9 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   ShoppingCart,
   Video,
   Send,
+  Calendar,
+  CreditCard,
+  Package,
 };
 
 interface ProviderCardGridProps {

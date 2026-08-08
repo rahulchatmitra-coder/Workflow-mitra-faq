@@ -12,6 +12,7 @@ import {
   Maximize2,
   Lock,
   X,
+  CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
 import { useTextColor } from "@/context/TextColorContext";
@@ -65,6 +66,24 @@ export default function InteractivePlayer({
   const handleZoomOut = () => {
     setZoomLevel((prev) => Math.max(prev - 25, 80));
   };
+
+  // Compute safe popover position so it NEVER overflows off-screen on big monitors
+  const getSafePopoverPosition = () => {
+    const rawLeft = parseFloat(currentStep.hotspot.popoverLeft || currentStep.hotspot.left || "50%");
+    const rawTop = parseFloat(currentStep.hotspot.popoverTop || currentStep.hotspot.top || "50%");
+
+    // Clamp left position between 24% and 76% to prevent horizontal clipping
+    const safeLeft = Math.max(24, Math.min(76, rawLeft));
+    // Clamp top position between 25% and 75%
+    const safeTop = Math.max(25, Math.min(75, rawTop));
+
+    return {
+      top: `${safeTop}%`,
+      left: `${safeLeft}%`,
+    };
+  };
+
+  const safePopoverStyle = getSafePopoverPosition();
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-3.5 sm:p-5 shadow-lg dark:border-zinc-800 dark:bg-zinc-950 transition-all">
@@ -148,7 +167,7 @@ export default function InteractivePlayer({
             <div
               id="url-address-bar"
               onClick={() => setIsTourActive(true)}
-              className={`relative flex items-center justify-center rounded-full bg-zinc-950 px-4 py-1.5 text-xs font-mono text-zinc-200 min-w-[280px] sm:min-w-[360px] max-w-full border transition-all duration-300 cursor-pointer ${
+              className={`relative flex items-center justify-center rounded-full bg-zinc-950 px-4 py-1.5 text-xs font-mono text-zinc-200 min-w-[260px] sm:min-w-[360px] max-w-full border transition-all duration-300 cursor-pointer ${
                 (currentStep.hotspot.target as string) === "url-bar"
                   ? `${currentColor.borderClass} ring-2 ring-zinc-500/40 shadow-md`
                   : "border-zinc-800 hover:border-zinc-700"
@@ -194,17 +213,18 @@ export default function InteractivePlayer({
 
               <button
                 onClick={() => setIsFullscreen(true)}
-                className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2 py-1 text-xs text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
                 title="Click for Fullscreen"
               >
                 <Maximize2 className="h-3 w-3" />
+                <span className="hidden sm:inline text-[11px]">Fullscreen</span>
               </button>
             </div>
           </div>
 
           {/* SCREENSHOT CONTAINER WITH HOTSPOT */}
           <div
-            className="relative w-full aspect-[16/9] sm:aspect-[16/8.5] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
+            className="relative w-full aspect-[16/9] max-h-[520px] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
             onClick={() => setIsFullscreen(true)}
           >
             <AnimatePresence mode="wait">
@@ -243,13 +263,13 @@ export default function InteractivePlayer({
                 <span className="absolute -inset-1.5 rounded-full bg-zinc-400 opacity-80 animate-ping" />
                 <span className="absolute -inset-0.5 rounded-full bg-zinc-500/50 animate-pulse" />
 
-                <span className={`relative flex h-6 w-6 items-center justify-center rounded-full text-white font-black text-[11px] shadow-lg border border-white dark:border-zinc-950 transition-transform group-hover/hotspot:scale-110 ${currentColor.bgClass}`}>
+                <span className={`relative flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-white font-black text-[11px] sm:text-xs shadow-lg border-2 border-white dark:border-zinc-950 transition-transform group-hover/hotspot:scale-110 ${currentColor.bgClass}`}>
                   {currentStepIndex + 1}
                 </span>
               </div>
             )}
 
-            {/* STEP POPOVER CARD */}
+            {/* SAFE BOUNDARY-CONTAINED STEP POPOVER CARD */}
             <AnimatePresence>
               {isTourActive && (
                 <motion.div
@@ -258,16 +278,16 @@ export default function InteractivePlayer({
                   exit={{ opacity: 0, scale: 0.92, y: 10 }}
                   transition={{ duration: 0.2 }}
                   style={{
-                    top: currentStep.hotspot.popoverTop || "45%",
-                    left: currentStep.hotspot.popoverLeft || "50%",
+                    top: safePopoverStyle.top,
+                    left: safePopoverStyle.left,
                   }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-80 sm:w-[380px] rounded-3xl border-2 bg-white p-5 shadow-2xl dark:bg-zinc-950 text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-[90%] max-w-[340px] sm:max-w-[380px] rounded-3xl border-2 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl p-4 sm:p-5 shadow-2xl text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
                     <div className="flex items-center gap-2">
                       <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
-                      <h3 className={`text-sm sm:text-base font-black leading-tight ${currentColor.textClass}`}>
+                      <h3 className={`text-xs sm:text-sm font-black leading-tight ${currentColor.textClass}`}>
                         {currentStep.hotspot.title}
                       </h3>
                     </div>
@@ -279,20 +299,20 @@ export default function InteractivePlayer({
                     </button>
                   </div>
 
-                  <div className="py-3 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                  <div className="py-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-32 overflow-y-auto">
                     {currentStep.description}
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 border-t border-zinc-100 dark:border-zinc-800">
-                    <span className="text-xs font-mono font-extrabold text-zinc-400">
-                      {currentStepIndex + 1} of {totalSteps}
+                  <div className="flex items-center justify-between pt-2.5 border-t border-zinc-100 dark:border-zinc-800">
+                    <span className="text-[11px] font-mono font-extrabold text-zinc-400">
+                      {currentStepIndex + 1} / {totalSteps}
                     </span>
 
                     <div className="flex items-center gap-2">
                       {currentStepIndex > 0 && (
                         <button
                           onClick={onPrev}
-                          className="rounded-xl border border-zinc-300 bg-zinc-100 px-3 py-1.5 text-xs font-extrabold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
+                          className="rounded-xl border border-zinc-300 bg-zinc-100 px-3 py-1 text-[11px] font-extrabold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
                         >
                           ← Prev
                         </button>
@@ -301,24 +321,24 @@ export default function InteractivePlayer({
                       {currentStepIndex < totalSteps - 1 ? (
                         <button
                           onClick={onNext}
-                          className={`flex items-center gap-1 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
+                          className={`flex items-center gap-1 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
                         >
-                          <span>Next Step →</span>
+                          <span>Next →</span>
                         </button>
                       ) : externalAppUrl ? (
                         <a
                           href={externalAppUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
+                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
                         >
-                          <span>Open {providerName || "App"} 🚀</span>
-                          <ExternalLink className="h-3.5 w-3.5" />
+                          <span>Open App 🚀</span>
+                          <ExternalLink className="h-3 w-3" />
                         </a>
                       ) : (
                         <button
                           onClick={() => setIsTourActive(false)}
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
+                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
                         >
                           <span>Done 🎉</span>
                         </button>
@@ -332,91 +352,116 @@ export default function InteractivePlayer({
         </div>
       </div>
 
-      {/* FULLSCREEN LIGHTBOX MODAL */}
+      {/* ULTRA-SAFE FULLSCREEN LIGHTBOX MODAL WITH FLOATING CONTROL PANEL */}
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-3 sm:p-6 backdrop-blur-xl"
             onClick={() => setIsFullscreen(false)}
           >
-            <div className="relative max-h-[92vh] max-w-[95vw] overflow-auto rounded-2xl bg-zinc-900 border border-zinc-800 p-2">
+            {/* LIGHTBOX HEADER */}
+            <div className="w-full max-w-7xl flex items-center justify-between z-50 text-white pb-2">
+              <div className="flex items-center gap-3">
+                <span className={`flex h-7 w-7 items-center justify-center rounded-xl font-black text-xs shadow-md ${currentColor.bgClass}`}>
+                  {currentStepIndex + 1}
+                </span>
+                <div>
+                  <h3 className="text-sm sm:text-base font-black text-white">
+                    {currentStep.hotspot.title}
+                  </h3>
+                  <p className="text-xs font-mono text-zinc-400">
+                    Step {currentStepIndex + 1} of {totalSteps} • {addressBarUrl}
+                  </p>
+                </div>
+              </div>
+
               <button
                 onClick={() => setIsFullscreen(false)}
-                className="absolute right-4 top-4 z-50 rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700"
+                className="rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700 shadow-lg"
               >
                 <X className="h-5 w-5" />
               </button>
+            </div>
 
-              <div className="relative">
-                <Image
-                  src={currentStep.image}
-                  alt={currentStep.title}
-                  width={1600}
-                  height={900}
-                  unoptimized
-                  className="rounded-xl object-contain max-h-[85vh] w-auto"
-                />
+            {/* LIGHTBOX SCREENSHOT WITH PIN */}
+            <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
+              <Image
+                src={currentStep.image}
+                alt={currentStep.title}
+                fill
+                unoptimized
+                className="object-contain"
+              />
 
-                {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
-                  <div
-                    className="absolute z-30 transition-all duration-500"
-                    style={{
-                      top: currentStep.hotspot.top,
-                      left: currentStep.hotspot.left,
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  >
-                    <div className="relative flex items-center justify-center">
-                      <span className="absolute inline-flex h-12 w-12 animate-ping rounded-full bg-zinc-400 opacity-80" />
-                      <span className={`relative flex h-9 w-9 items-center justify-center rounded-full font-black text-xs shadow-2xl border-2 border-white ring-4 ring-zinc-500/40 ${currentColor.bgClass}`}>
-                        {currentStepIndex + 1}
-                      </span>
-                    </div>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      className={`absolute z-40 w-80 rounded-2xl border bg-zinc-900/95 backdrop-blur-xl p-5 shadow-2xl text-white ${currentColor.borderClass}`}
-                      style={{
-                        top: "130%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                    >
-                      <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-                        <span className={`text-xs font-black ${currentColor.textClass}`}>
-                          {currentStep.hotspot.title}
-                        </span>
-                        <span className="text-[10px] font-bold text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded-full">
-                          {currentStepIndex + 1}/{totalSteps}
-                        </span>
-                      </div>
-
-                      <p className="mt-2 text-xs font-medium text-zinc-300 leading-relaxed">
-                        {currentStep.hotspot.detail}
-                      </p>
-
-                      <div className="mt-4 flex items-center justify-between pt-2 border-t border-zinc-800">
-                        <button
-                          onClick={onPrev}
-                          disabled={currentStepIndex === 0}
-                          className="text-xs font-bold text-zinc-400 hover:text-white disabled:opacity-30 cursor-pointer"
-                        >
-                          Prev
-                        </button>
-                        <button
-                          onClick={onNext}
-                          className={`rounded-lg px-4 py-1.5 text-xs font-extrabold shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                        >
-                          {currentStepIndex === totalSteps - 1 ? "Replay 🔄" : "Next Step ➔"}
-                        </button>
-                      </div>
-                    </motion.div>
+              {/* PIN ON LIGHTBOX SCREENSHOT */}
+              {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
+                <div
+                  className="absolute z-30 transition-all duration-300"
+                  style={{
+                    top: currentStep.hotspot.top,
+                    left: currentStep.hotspot.left,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute inline-flex h-12 w-12 animate-ping rounded-full bg-zinc-400 opacity-80" />
+                    <span className={`relative flex h-9 w-9 items-center justify-center rounded-full font-black text-xs shadow-2xl border-2 border-white ring-4 ring-zinc-500/40 ${currentColor.bgClass}`}>
+                      {currentStepIndex + 1}
+                    </span>
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+
+            {/* FLOATING BOTTOM STEPS CONTROLLER PANEL (NEVER CLIPS OFF SCREEN) */}
+            <div
+              className="w-full max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/95 backdrop-blur-2xl p-4 shadow-2xl text-white z-50 flex flex-col sm:flex-row items-center justify-between gap-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="space-y-1 text-left flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className={`h-2 w-2 rounded-full ${currentColor.bgClass}`} />
+                  <span className="text-xs font-bold text-zinc-300 truncate">
+                    {currentStep.title}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400 font-medium line-clamp-2">
+                  {currentStep.description || currentStep.hotspot.detail}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={onPrev}
+                  disabled={currentStepIndex === 0}
+                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-3.5 py-1.5 text-xs font-bold text-zinc-200 hover:bg-zinc-700 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  ← Prev
+                </button>
+
+                <div className="flex items-center gap-1 px-1">
+                  {steps.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => onStepChange(idx)}
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        idx === currentStepIndex
+                          ? `w-4 ${currentColor.bgClass}`
+                          : "w-2 bg-zinc-700 hover:bg-zinc-600"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={onNext}
+                  className={`rounded-xl px-4 py-1.5 text-xs font-black text-white shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
+                >
+                  {currentStepIndex === totalSteps - 1 ? "Done 🎉" : "Next Step →"}
+                </button>
               </div>
             </div>
           </motion.div>
