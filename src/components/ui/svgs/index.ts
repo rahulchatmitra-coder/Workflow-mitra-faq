@@ -26,6 +26,11 @@ export { Telegram } from "./telegram";
 export { Discord } from "./discord";
 export { Google } from "./google";
 
+export { Postgresql } from "./postgresql";
+export { MysqlIconDark as Mysql } from "./mysqlIconDark";
+export { MongodbIconDark as Mongodb } from "./mongodbIconDark";
+export { Redis } from "./redis";
+
 export {
   HubSpotLogo,
   ZohoLogo,
@@ -36,4 +41,12 @@ export {
   ZoomLogo,
   CalComLogo,
   WherebyLogo,
+  CalendlyLogo,
+  MSTeamsLogo,
+  ZohoBookingsLogo,
+  JitsiMeetLogo,
+  CiscoWebexLogo,
+  ZendeskLogo,
+  FreshdeskLogo,
+  FacebookLogo,
 } from "./customLogos";
