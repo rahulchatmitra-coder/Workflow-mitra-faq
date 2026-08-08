@@ -4,6 +4,7 @@ import {
   KeyRound,
   Search,
   ChevronRight,
+  ChevronLeft,
   Building2,
   Bot,
   MessageSquare,
@@ -13,6 +14,10 @@ import {
   Calendar,
   CreditCard,
   Package,
+  Mail,
+  Zap,
+  Sparkles,
+  Cpu,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -28,6 +33,10 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Calendar,
   CreditCard,
   Package,
+  Mail,
+  Zap,
+  Sparkles,
+  Cpu,
 };
 
 interface ProviderCardGridProps {
@@ -38,7 +47,7 @@ interface ProviderCardGridProps {
 
 export default function ProviderCardGrid({
   providers = PROVIDER_LIST,
-  title = "Supported Credentials & Service Providers (10+)",
+  title = "Supported Credentials & Service Providers (35+)",
   subtitle = "Click any provider below to open its dedicated step-by-step interactive onboarding guide.",
 }: ProviderCardGridProps) {
   const { currentColor } = useTextColor();
@@ -47,7 +56,31 @@ export default function ProviderCardGrid({
   const [searchFilter, setSearchFilter] = React.useState<string>("");
   const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
 
-  const categories = ["All", "CRM & Sales", "AI Models", "Communication", "E-Commerce"];
+  const categories = [
+    "All",
+    "CRM & Sales",
+    "AI Models",
+    "Communication",
+    "E-Commerce",
+    "Meetings",
+    "Databases",
+    "Customer Support",
+    "Social Media",
+  ];
+
+  const tabsRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (tabsRef.current) {
+      const scrollAmount = direction === "left" ? -220 : 220;
+      tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const getCategoryCount = (cat: string) => {
+    if (cat === "All") return providers.length;
+    return providers.filter((p) => p.category === cat).length;
+  };
 
   const filteredProviders = providers.filter((p) => {
     const matchesSearch =
@@ -87,21 +120,62 @@ export default function ProviderCardGrid({
         </div>
       </div>
 
-      {/* CATEGORY FILTER TABS */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`rounded-full px-4 py-1.5 text-xs font-extrabold transition-all cursor-pointer shrink-0 ${
-              selectedCategory === cat
-                ? `${currentColor.bgClass} text-white shadow-md`
-                : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+      {/* CATEGORY FILTER TABS WITH SMOOTH SCROLL BUTTONS */}
+      <div className="relative flex items-center group/scroll">
+        <button
+          onClick={() => scrollTabs("left")}
+          className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 mr-2 z-10 transition-transform active:scale-95 cursor-pointer"
+          title="Scroll Left"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+
+        <div
+          ref={tabsRef}
+          className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none scroll-smooth w-full select-none"
+        >
+          {categories.map((cat) => {
+            const count = getCategoryCount(cat);
+            const isSelected = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={(e) => {
+                  setSelectedCategory(cat);
+                  e.currentTarget.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "center",
+                  });
+                }}
+                className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-extrabold transition-all cursor-pointer shrink-0 border ${
+                  isSelected
+                    ? `${currentColor.bgClass} text-white shadow-sm border-transparent`
+                    : "border-zinc-200/80 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:border-zinc-700"
+                }`}
+              >
+                <span>{cat}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                    isSelected
+                      ? "bg-white/20 text-white"
+                      : "bg-zinc-200/80 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          onClick={() => scrollTabs("right")}
+          className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 ml-2 z-10 transition-transform active:scale-95 cursor-pointer"
+          title="Scroll Right"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
 
       {/* CARDS GRID */}
@@ -111,31 +185,32 @@ export default function ProviderCardGrid({
           return (
             <motion.div
               key={p.id}
-              whileHover={{ y: -4, scale: 1.01 }}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.15 }}
               onClick={() => navigate(`/credentials/${p.id}`)}
-              className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-950 transition-all flex flex-col justify-between cursor-pointer group"
+              className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-xs hover:border-zinc-400 hover:bg-zinc-50/60 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-600 dark:hover:bg-zinc-900 transition-all flex flex-col justify-between cursor-pointer group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 group-hover:scale-105 transition-transform">
-                    <IconComponent className={`h-6 w-6 ${currentColor.textClass}`} />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700/80 transition-colors">
+                    <IconComponent className={`h-5 w-5 ${currentColor.textClass}`} />
                   </div>
 
-                  <span className="text-[10px] font-extrabold font-mono px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800">
+                  <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200/80 dark:border-zinc-700/80">
                     {p.badge}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-black text-zinc-900 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors flex items-center justify-between">
+                  <h3 className="text-sm font-extrabold text-zinc-900 dark:text-white transition-colors flex items-center justify-between">
                     <span>{p.name}</span>
                     {p.popular && (
-                      <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full text-white ${currentColor.bgClass}`}>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md text-white ${currentColor.bgClass}`}>
                         Popular
                       </span>
                     )}
                   </h3>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium mt-1 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal mt-1 line-clamp-2 leading-relaxed">
                     {p.description}
                   </p>
                 </div>
