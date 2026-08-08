@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import {
   ArrowLeft,
@@ -8,7 +6,7 @@ import {
   ThumbsUp,
   ThumbsDown,
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 import InteractivePlayer from "./InteractivePlayer";
 import ProviderCardGrid from "./ProviderCardGrid";
@@ -100,7 +98,7 @@ export default function CredentialsOverviewClient() {
       <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 lg:px-8">
           <Link
-            href="/"
+            to="/"
             className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />

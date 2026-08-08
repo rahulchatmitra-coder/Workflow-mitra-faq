@@ -1,7 +1,5 @@
-"use client";
-
 import * as React from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import {
   Zap,
   Heart,
@@ -59,7 +57,7 @@ export function Footer() {
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
               <Link
-                href="/credentials"
+                to="/credentials"
                 className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-2.5 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <KeyRound className="h-3.5 w-3.5" />
@@ -76,7 +74,7 @@ export function Footer() {
 
           {/* COLUMN 1: BRAND LOGO & OVERVIEW */}
           <div className="space-y-4 lg:col-span-2 pr-0 lg:pr-8">
-            <Link href="/" className="flex items-center gap-3 cursor-pointer group" title="Workflow Mitra Home">
+            <Link to="/" className="flex items-center gap-3 cursor-pointer group" title="Workflow Mitra Home">
               <div className={`flex h-11 w-11 items-center justify-center rounded-2xl text-white font-black text-lg tracking-tight shadow-md border border-white/20 transition-transform group-hover:scale-105 ${currentColor.bgClass}`}>
                 WM
               </div>
@@ -138,37 +136,37 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
               <li>
-                <Link href="/credentials/hubspot" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/hubspot" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>HubSpot CRM Guide</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/credentials/pipedrive" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/pipedrive" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Pipedrive Setup</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/credentials/zohocrm" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/zohocrm" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Zoho CRM OAuth</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/credentials/shopify" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/shopify" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Shopify Store API</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/credentials/openai" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/openai" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>OpenAI GPT-4o Token</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/credentials/slack" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/slack" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Slack Webhook URL</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -184,19 +182,19 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
               <li>
-                <Link href="/credentials" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Credentials Vault</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/docs/credentials/hubspot" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/docs/credentials/hubspot" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>HubSpot Private Apps</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="/create-account" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/create-account" className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span>Account Setup Tour</span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>

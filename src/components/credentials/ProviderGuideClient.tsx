@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -21,9 +19,7 @@ import {
   Maximize2,
   X,
 } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { Link, useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 import { CredentialProvider, PROVIDER_LIST } from "@/data/credentials-data";
 import InteractivePlayer from "./InteractivePlayer";
@@ -45,7 +41,7 @@ interface ProviderGuideClientProps {
 
 export default function ProviderGuideClient({ provider }: ProviderGuideClientProps) {
   const { currentColor } = useTextColor();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
   const [feedbackGiven, setFeedbackGiven] = React.useState<boolean>(false);
@@ -74,7 +70,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
       <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50 sticky top-0 z-30 backdrop-blur-md">
         <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 lg:px-8 flex items-center justify-between">
           <Link
-            href="/credentials"
+            to="/credentials"
             className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
@@ -107,7 +103,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
               return (
                 <button
                   key={p.id}
-                  onClick={() => router.push(`/credentials/${p.id}`)}
+                  onClick={() => navigate(`/credentials/${p.id}`)}
                   className={`flex items-center gap-2 rounded-xl px-3.5 py-1.5 text-xs font-bold shrink-0 transition-all cursor-pointer border ${
                     isActive
                       ? `${currentColor.bgClass} text-white shadow-md border-transparent`
@@ -195,12 +191,10 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                     }}
                   >
                     <div className="relative aspect-[16/9] max-h-[380px] w-full">
-                      <Image
+                      <img
                         src={s.image}
                         alt={`Step ${idx + 1}: ${s.title}`}
-                        fill
-                        unoptimized
-                        className="object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
+                        className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                       />
                       <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
                         <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
@@ -302,12 +296,10 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
 
             {/* FULLSCREEN IMAGE */}
             <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 p-2">
-              <Image
+              <img
                 src={selectedImageModal}
                 alt={`${provider.name} Step Screenshot`}
-                fill
-                unoptimized
-                className="object-contain"
+                className="absolute inset-0 w-full h-full object-contain"
               />
             </div>
           </motion.div>

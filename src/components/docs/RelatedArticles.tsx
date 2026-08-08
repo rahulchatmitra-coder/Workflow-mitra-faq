@@ -1,5 +1,5 @@
 import * as React from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import { RelatedArticle } from "@/types/docs";
 import { Badge } from "@/components/ui/badge";
@@ -21,7 +21,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
         {articles.map((art) => (
           <Link
             key={art.slug}
-            href={art.slug}
+            to={art.slug}
             className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all hover:border-[#2563EB] hover:shadow-md dark:border-slate-800/80 dark:bg-slate-900"
           >
             <div className="space-y-2">

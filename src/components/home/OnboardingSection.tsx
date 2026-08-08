@@ -1,9 +1,7 @@
-"use client";
-
 import * as React from "react";
 import { motion } from "framer-motion";
 import { ClipboardList, ChevronRight, KeyRound, Bot, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 
 export function OnboardingSection() {
@@ -63,14 +61,14 @@ export function OnboardingSection() {
             {/* Article Links */}
             <div className="mt-3 space-y-1">
               <Link
-                href="/create-account"
+                to="/create-account"
                 className="flex items-center justify-between py-2 text-sm font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer group"
               >
                 <span>How to create account in Workflow Mitra?</span>
                 <ChevronRight className="h-4 w-4 text-zinc-400 dark:text-zinc-500 shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/create-account"
+                to="/create-account"
                 className="flex items-center justify-between py-2 text-sm font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer group"
               >
                 <span>How to login to Workflow Mitra?</span>
@@ -80,8 +78,8 @@ export function OnboardingSection() {
           </div>
 
           {/* Show All Link */}
-          <Link
-            href="/create-account"
+            <Link
+            to="/create-account"
             className={`mt-6 flex items-center gap-1.5 text-xs font-black uppercase tracking-wider hover:underline cursor-pointer pt-4 border-t border-zinc-100 dark:border-zinc-800 ${currentColor.textClass}`}
           >
             <span>View Account Guide</span>
@@ -127,21 +125,21 @@ export function OnboardingSection() {
             {/* Article Links */}
             <div className="mt-3 space-y-1">
               <Link
-                href="/credentials"
+                to="/credentials"
                 className="flex items-center justify-between py-2 text-sm font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer group"
               >
                 <span>How to create & manage credentials in Workflow Mitra?</span>
                 <ChevronRight className="h-4 w-4 text-zinc-400 dark:text-zinc-500 shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/credentials"
+                to="/credentials"
                 className="flex items-center justify-between py-2 text-sm font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer group"
               >
                 <span>How to connect OpenAI, Claude & Telegram bots?</span>
                 <ChevronRight className="h-4 w-4 text-zinc-400 dark:text-zinc-500 shrink-0 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/credentials"
+                to="/credentials"
                 className="flex items-center justify-between py-2 text-sm font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer group"
               >
                 <span>How to pair Slack, Zoho CRM, Shopify & Zoom keys?</span>
@@ -152,7 +150,7 @@ export function OnboardingSection() {
 
           {/* Show All Link */}
           <Link
-            href="/credentials"
+            to="/credentials"
             className={`mt-6 flex items-center gap-1.5 text-xs font-black uppercase tracking-wider hover:underline cursor-pointer pt-4 border-t border-zinc-100 dark:border-zinc-800 ${currentColor.textClass}`}
           >
             <span>Explore 10+ Integrations Guide</span>

@@ -1,7 +1,5 @@
-"use client";
-
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, FileText, ArrowRight, CornerDownLeft } from "lucide-react";
 import { useFuseSearch } from "@/hooks/use-fuse-search";
@@ -13,7 +11,7 @@ interface SearchModalProps {
 }
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const { query, setQuery, results, allDocs } = useFuseSearch();
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -34,7 +32,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   }, [query]);
 
   const handleSelect = (slug: string) => {
-    router.push(slug);
+    navigate(slug);
     onClose();
   };
 
