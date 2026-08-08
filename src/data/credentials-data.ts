@@ -43,14 +43,14 @@ export interface CredentialProvider {
   id: string;
   name: string;
   category:
-    | "AI Models"
-    | "CRM & Sales"
-    | "Communication"
-    | "E-Commerce"
-    | "Meetings"
-    | "Databases"
-    | "Customer Support"
-    | "Social Media";
+  | "AI Models"
+  | "CRM & Sales"
+  | "Communication"
+  | "E-Commerce"
+  | "Meetings"
+  | "Databases"
+  | "Customer Support"
+  | "Social Media";
   badge: string;
   description: string;
   iconName: string;
@@ -608,7 +608,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       {
         image: "/credentials/hubspot/step1.png",
         title: "Visit HubSpot Official Website",
-        description: "Open your web browser (Chrome, Edge, Safari, Firefox).\n\nNavigate to https://www.hubspot.com and click 'Get started free' or 'Log in' at the top right header.",
+        description: "Open your preferred web browser (Chrome, Edge, Safari, Firefox).\n\nNavigate to https://www.hubspot.com and click 'Get started free' or 'Log in' at the top right header.",
         addressUrl: "https://www.hubspot.com",
         hotspot: {
           target: "image",
@@ -616,14 +616,14 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "79%",
           popoverTop: "32%",
           popoverLeft: "50%",
-          title: "Step 1: Open HubSpot Portal 🌐",
+          title: "Step 1: Open HubSpot Portal",
           detail: "Type https://www.hubspot.com into your browser address bar and click 'Get started free' at top right.",
         },
       },
       {
         image: "/credentials/hubspot/step2.png",
         title: "HubSpot Login or Create Account",
-        description: "On the HubSpot Sign-In page (app.hubspot.com/login):\n\n• Existing Users: Enter your email and click Continue.\n• New Users: Click 'create an account' link under the Sign in header.",
+        description: "On the HubSpot Sign-In page (app.hubspot.com/login):\n\n• Existing Users: Enter your email address and click Continue.\n• New Users: Click 'create an account' link under the Sign in header.",
         addressUrl: "https://app.hubspot.com/login",
         hotspot: {
           target: "image",
@@ -631,13 +631,13 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "51%",
           popoverTop: "50%",
           popoverLeft: "75%",
-          title: "Step 2: Sign In or Create Account 🔑",
+          title: "Step 2: Sign In or Create Account",
           detail: "Enter your email address or click 'create an account' to register your workspace.",
         },
       },
       {
         image: "/credentials/hubspot/step3.png",
-        title: "Authenticate & Register Account",
+        title: "Authenticate & Register Workspace",
         description: "On the Create Account page (app.hubspot.com/signup-hubspot/crm):\n\n• Click 'Continue with Google' to sign up instantly with your Google account.\n• Or enter your company email address and follow the setup wizard.",
         addressUrl: "https://app.hubspot.com/signup-hubspot/crm",
         hotspot: {
@@ -646,89 +646,89 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "35%",
           popoverTop: "50%",
           popoverLeft: "75%",
-          title: "Step 3: Continue with Google / Email 🚀",
+          title: "Step 3: Continue with Google or Email",
           detail: "Click 'Continue with Google' for 1-click registration. No credit card required.",
         },
       },
       {
         image: "/credentials/hubspot/step4.png",
         title: "Navigate to Workspace Settings",
-        description: "Once inside your HubSpot workspace dashboard, locate and click the Settings Gear icon ⚙️ in the top right navigation bar to open account configuration.",
+        description: "Once inside your HubSpot workspace dashboard, locate and click the Settings Gear icon in the top right navigation bar to open account configuration.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
           top: "16%",
           left: "77%",
-          popoverTop: "35%",
-          popoverLeft: "70%",
-          title: "Step 4: Click Settings Icon ⚙️",
+          popoverTop: "40%",
+          popoverLeft: "75%",
+          title: "Step 4: Click Settings Icon",
           detail: "Click the Settings Gear icon in the top navigation bar.",
         },
       },
       {
-        image: "/credentials/hubspot/step4.png",
+        image: "/credentials/hubspot/step5.png",
         title: "Open Integrations Menu",
         description: "On the left settings menu sidebar, scroll down to the Account Setup section and click on 'Integrations' to view API and developer settings.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
-          top: "80%",
+          top: "75%",
           left: "25%",
-          popoverTop: "38%",
-          popoverLeft: "50%",
-          title: "Step 5: Click Integrations Menu 🔌",
+          popoverTop: "60%",
+          popoverLeft: "52%",
+          title: "Step 5: Click Integrations Menu",
           detail: "Select Integrations from the left navigation sidebar.",
         },
       },
       {
-        image: "/credentials/hubspot/step6.png",
+        image: "/credentials/hubspot/step5.png",
         title: "Go to Private Apps",
         description: "In the Integrations submenu, click on 'Private Apps' (or Legacy Apps) to manage custom API access tokens for your workspace.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
-          top: "65%",
-          left: "50%",
-          popoverTop: "38%",
-          popoverLeft: "50%",
-          title: "Step 6: Click Private Apps 📱",
+          top: "88%",
+          left: "26%",
+          popoverTop: "70%",
+          popoverLeft: "52%",
+          title: "Step 6: Click Private Apps",
           detail: "Click Private Apps to manage developer API tokens.",
         },
       },
       {
-        image: "/credentials/hubspot/step7.png",
+        image: "/credentials/hubspot/step6.png",
         title: "Create a Private App",
-        description: "Click the orange 'Create a private app' button located at the top right of the Private Apps manager table.",
+        description: "Click on 'Private Apps' or 'Legacy Apps' section to initiate private application creation.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
-          top: "26%",
-          left: "88%",
-          popoverTop: "38%",
-          popoverLeft: "50%",
-          title: "Step 7: Click Create Private App ➕",
-          detail: "Click 'Create a private app' to generate custom credentials.",
+          top: "55%",
+          left: "50%",
+          popoverTop: "50%",
+          popoverLeft: "80%",
+          title: "Step 7: Go to Legacy Apps",
+          detail: "Click 'Go to Legacy Apps' to generate custom credentials.",
         },
       },
       {
-        image: "/credentials/hubspot/image.png",
-        title: "Acknowledge Security Terms",
-        description: "Tick the acknowledgment checkbox to confirm you understand that Private App tokens grant secure API access to your workspace.",
+        image: "/credentials/hubspot/step7.png",
+        title: "Click to Create a Legacy App",
+        description: "Click the 'Create a Legacy app' button at top right to initiate token generation.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
-          top: "60%",
-          left: "55%",
-          popoverTop: "38%",
-          popoverLeft: "50%",
-          title: "Step 8: Accept Terms & Continue 🛡️",
-          detail: "Check the terms box and click Continue creating.",
+          top: "25%",
+          left: "87%",
+          popoverTop: "50%",
+          popoverLeft: "65%",
+          title: "Step 8: Click Create Private App",
+          detail: "Click 'Create a Legacy app' button at the upper right.",
         },
       },
       {
         image: "/credentials/hubspot/step9.png",
         title: "Enter App Name & Description",
-        description: "Under the Basic Info tab, enter your App Name (e.g., 'Workflow Mitra Integration') and add a short description for identification.",
+        description: "Under the Basic Info tab, enter your App Name (e.g. 'Workflow Mitra Integration') and add a short description for identification.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
         hotspot: {
           target: "image",
@@ -736,7 +736,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "50%",
           popoverTop: "38%",
           popoverLeft: "50%",
-          title: "Step 9: Enter App Name & Details ✏️",
+          title: "Step 9: Enter App Name & Details",
           detail: "Type 'Workflow Mitra' as the app name.",
         },
       },
@@ -751,8 +751,8 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "50%",
           popoverTop: "50%",
           popoverLeft: "50%",
-          title: "Step 10: Open Scopes Tab 🔒",
-          detail: "Click the Scopes tab to configure read/write permissions.",
+          title: "Step 10: Open Scopes Tab",
+          detail: "Click the Scopes tab to configure read and write permissions.",
         },
       },
       {
@@ -766,8 +766,8 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "68%",
           popoverTop: "70%",
           popoverLeft: "50%",
-          title: "Step 11: Click Add New Scope 🎯",
-          detail: "Select required CRM read & write permissions.",
+          title: "Step 11: Add Required API Scopes",
+          detail: "Select required CRM read and write permissions.",
         },
       },
       {
@@ -781,7 +781,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "92%",
           popoverTop: "50%",
           popoverLeft: "70%",
-          title: "Step 12: Click Create App 🚀",
+          title: "Step 12: Click Create App",
           detail: "Click Create app to finalize API token generation.",
         },
       },
@@ -796,7 +796,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "29%",
           popoverTop: "50%",
           popoverLeft: "50%",
-          title: "Step 13: Click Auth Tab 🔑",
+          title: "Step 13: Click Auth Tab",
           detail: "Click the Auth tab to access your API token.",
         },
       },
@@ -811,7 +811,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "45%",
           popoverTop: "75%",
           popoverLeft: "50%",
-          title: "Step 14: Show Token & Copy 🔐",
+          title: "Step 14: Show Token & Copy",
           detail: "Click Show Token, copy it, and paste it into Workflow Mitra Credentials Vault.",
         },
       },
