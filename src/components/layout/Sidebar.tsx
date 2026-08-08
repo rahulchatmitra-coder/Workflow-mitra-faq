@@ -1,8 +1,5 @@
-"use client";
-
 import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import {
   BookOpen,
   KeyRound,
@@ -48,7 +45,7 @@ export const DOCS_NAV_GROUPS = [
 ];
 
 export function Sidebar() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   return (
     <aside className="sticky top-16 h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto border-r border-slate-200/80 bg-slate-50/50 p-4 dark:border-slate-800/80 dark:bg-slate-950/40 hidden lg:block">
@@ -65,7 +62,7 @@ export function Sidebar() {
                 return (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    to={item.href}
                     className={cn(
                       "group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-all",
                       isActive

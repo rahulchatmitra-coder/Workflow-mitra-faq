@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -14,7 +12,6 @@ import {
   X,
   CheckCircle2,
 } from "lucide-react";
-import Image from "next/image";
 import { useTextColor } from "@/context/TextColorContext";
 import { OnboardingStep } from "@/data/credentials-data";
 
@@ -240,14 +237,10 @@ export default function InteractivePlayer({
                 transition={{ duration: 0.2 }}
                 className="relative h-full w-full origin-top transition-transform duration-200"
               >
-                <Image
+                <img
                   src={currentStep.image}
                   alt={currentStep.title}
-                  fill
-                  unoptimized
-                  priority
-                  loading="eager"
-                  className="object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </motion.div>
             </AnimatePresence>
@@ -402,12 +395,10 @@ export default function InteractivePlayer({
 
             {/* LIGHTBOX SCREENSHOT WITH PIN */}
             <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
-              <Image
+              <img
                 src={currentStep.image}
                 alt={currentStep.title}
-                fill
-                unoptimized
-                className="object-contain"
+                className="absolute inset-0 w-full h-full object-contain"
               />
 
               {/* PIN ON LIGHTBOX SCREENSHOT */}

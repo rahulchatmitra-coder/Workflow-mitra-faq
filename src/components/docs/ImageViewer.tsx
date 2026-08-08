@@ -1,7 +1,4 @@
-"use client";
-
 import * as React from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Maximize2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -27,12 +24,11 @@ export function ImageViewer({ src, alt, caption, className, id }: ImageViewerPro
         )}
       >
         <div className="relative aspect-video w-full overflow-hidden cursor-zoom-in" onClick={() => setIsOpen(true)}>
-          <Image
+          {/* Replaced next/image with <img> */}
+          <img
             src={src}
             alt={alt}
-            fill
-            sizes="(max-width: 1200px) 100vw, 800px"
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
           <div className="absolute inset-0 bg-slate-900/10 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/80 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur-md shadow-lg">
@@ -76,7 +72,7 @@ export function ImageViewer({ src, alt, caption, className, id }: ImageViewerPro
               </button>
 
               <div className="relative aspect-video w-full min-w-[320px] sm:min-w-[600px] md:min-w-[800px] lg:min-w-[1000px]">
-                <Image src={src} alt={alt} fill className="object-contain" priority />
+                <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain" />
               </div>
 
               {caption && (

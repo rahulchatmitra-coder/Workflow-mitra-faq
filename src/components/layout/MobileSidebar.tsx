@@ -1,8 +1,5 @@
-"use client";
-
 import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Zap } from "lucide-react";
 import { DOCS_NAV_GROUPS } from "./Sidebar";
@@ -14,7 +11,7 @@ interface MobileSidebarProps {
 }
 
 export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   React.useEffect(() => {
     onClose();
@@ -40,7 +37,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             className="flex h-full w-80 flex-col overflow-y-auto border-r border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900"
           >
             <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800">
-              <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
+              <Link to="/" onClick={onClose} className="flex items-center gap-2.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2563EB] text-white">
                   <Zap className="h-5 w-5 fill-current" />
                 </div>
@@ -71,7 +68,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                       return (
                         <Link
                           key={item.href}
-                          href={item.href}
+                          to={item.href}
                           onClick={onClose}
                           className={cn(
                             "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",

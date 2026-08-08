@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +14,7 @@ import {
   CreditCard,
   Package,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 import { CredentialProvider, PROVIDER_LIST } from "@/data/credentials-data";
 
@@ -44,7 +42,7 @@ export default function ProviderCardGrid({
   subtitle = "Click any provider below to open its dedicated step-by-step interactive onboarding guide.",
 }: ProviderCardGridProps) {
   const { currentColor } = useTextColor();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const [searchFilter, setSearchFilter] = React.useState<string>("");
   const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
@@ -114,7 +112,7 @@ export default function ProviderCardGrid({
             <motion.div
               key={p.id}
               whileHover={{ y: -4, scale: 1.01 }}
-              onClick={() => router.push(`/credentials/${p.id}`)}
+              onClick={() => navigate(`/credentials/${p.id}`)}
               className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-950 transition-all flex flex-col justify-between cursor-pointer group"
             >
               <div className="space-y-3">

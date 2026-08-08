@@ -1,12 +1,9 @@
-"use client";
-
 import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, Home } from "lucide-react";
 
 export function Breadcrumb() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const segments = pathname.split("/").filter(Boolean);
 
   if (segments.length === 0) return null;
@@ -14,7 +11,7 @@ export function Breadcrumb() {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
       <Link
-        href="/"
+        to="/"
         className="flex items-center gap-1 hover:text-[#2563EB] transition-colors"
       >
         <Home className="h-3.5 w-3.5" />
@@ -37,7 +34,7 @@ export function Breadcrumb() {
               </span>
             ) : (
               <Link
-                href={href}
+                to={href}
                 className="hover:text-[#2563EB] transition-colors truncate"
               >
                 {title}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://workflowmitra-docs.vercel.app/sitemap.xml
