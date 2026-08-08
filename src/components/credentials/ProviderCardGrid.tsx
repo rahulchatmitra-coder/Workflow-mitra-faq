@@ -244,8 +244,6 @@ export default function ProviderCardGrid({
                     ) : (
                       <LucideIconComp className={`h-6 w-6 ${currentColor.textClass}`} />
                     )}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700/80 transition-colors">
-                    <IconComponent className={`h-5 w-5 ${currentColor.textClass}`} />
                   </div>
 
                   <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200/80 dark:border-zinc-700/80">
