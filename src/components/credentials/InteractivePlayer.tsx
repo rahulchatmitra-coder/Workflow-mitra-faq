@@ -27,6 +27,8 @@ interface InteractivePlayerProps {
   defaultAddressUrl?: string;
   externalAppUrl?: string;
   providerName?: string;
+  customButtonText?: string;
+  onCompleteAction?: () => void;
 }
 
 export default function InteractivePlayer({
@@ -38,6 +40,8 @@ export default function InteractivePlayer({
   defaultAddressUrl = "https://app.workflowmitra.com/credentials",
   externalAppUrl,
   providerName,
+  customButtonText,
+  onCompleteAction,
 }: InteractivePlayerProps) {
   const { currentColor } = useTextColor();
   const [zoomLevel, setZoomLevel] = React.useState<number>(100);
@@ -325,6 +329,16 @@ export default function InteractivePlayer({
                         >
                           <span>Next →</span>
                         </button>
+                      ) : onCompleteAction ? (
+                        <button
+                          onClick={() => {
+                            setIsTourActive(false);
+                            onCompleteAction();
+                          }}
+                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
+                        >
+                          <span>{customButtonText || "Create Credential 🚀"}</span>
+                        </button>
                       ) : externalAppUrl ? (
                         <a
                           href={externalAppUrl}
@@ -332,7 +346,7 @@ export default function InteractivePlayer({
                           rel="noreferrer"
                           className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
                         >
-                          <span>Open App 🚀</span>
+                          <span>{customButtonText || `Open ${providerName || "App"} 🚀`}</span>
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       ) : (

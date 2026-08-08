@@ -74,7 +74,7 @@ const credentialsSteps: OnboardingStep[] = [
       top: "21%",
       left: "92%",
       popoverTop: "50%",
-      popoverLeft: "50%",
+      popoverLeft: "18%",
       title: "Step 4: Select New Credential🔑",
       detail: "Input your token and click 'Save Credential'.",
     },
@@ -143,8 +143,10 @@ export default function CredentialsOverviewClient() {
           onNext={handleNextStep}
           onPrev={handlePrevStep}
           defaultAddressUrl="https://app.workflowmitra.com/credentials"
-          externalAppUrl="https://app.workflowmitra.com/credentials"
-          providerName="Credentials Vault"
+          customButtonText="Create Credential 🚀"
+          onCompleteAction={() => {
+            document.getElementById("providers-grid")?.scrollIntoView({ behavior: "smooth" });
+          }}
         />
 
         {/* REUSABLE PROVIDER CARD GRID */}

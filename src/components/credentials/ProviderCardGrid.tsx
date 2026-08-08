@@ -61,7 +61,7 @@ export default function ProviderCardGrid({
   });
 
   return (
-    <section className="space-y-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+    <section id="providers-grid" className="space-y-6 pt-6 border-t border-zinc-200 dark:border-zinc-800 scroll-mt-20">
       {/* SECTION HEADER & SEARCH */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-4">
         <div>
