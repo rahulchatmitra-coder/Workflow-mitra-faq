@@ -14,6 +14,9 @@ import {
   Calendar,
   CreditCard,
   Package,
+  Mail,
+  Zap,
+  Cpu,
   ThumbsUp,
   ThumbsDown,
   Maximize2,
@@ -33,6 +36,10 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Calendar,
   CreditCard,
   Package,
+  Mail,
+  Zap,
+  Sparkles,
+  Cpu,
 };
 
 interface ProviderGuideClientProps {

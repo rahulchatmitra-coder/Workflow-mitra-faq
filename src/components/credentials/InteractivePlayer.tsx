@@ -296,7 +296,7 @@ export default function InteractivePlayer({
                     </button>
                   </div>
 
-                  <div className="py-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-32 overflow-y-auto">
+                  <div className="py-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-48 sm:max-h-56 overflow-y-auto scrollbar-thin pr-1">
                     {currentStep.description}
                   </div>
 

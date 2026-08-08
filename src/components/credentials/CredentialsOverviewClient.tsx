@@ -13,43 +13,12 @@ import ProviderCardGrid from "./ProviderCardGrid";
 import { OnboardingStep } from "@/data/credentials-data";
 
 const credentialsSteps: OnboardingStep[] = [
-  {
-    image: "/credentials/step1.png",
-    title: "Navigate to Credentials Page",
-    description:
-      "Open your preferred web browser (Chrome, Safari, Edge, Firefox).\n\nType https://app.workflowmitra.com into the address bar and press Enter.",
-    addressUrl: "https://app.workflowmitra.com/credentials",
-    hotspot: {
-      target: "image" as const,
-      top: "4.2%",
-      left: "24.5%",
-      popoverTop: "38%",
-      popoverLeft: "50%",
-      title: "Step 1: Open Address Bar 🌐",
-      detail: "Click on 'Credentials' in the left navigation sidebar.",
-    },
-  },
-  {
-    image: "/credentials/step1.png",
-    title: "Welcome to Workflow Mitra",
-    description:
-      "You are on the official Login page.\n\n• Enter Email Address & Password\n• Click Sign In to access your credentials vault.",
-    addressUrl: "https://app.workflowmitra.com/login",
-    hotspot: {
-      target: "image" as const,
-      top: "72%",
-      left: "80%",
-      popoverTop: "45%",
-      popoverLeft: "35%",
-      title: "Step 2: Sign In to Account 👤",
-      detail: "Enter Email Address and Password, then click Sign In to open your credentials vault.",
-    },
-  },
+ 
   {
     image: "/credentials/step2.png",
-    title: "Select Provider (10+ Integrations)",
+    title: "Select Service Provider",
     description:
-      "A pop-up modal will display 10+ pre-built integration providers including HubSpot, OpenAI, Claude, Slack, Telegram, Zoho CRM, Shopify, etc.",
+      "Choose your target integration provider from the 35+ supported credentials modal list:\n\n• CRM & Sales: HubSpot, Zoho CRM, Pipedrive, Zoho Books\n• AI Models: OpenAI GPT-4o, Claude, Google Gemini, Groq, Ollama\n• Communication: WhatsApp Cloud API, Slack, Telegram, SMTP Mail\n• E-Commerce: Shopify, WooCommerce, Shiprocket\n• Meetings: Zoom, Cal.com, Whereby, Calendly, MS Teams\n• Databases & Support: PostgreSQL, MySQL, MongoDB, Redis, Zendesk, Intercom",
     addressUrl: "https://app.workflowmitra.com/credentials",
     hotspot: {
       target: "image" as const,
@@ -57,8 +26,9 @@ const credentialsSteps: OnboardingStep[] = [
       left: "18%",
       popoverTop: "65%",
       popoverLeft: "45%",
-      title: "Step 3: Select the Credentials",
-      detail: "Select your target integration (e.g. HubSpot, OpenAI, Slack).",
+      title: "Step 3: Select Service Provider (35+) 🚀",
+      detail:
+        "Scroll through the 35+ supported integrations modal list and click your desired service provider to generate API keys.",
     },
   },
   {
@@ -73,7 +43,7 @@ const credentialsSteps: OnboardingStep[] = [
       left: "92%",
       popoverTop: "50%",
       popoverLeft: "18%",
-      title: "Step 4: Select New Credential🔑",
+      title: "Step 2: Select New Credential🔑",
       detail: "Input your token and click 'Save Credential'.",
     },
   },
