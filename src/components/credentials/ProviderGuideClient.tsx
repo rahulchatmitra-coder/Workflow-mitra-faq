@@ -192,7 +192,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
       </div>
 
       {/* MAIN CONTAINER */}
-      <div className="mx-auto max-w-5xl px-4 pt-6 pb-8 sm:px-6 lg:px-8 space-y-8">
+      <div className="mx-auto max-w-7xl px-4 pt-6 pb-8 sm:px-6 lg:px-8 space-y-8">
         {/* QUICK SWITCH TABS */}
         <div className="space-y-2">
           <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
@@ -363,7 +363,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
             {feedbackGiven ? (
               <div className="mt-3 flex items-center gap-2 text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
                 <Sparkles className="h-4 w-4" />
-                <span>Thank you for your feedback! 🎉</span>
+                <span>Thank you for your feedback!</span>
               </div>
             ) : (
               <div className="mt-4 flex items-center gap-3">
