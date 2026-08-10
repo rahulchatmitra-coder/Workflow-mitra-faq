@@ -33,7 +33,7 @@ export function SEOJsonLd({
       name: "Workflow Mitra",
       logo: {
         "@type": "ImageObject",
-        url: "https://workflowmitra-docs.vercel.app/images/logo.png",
+        url: "https://workflowmitra-docs.vercel.app/images/logo.webp",
       },
     },
     inLanguage: "en-US",

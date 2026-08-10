@@ -21,6 +21,8 @@ import {
   ThumbsDown,
   Maximize2,
   X,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -54,10 +56,103 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
   const [feedbackGiven, setFeedbackGiven] = React.useState<boolean>(false);
   const [isFullscreenModal, setIsFullscreenModal] = React.useState<boolean>(false);
   const [selectedImageModal, setSelectedImageModal] = React.useState<string>("");
+  const [activeSpeakingIndex, setActiveSpeakingIndex] = React.useState<number | null>(null);
 
+  // Stop speech synthesis on unmount or provider change
   React.useEffect(() => {
-    setCurrentStepIndex(0);
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setActiveSpeakingIndex(null);
+    }
   }, [provider.id]);
+
+  const getBestVoice = (): SpeechSynthesisVoice | null => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || voices.length === 0) return null;
+
+    const englishVoices = voices.filter((v) => v.lang.startsWith("en"));
+    if (englishVoices.length === 0) return voices[0];
+
+    // Priority 1: High-Quality English Male Voices (Microsoft Guy, Apple Daniel, Google Male, etc.)
+    const maleKeywords = [
+      "Guy",
+      "Daniel",
+      "George",
+      "Ryan",
+      "Christopher",
+      "James",
+      "David",
+      "Mark",
+      "Oliver",
+      "Arthur",
+      "Brian",
+      "Steffan",
+      "Male",
+      "Microsoft Guy",
+      "Google US English",
+    ];
+
+    const preferredMaleVoice = englishVoices.find((v) =>
+      maleKeywords.some((keyword) => v.name.toLowerCase().includes(keyword.toLowerCase()))
+    );
+
+    if (preferredMaleVoice) return preferredMaleVoice;
+
+    const naturalVoice = englishVoices.find(
+      (v) => v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Online")
+    );
+    if (naturalVoice) return naturalVoice;
+
+    return (
+      englishVoices.find((v) => v.lang === "en-US" || v.lang === "en-GB") ||
+      englishVoices[0]
+    );
+  };
+
+  const formatTextForSpeech = (text: string): string => {
+    if (!text) return "";
+    return text
+      .replace(/https?:\/\/(www\.)?/gi, "")
+      .replace(/\.com/gi, " dot com")
+      .replace(/\.org/gi, " dot org")
+      .replace(/api/gi, "A P I")
+      .replace(/crm/gi, "C R M")
+      .replace(/oauth/gi, "O Auth")
+      .replace(/aes-256/gi, "A E S 256")
+      .replace(/•/g, ". ")
+      .replace(/[\n\r]+/g, ". ")
+      .replace(/[^\w\s.,'-]/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const handleSpeakCard = (stepIndex: number, stepTitle: string, stepDesc: string, stepDetail: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    if (activeSpeakingIndex === stepIndex) {
+      window.speechSynthesis.cancel();
+      setActiveSpeakingIndex(null);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const rawTitle = (stepTitle || "").replace(/Step \d+:/i, "");
+    const textToRead = formatTextForSpeech(`Step ${stepIndex + 1}. ${rawTitle}. ${stepDesc || ""}. ${stepDetail || ""}`);
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    const bestVoice = getBestVoice();
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
+    utterance.rate = 0.92;
+    utterance.pitch = 1.0;
+    utterance.onend = () => setActiveSpeakingIndex(null);
+    utterance.onerror = () => setActiveSpeakingIndex(null);
+
+    setActiveSpeakingIndex(stepIndex);
+    window.speechSynthesis.speak(utterance);
+  };
 
   const steps = provider.steps;
 
@@ -143,7 +238,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
               </span>
             </div>
             <h1 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
-              How to Create &amp; Connect {provider.name} Credentials
+              How to Create &amp; Connect <span className={currentColor.textClass}>{provider.name}</span> Credentials
             </h1>
             <p className="mt-1 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">
               {provider.description}
@@ -176,7 +271,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
         <section className="space-y-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
           <div className="border-b border-zinc-200 dark:border-zinc-800 pb-4">
             <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-              Detailed Step-by-Step Instructions ({provider.name})
+              Detailed Step-by-Step Instructions (<span className={currentColor.textClass}>{provider.name}</span>)
             </h2>
             <p className="mt-1 text-sm font-semibold text-zinc-500 dark:text-zinc-400">
               Follow these exact steps to connect {provider.name} with Workflow Mitra.
@@ -201,6 +296,8 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                       <img
                         src={s.image}
                         alt={`Step ${idx + 1}: ${s.title}`}
+                        loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                       />
                       <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
@@ -212,13 +309,29 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                   </div>
 
                   <div className="lg:col-span-5 space-y-3.5">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                        {idx + 1}
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step {idx + 1}. {s.title}
-                      </h3>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                          {idx + 1}
+                        </span>
+                        <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                          <span className={currentColor.textClass}>Step {idx + 1}.</span> {s.title}
+                        </h3>
+                      </div>
+
+                      <button
+                        onClick={() => handleSpeakCard(idx, s.title, s.description, s.hotspot.detail)}
+                        aria-label={activeSpeakingIndex === idx ? "Stop step voiceover" : "Listen to step voiceover"}
+                        className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                          activeSpeakingIndex === idx
+                            ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                            : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                        }`}
+                        title={activeSpeakingIndex === idx ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                      >
+                        {activeSpeakingIndex === idx ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                        <span className="hidden sm:inline">{activeSpeakingIndex === idx ? "Stop" : "Listen"}</span>
+                      </button>
                     </div>
 
                     <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">

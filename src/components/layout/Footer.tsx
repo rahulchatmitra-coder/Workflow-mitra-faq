@@ -99,6 +99,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title="Official App Portal"
+                aria-label="Official App Portal"
               >
                 <Globe className="h-4 w-4" />
               </a>
@@ -106,6 +107,7 @@ export function Footer() {
                 href="https://app.workflowmitra.com/credentials"
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title="Developer API & Code"
+                aria-label="Developer API & Code"
               >
                 <Code2 className="h-4 w-4" />
               </a>
@@ -115,6 +117,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title="Community Chat"
+                aria-label="Community Chat"
               >
                 <MessageSquare className="h-4 w-4" />
               </a>
@@ -122,6 +125,7 @@ export function Footer() {
                 href="mailto:support@workflowmitra.com"
                 className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title="Support Email"
+                aria-label="Support Email"
               >
                 <Mail className="h-4 w-4" />
               </a>

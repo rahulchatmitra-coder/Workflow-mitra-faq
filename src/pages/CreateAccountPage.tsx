@@ -19,6 +19,8 @@ import {
   ZoomIn,
   ZoomOut,
   X,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -42,7 +44,7 @@ export interface OnboardingStep {
 
 export const onboardingGuide: OnboardingStep[] = [
   {
-    image: "/onboarding/step1.png",
+    image: "/onboarding/step1.webp",
     title: "Open Workflow Mitra",
     description:
       "Open your preferred web browser (Chrome, Safari, Edge, Firefox).\n\nType https://app.workflowmitra.com into the address bar and press Enter.",
@@ -52,12 +54,12 @@ export const onboardingGuide: OnboardingStep[] = [
       left: "24.5%",
       popoverTop: "38%",
       popoverLeft: "50%",
-      title: "Step 1: Open Address Bar 🌐",
+      title: "Step 1: Open Address Bar.",
       detail: "Type https://app.workflowmitra.com into your browser address bar and press Enter.",
     },
   },
   {
-    image: "/onboarding/step2.png",
+    image: "/onboarding/step2.webp",
     title: "Welcome to Workflow Mitra",
     description:
       "You are on the official Login page.\n\n• New users: Click 'Create Account' at the bottom of the sign-in form.\n• Existing users: Enter Email & Password and click Sign In.",
@@ -67,12 +69,12 @@ export const onboardingGuide: OnboardingStep[] = [
       left: "72%",
       popoverTop: "45%",
       popoverLeft: "35%",
-      title: "Step 2: Click 'Create Account' 👤",
+      title: "Step 2: Click 'Create Account'.",
       detail: "New users click the 'Create Account' link located at the bottom of the sign-in form.",
     },
   },
   {
-    image: "/onboarding/step3.png",
+    image: "/onboarding/step3.webp",
     title: "Create Your Account",
     description:
       "Complete the registration form:\n\n• Full Name: Enter the user's full name.\n• Email Address: Enter the user's email address.\n• Password: Create a strong password.\n• Confirm Password: Re-enter the same password.\n• Account Name: Enter a unique workspace name (e.g., 'myautomation123'). If unavailable, try another unique name by adding numbers.\n\nThen click Create Account",
@@ -82,12 +84,12 @@ export const onboardingGuide: OnboardingStep[] = [
       left: "64%",
       popoverTop: "42%",
       popoverLeft: "26%",
-      title: "Step 3: Registration Form 📝",
+      title: "Step 3: Registration Form.",
       detail: "Fill in your Email Address and Password.",
     },
   },
   {
-    image: "/onboarding/step4.png",
+    image: "/onboarding/step4.webp",
     title: "Verify Your Email",
     description:
       "Open your email inbox.\n\nClick the verification link sent by Workflow Mitra, then return to the Login screen.",
@@ -97,13 +99,13 @@ export const onboardingGuide: OnboardingStep[] = [
       left: "85%",
       popoverTop: "45%",
       popoverLeft: "50%",
-      title: "Step 4: Verify Email Inbox ✉️",
+      title: "Step 4: Verify Email Inbox.",
       detail: "Open your email inbox and click the verification link sent by Workflow Mitra.",
     },
   },
  
   {
-    image: "/onboarding/step6.png",
+    image: "/onboarding/step6.webp",
     title: "Welcome Dashboard",
     description:
       "Congratulations! You have successfully logged in.\n\nNow you can create workflows, connect apps, and build AI automations!",
@@ -113,7 +115,7 @@ export const onboardingGuide: OnboardingStep[] = [
       left: "25%",
       popoverTop: "45%",
       popoverLeft: "50%",
-      title: "Step 5: Welcome Dashboard 🎉",
+      title: "Step 5: Welcome Dashboard.",
       detail: "Congratulations! You are inside Workflow Mitra. Click '+ New Workflow' to start automating.",
     },
   },
@@ -127,9 +129,97 @@ export default function CreateAccountPage() {
   const [imageVersion, setImageVersion] = React.useState<number>(0);
   const [zoomScale, setZoomScale] = React.useState<number>(1);
   const [isTourActive, setIsTourActive] = React.useState(false);
+  const [activeSpeakingIndex, setActiveSpeakingIndex] = React.useState<number | null>(null);
 
   const totalSteps = onboardingGuide.length;
   const currentStep = onboardingGuide[currentStepIndex];
+
+  // TTS VOICE HELPERS - PRIORITIZING PROPER ENGLISH MALE VOICES
+  const getBestVoice = (): SpeechSynthesisVoice | null => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || voices.length === 0) return null;
+
+    const englishVoices = voices.filter((v) => v.lang.startsWith("en"));
+    if (englishVoices.length === 0) return voices[0];
+
+    // Priority 1: High-Quality English Male Voices (Microsoft Guy, Apple Daniel, Google Male, etc.)
+    const maleKeywords = [
+      "Guy",
+      "Daniel",
+      "George",
+      "Ryan",
+      "Christopher",
+      "James",
+      "David",
+      "Mark",
+      "Oliver",
+      "Arthur",
+      "Brian",
+      "Steffan",
+      "Male",
+      "Microsoft Guy",
+      "Google US English",
+    ];
+
+    const preferredMaleVoice = englishVoices.find((v) =>
+      maleKeywords.some((keyword) => v.name.toLowerCase().includes(keyword.toLowerCase()))
+    );
+
+    if (preferredMaleVoice) return preferredMaleVoice;
+
+    // Priority 2: Natural / Online English Voices
+    const naturalVoice = englishVoices.find(
+      (v) => v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Online")
+    );
+    if (naturalVoice) return naturalVoice;
+
+    // Priority 3: Fallback English (en-US / en-GB)
+    return (
+      englishVoices.find((v) => v.lang === "en-US" || v.lang === "en-GB") ||
+      englishVoices[0]
+    );
+  };
+
+  const formatTextForSpeech = (text: string): string => {
+    if (!text) return "";
+    return text
+      .replace(/https?:\/\/(www\.)?/gi, "")
+      .replace(/\.com/gi, " dot com")
+      .replace(/api/gi, "A P I")
+      .replace(/crm/gi, "C R M")
+      .replace(/•/g, ". ")
+      .replace(/[\n\r]+/g, ". ")
+      .replace(/[^\w\s.,'-]/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const handleSpeakStep = (stepIndex: number, stepTitle: string, stepDesc: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    if (activeSpeakingIndex === stepIndex) {
+      window.speechSynthesis.cancel();
+      setActiveSpeakingIndex(null);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const textToRead = formatTextForSpeech(`${stepTitle}. ${stepDesc}`);
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    const bestVoice = getBestVoice();
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
+    utterance.rate = 0.92;
+    utterance.pitch = 1.0;
+    utterance.onend = () => setActiveSpeakingIndex(null);
+    utterance.onerror = () => setActiveSpeakingIndex(null);
+
+    setActiveSpeakingIndex(stepIndex);
+    window.speechSynthesis.speak(utterance);
+  };
 
   const handleNextStep = () => {
     setCurrentStepIndex((prev) => (prev < totalSteps - 1 ? prev + 1 : prev));
@@ -166,7 +256,21 @@ export default function CreateAccountPage() {
 
   React.useEffect(() => {
     setZoomScale(1);
+    // Cancel speech when step changes
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setActiveSpeakingIndex(null);
+    }
   }, [currentStepIndex]);
+
+  // CLEANUP SPEECH ON UNMOUNT
+  React.useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   // ESCAPE KEY LISTENER TO CLOSE FULLSCREEN MODAL & TOUR
   React.useEffect(() => {
@@ -258,7 +362,7 @@ export default function CreateAccountPage() {
               </div>
 
               {/* STEP NAVIGATOR & DASHBOARD BUTTON */}
-              <div className="flex items-center gap-2 shrink-0 justify-end">
+              <div className="flex items-center gap-2 shrink-0">
                 {currentStepIndex === totalSteps - 1 ? (
                   <a
                     href="https://app.workflowmitra.com"
@@ -270,6 +374,20 @@ export default function CreateAccountPage() {
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 ) : null}
+
+                <button
+                  onClick={() => handleSpeakStep(currentStepIndex, currentStep.title, currentStep.description)}
+                  aria-label={activeSpeakingIndex === currentStepIndex ? "Stop step voiceover" : "Listen to step voiceover"}
+                  className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold transition-all cursor-pointer border ${
+                    activeSpeakingIndex === currentStepIndex
+                      ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                      : "border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                  }`}
+                  title={activeSpeakingIndex === currentStepIndex ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                >
+                  {activeSpeakingIndex === currentStepIndex ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                  <span className="hidden sm:inline">{activeSpeakingIndex === currentStepIndex ? "Stop" : "Listen"}</span>
+                </button>
 
                 <div className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-800 dark:bg-zinc-900 shrink-0">
                   <button
@@ -378,47 +496,48 @@ export default function CreateAccountPage() {
 
                     <button
                       onClick={() => setIsFullscreen(true)}
-                      className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2 py-1 text-xs text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
+                      className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
                       title="Click for Fullscreen"
                     >
                       <Maximize2 className="h-3 w-3" />
+                      <span className="hidden sm:inline text-[11px]">Fullscreen</span>
                     </button>
                   </div>
                 </div>
 
-                {/* SEAMLESS SCREENSHOT CONTAINER WITH NATIVE STEP POPOVER */}
+                {/* SCREENSHOT CONTAINER WITH HOTSPOT PIN */}
                 <div
-                  className="relative w-full aspect-[16/9] sm:aspect-[16/8.5] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
+                  className="relative w-full aspect-[16/10] max-h-[560px] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
                   onClick={() => setIsFullscreen(true)}
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={`${currentStepIndex}-${imageVersion}`}
+                      key={`${currentStepIndex}-${currentStep.image}-${imageVersion}`}
                       initial={{ opacity: 0, scale: zoomScale }}
                       animate={{ opacity: 1, scale: zoomScale }}
                       exit={{ opacity: 0, scale: zoomScale }}
                       transition={{ duration: 0.2 }}
                       className="relative h-full w-full origin-top transition-transform duration-200"
                     >
-                      {/* Replaced next/image with <img> - unoptimized equivalent */}
                       <img
-                        src={imageVersion ? `${currentStep.image}?v=${imageVersion}` : currentStep.image}
+                        src={currentStep.image}
                         alt={currentStep.title}
                         className="absolute inset-0 w-full h-full object-cover object-top"
-                        loading="eager"
                       />
                     </motion.div>
                   </AnimatePresence>
 
-                  {/* PULSING STEP HOTSPOT OVERLAY ON SCREENSHOT */}
-                  {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
+                  {/* HOTSPOT PIN ON SCREENSHOT */}
+                  {currentStep.hotspot.target === "image" && (
                     <div
-                      id={`hotspot-step-${currentStepIndex + 1}`}
-                      style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 z-30 group/hotspot cursor-pointer"
+                      className="absolute z-30 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/hotspot"
+                      style={{
+                        top: currentStep.hotspot.top,
+                        left: currentStep.hotspot.left,
+                      }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleStartTour(currentStepIndex);
+                        setIsTourActive(true);
                       }}
                     >
                       <span className="absolute -inset-1.5 rounded-full bg-zinc-400 opacity-80 animate-ping" />
@@ -445,7 +564,7 @@ export default function CreateAccountPage() {
                         className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-80 sm:w-[380px] rounded-3xl border-2 bg-white p-5 shadow-2xl dark:bg-zinc-950 text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
                         onClick={(e) => e.stopPropagation()}
                       >
-                        {/* POPOVER HEADER: STEP TITLE + CLOSE BUTTON */}
+                        {/* POPOVER HEADER: STEP TITLE + SPEAK & CLOSE BUTTONS */}
                         <div className="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
                           <div className="flex items-center gap-2">
                             <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
@@ -453,12 +572,29 @@ export default function CreateAccountPage() {
                               {currentStep.hotspot.title}
                             </h3>
                           </div>
-                          <button
-                            onClick={() => setIsTourActive(false)}
-                            className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
+
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={() => handleSpeakStep(currentStepIndex, currentStep.hotspot.title, currentStep.description)}
+                              aria-label={activeSpeakingIndex === currentStepIndex ? "Stop voiceover" : "Listen to step voiceover"}
+                              className={`rounded-full p-1 transition-colors cursor-pointer ${
+                                activeSpeakingIndex === currentStepIndex
+                                  ? `${currentColor.bgClass} text-white animate-pulse shadow-md`
+                                  : "text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white"
+                              }`}
+                              title={activeSpeakingIndex === currentStepIndex ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                            >
+                              {activeSpeakingIndex === currentStepIndex ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                            </button>
+
+                            <button
+                              onClick={() => setIsTourActive(false)}
+                              aria-label="Close step popover"
+                              className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          </div>
                         </div>
 
                         {/* POPOVER DESCRIPTION BODY */}
@@ -535,7 +671,7 @@ export default function CreateAccountPage() {
                 >
                   <div className="relative aspect-[16/10] w-full">
                     <img
-                      src="/onboarding/step1.png"
+                      src="/onboarding/step1.webp"
                       alt="Step 1: Navigate to Workflow Mitra Signup Page"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                     />
@@ -549,13 +685,29 @@ export default function CreateAccountPage() {
 
                 {/* POINT-WISE DETAILED GUIDE PANEL (5 COLUMNS) */}
                 <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                      1
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                      Step 1. Navigate to the Workflow Mitra Signup Page
-                    </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                        1
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                        Step 1. Navigate to the Workflow Mitra Signup Page
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => handleSpeakStep(0, "Step 1. Navigate to the Workflow Mitra Signup Page", "Open your web browser and navigate to the official Workflow Mitra portal. Open your preferred web browser. Click on the address bar at the top of your browser. Type https://app.workflowmitra.com and press Enter. Verify that the secure SSL lock icon is displayed in your browser address bar.")}
+                      aria-label={activeSpeakingIndex === 0 ? "Stop step voiceover" : "Listen to step voiceover"}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                        activeSpeakingIndex === 0
+                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={activeSpeakingIndex === 0 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                    >
+                      {activeSpeakingIndex === 0 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      <span className="hidden sm:inline">{activeSpeakingIndex === 0 ? "Stop" : "Listen"}</span>
+                    </button>
                   </div>
 
                   <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
@@ -598,7 +750,7 @@ export default function CreateAccountPage() {
                 >
                   <div className="relative aspect-[16/10] w-full">
                     <img
-                      src="/onboarding/step2.png"
+                      src="/onboarding/step2.webp"
                       alt="Step 2: Access Registration Form"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                     />
@@ -611,13 +763,29 @@ export default function CreateAccountPage() {
                 </div>
 
                 <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                      2
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                      Step 2. Access the Registration Form
-                    </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                        2
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                        Step 2. Access the Registration Form
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => handleSpeakStep(1, "Step 2. Access the Registration Form", "From the portal login screen, switch to the new account registration form. You will see the official Workflow Mitra Login Portal screen. Locate the Create Account link at the bottom of the sign in card. Click on Create Account to open the new user registration form.")}
+                      aria-label={activeSpeakingIndex === 1 ? "Stop step voiceover" : "Listen to step voiceover"}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                        activeSpeakingIndex === 1
+                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={activeSpeakingIndex === 1 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                    >
+                      {activeSpeakingIndex === 1 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      <span className="hidden sm:inline">{activeSpeakingIndex === 1 ? "Stop" : "Listen"}</span>
+                    </button>
                   </div>
 
                   <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
@@ -656,7 +824,7 @@ export default function CreateAccountPage() {
                 >
                   <div className="relative aspect-[16/10] w-full">
                     <img
-                      src="/onboarding/step3.png"
+                      src="/onboarding/step3.webp"
                       alt="Step 3: Fill in Account Information"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                     />
@@ -669,13 +837,29 @@ export default function CreateAccountPage() {
                 </div>
 
                 <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                      3
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                      Step 3. Fill in Account Details
-                    </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                        3
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                        Step 3. Fill in Account Details
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => handleSpeakStep(2, "Step 3. Fill in Account Details", "Complete the signup form fields with your details. Enter your full name and valid email address. Create a strong password. Enter a unique workspace name. Click the Create Account button to complete signup.")}
+                      aria-label={activeSpeakingIndex === 2 ? "Stop step voiceover" : "Listen to step voiceover"}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                        activeSpeakingIndex === 2
+                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={activeSpeakingIndex === 2 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                    >
+                      {activeSpeakingIndex === 2 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      <span className="hidden sm:inline">{activeSpeakingIndex === 2 ? "Stop" : "Listen"}</span>
+                    </button>
                   </div>
 
                   <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
@@ -718,7 +902,7 @@ export default function CreateAccountPage() {
                 >
                   <div className="relative aspect-[16/10] w-full">
                     <img
-                      src="/onboarding/step4.png"
+                      src="/onboarding/step4.webp"
                       alt="Step 4: Email Verification"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                     />
@@ -731,13 +915,29 @@ export default function CreateAccountPage() {
                 </div>
 
                 <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                      4
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                      Step 4. Verify Your Email Address
-                    </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                        4
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                        Step 4. Verify Your Email Address
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => handleSpeakStep(3, "Step 4. Verify Your Email Address", "Confirm your email ownership to activate your account. Open your email inbox. Locate the verification email sent by Workflow Mitra. Click the Verify Email link to confirm your registration.")}
+                      aria-label={activeSpeakingIndex === 3 ? "Stop step voiceover" : "Listen to step voiceover"}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                        activeSpeakingIndex === 3
+                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={activeSpeakingIndex === 3 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                    >
+                      {activeSpeakingIndex === 3 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      <span className="hidden sm:inline">{activeSpeakingIndex === 3 ? "Stop" : "Listen"}</span>
+                    </button>
                   </div>
 
                   <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
@@ -776,7 +976,7 @@ export default function CreateAccountPage() {
                 >
                   <div className="relative aspect-[16/10] w-full">
                     <img
-                      src="/onboarding/step6.png"
+                      src="/onboarding/step6.webp"
                       alt="Step 5: Sign In & Go to Dashboard"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
                     />
@@ -789,13 +989,29 @@ export default function CreateAccountPage() {
                 </div>
 
                 <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 ${currentColor.bgClass}`}>
-                      5
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                      Step 5. Sign In & Go to Dashboard
-                    </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                        5
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                        Step 5. Sign In & Go to Dashboard
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => handleSpeakStep(4, "Step 5. Sign In and Go to Dashboard", "Log in with your newly created credentials to access your dashboard. Return to the Workflow Mitra Sign In page. Enter your registered email address and password. Click Sign In to access your main automation dashboard.")}
+                      aria-label={activeSpeakingIndex === 4 ? "Stop step voiceover" : "Listen to step voiceover"}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                        activeSpeakingIndex === 4
+                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      }`}
+                      title={activeSpeakingIndex === 4 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                    >
+                      {activeSpeakingIndex === 4 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      <span className="hidden sm:inline">{activeSpeakingIndex === 4 ? "Stop" : "Listen"}</span>
+                    </button>
                   </div>
 
                   <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-4">
@@ -954,7 +1170,7 @@ export default function CreateAccountPage() {
                 </div>
               </div>
 
-              {/* MAIN FULLSCREEN SCREENSHOT DISPLAY AREA */}
+              {/* MAIN FULLSCREEN SCREENSHOT DISPLAY AREA - CLEAN VIEW WITHOUT PIN OR POPOVER */}
               <div className="relative flex-1 w-full mt-4 bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex items-center justify-center">
                 <motion.div
                   key={`fullscreen-${currentStepIndex}-${imageVersion}`}
@@ -970,99 +1186,6 @@ export default function CreateAccountPage() {
                     className="absolute inset-0 w-full h-full object-contain object-top"
                   />
                 </motion.div>
-
-                {/* PULSING STEP HOTSPOT OVERLAY INSIDE FULLSCREEN */}
-                {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
-                  <div
-                    id={`fullscreen-hotspot-step-${currentStepIndex + 1}`}
-                    style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleStartTour(currentStepIndex);
-                    }}
-                  >
-                    <span className="absolute -inset-2 rounded-full bg-zinc-400 opacity-80 animate-ping" />
-                    <span className="absolute -inset-1 rounded-full bg-zinc-500/50 animate-pulse" />
-
-                    <span className={`relative flex h-8 w-8 items-center justify-center rounded-full text-white font-black text-xs shadow-2xl border-2 border-white transition-transform hover:scale-110 ${currentColor.bgClass}`}>
-                      {currentStepIndex + 1}
-                    </span>
-                  </div>
-                )}
-
-                {/* NATIVE HIGH-QUALITY REACT STEP POPOVER CARD IN FULLSCREEN */}
-                <AnimatePresence>
-                  {isTourActive && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.92, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.92, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      style={{
-                        top: currentStep.hotspot.popoverTop || "45%",
-                        left: currentStep.hotspot.popoverLeft || "50%",
-                      }}
-                      className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-80 sm:w-[380px] rounded-3xl border-2 bg-white p-5 shadow-2xl dark:bg-zinc-950 text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {/* POPOVER HEADER: STEP TITLE + CLOSE BUTTON */}
-                      <div className="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                        <div className="flex items-center gap-2">
-                          <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
-                          <h3 className={`text-sm sm:text-base font-black leading-tight ${currentColor.textClass}`}>
-                            {currentStep.hotspot.title}
-                          </h3>
-                        </div>
-                        <button
-                          onClick={() => setIsTourActive(false)}
-                          className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      </div>
-
-                      {/* POPOVER DESCRIPTION BODY */}
-                      <div className="py-3 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
-                        {currentStep.description}
-                      </div>
-
-                      {/* POPOVER FOOTER: STEP INDICATOR + PREV/NEXT BUTTONS */}
-                      <div className="flex items-center justify-between pt-3 border-t border-zinc-100 dark:border-zinc-800">
-                        <span className="text-xs font-mono font-extrabold text-zinc-400">
-                          {currentStepIndex + 1} of {totalSteps}
-                        </span>
-
-                        <div className="flex items-center gap-2">
-                          {currentStepIndex > 0 && (
-                            <button
-                              onClick={handlePrevStep}
-                              className="rounded-xl border border-zinc-300 bg-zinc-100 px-3 py-1.5 text-xs font-extrabold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
-                            >
-                              ← Prev
-                            </button>
-                          )}
-
-                          {currentStepIndex < totalSteps - 1 ? (
-                            <button
-                              onClick={handleNextStep}
-                              className={`flex items-center gap-1 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                            >
-                              <span>Next Step →</span>
-                            </button>
-                          ) : (
-                            <button
-                              onClick={handleFinishTour}
-                              className={`flex items-center gap-1.5 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
-                            >
-                              <span>Go to Dashboard 🚀</span>
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </motion.div>
           )}

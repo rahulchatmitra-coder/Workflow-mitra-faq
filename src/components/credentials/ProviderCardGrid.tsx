@@ -186,6 +186,7 @@ export default function ProviderCardGrid({
           <input
             type="text"
             placeholder="Search provider (e.g. HubSpot, OpenAI)..."
+            aria-label="Search integration provider"
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
             className="w-full rounded-2xl border border-zinc-300 bg-zinc-50 pl-9 pr-4 py-2 text-xs font-semibold text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-white transition-all shadow-inner"
@@ -193,10 +194,11 @@ export default function ProviderCardGrid({
         </div>
       </div>
 
-      {/* CATEGORY FILTER TABS WITH SCROLL BUTTONS */}
-      <div className="relative flex items-center w-full">
+      {/* CATEGORY FILTER TABS WITH SMOOTH SCROLL BUTTONS */}
+      <div className="relative flex items-center group/scroll">
         <button
           onClick={() => scrollTabs("left")}
+          aria-label="Scroll category tabs left"
           className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 mr-2 z-10 transition-transform active:scale-95 cursor-pointer"
           title="Scroll Left"
         >
@@ -244,6 +246,7 @@ export default function ProviderCardGrid({
 
         <button
           onClick={() => scrollTabs("right")}
+          aria-label="Scroll category tabs right"
           className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 ml-2 z-10 transition-transform active:scale-95 cursor-pointer"
           title="Scroll Right"
         >

@@ -1,8 +1,8 @@
-// Metadata utility — Next.js Metadata type removed (not needed in Vite/React)
-// This helper is preserved for reference but not used in Vite since
-// react-helmet-async handles per-page metadata inline.
+// Metadata utility for generating consistent meta tags across pages
+// Uses environment variables for configuration
 
-const SITE_URL = "https://workflowmitra-docs.vercel.app";
+const SITE_URL = import.meta.env.VITE_APP_URL || "https://workflowmitra-docs.vercel.app";
+const APP_URL = import.meta.env.VITE_APP_MAIN_URL || "https://app.workflowmitra.com";
 
 export interface DocMetadata {
   title: string;
@@ -37,3 +37,5 @@ export function generateDocMetadata({
     type,
   };
 }
+
+export { SITE_URL, APP_URL };

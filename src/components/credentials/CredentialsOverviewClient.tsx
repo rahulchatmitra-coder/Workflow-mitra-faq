@@ -15,7 +15,7 @@ import { OnboardingStep } from "@/data/credentials-data";
 const credentialsSteps: OnboardingStep[] = [
  
   {
-    image: "/credentials/step2.png",
+    image: "/credentials/step2.webp",
     title: "Select Service Provider",
     description:
       "Choose your target integration provider from the 35+ supported credentials modal list:\n\n• CRM & Sales: HubSpot, Zoho CRM, Pipedrive, Zoho Books\n• AI Models: OpenAI GPT-4o, Claude, Google Gemini, Groq, Ollama\n• Communication: WhatsApp Cloud API, Slack, Telegram, SMTP Mail\n• E-Commerce: Shopify, WooCommerce, Shiprocket\n• Meetings: Zoom, Cal.com, Whereby, Calendly, MS Teams\n• Databases & Support: PostgreSQL, MySQL, MongoDB, Redis, Zendesk, Intercom",
@@ -26,13 +26,13 @@ const credentialsSteps: OnboardingStep[] = [
       left: "18%",
       popoverTop: "65%",
       popoverLeft: "45%",
-      title: "Step 3: Select Service Provider (35+) 🚀",
+      title: "Step 3: Select Service Provider (35+)",
       detail:
         "Scroll through the 35+ supported integrations modal list and click your desired service provider to generate API keys.",
     },
   },
   {
-    image: "/credentials/step3.png",
+    image: "/credentials/step3.webp",
     title: "Enter API Key & Save",
     description:
       "Enter your API key or secret token. All credentials are encrypted at rest using AES-256.",
@@ -43,7 +43,7 @@ const credentialsSteps: OnboardingStep[] = [
       left: "92%",
       popoverTop: "50%",
       popoverLeft: "18%",
-      title: "Step 2: Select New Credential🔑",
+      title: "Step 2: Select New Credential",
       detail: "Input your token and click 'Save Credential'.",
     },
   },
@@ -86,7 +86,7 @@ export default function CredentialsOverviewClient() {
               <Sparkles className={`h-3.5 w-3.5 ${currentColor.textClass}`} /> 10+ Third-Party Integrations Guide
             </span>
             <h1 className="mt-1.5 text-xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-              How to Create &amp; Manage Credentials in Workflow Mitra
+              How to Create &amp; Manage <span className={currentColor.textClass}>Credentials</span> in Workflow Mitra
             </h1>
             <p className="mt-1 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">
               Connect HubSpot, OpenAI, Claude, Slack, Telegram, Zoho CRM, Shopify, and 10+ integrations securely.

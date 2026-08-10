@@ -2,7 +2,7 @@
 
 A state-of-the-art, ultra-responsive Help Center & Visual Automation Canvas documentation website built for **Workflow Mitra**.
 
-Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**, **Framer Motion**, **Driver.js**, **Lucide Icons**, and **Next-Themes**.
+Built with **Vite 6**, **React 19**, **React Router 7**, **TypeScript**, **Tailwind CSS v4**, **Framer Motion**, **Driver.js**, **Lucide Icons**, and **Next-Themes**.
 
 ---
 
@@ -39,25 +39,31 @@ Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Tailwind
 
 ## 🛠 Tech Stack
 
-- **Framework**: Next.js 16.3 (App Router, React 19, TypeScript)
+- **Framework**: Vite 6.4 + React 19 + React Router 7.6
+- **Language**: TypeScript 5
 - **Styling**: Tailwind CSS v4, Lucide React icons, `clsx`, `tailwind-merge`
-- **Animations**: Framer Motion
-- **Guided Tour**: Driver.js
-- **Dark Mode**: `next-themes`
+- **Animations**: Framer Motion 13.0
+- **Guided Tour**: Driver.js 1.8
+- **Dark Mode**: next-themes 0.4.6
+- **Search**: Fuse.js 7.5
+- **SEO**: react-helmet-async 3.0
 
 ---
 
 ## 📂 Project Directory Structure
 
 ```text
-Faq-workflow_mitra/
+Workflow-mitra-faq/
  ┣ 📂 src/                                 # Main Source Code Directory
- ┃ ┣ 📂 app/                              # Next.js App Router Pages & Layouts
- ┃ ┃ ┣ 📄 page.tsx                        # Main Home Page Layout
- ┃ ┃ ┣ 📄 layout.tsx                      # Root HTML Shell & Theme/Color Providers
- ┃ ┃ ┣ 📄 globals.css                     # Tailwind CSS, Color Variables & Smooth Scroll
- ┃ ┃ ┣ 📄 robots.ts                       # SEO Engine Robots rules
- ┃ ┃ ┗ 📄 sitemap.ts                      # SEO Dynamic Sitemap Generator
+ ┃ ┣ 📂 pages/                            # React Router Page Components
+ ┃ ┃ ┣ 📄 HomePage.tsx                    # Main Home Page
+ ┃ ┃ ┣ 📄 CredentialsPage.tsx             # Credentials Overview
+ ┃ ┃ ┣ 📄 CredentialProviderPage.tsx      # Individual Provider Guide
+ ┃ ┃ ┣ 📄 CreateAccountPage.tsx           # Account Creation Guide
+ ┃ ┃ ┗ 📄 NotFoundPage.tsx                # 404 Error Page
+ ┃ ┣ 📄 App.tsx                           # Main App Component with Routes
+ ┃ ┣ 📄 main.tsx                          # App Entry Point
+ ┃ ┣ 📄 index.css                         # Global Styles & Tailwind
  ┃ ┣ 📂 components/                       # Modular UI Components
  ┃ ┃ ┣ 📂 docs/                           # Core Feature Components
  ┃ ┃ ┃ ┣ 📄 PopularCategoryGrid.tsx       # 4 AI FAQ Cards & Reader Modal
@@ -65,10 +71,10 @@ Faq-workflow_mitra/
  ┃ ┃ ┃ ┗ 📄 DriverTourButton.tsx          # Guided Tour Launcher Button
  ┃ ┃ ┣ 📂 common/                         # Interactive Widgets
  ┃ ┃ ┃ ┣ 📄 TextColorPicker.tsx           # Bottom-Right Spinning Color Picker (🎨)
- ┃ ┃ ┃ ┣ 📄 CelebrationModal.tsx          # Driver.js Tour Finish Celebration Popup
+ ┃ ┃ ┃ ┣ 📄 ErrorBoundary.tsx             # Error Handling Component
  ┃ ┃ ┃ ┣ 📄 SearchModal.tsx               # Quick Search Dialog (Ctrl+K)
  ┃ ┃ ┃ ┣ 📄 ThemeToggle.tsx               # Light/Dark Theme Switcher
- ┃ ┃ ┃ ┗ 📄 ThemeProvider.tsx              # Next-Themes Wrapper
+ ┃ ┃ ┃ ┗ 📄 ThemeProvider.tsx             # Next-Themes Wrapper
  ┃ ┃ ┣ 📂 layout/                         # Structural Layout
  ┃ ┃ ┃ ┣ 📄 Navbar.tsx                    # Header with Circular WM Logo Badge
  ┃ ┃ ┃ ┗ 📄 Footer.tsx                    # Footer with External Links
@@ -77,11 +83,23 @@ Faq-workflow_mitra/
  ┃ ┃   ┗ 📄 badge.tsx                     # Category Badges
  ┃ ┣ 📂 context/                          # State Context
  ┃ ┃ ┗ 📄 TextColorContext.tsx            # Accent Color State Management
+ ┃ ┣ 📂 data/                             # Static Data Files
+ ┃ ┃ ┣ 📄 credentials-data.ts             # All Credential Provider Data
+ ┃ ┃ ┣ 📄 faq-data.ts                     # FAQ Content
+ ┃ ┃ ┗ 📄 home-data.ts                    # Homepage Content
+ ┃ ┣ 📂 lib/                              # Utility Functions
+ ┃ ┃ ┗ 📄 metadata.ts                     # SEO Metadata Helpers
  ┃ ┗ 📂 hooks/                            # Custom React Hooks
  ┃   ┗ 📄 use-driver-tour.ts              # Driver.js Tour Hook & Callbacks
- ┣ 📄 next.config.ts                      # Next.js Config (allowedDevOrigins for LAN IP)
+ ┣ 📂 public/                             # Static Assets
+ ┃ ┣ 📄 sitemap.xml                       # SEO Sitemap (40+ pages)
+ ┃ ┣ 📄 robots.txt                        # Search Engine Rules
+ ┃ ┗ 📂 images/                           # Images & Screenshots
+ ┣ 📄 index.html                          # HTML Entry Point
+ ┣ 📄 vite.config.ts                      # Vite Build Config
  ┣ 📄 package.json                        # Dependencies & Scripts
  ┣ 📄 tsconfig.json                       # TypeScript Compiler Config
+ ┣ 📄 .env.example                        # Environment Variables Template
  ┗ 📄 README.md                           # Documentation Overview
 ```
 

@@ -11,6 +11,8 @@ import {
   Lock,
   X,
   CheckCircle2,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { useTextColor } from "@/context/TextColorContext";
 import { OnboardingStep } from "@/data/credentials-data";
@@ -48,6 +50,108 @@ export default function InteractivePlayer({
   const currentStep = steps[currentStepIndex] || steps[0];
   const totalSteps = steps.length;
   const addressBarUrl = currentStep.addressUrl || defaultAddressUrl;
+
+  const [isSpeaking, setIsSpeaking] = React.useState<boolean>(false);
+
+  // Stop speech synthesis on step change or unmount
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+  }, [currentStepIndex]);
+
+  const getBestVoice = (): SpeechSynthesisVoice | null => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || voices.length === 0) return null;
+
+    const englishVoices = voices.filter((v) => v.lang.startsWith("en"));
+    if (englishVoices.length === 0) return voices[0];
+
+    // Priority 1: High-Quality English Male Voices (Microsoft Guy, Apple Daniel, Google Male, etc.)
+    const maleKeywords = [
+      "Guy",
+      "Daniel",
+      "George",
+      "Ryan",
+      "Christopher",
+      "James",
+      "David",
+      "Mark",
+      "Oliver",
+      "Arthur",
+      "Brian",
+      "Steffan",
+      "Male",
+      "Microsoft Guy",
+      "Google US English",
+    ];
+
+    const preferredMaleVoice = englishVoices.find((v) =>
+      maleKeywords.some((keyword) => v.name.toLowerCase().includes(keyword.toLowerCase()))
+    );
+
+    if (preferredMaleVoice) return preferredMaleVoice;
+
+    const naturalVoice = englishVoices.find(
+      (v) => v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Online")
+    );
+    if (naturalVoice) return naturalVoice;
+
+    return (
+      englishVoices.find((v) => v.lang === "en-US" || v.lang === "en-GB") ||
+      englishVoices[0]
+    );
+  };
+
+  const formatTextForSpeech = (text: string): string => {
+    if (!text) return "";
+    return text
+      .replace(/https?:\/\/(www\.)?/gi, "")
+      .replace(/\.com/gi, " dot com")
+      .replace(/\.org/gi, " dot org")
+      .replace(/api/gi, "A P I")
+      .replace(/crm/gi, "C R M")
+      .replace(/oauth/gi, "O Auth")
+      .replace(/aes-256/gi, "A E S 256")
+      .replace(/•/g, ". ")
+      .replace(/[\n\r]+/g, ". ")
+      .replace(/[^\w\s.,'-]/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const handleSpeakStep = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const rawTitle = (currentStep.hotspot.title || currentStep.title || "").replace(/Step \d+:/i, "");
+    const rawDesc = currentStep.description || "";
+    const rawDetail = currentStep.hotspot.detail || "";
+
+    const textToRead = formatTextForSpeech(`Step ${currentStepIndex + 1}. ${rawTitle}. ${rawDesc}. ${rawDetail}`);
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    const bestVoice = getBestVoice();
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
+    utterance.rate = 0.92; // Slightly calmer, ultra-readable pace
+    utterance.pitch = 1.0;
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    setIsSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
 
   // Esc key listener to exit fullscreen
   React.useEffect(() => {
@@ -113,6 +217,20 @@ export default function InteractivePlayer({
 
         {/* STEP NAVIGATOR */}
         <div className="flex items-center gap-2 shrink-0 justify-end">
+          <button
+            onClick={handleSpeakStep}
+            aria-label={isSpeaking ? "Stop voiceover" : "Listen to step voiceover"}
+            className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold transition-all cursor-pointer border ${
+              isSpeaking
+                ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                : "border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            }`}
+            title={isSpeaking ? "Stop Voiceover" : "Listen to Step Voiceover"}
+          >
+            {isSpeaking ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+            <span className="hidden sm:inline">{isSpeaking ? "Stop" : "Listen"}</span>
+          </button>
+
           <div className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-800 dark:bg-zinc-900 shrink-0">
             <button
               onClick={onPrev}
@@ -188,6 +306,7 @@ export default function InteractivePlayer({
                 <button
                   onClick={handleZoomOut}
                   disabled={zoomLevel <= 80}
+                  aria-label="Zoom Out"
                   className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                   title="Zoom Out (-)"
                 >
@@ -196,6 +315,7 @@ export default function InteractivePlayer({
 
                 <button
                   onClick={() => setZoomLevel(100)}
+                  aria-label="Reset Zoom to 100%"
                   className={`px-1.5 py-0.5 text-[10px] font-mono font-extrabold ${currentColor.textClass} hover:opacity-80 transition-colors cursor-pointer`}
                   title="Reset Zoom (100%)"
                 >
@@ -205,6 +325,7 @@ export default function InteractivePlayer({
                 <button
                   onClick={handleZoomIn}
                   disabled={zoomLevel >= 200}
+                  aria-label="Zoom In"
                   className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                   title="Zoom In (+)"
                 >
@@ -214,6 +335,7 @@ export default function InteractivePlayer({
 
               <button
                 onClick={() => setIsFullscreen(true)}
+                aria-label="Toggle Fullscreen Lightbox"
                 className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
                 title="Click for Fullscreen"
               >
@@ -240,6 +362,9 @@ export default function InteractivePlayer({
                 <img
                   src={currentStep.image}
                   alt={currentStep.title}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </motion.div>
@@ -278,25 +403,42 @@ export default function InteractivePlayer({
                     top: safePopoverStyle.top,
                     left: safePopoverStyle.left,
                   }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-[90%] max-w-[340px] sm:max-w-[380px] rounded-3xl border-2 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl p-4 sm:p-5 shadow-2xl text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-[90%] max-w-[330px] sm:max-w-[380px] rounded-3xl border-2 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl p-4 sm:p-4.5 shadow-2xl text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
                     <div className="flex items-center gap-2">
                       <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
                       <h3 className={`text-xs sm:text-sm font-black leading-tight ${currentColor.textClass}`}>
                         {currentStep.hotspot.title}
                       </h3>
                     </div>
-                    <button
-                      onClick={() => setIsTourActive(false)}
-                      className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
+
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={handleSpeakStep}
+                        aria-label={isSpeaking ? "Stop voiceover" : "Listen to step voiceover"}
+                        className={`rounded-full p-1 transition-colors cursor-pointer ${
+                          isSpeaking
+                            ? `${currentColor.bgClass} text-white animate-pulse shadow-md`
+                            : "text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white"
+                        }`}
+                        title={isSpeaking ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                      >
+                        {isSpeaking ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      </button>
+
+                      <button
+                        onClick={() => setIsTourActive(false)}
+                        aria-label="Close step popover"
+                        className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="py-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-48 sm:max-h-56 overflow-y-auto scrollbar-thin pr-1">
+                  <div className="py-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-48 sm:max-h-56 overflow-y-auto scrollbar-thin pr-1">
                     {currentStep.description}
                   </div>
 
@@ -393,32 +535,13 @@ export default function InteractivePlayer({
               </button>
             </div>
 
-            {/* LIGHTBOX SCREENSHOT WITH PIN */}
+            {/* LIGHTBOX SCREENSHOT - CLEAN VIEW WITHOUT PIN OVERLAY */}
             <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
               <img
                 src={currentStep.image}
                 alt={currentStep.title}
                 className="absolute inset-0 w-full h-full object-contain"
               />
-
-              {/* PIN ON LIGHTBOX SCREENSHOT */}
-              {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
-                <div
-                  className="absolute z-30 transition-all duration-300"
-                  style={{
-                    top: currentStep.hotspot.top,
-                    left: currentStep.hotspot.left,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <div className="relative flex items-center justify-center">
-                    <span className="absolute inline-flex h-12 w-12 animate-ping rounded-full bg-zinc-400 opacity-80" />
-                    <span className={`relative flex h-9 w-9 items-center justify-center rounded-full font-black text-xs shadow-2xl border-2 border-white ring-4 ring-zinc-500/40 ${currentColor.bgClass}`}>
-                      {currentStepIndex + 1}
-                    </span>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* FLOATING BOTTOM STEPS CONTROLLER PANEL (NEVER CLIPS OFF SCREEN) */}

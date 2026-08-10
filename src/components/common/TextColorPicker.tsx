@@ -15,6 +15,7 @@ export function TextColorPicker() {
       <div className="fixed bottom-8 right-6 z-40">
         <button
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Change text and accent color theme"
           className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-white shadow-2xl border border-zinc-700 dark:bg-white dark:text-zinc-900 dark:border-zinc-200 hover:scale-110 transition-all duration-300 cursor-pointer"
           title="Change Text & Accent Colors"
         >
@@ -61,6 +62,7 @@ export function TextColorPicker() {
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
+                  aria-label="Close color theme picker"
                   className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
                 >
                   <X className="h-4 w-4" />
