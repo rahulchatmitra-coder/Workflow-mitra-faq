@@ -185,7 +185,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
             rel="noreferrer"
             className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-extrabold text-white shadow-sm transition-all ${currentColor.bgClass}`}
           >
-            <span>Open {provider.name}</span>
+            <span>Open {provider.name.split(',')[0].replace(/\s*\([^)]*\)/g, '').trim()} API</span>
             <ExternalLink className="h-3 w-3" />
           </a>
         </div>

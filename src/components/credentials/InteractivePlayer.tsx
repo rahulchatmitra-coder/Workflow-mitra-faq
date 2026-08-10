@@ -481,7 +481,14 @@ export default function InteractivePlayer({
                           rel="noreferrer"
                           className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
                         >
-                          <span>{customButtonText || `Open ${providerName || "App"} 🚀`}</span>
+                          <span>
+                            {customButtonText ||
+                              `Open ${
+                                providerName
+                                  ? providerName.split(',')[0].replace(/\s*\([^)]*\)/g, '').trim()
+                                  : "App"
+                              } API`}
+                          </span>
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       ) : (
