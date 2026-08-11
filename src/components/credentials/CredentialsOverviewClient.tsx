@@ -22,11 +22,11 @@ const credentialsSteps: OnboardingStep[] = [
     addressUrl: "https://app.workflowmitra.com/credentials",
     hotspot: {
       target: "image" as const,
-      top: "50%",
-      left: "18%",
+      top: "47%",
+      left: "13%",
       popoverTop: "65%",
       popoverLeft: "45%",
-      title: "Step 3: Select Service Provider (35+)",
+      title: "Step 1: Select Service Provider (35+)",
       detail:
         "Scroll through the 35+ supported integrations modal list and click your desired service provider to generate API keys.",
     },

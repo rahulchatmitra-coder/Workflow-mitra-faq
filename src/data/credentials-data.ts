@@ -3255,7 +3255,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts",
     steps: [
       {
-        image: "/credentials/step1.webp",
+        image: "/credentials/Google_Sheet/step4.png",
         title: "Create Service Account",
         description: "In Google Cloud Console -> IAM & Admin -> Service Accounts -> Create Service Account.",
         addressUrl: "https://console.cloud.google.com",
