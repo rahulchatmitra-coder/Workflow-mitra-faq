@@ -105,6 +105,7 @@ export default function InteractivePlayer({
   const formatTextForSpeech = (text: string): string => {
     if (!text) return "";
     return text
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
       .replace(/https?:\/\/(www\.)?/gi, "")
       .replace(/\.com/gi, " dot com")
       .replace(/\.org/gi, " dot org")
@@ -117,6 +118,56 @@ export default function InteractivePlayer({
       .replace(/[^\w\s.,'-]/gi, " ")
       .replace(/\s+/g, " ")
       .trim();
+  };
+
+  const renderFormattedDescription = (text: string) => {
+    if (!text) return null;
+    const parts: React.ReactNode[] = [];
+    const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s,\)]+)/g;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = linkRegex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+      if (match[1] && match[2]) {
+        parts.push(
+          <a
+            key={`md-link-${match.index}`}
+            href={match[2]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md border border-indigo-200 dark:border-indigo-800 shadow-2xs mx-1 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span>{match[1]}</span>
+            <ExternalLink className="h-3 w-3 inline" />
+          </a>
+        );
+      } else if (match[3]) {
+        const url = match[3];
+        parts.push(
+          <a
+            key={`raw-link-${match.index}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-semibold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer break-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {url}
+          </a>
+        );
+      }
+      lastIndex = linkRegex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts;
   };
 
   const handleSpeakStep = (e?: React.MouseEvent) => {
@@ -305,7 +356,7 @@ export default function InteractivePlayer({
 
           {/* STEP DESCRIPTION */}
           <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line bg-white dark:bg-zinc-950 p-3.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs max-h-48 overflow-y-auto scrollbar-thin">
-            {currentStep.description}
+            {renderFormattedDescription(currentStep.description)}
           </div>
 
           {/* CELEBRATORY COMPLETION BANNER ON LAST STEP */}
