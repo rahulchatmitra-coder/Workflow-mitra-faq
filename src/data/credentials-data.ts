@@ -1820,7 +1820,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://api-console.zoho.com",
     steps: [
       {
-        image: "/credentials/zoho crm/image.png",
+        image: "/credentials/zoho crm/step1.png",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1835,7 +1835,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/image.png",
+        image: "/credentials/zoho crm/step1.png",
         title: "Select Zoho CRM Provider",
         description: "Navigate to https://app.workflowmitra.com/credentials, click '+ New Credential' at the top right, and select 'Zoho CRM' from the CRM & Sales provider list.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1850,7 +1850,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step1.png",
+        image: "/credentials/zoho crm/step2.png",
         title: "View Zoho CRM Credential Form",
         description: "View the Zoho CRM credential form requiring your Credential Name, OAuth access token, and API domain (e.g., https://www.zohoapis.in).",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1865,7 +1865,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step2.png",
+        image: "/credentials/zoho crm/step3.png",
         title: "Search for Zoho API Console",
         description: "Open a new browser tab, search for 'zoho api console' on Google or navigate to https://api-console.zoho.com, and click on the official Zoho API Console link.",
         addressUrl: "https://api-console.zoho.com",
@@ -1880,7 +1880,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step3.png",
+        image: "/credentials/zoho crm/step4.png",
         title: "Sign in to Zoho Accounts",
         description: "Enter your registered Zoho account email address or mobile number and click 'Next' to log in to your Zoho developer account.",
         addressUrl: "https://accounts.zoho.com/signin",
@@ -1895,7 +1895,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step4.png",
+        image: "/credentials/zoho crm/step5.png",
         title: "Welcome to API Console & Click GET STARTED",
         description: "On the Zoho API Console welcome page, click the blue 'GET STARTED' button to create your OAuth application credentials.",
         addressUrl: "https://api-console.zoho.com",
@@ -1910,7 +1910,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step5.png",
+        image: "/credentials/zoho crm/step6.png",
         title: "Select Self Client & Click CREATE NOW",
         description: "From the client application types, locate the 'Self Client' option (designed for server-to-server API integrations) and click 'CREATE NOW'.",
         addressUrl: "https://api-console.zoho.com",
@@ -1925,7 +1925,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step6.png",
+        image: "/credentials/zoho crm/step7.png",
         title: "Click CREATE on Self Client Dialog",
         description: "In the 'Create New Client' dialog with 'Self client' selected as the Client Type, click the blue 'CREATE' button.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -1940,7 +1940,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step7.png",
+        image: "/credentials/zoho crm/step8.png",
         title: "Confirm Enable Self-Client",
         description: "When prompted with 'Are you sure to enable self-client?', click the blue 'OK' button to confirm and proceed.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -1955,7 +1955,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step8.png",
+        image: "/credentials/zoho crm/step9.png",
         title: "Configure Scopes & Code Expiry",
         description: "In the Generate Code tab, enter Scope: 'ZohoCRM.modules.ALL,ZohoCRM.users.READ', select Code expiry duration (e.g. 10 minutes), type Description 'workflow mitra access token', and click 'CREATE'.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -1970,7 +1970,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step9.png",
+        image: "/credentials/zoho crm/step10.png",
         title: "Select CRM Production Organization",
         description: "Under the Select Portal section, choose the 'CRM' tab on the left and select your Production organization portal radio button (e.g. Bhagirath).",
         addressUrl: "https://api-console.zoho.com/client",
@@ -1985,7 +1985,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step10.png",
+        image: "/credentials/zoho crm/step11.png",
         title: "Click CREATE to Generate Authorization Code",
         description: "After selecting your CRM organization portal, click the blue 'CREATE' button at the bottom left to generate the authorization code.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2000,7 +2000,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step11.png",
+        image: "/credentials/zoho crm/step12.png",
         title: "Copy Generated OAuth Authorization Code",
         description: "In the 'Generated Code' modal dialog, click the blue 'COPY' button to copy your secret OAuth authorization code to your clipboard.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2015,7 +2015,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step12.png",
+        image: "/credentials/zoho crm/step13.png",
         title: "Paste Token & Save Zoho CRM Credential",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'zoho'), paste your copied OAuth access token, confirm your API domain (https://www.zohoapis.in), and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2206,33 +2206,33 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://admin.shopify.com",
     steps: [
       {
-        image: "/credentials/step1.webp",
-        title: "Open Shopify Admin Dashboard",
-        description: "Navigate to your Shopify admin store panel at admin.shopify.com.",
-        addressUrl: "https://admin.shopify.com",
+        image: "/credentials/shopify/step1.png",
+        title: "Open Workflow Mitra & Click + New Credential",
+        description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
+        addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
           target: "image",
-          top: "4.2%",
-          left: "24.5%",
-          popoverTop: "38%",
-          popoverLeft: "50%",
-          title: "Step 1: Open Shopify Admin 🛒",
-          detail: "Go to Settings -> Apps and sales channels.",
+          top: "19%",
+          left: "91%",
+          popoverTop: "35%",
+          popoverLeft: "25%",
+          title: "Step 1: Click + New Credential",
+          detail: "Click '+ New Credential' button to open provider modal.",
         },
       },
       {
-        image: "/credentials/step1.webp",
-        title: "Develop Custom App",
-        description: "Click 'Develop apps' -> 'Create an app'. Name it 'Workflow Mitra'.",
-        addressUrl: "https://admin.shopify.com",
+        image: "/credentials/shopify/step1.png",
+        title: "Select Zoho CRM Provider",
+        description: "Navigate to https://app.workflowmitra.com/credentials, click '+ New Credential' at the top right, and select 'Zoho CRM' from the CRM & Sales provider list.",
+        addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
           target: "image",
-          top: "72%",
-          left: "80%",
-          popoverTop: "45%",
-          popoverLeft: "35%",
-          title: "Step 2: Create Custom App 🛍️",
-          detail: "Configure Admin API scopes.",
+          top: "34%",
+          left: "68%",
+          popoverTop: "35%",
+          popoverLeft: "25%",
+          title: "Step 2: Select Zoho CRM Provider",
+          detail: "Click 'Zoho CRM' from the New Credential provider dialog.",
         },
       },
       {
