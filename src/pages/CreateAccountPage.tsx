@@ -567,14 +567,15 @@ export default function CreateAccountPage() {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
+                      {/* HIGH-CONTRAST ZOOM CONTROLS */}
                       <div
-                        className="flex items-center gap-0.5 rounded-lg border border-zinc-800 bg-zinc-950 p-0.5 text-xs text-zinc-300 shadow-inner"
+                        className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-1 py-0.5 text-xs shadow-inner"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <button
                           onClick={handleZoomOut}
                           disabled={zoomScale <= 0.8}
-                          className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                          className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                           title="Zoom Out (-)"
                         >
                           <ZoomOut className="h-3 w-3" />
@@ -582,8 +583,8 @@ export default function CreateAccountPage() {
 
                         <button
                           onClick={handleResetZoom}
-                          className={`px-1.5 py-0.5 text-[10px] font-mono font-extrabold ${currentColor.textClass} hover:opacity-80 transition-colors cursor-pointer`}
-                          title="Reset Zoom (100%)"
+                          className="px-2 py-0.5 text-xs font-mono font-bold text-white hover:text-zinc-200 transition-colors cursor-pointer bg-zinc-900/80 rounded border border-zinc-700"
+                          title="Click to Reset Zoom (100%)"
                         >
                           {Math.round(zoomScale * 100)}%
                         </button>
@@ -591,29 +592,17 @@ export default function CreateAccountPage() {
                         <button
                           onClick={handleZoomIn}
                           disabled={zoomScale >= 2.2}
-                          className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                          className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                           title="Zoom In (+)"
                         >
                           <ZoomIn className="h-3 w-3" />
                         </button>
                       </div>
-
-                      <button
-                        onClick={() => setIsFullscreen(true)}
-                        className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
-                        title="Click for Fullscreen"
-                      >
-                        <Maximize2 className="h-3 w-3" />
-                        <span className="hidden sm:inline text-[11px]">Fullscreen</span>
-                      </button>
                     </div>
                   </div>
 
-                  {/* SCREENSHOT CONTAINER WITH HOTSPOT PIN ONLY */}
-                  <div
-                    className="relative w-full aspect-[16/10] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
-                    onClick={() => setIsFullscreen(true)}
-                  >
+                  {/* SCREENSHOT CONTAINER WITH IN-PLACE ZOOM & PIN (NO FULLSCREEN POPUP) */}
+                  <div className="relative w-full aspect-[16/10] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={`${currentStepIndex}-${currentStep.image}-${imageVersion}`}
@@ -631,7 +620,7 @@ export default function CreateAccountPage() {
                       </motion.div>
                     </AnimatePresence>
 
-                    {/* INTERACTIVE LABAK JABAK BLINKING HOTSPOT PIN ON SCREENSHOT */}
+                    {/* PRETTY, SLEEK & AESTHETIC INTERACTIVE HOTSPOT PIN WITH ROUND-ROUND ORBIT */}
                     {currentStep.hotspot.target === "image" && (
                       <motion.div
                         className="absolute z-30 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/hotspot select-none"
@@ -639,8 +628,8 @@ export default function CreateAccountPage() {
                           top: currentStep.hotspot.top,
                           left: currentStep.hotspot.left,
                         }}
-                        whileHover={{ scale: 1.25, transition: { duration: 0.15 } }}
-                        whileTap={{ scale: 0.8 }}
+                        whileHover={{ scale: 1.3, transition: { duration: 0.15 } }}
+                        whileTap={{ scale: 0.82 }}
                         onClick={(e) => {
                           e.stopPropagation();
                           if (currentStepIndex < totalSteps - 1) {
@@ -649,15 +638,39 @@ export default function CreateAccountPage() {
                             setCurrentStepIndex(0);
                           }
                         }}
-                        title={`Click to go to Step ${currentStepIndex < totalSteps - 1 ? currentStepIndex + 2 : 1}`}
+                        title={`Click here to proceed (${currentStep.hotspot.title || currentStep.title})`}
                       >
-                        {/* SUBTLE CLEAN AMBIENT GLOW HALO */}
-                        <span className="absolute -inset-1 rounded-full bg-white/50 blur-xs animate-pulse" />
+                        {/* 1. DREAMY SOFT AMBIENT GLOW AURA */}
+                        <motion.span
+                          className="absolute -inset-2.5 rounded-full bg-indigo-500/25 blur-sm pointer-events-none"
+                          animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.2, 0.6] }}
+                          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                        />
 
-                        {/* SIMPLE CLEAN PIN BADGE */}
-                        <span className={`relative flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-white font-black text-[11px] sm:text-xs border-2 border-white dark:border-zinc-950 shadow-[0_0_10px_rgba(255,255,255,0.8)] ${currentColor.bgClass}`}>
-                          {currentStepIndex + 1}
-                        </span>
+                        {/* 2. SILKY EXPANDING RIPPLE WAVE */}
+                        <motion.span
+                          className="absolute -inset-3 rounded-full border border-indigo-400/60 shadow-[0_0_10px_rgba(99,102,241,0.4)] pointer-events-none"
+                          animate={{ scale: [1, 1.65, 1], opacity: [0.8, 0, 0.8] }}
+                          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                        />
+
+                        {/* 3. SMOOTH ROTATING ROUND-ROUND ORBIT RING & GLISTENING SATELLITE PARTICLE */}
+                        <motion.div
+                          className="absolute -inset-2 rounded-full border border-indigo-300/40 pointer-events-none"
+                          animate={{ rotate: 360 }}
+                          transition={{ repeat: Infinity, duration: 3.5, ease: "linear" }}
+                        >
+                          <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                        </motion.div>
+
+                        {/* 4. GORGEOUS LUMINOUS GLASS PEARL PIN */}
+                        <motion.span
+                          animate={{ scale: [1, 1.08, 1] }}
+                          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                          className="relative flex h-4.5 w-4.5 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-950 shadow-[0_0_14px_rgba(99,102,241,0.9),0_4px_8px_rgba(0,0,0,0.5)] ring-2 ring-indigo-500/30"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                        </motion.span>
                       </motion.div>
                     )}
                   </div>

@@ -7,9 +7,7 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
-  Maximize2,
   Lock,
-  X,
   CheckCircle2,
   Volume2,
   VolumeX,
@@ -44,7 +42,6 @@ export default function InteractivePlayer({
 }: InteractivePlayerProps) {
   const { currentColor } = useTextColor();
   const [zoomLevel, setZoomLevel] = React.useState<number>(100);
-  const [isFullscreen, setIsFullscreen] = React.useState<boolean>(false);
   const [isTourActive, setIsTourActive] = React.useState<boolean>(true);
 
   const currentStep = steps[currentStepIndex] || steps[0];
@@ -153,16 +150,6 @@ export default function InteractivePlayer({
     window.speechSynthesis.speak(utterance);
   };
 
-  // Esc key listener to exit fullscreen
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isFullscreen) {
-        setIsFullscreen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isFullscreen]);
 
   const handleZoomIn = () => {
     setZoomLevel((prev) => Math.min(prev + 25, 200));
@@ -422,15 +409,13 @@ export default function InteractivePlayer({
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <div
-                  className="flex items-center gap-0.5 rounded-lg border border-zinc-800 bg-zinc-950 p-0.5 text-xs text-zinc-300 shadow-inner"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                {/* HIGH-CONTRAST ZOOM CONTROLS */}
+                <div className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-1 py-0.5 text-xs shadow-inner">
                   <button
                     onClick={handleZoomOut}
                     disabled={zoomLevel <= 80}
                     aria-label="Zoom Out"
-                    className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                    className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                     title="Zoom Out (-)"
                   >
                     <ZoomOut className="h-3 w-3" />
@@ -439,8 +424,8 @@ export default function InteractivePlayer({
                   <button
                     onClick={() => setZoomLevel(100)}
                     aria-label="Reset Zoom to 100%"
-                    className={`px-1.5 py-0.5 text-[10px] font-mono font-extrabold ${currentColor.textClass} hover:opacity-80 transition-colors cursor-pointer`}
-                    title="Reset Zoom (100%)"
+                    className="px-2 py-0.5 text-xs font-mono font-bold text-white hover:text-zinc-200 transition-colors cursor-pointer bg-zinc-900/80 rounded border border-zinc-700"
+                    title="Click to Reset Zoom (100%)"
                   >
                     {zoomLevel}%
                   </button>
@@ -449,30 +434,17 @@ export default function InteractivePlayer({
                     onClick={handleZoomIn}
                     disabled={zoomLevel >= 200}
                     aria-label="Zoom In"
-                    className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                    className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
                     title="Zoom In (+)"
                   >
                     <ZoomIn className="h-3 w-3" />
                   </button>
                 </div>
-
-                <button
-                  onClick={() => setIsFullscreen(true)}
-                  aria-label="Toggle Fullscreen Lightbox"
-                  className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
-                  title="Click for Fullscreen"
-                >
-                  <Maximize2 className="h-3 w-3" />
-                  <span className="hidden sm:inline text-[11px]">Fullscreen</span>
-                </button>
               </div>
             </div>
 
-            {/* SCREENSHOT CONTAINER WITH HOTSPOT PIN ONLY */}
-            <div
-              className="relative w-full aspect-[16/9] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
-              onClick={() => setIsFullscreen(true)}
-            >
+            {/* SCREENSHOT CONTAINER WITH IN-PLACE ZOOM & PIN (NO FULLSCREEN POPUP) */}
+            <div className="relative w-full aspect-[16/9] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${currentStepIndex}-${currentStep.image}`}
@@ -493,14 +465,14 @@ export default function InteractivePlayer({
                 </motion.div>
               </AnimatePresence>
 
-              {/* INTERACTIVE LABAK JABAK BLINKING HOTSPOT PIN ON SCREENSHOT */}
+              {/* PRETTY, SLEEK & AESTHETIC INTERACTIVE HOTSPOT PIN WITH ROUND-ROUND ORBIT */}
               {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
                 <motion.div
                   id={`hotspot-step-${currentStepIndex + 1}`}
                   style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}
                   className="absolute -translate-x-1/2 -translate-y-1/2 z-30 group/hotspot cursor-pointer select-none"
-                  whileHover={{ scale: 1.25, transition: { duration: 0.15 } }}
-                  whileTap={{ scale: 0.8 }}
+                  whileHover={{ scale: 1.3, transition: { duration: 0.15 } }}
+                  whileTap={{ scale: 0.82 }}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (currentStepIndex < totalSteps - 1) {
@@ -509,116 +481,45 @@ export default function InteractivePlayer({
                       onStepChange(0);
                     }
                   }}
-                  title={`Click to go to Step ${currentStepIndex < totalSteps - 1 ? currentStepIndex + 2 : 1}`}
+                  title={`Click here to proceed (${currentStep.hotspot.title || currentStep.title})`}
                 >
-                  {/* SUBTLE CLEAN AMBIENT GLOW HALO */}
-                  <span className="absolute -inset-1 rounded-full bg-white/50 blur-xs animate-pulse" />
+                  {/* 1. DREAMY SOFT AMBIENT GLOW AURA */}
+                  <motion.span
+                    className="absolute -inset-2.5 rounded-full bg-indigo-500/25 blur-sm pointer-events-none"
+                    animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.2, 0.6] }}
+                    transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                  />
 
-                  {/* SIMPLE CLEAN PIN BADGE */}
-                  <span className={`relative flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-white font-black text-[11px] sm:text-xs border-2 border-white dark:border-zinc-950 shadow-[0_0_10px_rgba(255,255,255,0.8)] ${currentColor.bgClass}`}>
-                    {currentStepIndex + 1}
-                  </span>
+                  {/* 2. SILKY EXPANDING RIPPLE WAVE */}
+                  <motion.span
+                    className="absolute -inset-3 rounded-full border border-indigo-400/60 shadow-[0_0_10px_rgba(99,102,241,0.4)] pointer-events-none"
+                    animate={{ scale: [1, 1.65, 1], opacity: [0.8, 0, 0.8] }}
+                    transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                  />
+
+                  {/* 3. SMOOTH ROTATING ROUND-ROUND ORBIT RING & GLISTENING SATELLITE PARTICLE */}
+                  <motion.div
+                    className="absolute -inset-2 rounded-full border border-indigo-300/40 pointer-events-none"
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 3.5, ease: "linear" }}
+                  >
+                    <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                  </motion.div>
+
+                  {/* 4. GORGEOUS LUMINOUS GLASS PEARL PIN */}
+                  <motion.span
+                    animate={{ scale: [1, 1.08, 1] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    className="relative flex h-4.5 w-4.5 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-950 shadow-[0_0_14px_rgba(99,102,241,0.9),0_4px_8px_rgba(0,0,0,0.5)] ring-2 ring-indigo-500/30"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                  </motion.span>
                 </motion.div>
               )}
             </div>
           </div>
         </div>
       </div>
-
-      {/* ULTRA-SAFE FULLSCREEN LIGHTBOX MODAL WITH FLOATING CONTROL PANEL */}
-      <AnimatePresence>
-        {isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-3 sm:p-6 backdrop-blur-xl"
-            onClick={() => setIsFullscreen(false)}
-          >
-            {/* LIGHTBOX HEADER */}
-            <div className="w-full max-w-7xl flex items-center justify-between z-50 text-white pb-2">
-              <div className="flex items-center gap-3">
-                <span className={`flex h-7 w-7 items-center justify-center rounded-xl font-black text-xs shadow-md ${currentColor.bgClass}`}>
-                  {currentStepIndex + 1}
-                </span>
-                <div>
-                  <h3 className="text-sm sm:text-base font-black text-white">
-                    {currentStep.hotspot.title}
-                  </h3>
-                  <p className="text-xs font-mono text-zinc-400">
-                    Step {currentStepIndex + 1} of {totalSteps} • {addressBarUrl}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsFullscreen(false)}
-                className="rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700 shadow-lg"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* LIGHTBOX SCREENSHOT - CLEAN VIEW WITHOUT PIN OVERLAY */}
-            <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
-              <img
-                src={currentStep.image}
-                alt={currentStep.title}
-                className="absolute inset-0 w-full h-full object-contain"
-              />
-            </div>
-
-            {/* FLOATING BOTTOM STEPS CONTROLLER PANEL (NEVER CLIPS OFF SCREEN) */}
-            <div
-              className="w-full max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/95 backdrop-blur-2xl p-4 shadow-2xl text-white z-50 flex flex-col sm:flex-row items-center justify-between gap-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="space-y-1 text-left flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <span className={`h-2 w-2 rounded-full ${currentColor.bgClass}`} />
-                  <span className="text-xs font-bold text-zinc-300 truncate">
-                    {currentStep.title}
-                  </span>
-                </div>
-                <p className="text-xs text-zinc-400 font-medium line-clamp-2">
-                  {currentStep.description || currentStep.hotspot.detail}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={onPrev}
-                  disabled={currentStepIndex === 0}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-3.5 py-1.5 text-xs font-bold text-zinc-200 hover:bg-zinc-700 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  ← Prev
-                </button>
-
-                <div className="flex items-center gap-1 px-1">
-                  {steps.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => onStepChange(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        idx === currentStepIndex
-                          ? `w-4 ${currentColor.bgClass}`
-                          : "w-2 bg-zinc-700 hover:bg-zinc-600"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={onNext}
-                  className={`rounded-xl px-4 py-1.5 text-xs font-black text-white shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                >
-                  {currentStepIndex === totalSteps - 1 ? "Done" : "Next Step →"}
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
