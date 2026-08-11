@@ -1507,7 +1507,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://app.hubspot.com",
     steps: [
       {
-        image: "/credentials/hubspot/imag.png",
+        image: "/credentials/hubspot/step1.png",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to your Workflow Mitra workspace credentials page at https://app.workflowmitra.com/credentials and click the '+ New Credential' button at the top right header.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1522,7 +1522,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/imag.png",
+        image: "/credentials/hubspot/step1.png",
         title: "Select HubSpot Service Provider",
         description: "In the Service Provider modal dialog, scroll down or search for 'HubSpot' under CRM & Sales, then click on it to open the setup guide.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1537,7 +1537,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/image.png",
+        image: "/credentials/hubspot/step2.png",
         title: "Enter Credential Details",
         description: "Enter your Credential Name and paste your Private App Access Token (pat-na1-...), then click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1552,7 +1552,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step1.webp",
+        image: "/credentials/hubspot/step3.webp",
         title: "Visit HubSpot Official Website",
         description: "Open your preferred web browser (Chrome, Edge, Safari, Firefox).\n\nNavigate to https://www.hubspot.com and click 'Get started free' or 'Log in' at the top right header.",
         addressUrl: "https://www.hubspot.com",
@@ -1567,7 +1567,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step2.webp",
+        image: "/credentials/hubspot/step4.webp",
         title: "HubSpot Login or Create Account",
         description: "On the HubSpot Sign-In page (app.hubspot.com/login):\n\n• Existing Users: Enter your email address and click Continue.\n• New Users: Click 'create an account' link under the Sign in header.",
         addressUrl: "https://app.hubspot.com/login",
@@ -1582,7 +1582,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step3.webp",
+        image: "/credentials/hubspot/step5.webp",
         title: "Authenticate & Register Workspace",
         description: "On the Create Account page (app.hubspot.com/signup-hubspot/crm):\n\n• Click 'Continue with Google' to sign up instantly with your Google account.\n• Or enter your company email address and follow the setup wizard.",
         addressUrl: "https://app.hubspot.com/signup-hubspot/crm",
@@ -1597,7 +1597,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step4.webp",
+        image: "/credentials/hubspot/step6.webp",
         title: "Navigate to Workspace Settings",
         description: "Once inside your HubSpot workspace dashboard, locate and click the Settings Gear icon in the top right navigation bar to open account configuration.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1612,7 +1612,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step5.webp",
+        image: "/credentials/hubspot/step7.webp",
         title: "Open Integrations Menu",
         description: "On the left settings menu sidebar, scroll down to the Account Setup section and click on 'Integrations' to view API and developer settings.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1627,7 +1627,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step5.webp",
+        image: "/credentials/hubspot/step7.webp",
         title: "Go to Private Apps",
         description: "In the Integrations submenu, click on 'Private Apps' (or Legacy Apps) to manage custom API access tokens for your workspace.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1642,7 +1642,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step6.webp",
+        image: "/credentials/hubspot/step8.webp",
         title: "Create a Private App",
         description: "Click on 'Private Apps' or 'Legacy Apps' section to initiate private application creation.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1657,7 +1657,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step7.webp",
+        image: "/credentials/hubspot/step9.webp",
         title: "Click to Create a Legacy App",
         description: "Click the 'Create a Legacy app' button at top right to initiate token generation.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1672,7 +1672,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step8.webp",
+        image: "/credentials/hubspot/step10.webp",
         title: "Select App Type & Scope",
         description: "Select 'Private app for one account' to restrict API access to your active workspace only without publishing to the HubSpot App Marketplace.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1687,7 +1687,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step9.webp",
+        image: "/credentials/hubspot/step11.webp",
         title: "Accept Terms & Click Continue",
         description: "Check the agreement box to accept HubSpot Developer terms and conditions, then click the orange 'Continue' button to proceed.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1702,7 +1702,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step10.png",
+        image: "/credentials/hubspot/step12.png",
         title: "Enter App Name & Description",
         description: "Under the Basic Info tab, enter your App Name (e.g. 'Workflow Mitra Integration') and add a short description for identification.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1717,7 +1717,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step10.png",
+        image: "/credentials/hubspot/step12.png",
         title: "Navigate to Scopes Tab",
         description: "Click on the 'Scopes' tab at the top of the Private App configuration window to set API permissions for contacts and deals.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1732,7 +1732,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step11.webp",
+        image: "/credentials/hubspot/step13.webp",
         title: "Add Required API Scopes",
         description: "Search for and select required API scopes (e.g. crm.objects.contacts, crm.objects.deals, crm.schemas.contacts) for your integration.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1747,7 +1747,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step11.webp",
+        image: "/credentials/hubspot/step13.webp",
         title: "Finalize & Create App",
         description: "Click the orange 'Create app' button at the top right. Confirm app creation in the confirmation pop-up modal.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1762,7 +1762,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step12.webp",
+        image: "/credentials/hubspot/step14.webp",
         title: "Access Authentication Settings",
         description: "Click on the 'Auth' tab or section to view your newly generated Private App Access Token.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1777,7 +1777,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step12.webp",
+        image: "/credentials/hubspot/step14.webp",
         title: "Show Token & Copy Access Token",
         description: "Click 'Show token' to reveal your secret token (starting with pat-na1-...). Copy it to your clipboard for pasting into Workflow Mitra.",
         addressUrl: "https://app.hubspot.com",
@@ -1792,7 +1792,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step13.png",
+        image: "/credentials/hubspot/step15.png",
         title: "Save Encrypted HubSpot Credentials",
         description: "Review your entries and click the 'Save Credential' button. Workflow Mitra will encrypt your token using AES-256 and verify connection.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2043,7 +2043,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://pipedrive.com",
     steps: [
       {
-        image: "/credentials/pipedrive/iig.png",
+        image: "/credentials/pipedrive/step1.png",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to your Workflow Mitra workspace credentials page at https://app.workflowmitra.com/credentials and click the '+ New Credential' button at the top right header.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2058,7 +2058,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/iig.png",
+        image: "/credentials/pipedrive/step1.png",
         title: "Select Pipedrive Service Provider",
         description: "In the Service Provider modal dialog, scroll down under CRM & Sales and click on 'Pipedrive' to open the setup guide.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2073,7 +2073,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/img.png",
+        image: "/credentials/pipedrive/step2.png",
         title: "View Pipedrive Credential Form",
         description: "View the Pipedrive credential form requiring your Credential Name and Personal API Token.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2088,7 +2088,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe1.webp",
+        image: "/credentials/pipedrive/step4.webp",
         title: "Visit Pipedrive Official Website",
         description: "Open your preferred web browser (Chrome, Safari, Edge, Firefox).\n\n• Navigate to https://www.pipedrive.com and click 'Log in' at top right.\n• Or enter your workspace URL directly.",
         addressUrl: "https://www.pipedrive.com",
@@ -2103,7 +2103,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/login.webp",
+        image: "/credentials/pipedrive/step3.webp",
         title: "Pipedrive Sign In & Authentication",
         description: "On the Pipedrive Sign-In page (app.pipedrive.com/auth/login):\n\n• Enter your registered Email Address and Password.\n• Or click 'Continue with Google' to log in instantly with single sign-on.",
         addressUrl: "https://app.pipedrive.com/auth/login",
@@ -2118,7 +2118,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe2.webp",
+        image: "/credentials/pipedrive/step5.webp",
         title: "Open Account Profile Menu",
         description: "Once inside your Pipedrive CRM dashboard:\n\n• Locate your user profile avatar at the top right corner of the header bar.\n• Click on your profile icon to reveal account management options.",
         addressUrl: "https://app.pipedrive.com",
@@ -2133,7 +2133,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe3.webp",
+        image: "/credentials/pipedrive/step6.webp",
         title: "Select Personal Preferences",
         description: "From the user profile dropdown menu:\n\n• Click on 'Personal preferences' to open your individual account and developer settings.",
         addressUrl: "https://app.pipedrive.com/settings/personal",
@@ -2148,7 +2148,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe4.webp",
+        image: "/credentials/pipedrive/step7.webp",
         title: "Switch to API Tab",
         description: "In the Personal Preferences sub-navigation tab bar:\n\n• Click on the 'API' tab to view your personal developer API token settings.",
         addressUrl: "https://app.pipedrive.com/settings/personal/api",
@@ -2163,7 +2163,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe4.webp",
+        image: "/credentials/pipedrive/step7.webp",
         title: "Copy Personal API Token",
         description: "On the Personal API Token page:\n\n• Locate your unique Personal API Token string.\n• Click the green 'Copy' button to copy the token to your clipboard.",
         addressUrl: "https://app.pipedrive.com/settings/personal/api",
@@ -2178,7 +2178,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/pipe5.png",
+        image: "/credentials/pipedrive/step8.png",
         title: "Paste Token & Save Pipedrive Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your copied Personal API Token, and click the 'Save Credential' button to verify connection.",
         addressUrl: "https://app.workflowmitra.com/credentials",

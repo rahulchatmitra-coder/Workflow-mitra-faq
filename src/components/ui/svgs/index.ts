@@ -37,6 +37,7 @@ export { Linkedin } from "./linkedin";
 export { GeminiLogo } from "./gemini";
 export { GmailLogo } from "./gmail";
 export { HubSpotLogo } from "./hubspot";
+export { WorkflowMitraLogo } from "./workflowMitraLogo";
 
 export {
   ZohoLogo,
