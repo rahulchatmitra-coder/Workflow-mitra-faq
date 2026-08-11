@@ -11,19 +11,12 @@ import {
   Maximize2,
   Save,
   UserCheck,
-  Mail,
-  FileSpreadsheet,
   Sparkles,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  MessageSquare,
-  Truck,
   Rss,
-  Bot,
   Clock,
-  Send,
-  Layers,
 } from "lucide-react";
 
 import {
@@ -32,6 +25,15 @@ import {
   HubSpotLogo,
   Slack as SlackLogo,
   Linkedin as LinkedInLogo,
+  GeminiLogo,
+  Telegram,
+  Discord,
+  WhatsappIcon,
+  ZohoBooksLogo,
+  ZohoLogo,
+  ShiprocketLogo,
+  Google,
+  GmailLogo,
 } from "@/components/ui/svgs";
 
 export function WorkflowCanvas() {
@@ -44,20 +46,20 @@ export function WorkflowCanvas() {
   const workflows = [
     {
       id: "flow-1",
-      title: "Facebook lead → CRM → team alert",
+      title: "Facebook lead → HubSpot CRM → Slack & Gmail Alert",
       category: "Lead Routing Automation",
       totalSteps: 7,
     },
     {
       id: "flow-2",
-      title: "Shopify order → invoice → WhatsApp + shipping",
+      title: "Shopify order → Zoho Books invoice → WhatsApp & Shiprocket",
       category: "E-Commerce Fulfillment Automation",
       totalSteps: 6,
     },
     {
       id: "flow-3",
-      title: "New blog post → AI rewrite → social",
-      category: "AI Content & Social Distribution",
+      title: "New blog post → Google Gemini AI rewrite → LinkedIn, Facebook, Telegram & Discord",
+      category: "AI Agents & Social Distribution",
       totalSteps: 8,
     },
   ];
@@ -99,7 +101,7 @@ export function WorkflowCanvas() {
       setTimeout(() => { setActiveStep(null); setIsRunning(false); setExecutionMessage("✓ Run finished successfully in 1.2s!"); }, 4600);
     } else {
       setExecutionMessage("Step 1: RSS Trigger: New Blog Post Published...");
-      setTimeout(() => { setActiveStep(2); setExecutionMessage("Step 2: Anthropic AI Agent Rewriting Content..."); }, 900);
+      setTimeout(() => { setActiveStep(2); setExecutionMessage("Step 2: Google Gemini AI Agent Rewriting Content..."); }, 900);
       setTimeout(() => { setActiveStep(3); setExecutionMessage("Step 3: Awaiting Human Manager Approval..."); }, 1800);
       setTimeout(() => { setActiveStep(4); setExecutionMessage("Step 4: Evaluating IF Manager Approved..."); }, 2700);
       setTimeout(() => { setActiveStep(5); setExecutionMessage("Step 5-8: Publishing to LinkedIn, Facebook, Telegram & Discord!"); }, 3600);
@@ -142,7 +144,7 @@ export function WorkflowCanvas() {
           <div className="flex items-center gap-1.5 border border-zinc-200 bg-zinc-50 p-1 rounded-2xl dark:border-zinc-800 dark:bg-zinc-900">
             <button
               onClick={handlePrevFlow}
-              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-700 dark:text-zinc-300 rounded-xl cursor-pointer"
+              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-zinc-700 dark:text-zinc-300 rounded-xl cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
               title="Previous Workflow"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -153,7 +155,7 @@ export function WorkflowCanvas() {
             </span>
             <button
               onClick={handleNextFlow}
-              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 rounded-xl cursor-pointer"
+              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
               title="Next Workflow"
             >
               <span>Next</span>
@@ -163,7 +165,7 @@ export function WorkflowCanvas() {
         </div>
       </div>
 
-      {/* DOTTED CANVAS GRID AREA WITH SEPARATE ZOOM CONTAINER AND ANIMATE PRESENCE SLIDE TRANSITION */}
+      {/* DOTTED CANVAS GRID AREA WITH SEPARATE ZOOM CONTAINER */}
       <div className="relative min-h-[520px] w-full overflow-hidden flex items-center justify-center bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#1e293b_1.2px,transparent_1.2px)] [background-size:24px_24px]">
         
         {/* OUTER ZOOM CONTAINER */}
@@ -215,15 +217,16 @@ export function WorkflowCanvas() {
                     <path d="M 615 180 C 700 180, 720 300, 788 300" fill="none" stroke="#34A853" strokeWidth="2.5" strokeDasharray="6 4" className="animate-[dash_2s_linear_infinite]" markerEnd="url(#arrow-green)" />
                   </svg>
 
-                  {/* Nodes 1 to 7 for Flow 1 */}
+                  {/* Node 1: Facebook Leads */}
                   <div id="tour-node-facebook" style={{ left: "68px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 1 ? "scale-110 ring-4 ring-blue-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <FacebookLogo />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer p-3">
+                      <FacebookLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900 dark:border-zinc-900">1</span>
                     </div>
                     <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">On webhook call</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">from Lead Ads</span></div>
                   </div>
 
+                  {/* Node 2: IF Condition */}
                   <div id="tour-node-if" style={{ left: "228px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 2 ? "scale-110 ring-4 ring-amber-500 rounded-3xl" : ""}`}>
                     <div className="absolute -top-7 text-[10px] font-mono font-bold bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 px-2.5 py-0.5 rounded-full text-zinc-700 dark:text-zinc-300 shadow-sm whitespace-nowrap">1st Has an email</div>
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#FF6B00] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
@@ -233,40 +236,54 @@ export function WorkflowCanvas() {
                     <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">IF</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">1 route - first match</span></div>
                   </div>
 
+                  {/* Node 3: HubSpot CRM */}
                   <div id="tour-node-hubspot" style={{ left: "388px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 3 ? "scale-110 ring-4 ring-orange-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#FF6B00] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <HubSpotLogo />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl hover:scale-105 transition-transform cursor-pointer p-3.5">
+                      <HubSpotLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900 dark:border-zinc-900">3</span>
                     </div>
-                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">App Request</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">hubspot - POST /crm/v3/obj...</span></div>
+                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">HubSpot CRM</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">POST /crm/v3/contacts</span></div>
                   </div>
 
+                  {/* Node 4: Assign Sales Rep */}
                   <div id="tour-node-assign" style={{ left: "548px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 4 ? "scale-110 ring-4 ring-zinc-900 rounded-3xl" : ""}`}>
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-xl hover:scale-105 transition-transform cursor-pointer">
                       <UserCheck className="h-7 w-7" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900 dark:border-zinc-900">4</span>
                     </div>
-                    <div className="text-center w-36"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Assign to next person</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">click to set up</span></div>
+                    <div className="text-center w-36"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Assign to next person</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Round Robin Queue</span></div>
                   </div>
 
+                  {/* Node 5: Gmail Alert */}
                   <div style={{ left: "792px", top: "32px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#EA4335] text-white shadow-lg cursor-pointer"><Mail className="h-6 w-6" /><span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">5</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Gmail</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">send &#123;&#123; email &#125;&#125;</span></div>
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-3.5">
+                      <GmailLogo className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">5</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Gmail Alert</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">send &#123;&#123; lead_email &#125;&#125;</span></div>
                   </div>
 
+                  {/* Node 6: Slack */}
                   <div style={{ left: "792px", top: "152px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#4A154B] text-white shadow-lg cursor-pointer"><SlackLogo /><span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Slack</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">post to Slack</span></div>
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-3.5">
+                      <SlackLogo className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Slack Channel</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">post to #sales-leads</span></div>
                   </div>
 
+                  {/* Node 7: Google Sheets */}
                   <div style={{ left: "792px", top: "272px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#34A853] text-white shadow-lg cursor-pointer"><FileSpreadsheet className="h-6 w-6" /><span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">7</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Google Sheets</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">click to set up</span></div>
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-3.5">
+                      <Google className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">7</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Google Sheets</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">append Lead row</span></div>
                   </div>
                 </>
               )}
 
-              {/* FLOW 2: Shopify order -> invoice -> WhatsApp + shipping (IMAGE 2) */}
+              {/* FLOW 2: Shopify order -> invoice -> WhatsApp + shipping */}
               {activeFlowIndex === 1 && (
                 <>
                   <svg className="absolute inset-0 h-full w-full pointer-events-none z-0">
@@ -279,11 +296,11 @@ export function WorkflowCanvas() {
 
                   {/* Node 1: Shopify */}
                   <div style={{ left: "68px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 1 ? "scale-110 ring-4 ring-emerald-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#95BF47] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <ShopifyLogo />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl hover:scale-105 transition-transform cursor-pointer p-3.5">
+                      <ShopifyLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">1</span>
                     </div>
-                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">On webhook call</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">from Shopify</span></div>
+                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">On webhook call</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">from Shopify Orders</span></div>
                   </div>
 
                   {/* Node 2: IF Paid */}
@@ -298,40 +315,43 @@ export function WorkflowCanvas() {
 
                   {/* Node 3: Zoho Books */}
                   <div style={{ left: "388px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 3 ? "scale-110 ring-4 ring-rose-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#EA4335] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <Layers className="h-7 w-7" />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl hover:scale-105 transition-transform cursor-pointer p-3.5">
+                      <ZohoLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">3</span>
                     </div>
-                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">App Request</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">zoho-books - POST /books/v...</span></div>
+                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Zoho Books</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">POST /books/invoices</span></div>
                   </div>
 
                   {/* Node 4: WhatsApp */}
                   <div style={{ left: "548px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 4 ? "scale-110 ring-4 ring-emerald-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <MessageSquare className="h-7 w-7" />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl hover:scale-105 transition-transform cursor-pointer p-2.5">
+                      <WhatsappIcon className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">4</span>
                     </div>
-                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">WhatsApp</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">send WhatsApp</span></div>
+                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">WhatsApp</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Send Cloud Order PDF</span></div>
                   </div>
 
                   {/* Node 5: Shiprocket */}
-                  <div style={{ left: "708px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 5 ? "scale-110 ring-4 ring-zinc-900 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <Truck className="h-7 w-7" />
+                  <div style={{ left: "708px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 5 ? "scale-110 ring-4 ring-purple-500 rounded-3xl" : ""}`}>
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl hover:scale-105 transition-transform cursor-pointer p-3">
+                      <ShiprocketLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">5</span>
                     </div>
-                    <div className="text-center w-36"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">App Request</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">shiprocket - POST /v1/external</span></div>
+                    <div className="text-center w-36"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Shiprocket API</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">POST /v1/orders/create</span></div>
                   </div>
 
                   {/* Node 6: Google Sheets (below) */}
                   <div style={{ left: "792px", top: "262px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#34A853] text-white shadow-lg cursor-pointer"><FileSpreadsheet className="h-6 w-6" /><span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Google Sheets</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">click to set up</span></div>
+                    <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-3.5">
+                      <Google className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Google Sheets</span><span className="text-[10px] text-zinc-500 dark:text-zinc-400">Log Order Row</span></div>
                   </div>
                 </>
               )}
 
-              {/* FLOW 3: New blog post -> AI rewrite -> social (IMAGE 3) */}
+              {/* FLOW 3: New blog post -> Google Gemini AI rewrite -> Social Channels */}
               {activeFlowIndex === 2 && (
                 <>
                   <svg className="absolute inset-0 h-full w-full pointer-events-none z-0">
@@ -348,19 +368,19 @@ export function WorkflowCanvas() {
                   {/* Node 1: RSS Blog Trigger */}
                   <div style={{ left: "68px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 1 ? "scale-110 ring-4 ring-zinc-900 rounded-3xl" : ""}`}>
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <Rss className="h-7 w-7" />
+                      <Rss className="h-7 w-7 text-amber-400" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">1</span>
                     </div>
-                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">When a blog posts</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">click to set up</span></div>
+                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">When a blog posts</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">RSS / WordPress Trigger</span></div>
                   </div>
 
-                  {/* Node 2: AI Rewrite */}
+                  {/* Node 2: Google Gemini Official 2025 AI Rewrite Node */}
                   <div style={{ left: "228px", top: "148px" }} className={`absolute flex flex-col items-center gap-2 z-10 transition-all ${activeStep === 2 ? "scale-110 ring-4 ring-blue-500 rounded-3xl" : ""}`}>
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-xl hover:scale-105 transition-transform cursor-pointer">
-                      <Bot className="h-7 w-7 text-blue-400" />
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#090D16] border-2 border-blue-500/40 shadow-[0_0_18px_rgba(49,134,255,0.35)] hover:scale-105 transition-transform cursor-pointer p-3">
+                      <GeminiLogo className="h-full w-full" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">2</span>
                     </div>
-                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">AI</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">anthropic - default</span></div>
+                    <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Google Gemini AI</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Gemini 2.0 Content Rewrite</span></div>
                   </div>
 
                   {/* Node 3: Wait for Approval */}
@@ -369,7 +389,7 @@ export function WorkflowCanvas() {
                       <Clock className="h-7 w-7" />
                       <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white border-2 border-white dark:bg-white dark:text-zinc-900">3</span>
                     </div>
-                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Wait for approval</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">ask a person - 24h</span></div>
+                    <div className="text-center w-32"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">Wait for approval</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Editor Review Queue</span></div>
                   </div>
 
                   {/* Node 4: IF Approved */}
@@ -382,25 +402,40 @@ export function WorkflowCanvas() {
                     <div className="text-center w-28"><span className="text-xs font-extrabold text-zinc-900 dark:text-white block">IF</span><span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">1 route - first match</span></div>
                   </div>
 
-                  {/* Social Channels 5-8 */}
+                  {/* Node 5: LinkedIn */}
                   <div style={{ left: "792px", top: "12px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#0A66C2] text-white shadow-lg cursor-pointer"><LinkedInLogo /><span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">5</span></div>
+                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-2">
+                      <LinkedInLogo className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">5</span>
+                    </div>
                     <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">LinkedIn</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">POST /v2/ugcPosts</span></div>
                   </div>
 
+                  {/* Node 6: Facebook */}
                   <div style={{ left: "792px", top: "102px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-lg cursor-pointer"><FacebookLogo /><span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Facebook</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">POST /v21...</span></div>
+                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-2">
+                      <FacebookLogo className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">6</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Facebook</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">POST /v21/feed</span></div>
                   </div>
 
+                  {/* Node 7: Telegram Real SVG */}
                   <div style={{ left: "792px", top: "192px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#24A1DE] text-white shadow-lg cursor-pointer"><Send className="h-5 w-5" /><span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">7</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Telegram</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">send via Telegram</span></div>
+                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-1.5">
+                      <Telegram className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">7</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Telegram Channel</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">sendMessage broadcast</span></div>
                   </div>
 
+                  {/* Node 8: Discord Real SVG */}
                   <div style={{ left: "792px", top: "282px" }} className={`absolute flex items-center gap-3 z-10 transition-all ${activeStep === 5 ? "scale-105" : ""}`}>
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#5865F2] text-white shadow-lg cursor-pointer"><MessageSquare className="h-5 w-5" /><span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">8</span></div>
-                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Discord</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">post to Discord</span></div>
+                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg cursor-pointer p-2">
+                      <Discord className="h-full w-full" />
+                      <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-900 text-[9px] font-bold text-white border border-white dark:bg-white dark:text-zinc-900">8</span>
+                    </div>
+                    <div className="flex flex-col"><span className="text-xs font-extrabold text-zinc-900 dark:text-white">Discord Community</span><span className="text-[9px] text-zinc-500 dark:text-zinc-400">post to #announcements</span></div>
                   </div>
                 </>
               )}
