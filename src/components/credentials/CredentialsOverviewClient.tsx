@@ -55,7 +55,14 @@ export default function CredentialsOverviewClient() {
   const [feedbackGiven, setFeedbackGiven] = React.useState<boolean>(false);
 
   const handleNextStep = () => {
-    setCurrentStepIndex((prev) => (prev + 1) % credentialsSteps.length);
+    if (currentStepIndex < credentialsSteps.length - 1) {
+      setCurrentStepIndex((prev) => prev + 1);
+    } else {
+      const el = document.getElementById("providers-grid");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const handlePrevStep = () => {

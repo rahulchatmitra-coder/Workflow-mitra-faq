@@ -3794,7 +3794,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "92%",
           popoverTop: "50%",
           popoverLeft: "50%",
-          title: "Step 2: Save Credentials 🔐",
+          title: "Step 2: Save Credentials",
           detail: "Click Save Credential.",
         },
       },
@@ -3813,7 +3813,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     steps: [
       {
         image: "/credentials/Google_Auth/step1.png",
-        title: "Step 1: Select Google (OAuth) 🌐",
+        title: "Step 1: Select Google (OAuth)",
         description: "Open Workflow Mitra Credentials page (https://app.workflowmitra.com/credentials) and click '+ New credential'. Scroll down in the modal and select 'Google (OAuth)'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
@@ -3828,7 +3828,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step2.png",
-        title: "Step 2: Switch Tab ➔ Google Cloud Console 🔁",
+        title: "Step 2: Switch Tab -> Google Cloud Console",
         description: "Review required credential fields (Client ID, Client secret, Refresh token). Click the Google Cloud Console tab (https://console.cloud.google.com) in your browser top bar.",
         addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
@@ -3837,13 +3837,13 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "50%",
           popoverTop: "15%",
           popoverLeft: "30%",
-          title: "Step 2: Switch Tab ➔ Google Cloud Console",
+          title: "Step 2: Switch Tab -> Google Cloud Console",
           detail: "Click the Google Cloud Console browser tab to start setting up credentials.",
         },
       },
       {
         image: "/credentials/Google_Auth/step3.png",
-        title: "Step 3: Choose Google Account 👤",
+        title: "Step 3: Choose Google Account",
         description: "On the Google Sign-In page (https://accounts.google.com), click your account (e.g. Rahul — rahul.chatmitra@gmail.com) to access Google Cloud Console.",
         addressUrl: "https://accounts.google.com/v3/signin/accountchooser",
         hotspot: {
@@ -3858,7 +3858,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step4.png",
-        title: "Step 4: Open Project Selector 📁",
+        title: "Step 4: Open Project Selector",
         description: "On the Google Cloud welcome page (https://console.cloud.google.com/welcome), click the 'Select a project' dropdown button in the top navigation bar.",
         addressUrl: "https://console.cloud.google.com/welcome",
         hotspot: {
@@ -3873,7 +3873,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step5.png",
-        title: "Step 5: Click New Project ➕",
+        title: "Step 5: Click New Project",
         description: "In the project selection popup modal on https://console.cloud.google.com/welcome, click the blue 'New project' button in the top-right corner.",
         addressUrl: "https://console.cloud.google.com/welcome",
         hotspot: {
@@ -3888,7 +3888,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step6.png",
-        title: "Step 6: Enter Project Name & Create 🚀",
+        title: "Step 6: Enter Project Name & Create",
         description: "On project creation page (https://console.cloud.google.com/projectcreate), enter 'ChatMitra Sheets' in Project name * and click the blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/projectcreate",
         hotspot: {
@@ -3904,7 +3904,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       {
         image: "/credentials/Google_Auth/step7.png",
         title: "Step 7: Select Active Project",
-        description: "Click notification bell  icon on https://console.cloud.google.com/welcome, then click 'Select project' under 'Create project ChatMitra Sheets'.",
+        description: "Click notification bell icon on https://console.cloud.google.com/welcome, then click 'Select project' under 'Create project ChatMitra Sheets'.",
         addressUrl: "https://console.cloud.google.com/welcome",
         hotspot: {
           target: "image",
@@ -3918,7 +3918,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step8.png",
-        title: "Step 8: Enable Google Sheets API ",
+        title: "Step 8: Enable Google Sheets API",
         description: "Go to Sheets API page (https://console.cloud.google.com/apis/library/sheets.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/sheets.googleapis.com",
         hotspot: {
@@ -3933,7 +3933,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step9.png",
-        title: "Step 9: Enable Google Drive API 📁",
+        title: "Step 9: Enable Google Drive API",
         description: "Go to Drive API page (https://console.cloud.google.com/apis/library/drive.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/drive.googleapis.com",
         hotspot: {
@@ -3948,7 +3948,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step10.png",
-        title: "Step 10: Search Google Auth Platform 🔍",
+        title: "Step 10: Search Google Auth Platform",
         description: "On project dashboard (https://console.cloud.google.com/welcome?project=chatmitra-sheets), click the search bar at top center and type 'Google Auth Platform'.",
         addressUrl: "https://console.cloud.google.com/welcome?project=chatmitra-sheets",
         hotspot: {
@@ -3963,7 +3963,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step11.png",
-        title: "Step 11: Click Google Auth Platform Result 👆",
+        title: "Step 11: Click Google Auth Platform Result",
         description: "In search results dropdown overlay, click 'Google Auth Platform' under Top results.",
         addressUrl: "https://console.cloud.google.com/welcome?project=chatmitra-sheets",
         hotspot: {
@@ -3978,7 +3978,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step12.png",
-        title: "Step 12: Click Get Started on Branding Page ⚡",
+        title: "Step 12: Click Get Started on Branding Page",
         description: "On Branding page (https://console.cloud.google.com/auth/branding?project=chatmitra-sheets), click blue 'Get started' button at bottom.",
         addressUrl: "https://console.cloud.google.com/auth/branding?project=chatmitra-sheets",
         hotspot: {
@@ -3993,7 +3993,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step13.png",
-        title: "Step 13: Fill App Info & Click Next 📝",
+        title: "Step 13: Fill App Info & Click Next",
         description: "On wizard page (https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets), enter App name ('WorkflowMitra Google Sheets') & support email, then click 'Next'.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
         hotspot: {
@@ -4008,7 +4008,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step14.png",
-        title: "Step 14: Select External Audience & Click Next 👥",
+        title: "Step 14: Select External Audience & Click Next",
         description: "Select 'External' radio button under Audience step, then click blue 'Next' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
         hotspot: {
@@ -4023,7 +4023,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step15.png",
-        title: "Step 15: Enter Developer Email & Click Next 📧",
+        title: "Step 15: Enter Developer Email & Click Next",
         description: "Enter developer email under Contact Information step, then click blue 'Next' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
         hotspot: {
@@ -4038,7 +4038,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step16.png",
-        title: "Step 16: Agree to Policy & Click Create ✅",
+        title: "Step 16: Agree to Policy & Click Create",
         description: "Check user data policy agreement checkbox, click 'Continue', then click blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
         hotspot: {
@@ -4053,7 +4053,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step17.png",
-        title: "Step 17: Add Test Users ➕",
+        title: "Step 17: Add Test Users",
         description: "Go to Audience page (https://console.cloud.google.com/auth/audience?project=chatmitra-sheets), and click '+ Add users' under Test users.",
         addressUrl: "https://console.cloud.google.com/auth/audience?project=chatmitra-sheets",
         hotspot: {
@@ -4068,7 +4068,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step18.png",
-        title: "Step 18: Save Test User Email 💾",
+        title: "Step 18: Save Test User Email",
         description: "In side drawer on https://console.cloud.google.com/auth/audience?project=chatmitra-sheets, enter test user email and click blue 'Save' button.",
         addressUrl: "https://console.cloud.google.com/auth/audience?project=chatmitra-sheets",
         hotspot: {
@@ -4083,7 +4083,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step19.png",
-        title: "Step 19: Open Credentials Page & Click Create 🔐",
+        title: "Step 19: Open Credentials Page & Click Create",
         description: "Go to Credentials page (https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets) and click '+ Create credentials' in top toolbar.",
         addressUrl: "https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets",
         hotspot: {
@@ -4098,7 +4098,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step20.png",
-        title: "Step 20: Select OAuth Client ID 🔑",
+        title: "Step 20: Select OAuth Client ID",
         description: "From the dropdown menu on https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets, click 'OAuth client ID' option.",
         addressUrl: "https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets",
         hotspot: {
@@ -4113,7 +4113,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step21.png",
-        title: "Step 21: Select Web Application 🌐",
+        title: "Step 21: Select Web Application",
         description: "On client creation page (https://console.cloud.google.com/auth/clients/create), click Application type dropdown and choose 'Web application'.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
@@ -4128,7 +4128,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step22.png",
-        title: "Step 22: Enter Name & Add JS Origin ➕",
+        title: "Step 22: Enter Name & Add JS Origin",
         description: "Type Name as 'WorkflowMitra OAuth'. Under Authorised JavaScript origins, click '+ Add URI' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
@@ -4143,7 +4143,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step23.png",
-        title: "Step 23: Fill JS Origin & Add Redirect URI 🔗",
+        title: "Step 23: Fill JS Origin & Add Redirect URI",
         description: "Enter 'https://app.workflowmitra.com' in JS origins. Under Authorised redirect URIs, click '+ Add URI' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
@@ -4158,7 +4158,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step24.png",
-        title: "Step 24: Enter OAuth Playground Redirect URI 📍",
+        title: "Step 24: Enter OAuth Playground Redirect URI",
         description: "Enter 'https://developers.google.com/oauthplayground' into URIs 1 * field under Authorised redirect URIs.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
@@ -4173,7 +4173,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step25.png",
-        title: "Step 25: Click Create Client 🎯",
+        title: "Step 25: Click Create Client",
         description: "Scroll to the bottom of https://console.cloud.google.com/auth/clients/create and click blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
@@ -4188,8 +4188,8 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step26.png",
-        title: "Step 26: Copy Client ID & Client Secret 📋",
-        description: "On client details page (https://console.cloud.google.com/auth/clients), copy Client ID from right panel and click copy icon 📋 next to Client secret.",
+        title: "Step 26: Copy Client ID & Client Secret",
+        description: "On client details page (https://console.cloud.google.com/auth/clients), copy Client ID from right panel and click copy icon next to Client secret.",
         addressUrl: "https://console.cloud.google.com/auth/clients",
         hotspot: {
           target: "image",
@@ -4203,7 +4203,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step27.png",
-        title: "Step 27: Switch Tab ➔ Paste Credentials in Workflow Mitra 🔁",
+        title: "Step 27: Switch Tab -> Paste Credentials in Workflow Mitra",
         description: "Switch back to Workflow Mitra tab (https://app.workflowmitra.com/credentials). Paste Client ID and Client secret. (Do not save yet — Refresh token is needed.)",
         addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
@@ -4212,14 +4212,14 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "72%",
           popoverTop: "35%",
           popoverLeft: "40%",
-          title: "Step 27: Switch Tab ➔ Workflow Mitra",
+          title: "Step 27: Switch Tab -> Workflow Mitra",
           detail: "Paste Client ID and Secret. Refresh token is still needed.",
         },
       },
       {
         image: "/credentials/Google_Auth/step28.png",
-        title: "Step 28: Switch Tab ➔ Open OAuth Playground Settings ⚙️",
-        description: "Open OAuth 2.0 Playground (https://developers.google.com/oauthplayground) in a new tab. Click ⚙️ Settings gear icon in top right.",
+        title: "Step 28: Switch Tab -> Open OAuth Playground Settings",
+        description: "Open OAuth 2.0 Playground (https://developers.google.com/oauthplayground) in a new tab. Click Settings gear icon in top right.",
         addressUrl: "https://developers.google.com/oauthplayground",
         hotspot: {
           target: "image",
@@ -4227,13 +4227,13 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "98%",
           popoverTop: "30%",
           popoverLeft: "65%",
-          title: "Step 28: Switch Tab ➔ OAuth Playground",
-          detail: "Click ⚙️ Settings gear icon to open configuration.",
+          title: "Step 28: Switch Tab -> OAuth Playground",
+          detail: "Click Settings gear icon to open configuration.",
         },
       },
       {
         image: "/credentials/Google_Auth/step29.png",
-        title: "Step 29: Configure Credentials & Click Authorize APIs 🔓",
+        title: "Step 29: Configure Credentials & Click Authorize APIs",
         description: "In settings on https://developers.google.com/oauthplayground, check 'Use your own OAuth credentials', paste Client ID & Secret. Type scope 'https://www.googleapis.com/auth/spreadsheets' and click 'Authorize APIs'.",
         addressUrl: "https://developers.google.com/oauthplayground",
         hotspot: {
@@ -4248,7 +4248,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step30.png",
-        title: "Step 30: Bypass Unverified App Warning ⚠️",
+        title: "Step 30: Bypass Unverified App Warning",
         description: "On Google security warning page (https://accounts.google.com/signin/oauth/warning), click 'Continue' link to bypass warning.",
         addressUrl: "https://accounts.google.com/signin/oauth/warning",
         hotspot: {
@@ -4263,7 +4263,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step31.png",
-        title: "Step 31: Grant Google OAuth Permissions 🔐",
+        title: "Step 31: Grant Google OAuth Permissions",
         description: "On Google consent page (https://accounts.google.com/signin/oauth/v2/consentsummary), click blue 'Continue' button to grant access.",
         addressUrl: "https://accounts.google.com/signin/oauth/v2/consentsummary",
         hotspot: {
@@ -4278,7 +4278,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step32.png",
-        title: "Step 32: Exchange Authorization Code for Tokens 🔄",
+        title: "Step 32: Exchange Authorization Code for Tokens",
         description: "Back on OAuth Playground (https://developers.google.com/oauthplayground), click blue 'Exchange authorization code for tokens' button in Step 2.",
         addressUrl: "https://developers.google.com/oauthplayground",
         hotspot: {
@@ -4293,7 +4293,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step33.png",
-        title: "Step 33: Copy Generated Refresh Token 📋",
+        title: "Step 33: Copy Generated Refresh Token",
         description: "On https://developers.google.com/oauthplayground, select and copy the generated Refresh token value (highlighted in blue).",
         addressUrl: "https://developers.google.com/oauthplayground",
         hotspot: {
@@ -4308,7 +4308,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
       },
       {
         image: "/credentials/Google_Auth/step34.png",
-        title: "Step 34: Switch Tab ➔ Paste Refresh Token & Save 💾",
+        title: "Step 34: Switch Tab -> Paste Refresh Token & Save",
         description: "Switch back to Workflow Mitra tab (https://app.workflowmitra.com/credentials). Paste Refresh token and click black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
         hotspot: {
@@ -4317,7 +4317,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
           left: "72%",
           popoverTop: "55%",
           popoverLeft: "40%",
-          title: "Step 34: Switch Tab ➔ Save Credential",
+          title: "Step 34: Switch Tab -> Save Credential",
           detail: "Paste Refresh token and click 'Save credential'.",
         },
       },

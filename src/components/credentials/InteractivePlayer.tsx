@@ -297,11 +297,11 @@ export default function InteractivePlayer({
             </div>
 
             <button
-              onClick={onNext}
-              disabled={currentStepIndex === totalSteps - 1}
-              className="flex items-center gap-1 rounded-full bg-zinc-900 text-white px-3 py-1 text-xs font-bold hover:bg-black disabled:opacity-30 disabled:cursor-not-allowed dark:bg-white dark:text-zinc-900 transition-all cursor-pointer shadow-xs"
+              onClick={handleNextOrFinish}
+              className={`flex items-center gap-1 rounded-full text-white px-3 py-1 text-xs font-bold transition-all cursor-pointer shadow-xs ${currentColor.bgClass}`}
+              title={currentStepIndex === totalSteps - 1 ? "Finish guide and view credentials" : "Go to next step"}
             >
-              <span>Next</span>
+              <span>{currentStepIndex === totalSteps - 1 ? "Finish" : "Next"}</span>
               <ChevronRight className="h-3.5 w-3.5" />
             </button>
           </div>
@@ -401,12 +401,20 @@ export default function InteractivePlayer({
                 </button>
               ) : (
                 <>
+                  <button
+                    onClick={handleNextOrFinish}
+                    className={`flex items-center gap-1.5 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer animate-bounce ${currentColor.bgClass}`}
+                    title="Complete guide & view credentials section below"
+                  >
+                    <span>Explore Credentials ↓</span>
+                  </button>
+
                   {externalAppUrl && (
                     <a
                       href={externalAppUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
+                      className="flex items-center gap-1.5 rounded-xl bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-3.5 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer"
                     >
                       <span>
                         {customButtonText ||
