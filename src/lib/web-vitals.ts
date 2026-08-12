@@ -1,18 +1,15 @@
 /**
- * Web Vitals Performance Monitoring
- * Tracks Core Web Vitals (LCP, FID, CLS, FCP, TTFB) for Lighthouse optimization
+ * Native Web Vitals Performance Monitoring
+ * Uses standard browser PerformanceObserver API (zero external dependencies)
  */
 
 export interface WebVitalsMetric {
   name: 'CLS' | 'FCP' | 'LCP' | 'TTFB' | 'INP';
   value: number;
   rating: 'good' | 'needs-improvement' | 'poor';
-  delta: number;
   id: string;
-  navigationType: string;
 }
 
-// Thresholds based on Google's Web Vitals recommendations
 const THRESHOLDS = {
   LCP: { good: 2500, poor: 4000 },
   CLS: { good: 0.1, poor: 0.25 },
@@ -29,19 +26,16 @@ function getRating(name: WebVitalsMetric['name'], value: number): WebVitalsMetri
 }
 
 function sendToAnalytics(metric: WebVitalsMetric) {
-  // Log to console in development
   if (import.meta.env.DEV) {
     console.log(`[Web Vitals] ${metric.name}:`, {
-      value: metric.value,
+      value: Math.round(metric.value * 100) / 100,
       rating: metric.rating,
       id: metric.id,
     });
   }
 
-  // In production, send to your analytics service
-  // Example: Google Analytics 4
   if (import.meta.env.PROD && typeof window !== 'undefined') {
-    // @ts-ignore - gtag might not be defined
+    // @ts-ignore
     if (typeof window.gtag === 'function') {
       // @ts-ignore
       window.gtag('event', metric.name, {
@@ -51,81 +45,57 @@ function sendToAnalytics(metric: WebVitalsMetric) {
         non_interaction: true,
       });
     }
-
-    // Example: Custom analytics endpoint
-    // fetch('/api/analytics/web-vitals', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(metric),
-    // });
   }
 }
 
 export function reportWebVitals() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !('PerformanceObserver' in window)) return;
 
-  // Dynamically import web-vitals library only when needed
-  import('web-vitals').then(({ onCLS, onFCP, onLCP, onTTFB, onINP }) => {
-    onCLS((metric: any) => {
-      const vitalsMetric: WebVitalsMetric = {
-        name: 'CLS',
-        value: metric.value,
-        rating: getRating('CLS', metric.value),
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
-      };
-      sendToAnalytics(vitalsMetric);
+  try {
+    // 1. FCP (First Contentful Paint)
+    const fcpObserver = new PerformanceObserver((entryList) => {
+      for (const entry of entryList.getEntries()) {
+        if (entry.name === 'first-contentful-paint') {
+          sendToAnalytics({
+            name: 'FCP',
+            value: entry.startTime,
+            rating: getRating('FCP', entry.startTime),
+            id: `fcp-${Date.now()}`,
+          });
+        }
+      }
     });
+    fcpObserver.observe({ type: 'paint', buffered: true });
 
-    onFCP((metric: any) => {
-      const vitalsMetric: WebVitalsMetric = {
-        name: 'FCP',
-        value: metric.value,
-        rating: getRating('FCP', metric.value),
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
-      };
-      sendToAnalytics(vitalsMetric);
+    // 2. LCP (Largest Contentful Paint)
+    const lcpObserver = new PerformanceObserver((entryList) => {
+      const entries = entryList.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      if (lastEntry) {
+        sendToAnalytics({
+          name: 'LCP',
+          value: lastEntry.startTime,
+          rating: getRating('LCP', lastEntry.startTime),
+          id: `lcp-${Date.now()}`,
+        });
+      }
     });
+    lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
 
-    onLCP((metric: any) => {
-      const vitalsMetric: WebVitalsMetric = {
-        name: 'LCP',
-        value: metric.value,
-        rating: getRating('LCP', metric.value),
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
-      };
-      sendToAnalytics(vitalsMetric);
-    });
-
-    onTTFB((metric: any) => {
-      const vitalsMetric: WebVitalsMetric = {
-        name: 'TTFB',
-        value: metric.value,
-        rating: getRating('TTFB', metric.value),
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
-      };
-      sendToAnalytics(vitalsMetric);
-    });
-
-    onINP((metric: any) => {
-      const vitalsMetric: WebVitalsMetric = {
-        name: 'INP',
-        value: metric.value,
-        rating: getRating('INP', metric.value),
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
-      };
-      sendToAnalytics(vitalsMetric);
-    });
-  }).catch((error) => {
-    console.warn('Failed to load web-vitals library:', error);
-  });
+    // 3. TTFB (Time to First Byte)
+    const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+    if (navEntries.length > 0) {
+      const ttfb = navEntries[0].responseStart;
+      if (ttfb > 0) {
+        sendToAnalytics({
+          name: 'TTFB',
+          value: ttfb,
+          rating: getRating('TTFB', ttfb),
+          id: `ttfb-${Date.now()}`,
+        });
+      }
+    }
+  } catch (err) {
+    // Fallback if browser doesn't support specific observer types
+  }
 }
