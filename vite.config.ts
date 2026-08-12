@@ -31,6 +31,10 @@ export default defineConfig({
           // Large data file
           'credentials-data': ['./src/data/credentials-data.ts'],
         },
+        // Improve chunk naming for better caching
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
     // Increase chunk size warning limit (we're code splitting now)
@@ -43,9 +47,14 @@ export default defineConfig({
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         passes: 2, // Run multiple passes for better compression
+        unsafe_arrows: true,
+        unsafe_methods: true,
       },
       format: {
         comments: false, // Remove all comments
+      },
+      mangle: {
+        safari10: true, // Fix Safari 10 bugs
       },
     },
     // Optimize CSS
@@ -55,6 +64,12 @@ export default defineConfig({
     sourcemap: false,
     // Optimize assets
     assetsInlineLimit: 4096, // Inline assets < 4kb as base64
+    // Enable module preload for better performance
+    modulePreload: {
+      polyfill: true,
+    },
+    // Target modern browsers for smaller bundle
+    target: 'es2020',
   },
   server: {
     host: true,

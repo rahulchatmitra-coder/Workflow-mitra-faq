@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
+import { reportWebVitals } from "@/lib/web-vitals";
 import App from "./App";
 import "./index.css";
 
@@ -20,3 +21,8 @@ createRoot(rootElement).render(
     </ErrorBoundary>
   </React.StrictMode>
 );
+
+// Track Web Vitals for performance monitoring
+if (import.meta.env.PROD) {
+  reportWebVitals();
+}

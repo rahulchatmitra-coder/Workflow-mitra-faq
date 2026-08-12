@@ -53,6 +53,8 @@ function FooterProviderIcon({ id, name, fallback }: { id: string; name: string; 
       <img
         src={directSrc}
         alt={name}
+        width="18"
+        height="18"
         className="h-4.5 w-4.5 object-contain shrink-0 transition-transform duration-200 group-hover:scale-110"
         loading="lazy"
         onError={(e) => {
@@ -160,6 +162,8 @@ export function Footer() {
               <img
                 src="/images/logo.webp"
                 alt="Workflow Mitra Logo"
+                width="40"
+                height="40"
                 className="h-10 w-10 rounded-2xl object-cover shadow-md border border-zinc-200 dark:border-zinc-800 transition-transform group-hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
