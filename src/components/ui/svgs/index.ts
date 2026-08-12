@@ -63,4 +63,5 @@ export {
   IntercomLogo,
   GoogleSheetsLogo,
   ShopifyLogo,
+  MySqlLogo,
 } from "./customLogos";

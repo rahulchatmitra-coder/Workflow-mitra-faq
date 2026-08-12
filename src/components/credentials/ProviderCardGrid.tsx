@@ -61,7 +61,9 @@ import {
   ZohoDeskLogo,
   GoogleSheetsLogo,
   GmailLogo,
+  MySqlLogo,
 } from "@/components/ui/svgs";
+import { DIRECT_SVG_MAP } from "@/components/ui/svgs/DirectSvgIcon";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -86,6 +88,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   slack: Slack,
   discord: Discord,
   telegram: Telegram,
+  email: SmtpLogo,
   hubspot: HubSpotLogo,
   zohocrm: ZohoLogo,
   pipedrive: PipedriveLogo,
@@ -112,7 +115,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   facebook: FacebookLogo,
   postgresql: Postgresql,
   postgres: Postgresql,
-  mysql: Mysql,
+  mysql: MySqlLogo,
   mongodb: Mongodb,
   mongo: Mongodb,
   redis: Redis,
@@ -261,6 +264,7 @@ export default function ProviderCardGrid({
       {/* CARDS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredProviders.map((p) => {
+          const directSvg = DIRECT_SVG_MAP[p.id.toLowerCase()];
           const BrandIcon = BRAND_ICON_MAP[p.id.toLowerCase()];
           const LucideIconComp = ICON_MAP[p.iconName] || Building2;
           return (
@@ -274,7 +278,9 @@ export default function ProviderCardGrid({
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 group-hover:scale-105 transition-transform p-2.5">
-                    {BrandIcon ? (
+                    {directSvg ? (
+                      <img src={directSvg} alt={p.name} className="h-6 w-6 object-contain shrink-0" />
+                    ) : BrandIcon ? (
                       <BrandIcon className="h-6 w-6" />
                     ) : (
                       <LucideIconComp className={`h-6 w-6 ${currentColor.textClass}`} />

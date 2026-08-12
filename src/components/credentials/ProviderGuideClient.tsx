@@ -41,6 +41,7 @@ import {
   SanityDark,
   Postgresql,
   Mysql,
+  MySqlLogo,
   Mongodb,
   Redis,
   Claude,
@@ -71,6 +72,7 @@ import {
   GoogleSheetsLogo,
   GmailLogo,
 } from "@/components/ui/svgs";
+import { DIRECT_SVG_MAP } from "@/components/ui/svgs/DirectSvgIcon";
 import InteractivePlayer from "./InteractivePlayer";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -99,6 +101,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   slack: Slack,
   discord: Discord,
   telegram: Telegram,
+  email: SmtpLogo,
   hubspot: HubSpotLogo,
   zohocrm: ZohoLogo,
   pipedrive: PipedriveLogo,
@@ -125,7 +128,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   facebook: FacebookLogo,
   postgresql: Postgresql,
   postgres: Postgresql,
-  mysql: Mysql,
+  mysql: MySqlLogo,
   mongodb: Mongodb,
   mongo: Mongodb,
   redis: Redis,
@@ -332,7 +335,9 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
           <div>
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white">
-                {BrandIcon ? (
+                {DIRECT_SVG_MAP[provider.id.toLowerCase()] ? (
+                  <img src={DIRECT_SVG_MAP[provider.id.toLowerCase()]} alt={provider.name} className="h-4 w-4 object-contain shrink-0" />
+                ) : BrandIcon ? (
                   <BrandIcon className="h-4 w-4 shrink-0" />
                 ) : (
                   <ProviderIcon className={`h-4 w-4 shrink-0 ${currentColor.textClass}`} />
