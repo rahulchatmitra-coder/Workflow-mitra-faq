@@ -4013,8 +4013,8 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         addressUrl: "https://console.cloud.google.com/projectcreate",
         hotspot: {
           target: "image",
-          top: "63%",
-          left: "8%",
+          top: "72%",
+          left: "7%",
           popoverTop: "48%",
           popoverLeft: "10%",
           title: "Step 6: Click Create Project",
@@ -4268,7 +4268,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
           target: "image",
-          top: "84%",
+          top: "76%",
           left: "26%",
           popoverTop: "70%",
           popoverLeft: "25%",
@@ -4283,7 +4283,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
         hotspot: {
           target: "image",
-          top: "79%",
+          top: "70%",
           left: "50%",
           popoverTop: "65%",
           popoverLeft: "25%",
@@ -4373,11 +4373,11 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         addressUrl: "https://accounts.google.com/signin/oauth/warning",
         hotspot: {
           target: "image",
-          top: "64%",
+          top: "60%",
           left: "72%",
           popoverTop: "50%",
           popoverLeft: "45%",
-          title: "Step 30: Click Continue",
+          title: "Step 30: Choose Account",
           detail: "Click 'Continue' to bypass unverified app warning.",
         },
       },
