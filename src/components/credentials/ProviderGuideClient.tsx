@@ -27,6 +27,50 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
 import { CredentialProvider, PROVIDER_LIST } from "@/data/credentials-data";
+import {
+  Openai,
+  Slack,
+  WhatsappIcon,
+  Shopify,
+  Telegram,
+  Discord,
+  Google,
+  GithubDark,
+  Supabase,
+  VercelDark,
+  SanityDark,
+  Postgresql,
+  Mysql,
+  Mongodb,
+  Redis,
+  Claude,
+  Linkedin,
+  HubSpotLogo,
+  ZohoLogo,
+  PipedriveLogo,
+  WooCommerceLogo,
+  ZohoBooksLogo,
+  ShiprocketLogo,
+  ZoomLogo,
+  CalComLogo,
+  WherebyLogo,
+  CalendlyLogo,
+  MSTeamsLogo,
+  ZohoBookingsLogo,
+  JitsiMeetLogo,
+  CiscoWebexLogo,
+  ZendeskLogo,
+  FreshdeskLogo,
+  FacebookLogo,
+  SmtpLogo,
+  GroqLogo,
+  GeminiLogo,
+  OllamaLogo,
+  IntercomLogo,
+  ZohoDeskLogo,
+  GoogleSheetsLogo,
+  GmailLogo,
+} from "@/components/ui/svgs";
 import InteractivePlayer from "./InteractivePlayer";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -42,6 +86,58 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
   Sparkles,
   Cpu,
+};
+
+const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  whatsapp: WhatsappIcon,
+  smtp: SmtpLogo,
+  groq: GroqLogo,
+  gemini: GeminiLogo,
+  claude: Claude,
+  openai: Openai,
+  ollama: OllamaLogo,
+  slack: Slack,
+  discord: Discord,
+  telegram: Telegram,
+  hubspot: HubSpotLogo,
+  zohocrm: ZohoLogo,
+  pipedrive: PipedriveLogo,
+  shopify: Shopify,
+  woocommerce: WooCommerceLogo,
+  zohobooks: ZohoBooksLogo,
+  shiprocket: ShiprocketLogo,
+  zoom: ZoomLogo,
+  calcom: CalComLogo,
+  whereby: WherebyLogo,
+  calendly: CalendlyLogo,
+  msteams: MSTeamsLogo,
+  teams: MSTeamsLogo,
+  zohobookings: ZohoBookingsLogo,
+  jitsimeet: JitsiMeetLogo,
+  webex: CiscoWebexLogo,
+  ciscowebex: CiscoWebexLogo,
+  zendesk: ZendeskLogo,
+  freshdesk: FreshdeskLogo,
+  intercom: IntercomLogo,
+  zohodesk: ZohoDeskLogo,
+  linkedin: Linkedin,
+  facebookpage: FacebookLogo,
+  facebook: FacebookLogo,
+  postgresql: Postgresql,
+  postgres: Postgresql,
+  mysql: Mysql,
+  mongodb: Mongodb,
+  mongo: Mongodb,
+  redis: Redis,
+  gmail: GmailLogo,
+  googleoauth: Google,
+  googleserviceaccount: GoogleSheetsLogo,
+  googlesheets: GoogleSheetsLogo,
+  google: Google,
+  github: GithubDark,
+  supabase: Supabase,
+  vercel: VercelDark,
+  sanity: SanityDark,
 };
 
 interface ProviderGuideClientProps {
@@ -164,6 +260,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
     setCurrentStepIndex((prev) => (prev - 1 + steps.length) % steps.length);
   };
 
+  const BrandIcon = BRAND_ICON_MAP[provider.id.toLowerCase()];
   const ProviderIcon = ICON_MAP[provider.iconName] || Building2;
 
   return (
@@ -200,6 +297,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
           </span>
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {PROVIDER_LIST.map((p) => {
+              const TabBrandIcon = BRAND_ICON_MAP[p.id.toLowerCase()];
               const IconComp = ICON_MAP[p.iconName] || Building2;
               const isActive = p.id === provider.id;
               return (
@@ -212,7 +310,11 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                       : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 border-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:border-zinc-800"
                   }`}
                 >
-                  <IconComp className="h-3.5 w-3.5" />
+                  {TabBrandIcon ? (
+                    <TabBrandIcon className="h-4 w-4 shrink-0" />
+                  ) : (
+                    <IconComp className="h-4 w-4 shrink-0" />
+                  )}
                   <span>{p.name}</span>
                   {p.popular && (
                     <span className="text-[9px] bg-white/20 px-1.5 py-0.2 rounded-full font-extrabold">
@@ -229,8 +331,12 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2 border-b border-zinc-200 dark:border-zinc-800">
           <div>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-zinc-100 px-3 py-0.5 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white">
-                <ProviderIcon className={`h-3.5 w-3.5 ${currentColor.textClass}`} />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white">
+                {BrandIcon ? (
+                  <BrandIcon className="h-4 w-4 shrink-0" />
+                ) : (
+                  <ProviderIcon className={`h-4 w-4 shrink-0 ${currentColor.textClass}`} />
+                )}
                 {provider.badge}
               </span>
               <span className="text-xs font-bold text-zinc-400 dark:text-zinc-500">

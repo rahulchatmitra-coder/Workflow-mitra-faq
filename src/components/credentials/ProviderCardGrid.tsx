@@ -59,6 +59,8 @@ import {
   OllamaLogo,
   IntercomLogo,
   ZohoDeskLogo,
+  GoogleSheetsLogo,
+  GmailLogo,
 } from "@/components/ui/svgs";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -114,8 +116,10 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   mongodb: Mongodb,
   mongo: Mongodb,
   redis: Redis,
+  gmail: GmailLogo,
   googleoauth: Google,
-  googleserviceaccount: Google,
+  googleserviceaccount: GoogleSheetsLogo,
+  googlesheets: GoogleSheetsLogo,
   google: Google,
   github: GithubDark,
   supabase: Supabase,

@@ -41,16 +41,17 @@ export { WorkflowMitraLogo } from "./workflowMitraLogo";
 
 export {
   ZohoLogo,
+  ZohoBooksLogo,
+  ZohoDeskLogo,
+  ZohoBookingsLogo,
   PipedriveLogo,
   WooCommerceLogo,
-  ZohoBooksLogo,
   ShiprocketLogo,
   ZoomLogo,
   CalComLogo,
   WherebyLogo,
   CalendlyLogo,
   MSTeamsLogo,
-  ZohoBookingsLogo,
   JitsiMeetLogo,
   CiscoWebexLogo,
   ZendeskLogo,
@@ -60,5 +61,6 @@ export {
   GroqLogo,
   OllamaLogo,
   IntercomLogo,
-  ZohoDeskLogo,
+  GoogleSheetsLogo,
+  ShopifyLogo,
 } from "./customLogos";
