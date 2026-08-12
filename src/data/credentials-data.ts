@@ -172,7 +172,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://console.groq.com/keys",
     steps: [
       {
-        image: "/credentials/grok/step1.png",
+        image: "/credentials/grok/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -187,7 +187,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step1.png",
+        image: "/credentials/grok/step1.webp",
         title: "Select Groq Service Provider",
         description: "In the Service Provider modal dialog, search for 'Groq' under AI Models and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -202,7 +202,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step2.png",
+        image: "/credentials/grok/step2.webp",
         title: "View Groq Credential Form",
         description: "View the Groq credential form requiring your Credential Name and API Key (starting with gsk_...).",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -217,7 +217,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/image.png",
+        image: "/credentials/grok/image.webp",
         title: "Search & Open Groq Console",
         description: "Open your web browser and navigate to https://console.groq.com.",
         addressUrl: "https://console.groq.com",
@@ -232,7 +232,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step4.png",
+        image: "/credentials/grok/step4.webp",
         title: "Sign In to Groq Console",
         description: "Click 'Continue with Google' or enter your email address to sign into Groq Console.",
         addressUrl: "https://console.groq.com",
@@ -247,7 +247,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step5.png",
+        image: "/credentials/grok/step5.webp",
         title: "Click API Keys Menu",
         description: "Inside Groq Console sidebar or top header, click on 'API Keys' menu.",
         addressUrl: "https://console.groq.com/keys",
@@ -262,7 +262,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step5.png",
+        image: "/credentials/grok/step5.webp",
         title: "Click Create API Key",
         description: "Click the orange/blue 'Create API Key' button to initiate new token generation.",
         addressUrl: "https://console.groq.com/keys",
@@ -277,7 +277,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step6.png",
+        image: "/credentials/grok/step6.webp",
         title: "Enter Key Name & Details",
         description: "Type a descriptive key name (e.g. 'Workflow Mitra Integration') and click Submit.",
         addressUrl: "https://console.groq.com/keys",
@@ -292,7 +292,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step7.png",
+        image: "/credentials/grok/step7.webp",
         title: "Copy Generated API Key",
         description: "Click the Copy button to copy your new secret API key starting with 'gsk_...' to your clipboard.",
         addressUrl: "https://console.groq.com/keys",
@@ -307,7 +307,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/grok/step8.png",
+        image: "/credentials/grok/step8.webp",
         title: "Save Encrypted Groq Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your gsk_ API Key, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -335,7 +335,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://aistudio.google.com/app/apikey",
     steps: [
       {
-        image: "/credentials/Gemini/step1.png",
+        image: "/credentials/Gemini/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -350,7 +350,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step1.png",
+        image: "/credentials/Gemini/step1.webp",
         title: "Select Gemini Service Provider",
         description: "In the Service Provider modal dialog, search for 'Gemini' under AI Models and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -365,7 +365,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step2.png",
+        image: "/credentials/Gemini/step2.webp",
         title: "View Gemini Credential Form",
         description: "View the Gemini credential form requiring your Credential Name and API Key.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -380,7 +380,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step3.png",
+        image: "/credentials/Gemini/step3.webp",
         title: "Search & Open Gemini API Console",
         description: "Open your web browser and navigate to https://aistudio.google.com/app/apikey.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -395,7 +395,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step4.png",
+        image: "/credentials/Gemini/step4.webp",
         title: "Click Get API Key Menu",
         description: "In Google AI Studio sidebar navigation, click on the 'Get API key' or 'API keys' menu.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -410,7 +410,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step5.png",
+        image: "/credentials/Gemini/step5.webp",
         title: "Create or View Gemini Key",
         description: "Click the 'Create API key' button at the top right to start key generation.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -425,7 +425,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step6.png",
+        image: "/credentials/Gemini/step6.webp",
         title: "Select Google Cloud Project",
         description: "Select 'Create API key in new project' or choose your existing Google Cloud project.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -440,7 +440,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step7.png",
+        image: "/credentials/Gemini/step7.webp",
         title: "Generate API Key Details",
         description: "Wait for Google AI Studio to generate your unique secret Gemini API key.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -455,7 +455,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step8.png",
+        image: "/credentials/Gemini/step8.webp",
         title: "Copy Your Gemini API Key",
         description: "Click the Copy button to copy your new secret API key to your clipboard.",
         addressUrl: "https://aistudio.google.com/app/apikey",
@@ -470,7 +470,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Gemini/step9.png",
+        image: "/credentials/Gemini/step9.webp",
         title: "Save Encrypted Gemini Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your API Key, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -556,7 +556,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://platform.openai.com/api-keys",
     steps: [
       {
-        image: "/credentials/chatgpt/step1.png",
+        image: "/credentials/chatgpt/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -571,7 +571,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step1.png",
+        image: "/credentials/chatgpt/step1.webp",
         title: "Select OpenAI Service Provider",
         description: "In the Service Provider modal dialog, search for 'OpenAI' under AI Models and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -586,7 +586,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step2.png",
+        image: "/credentials/chatgpt/step2.webp",
         title: "View OpenAI Credential Form",
         description: "View the OpenAI credential form requiring your Credential Name and API Secret Key.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -601,7 +601,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step3.png",
+        image: "/credentials/chatgpt/step3.webp",
         title: "Open OpenAI API Platform",
         description: "Open your web browser and navigate to https://platform.openai.com/api-keys.",
         addressUrl: "https://platform.openai.com/api-keys",
@@ -616,7 +616,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step4.png",
+        image: "/credentials/chatgpt/step4.webp",
         title: "Click Create New Secret Key",
         description: "In the OpenAI API Keys dashboard, click the '+ Create new key' button.",
         addressUrl: "https://platform.openai.com/api-keys",
@@ -631,7 +631,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step5.png",
+        image: "/credentials/chatgpt/step5.webp",
         title: "Enter Key Name & Create Key",
         description: "Type a descriptive name for your API key (e.g. 'Workflow Mitra'), select Default Project, and click 'Create secret key'.",
         addressUrl: "https://platform.openai.com/api-keys",
@@ -646,7 +646,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step6.png",
+        image: "/credentials/chatgpt/step6.webp",
         title: "Copy Generated Secret Key",
         description: "Click the Copy button to copy your newly generated secret API key.",
         addressUrl: "https://platform.openai.com/api-keys",
@@ -661,7 +661,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/chatgpt/step7.png",
+        image: "/credentials/chatgpt/step7.webp",
         title: "Save Encrypted OpenAI Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your secret API Key, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -690,7 +690,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://docs.ollama.com/cloud",
     steps: [
       {
-        image: "/credentials/ollama/step1.png",
+        image: "/credentials/ollama/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -705,7 +705,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step1.png",
+        image: "/credentials/ollama/step1.webp",
         title: "Select Ollama Service Provider",
         description: "In the Service Provider modal dialog, search for 'Ollama' under AI Models and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -720,7 +720,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step2.png",
+        image: "/credentials/ollama/step2.webp",
         title: "View Ollama Credential Form",
         description: "View the Ollama credential form requiring your Credential Name, Base URL, and optional API Key.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -735,7 +735,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step3.png",
+        image: "/credentials/ollama/step3.webp",
         title: "Visit Ollama Documentation & Portal",
         description: "Open your web browser and navigate to https://docs.ollama.com/cloud to view documentation and API setup.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -750,7 +750,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step3.png",
+        image: "/credentials/ollama/step3.webp",
         title: "Navigate to Ollama Cloud",
         description: "On the documentation page sidebar or top header, click on 'Ollama Cloud' to open the cloud portal.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -765,7 +765,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step4.png",
+        image: "/credentials/ollama/step4.webp",
         title: "Sign In to Ollama Cloud",
         description: "Click 'Sign in with Google' or enter your credentials to log in to your Ollama Cloud account.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -780,7 +780,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step5.png",
+        image: "/credentials/ollama/step5.webp",
         title: "Navigate to API Keys Section",
         description: "Inside the Ollama Cloud dashboard, click on 'API Keys' section from the navigation menu.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -795,7 +795,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step5.png",
+        image: "/credentials/ollama/step5.webp",
         title: "Click Add API Key Button",
         description: "Click the 'Add API Key' button to generate a new cloud API key for your account.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -810,7 +810,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step6.png",
+        image: "/credentials/ollama/step6.webp",
         title: "Enter Key Name & Generate",
         description: "Type a descriptive name for your API key (e.g. 'Workflow Mitra Integration') and click 'Generate'.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -825,7 +825,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step7.png",
+        image: "/credentials/ollama/step7.webp",
         title: "Copy Generated Secret API Key",
         description: "Click the Copy button to copy your newly generated secret API key to your clipboard.",
         addressUrl: "https://docs.ollama.com/cloud",
@@ -840,7 +840,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/ollama/step8.png",
+        image: "/credentials/ollama/step8.webp",
         title: "Save Encrypted Ollama Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your API Key, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -868,7 +868,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://api.slack.com/apps",
     steps: [
       {
-        image: "/credentials/Slack/step1.png",
+        image: "/credentials/Slack/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -883,7 +883,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step1.png",
+        image: "/credentials/Slack/step1.webp",
         title: "Select Slack Service Provider",
         description: "In the Service Provider modal dialog, search for 'Slack webhook' under Communication and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -898,7 +898,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step2.png",
+        image: "/credentials/Slack/step2.webp",
         title: "View Slack Credential Form",
         description: "View the Slack credential form requiring your Credential Name and Incoming Webhook URL.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -913,7 +913,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/image.png",
+        image: "/credentials/Slack/image.webp",
         title: "Search & Open Slack Sign In",
         description: "Open your web browser and navigate to https://slack.com/signin to access your Slack workspace.",
         addressUrl: "https://slack.com/signin",
@@ -928,7 +928,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step3.png",
+        image: "/credentials/Slack/step3.webp",
         title: "Sign In to Slack Account",
         description: "Enter your email address or sign in with Google to access your Slack workspace.",
         addressUrl: "https://slack.com/signin",
@@ -943,7 +943,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step4.png",
+        image: "/credentials/Slack/step4.webp",
         title: "Create a New Slack Workspace",
         description: "Click on 'Create a Workspace' button to set up a new Slack workspace for your organization.",
         addressUrl: "https://slack.com/create",
@@ -958,7 +958,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step5.png",
+        image: "/credentials/Slack/step5.webp",
         title: "Enter Workspace Name",
         description: "Type your company or team name for the new Slack workspace and click Next.",
         addressUrl: "https://slack.com/create",
@@ -973,7 +973,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step6.png",
+        image: "/credentials/Slack/step6.webp",
         title: "Enter Your Name & Details",
         description: "Type your full name and profile details as the workspace creator.",
         addressUrl: "https://slack.com/create",
@@ -988,7 +988,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step7.png",
+        image: "/credentials/Slack/step7.webp",
         title: "Invite Team Members via Email",
         description: "Enter email addresses of your team members to invite them, or click Skip for now.",
         addressUrl: "https://slack.com/create",
@@ -1003,7 +1003,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step8.png",
+        image: "/credentials/Slack/step8.webp",
         title: "Click 'New to Slack' Setup",
         description: "Select 'New to Slack' onboarding options to configure workspace settings.",
         addressUrl: "https://slack.com/create",
@@ -1018,7 +1018,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step9.png",
+        image: "/credentials/Slack/step9.webp",
         title: "Select Workspace Preferences",
         description: "Check the appropriate preference checkboxes and click Next.",
         addressUrl: "https://slack.com/create",
@@ -1033,7 +1033,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step10.png",
+        image: "/credentials/Slack/step10.webp",
         title: "Continue with Free Plan",
         description: "Select the Free plan option to proceed into your Slack workspace.",
         addressUrl: "https://slack.com/create",
@@ -1048,7 +1048,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step11.png",
+        image: "/credentials/Slack/step11.webp",
         title: "Open Workspace Menu Dropdown",
         description: "In your Slack workspace header, click on the workspace name dropdown menu.",
         addressUrl: "https://app.slack.com",
@@ -1063,7 +1063,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step12.png",
+        image: "/credentials/Slack/step12.webp",
         title: "Click Tools & Settings",
         description: "Hover over 'Tools & settings' in the dropdown menu.",
         addressUrl: "https://app.slack.com",
@@ -1078,7 +1078,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step12.png",
+        image: "/credentials/Slack/step12.webp",
         title: "Click Manage Workflows / Integrations",
         description: "Click on 'Manage Workflows' or 'Customize workspace' to access apps and webhooks.",
         addressUrl: "https://app.slack.com",
@@ -1093,7 +1093,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step13.png",
+        image: "/credentials/Slack/step13.webp",
         title: "Search & Select Incoming Webhooks",
         description: "In the Slack integrations directory, search for 'Incoming Webhooks' and click Add.",
         addressUrl: "https://app.slack.com",
@@ -1108,7 +1108,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step14.png",
+        image: "/credentials/Slack/step14.webp",
         title: "Select Target Slack Channel",
         description: "Choose the channel where notifications should be posted and click 'Add Incoming Webhooks Integration'.",
         addressUrl: "https://app.slack.com",
@@ -1123,7 +1123,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step15.png",
+        image: "/credentials/Slack/step15.webp",
         title: "Copy Webhook URL",
         description: "Copy the generated Webhook URL (starting with https://hooks.slack.com/services/...) to your clipboard.",
         addressUrl: "https://app.slack.com",
@@ -1138,7 +1138,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Slack/step16.png",
+        image: "/credentials/Slack/step16.webp",
         title: "Save Encrypted Slack Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your Webhook URL, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1166,7 +1166,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://discord.com/login",
     steps: [
       {
-        image: "/credentials/Discord/step1.png",
+        image: "/credentials/Discord/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' button at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1181,7 +1181,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step1.png",
+        image: "/credentials/Discord/step1.webp",
         title: "Select Discord Service Provider",
         description: "In the Service Provider modal dialog, search for 'Discord webhook' under Communication and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1196,7 +1196,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step2.png",
+        image: "/credentials/Discord/step2.webp",
         title: "View Discord Credential Form",
         description: "View the Discord credential form requiring your Credential Name and Webhook URL.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1211,7 +1211,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step3.png",
+        image: "/credentials/Discord/step3.webp",
         title: "Search & Open Discord Sign In.",
         description: "Open your web browser and navigate to https://discord.com/login to access your Discord server.",
         addressUrl: "https://discord.com/login",
@@ -1226,7 +1226,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step4.png",
+        image: "/credentials/Discord/step4.webp",
         title: "Log In to Your Discord Account",
         description: "Enter your email or phone number, password, and click Log In to access your Discord account.",
         addressUrl: "https://discord.com/login",
@@ -1241,7 +1241,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step5.png",
+        image: "/credentials/Discord/step5.webp",
         title: "Open Server Settings Dropdown",
         description: "In your Discord server, click on the server name at top left to open the server settings menu.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1256,7 +1256,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step6.png",
+        image: "/credentials/Discord/step6.webp",
         title: "Click Server Settings",
         description: "Select 'Server Settings' from the dropdown menu options.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1271,7 +1271,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step7.png",
+        image: "/credentials/Discord/step7.webp",
         title: "Select Integrations Category",
         description: "In the left sidebar menu under Apps, click on 'Integrations'.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1286,7 +1286,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step8.png",
+        image: "/credentials/Discord/step8.webp",
         title: "Click Create Webhook",
         description: "Click the 'Create Webhook' or 'View Webhooks' button to manage integrations for your server.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1301,7 +1301,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step9.png",
+        image: "/credentials/Discord/step9.webp",
         title: "Click New Webhook",
         description: "Click on 'New Webhook' button to generate a new integration endpoint.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1316,7 +1316,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step9.png",
+        image: "/credentials/Discord/step9.webp",
         title: "Copy Webhook URL",
         description: "Enter a name for your webhook, select the target text channel, and click 'Copy Webhook URL'.",
         addressUrl: "https://discord.com/channels/@me",
@@ -1331,7 +1331,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Discord/step10.png",
+        image: "/credentials/Discord/step10.webp",
         title: "Save Encrypted Discord Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your Webhook URL, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1359,7 +1359,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://t.me/BotFather",
     steps: [
       {
-        image: "/credentials/telegram/step1.png",
+        image: "/credentials/telegram/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1374,7 +1374,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step1.png",
+        image: "/credentials/telegram/step1.webp",
         title: "Open Workflow Mitra & Select Telegram Bot",
         description: "Navigate to https://app.workflowmitra.com/credentials, click '+ New Credential' at top right, search for 'Telegram bot' under Communication, and click on it.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1389,7 +1389,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step2.png",
+        image: "/credentials/telegram/step2.webp",
         title: "View Telegram Bot Credential Form",
         description: "View the Telegram bot credential form requiring your Credential Name and HTTP API Bot Token from Telegram @BotFather.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1404,7 +1404,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step3.png",
+        image: "/credentials/telegram/step3.webp",
         title: "Open Telegram Web Portal",
         description: "Open your web browser and navigate to https://web.telegram.org to log in to your Telegram account.",
         addressUrl: "https://web.telegram.org",
@@ -1419,7 +1419,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step4.png",
+        image: "/credentials/telegram/step4.webp",
         title: "Search for @BotFather in Telegram",
         description: "In the top left search bar, type @BotFather and click on the verified BotFather account with the blue tick icon.",
         addressUrl: "https://web.telegram.org",
@@ -1434,7 +1434,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step5.png",
+        image: "/credentials/telegram/step5.webp",
         title: "Send /newbot Command to BotFather",
         description: "In the BotFather chat window, type /newbot in the message box and press Enter to create a new bot.",
         addressUrl: "https://web.telegram.org",
@@ -1449,7 +1449,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step6.png",
+        image: "/credentials/telegram/step6.webp",
         title: "Choose Bot Name & Unique Username",
         description: "Type a display name for your bot (e.g. Demobot) and press Enter. Then choose a unique username ending in 'bot' (e.g. chatmitra21_bot).",
         addressUrl: "https://web.telegram.org",
@@ -1464,7 +1464,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step7.png",
+        image: "/credentials/telegram/step7.webp",
         title: "Copy HTTP API Bot Token",
         description: "BotFather will output your HTTP API Token (e.g., 8505566193:AAFkzqbDtI8Kjbf...). Select and copy this token to your clipboard.",
         addressUrl: "https://web.telegram.org",
@@ -1479,7 +1479,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/telegram/step8.png",
+        image: "/credentials/telegram/step8.webp",
         title: "Save & Connect Telegram Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your HTTP API Bot Token, and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1507,7 +1507,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://app.hubspot.com",
     steps: [
       {
-        image: "/credentials/hubspot/step1.png",
+        image: "/credentials/hubspot/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to your Workflow Mitra workspace credentials page at https://app.workflowmitra.com/credentials and click the '+ New Credential' button at the top right header.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1522,7 +1522,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step1.png",
+        image: "/credentials/hubspot/step1.webp",
         title: "Select HubSpot Service Provider",
         description: "In the Service Provider modal dialog, scroll down or search for 'HubSpot' under CRM & Sales, then click on it to open the setup guide.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1537,7 +1537,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step2.png",
+        image: "/credentials/hubspot/step2.webp",
         title: "Enter Credential Details",
         description: "Enter your Credential Name and paste your Private App Access Token (pat-na1-...), then click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1702,7 +1702,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step12.png",
+        image: "/credentials/hubspot/step12.webp",
         title: "Enter App Name & Description",
         description: "Under the Basic Info tab, enter your App Name (e.g. 'Workflow Mitra Integration') and add a short description for identification.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1717,7 +1717,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step12.png",
+        image: "/credentials/hubspot/step12.webp",
         title: "Navigate to Scopes Tab",
         description: "Click on the 'Scopes' tab at the top of the Private App configuration window to set API permissions for contacts and deals.",
         addressUrl: "https://app-na2.hubspot.com/global-home/246988709",
@@ -1792,7 +1792,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/hubspot/step15.png",
+        image: "/credentials/hubspot/step15.webp",
         title: "Save Encrypted HubSpot Credentials",
         description: "Review your entries and click the 'Save Credential' button. Workflow Mitra will encrypt your token using AES-256 and verify connection.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1820,7 +1820,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://api-console.zoho.com",
     steps: [
       {
-        image: "/credentials/zoho crm/step1.png",
+        image: "/credentials/zoho crm/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1835,7 +1835,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step1.png",
+        image: "/credentials/zoho crm/step1.webp",
         title: "Select Zoho CRM Provider",
         description: "Navigate to https://app.workflowmitra.com/credentials, click '+ New Credential' at the top right, and select 'Zoho CRM' from the CRM & Sales provider list.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1850,7 +1850,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step2.png",
+        image: "/credentials/zoho crm/step2.webp",
         title: "View Zoho CRM Credential Form",
         description: "View the Zoho CRM credential form requiring your Credential Name, OAuth access token, and API domain (e.g., https://www.zohoapis.in).",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -1865,7 +1865,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step3.png",
+        image: "/credentials/zoho crm/step3.webp",
         title: "Search for Zoho API Console",
         description: "Open a new browser tab, search for 'zoho api console' on Google or navigate to https://api-console.zoho.com, and click on the official Zoho API Console link.",
         addressUrl: "https://api-console.zoho.com",
@@ -1880,7 +1880,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step4.png",
+        image: "/credentials/zoho crm/step4.webp",
         title: "Sign in to Zoho Accounts",
         description: "Enter your registered Zoho account email address or mobile number and click 'Next' to log in to your Zoho developer account.",
         addressUrl: "https://accounts.zoho.com/signin",
@@ -1895,7 +1895,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step5.png",
+        image: "/credentials/zoho crm/step5.webp",
         title: "Welcome to API Console & Click GET STARTED",
         description: "On the Zoho API Console welcome page, click the blue 'GET STARTED' button to create your OAuth application credentials.",
         addressUrl: "https://api-console.zoho.com",
@@ -1910,7 +1910,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step6.png",
+        image: "/credentials/zoho crm/step6.webp",
         title: "Select Self Client & Click CREATE NOW",
         description: "From the client application types, locate the 'Self Client' option (designed for server-to-server API integrations) and click 'CREATE NOW'.",
         addressUrl: "https://api-console.zoho.com",
@@ -1925,7 +1925,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step7.png",
+        image: "/credentials/zoho crm/step7.webp",
         title: "Click CREATE on Self Client Dialog",
         description: "In the 'Create New Client' dialog with 'Self client' selected as the Client Type, click the blue 'CREATE' button.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -1940,7 +1940,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step8.png",
+        image: "/credentials/zoho crm/step8.webp",
         title: "Confirm Enable Self-Client",
         description: "When prompted with 'Are you sure to enable self-client?', click the blue 'OK' button to confirm and proceed.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -1955,7 +1955,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step9.png",
+        image: "/credentials/zoho crm/step9.webp",
         title: "Configure Scopes & Code Expiry",
         description: "In the Generate Code tab, enter Scope: 'ZohoCRM.modules.ALL,ZohoCRM.users.READ', select Code expiry duration (e.g. 10 minutes), type Description 'workflow mitra access token', and click 'CREATE'.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -1970,7 +1970,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step10.png",
+        image: "/credentials/zoho crm/step10.webp",
         title: "Select CRM Production Organization",
         description: "Under the Select Portal section, choose the 'CRM' tab on the left and select your Production organization portal radio button (e.g. Bhagirath).",
         addressUrl: "https://api-console.zoho.com/client",
@@ -1985,7 +1985,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step11.png",
+        image: "/credentials/zoho crm/step11.webp",
         title: "Click CREATE to Generate Authorization Code",
         description: "After selecting your CRM organization portal, click the blue 'CREATE' button at the bottom left to generate the authorization code.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2000,7 +2000,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step12.png",
+        image: "/credentials/zoho crm/step12.webp",
         title: "Copy Generated OAuth Authorization Code",
         description: "In the 'Generated Code' modal dialog, click the blue 'COPY' button to copy your secret OAuth authorization code to your clipboard.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2015,7 +2015,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho crm/step13.png",
+        image: "/credentials/zoho crm/step13.webp",
         title: "Paste Token & Save Zoho CRM Credential",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'zoho'), paste your copied OAuth access token, confirm your API domain (https://www.zohoapis.in), and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2043,7 +2043,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://pipedrive.com",
     steps: [
       {
-        image: "/credentials/pipedrive/step1.png",
+        image: "/credentials/pipedrive/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to your Workflow Mitra workspace credentials page at https://app.workflowmitra.com/credentials and click the '+ New Credential' button at the top right header.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2058,7 +2058,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/step1.png",
+        image: "/credentials/pipedrive/step1.webp",
         title: "Select Pipedrive Service Provider",
         description: "In the Service Provider modal dialog, scroll down under CRM & Sales and click on 'Pipedrive' to open the setup guide.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2073,7 +2073,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/step2.png",
+        image: "/credentials/pipedrive/step2.webp",
         title: "View Pipedrive Credential Form",
         description: "View the Pipedrive credential form requiring your Credential Name and Personal API Token.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2178,7 +2178,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/pipedrive/step8.png",
+        image: "/credentials/pipedrive/step8.webp",
         title: "Paste Token & Save Pipedrive Credential",
         description: "Return to Workflow Mitra, enter your Credential Name, paste your copied Personal API Token, and click the 'Save Credential' button to verify connection.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2206,7 +2206,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://admin.shopify.com",
     steps: [
       {
-        image: "/credentials/shopify/step1.png",
+        image: "/credentials/shopify/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to https://app.workflowmitra.com/credentials and click '+ New Credential' at top right.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2221,7 +2221,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shopify/step1.png",
+        image: "/credentials/shopify/step1.webp",
         title: "Select Zoho CRM Provider",
         description: "Navigate to https://app.workflowmitra.com/credentials, click '+ New Credential' at the top right, and select 'Zoho CRM' from the CRM & Sales provider list.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2337,7 +2337,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://api-console.zoho.com",
     steps: [
       {
-        image: "/credentials/zoho book/step1.png",
+        image: "/credentials/zoho book/step1.webp",
         title: "Open Workflow Mitra & Click + New Credential",
         description: "Navigate to your Workflow Mitra workspace credentials page at https://app.workflowmitra.com/credentials and click the '+ New Credential' button at the top right header.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2352,7 +2352,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step1.png",
+        image: "/credentials/zoho book/step1.webp",
         title: "Select Zoho Books Service Provider",
         description: "In the Service Provider modal dialog, scroll down under CRM & Sales and click on 'Zoho Books' to open the setup guide.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2367,7 +2367,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step2.png",
+        image: "/credentials/zoho book/step2.webp",
         title: "View Zoho Books Credential Form",
         description: "View the Zoho Books credential form requiring your Credential Name, OAuth access token, Organisation ID, and API domain (e.g., https://www.zohoapis.in).",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2382,7 +2382,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step3.png",
+        image: "/credentials/zoho book/step3.webp",
         title: "Search for Zoho API Console",
         description: "Open a new browser tab, search for 'zoho api console' on Google or navigate to https://api-console.zoho.com, and click on the official Zoho API Console link.",
         addressUrl: "https://api-console.zoho.com",
@@ -2397,7 +2397,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step4.png",
+        image: "/credentials/zoho book/step4.webp",
         title: "Sign in to Zoho Accounts",
         description: "Enter your registered Zoho account email address or mobile number and click 'Next' to log in to your Zoho developer account.",
         addressUrl: "https://accounts.zoho.com/signin",
@@ -2412,7 +2412,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step5.png",
+        image: "/credentials/zoho book/step5.webp",
         title: "Welcome to API Console & Click GET STARTED",
         description: "On the Zoho API Console welcome page, click the blue 'GET STARTED' button to begin generating your OAuth application credentials.",
         addressUrl: "https://api-console.zoho.com",
@@ -2427,7 +2427,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step6.png",
+        image: "/credentials/zoho book/step6.webp",
         title: "Select Self Client & Click CREATE NOW",
         description: "From the client application types, locate the 'Self Client' option (designed for server-to-server API integrations) and click 'CREATE NOW'.",
         addressUrl: "https://api-console.zoho.com",
@@ -2442,7 +2442,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step7.png",
+        image: "/credentials/zoho book/step7.webp",
         title: "Click CREATE on Self Client Dialog",
         description: "In the 'Create New Client' dialog with 'Self client' selected as the Client Type, click the blue 'CREATE' button to proceed.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -2457,7 +2457,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step8.png",
+        image: "/credentials/zoho book/step8.webp",
         title: "Confirm Enable Self-Client",
         description: "When prompted with 'Are you sure to enable self-client?', click the blue 'OK' button to confirm and proceed.",
         addressUrl: "https://api-console.zoho.com/#selfclient",
@@ -2472,7 +2472,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step9.png",
+        image: "/credentials/zoho book/step9.webp",
         title: "Configure Scopes & Code Expiry",
         description: "In the Generate Code tab, enter Scope: 'ZohoBooks.contacts.ALL,ZohoBooks.invoices.ALL,ZohoBooks.settings.READ', select Code expiry duration (e.g. 3 minutes or 10 minutes), type Description 'workflowmitra acces token', and click 'CREATE'.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2487,7 +2487,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step10.png",
+        image: "/credentials/zoho book/step10.webp",
         title: "Copy Generated OAuth Authorization Code",
         description: "In the 'Generated Code' modal dialog, click the blue 'COPY' button to copy your secret OAuth authorization code to your clipboard.",
         addressUrl: "https://api-console.zoho.com/client",
@@ -2502,7 +2502,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step11.png",
+        image: "/credentials/zoho book/step11.webp",
         title: "Copy Zoho Books Organization ID",
         description: "Navigate to your Zoho Books dashboard at books.zoho.in, click on your user profile avatar in the top right corner of the header, and copy your Organization ID number.",
         addressUrl: "https://books.zoho.in/app",
@@ -2517,7 +2517,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoho book/step12.png",
+        image: "/credentials/zoho book/step12.webp",
         title: "Paste Token, Org ID & Save Credential",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'zoho book'), paste your copied OAuth access token, enter your Organization ID, confirm your API domain (https://www.zohoapis.in), and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2545,7 +2545,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://app.shiprocket.in",
     steps: [
       {
-        image: "/credentials/shiprokcet/step1.png",
+        image: "/credentials/shiprokcet/step1.webp",
         title: "Open Workflow Mitra & Select Shiprocket",
         description: "In the Service Provider modal dialog on Workflow Mitra (https://app.workflowmitra.com/credentials), scroll down under E-Commerce and click on 'Shiprocket' to open the credential setup form. You can also visit [Open Shiprocket API](https://app.shiprocket.in/) to access your account directly.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2560,7 +2560,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step2.png",
+        image: "/credentials/shiprokcet/step2.webp",
         title: "View Shiprocket Credential Form",
         description: "View the Shiprocket credential form requiring your Credential Name (e.g. 'shiprocket') and your generated API Token / Password.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2575,7 +2575,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step3.png",
+        image: "/credentials/shiprokcet/step3.webp",
         title: "Visit Shiprocket & Log In",
         description: "Open a new browser tab, navigate to the official Shiprocket login portal at https://app.shiprocket.in/newlogin, and sign in using your registered mobile number or email address.",
         addressUrl: "https://app.shiprocket.in/newlogin",
@@ -2590,7 +2590,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step4.png",
+        image: "/credentials/shiprokcet/step4.webp",
         title: "Navigate to Seller Settings",
         description: "Once logged into your Shiprocket Seller Dashboard, scroll down to the bottom of the left navigation sidebar and click on the 'Settings' gear icon.",
         addressUrl: "https://app.shiprocket.in/seller/settings",
@@ -2605,7 +2605,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step5.png",
+        image: "/credentials/shiprokcet/step5.webp",
         title: "Open API Users in Additional Settings",
         description: "In the Settings page under the Additional Settings section, locate and click on the 'API Users' card to configure automated external API access.",
         addressUrl: "https://app.shiprocket.in/seller/settings",
@@ -2620,7 +2620,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step6.png",
+        image: "/credentials/shiprokcet/step6.webp",
         title: "Click + Add New API User",
         description: "On the API Users management screen, click the purple '+ Add New API User' button in the upper right header to create a dedicated integration user.",
         addressUrl: "https://app.shiprocket.in/seller/settings/additional-settings/api-users",
@@ -2635,7 +2635,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step7.png",
+        image: "/credentials/shiprokcet/step7.webp",
         title: "Enter API User Email & Click Create User",
         description: "In the 'Add New User' modal, enter an email address for API access (different from your main account email), select your required modules (Orders, Shipments, Settings), and click the purple 'Create User' button.",
         addressUrl: "https://app.shiprocket.in/seller/settings/additional-settings/api-users",
@@ -2650,7 +2650,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step8.png",
+        image: "/credentials/shiprokcet/step8.webp",
         title: "Copy Generated API Password",
         description: "In the 'Your API Password' popup dialog, click the purple Copy icon to copy your secret API password to your clipboard. (Note: Store this securely as it won't be shown again).",
         addressUrl: "https://app.shiprocket.in/seller/settings/additional-settings/api-users",
@@ -2665,7 +2665,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/shiprokcet/step9.png",
+        image: "/credentials/shiprokcet/step9.webp",
         title: "Paste Token & Save Credential in Workflow Mitra",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'shiprocket'), paste your copied API password/token into the API token field, and click the black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2693,7 +2693,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://marketplace.zoom.us",
     steps: [
       {
-        image: "/credentials/zoom/step1.png",
+        image: "/credentials/zoom/step1.webp",
         title: "Open Workflow Mitra & Select Zoom",
         description: "In the Service Provider modal dialog on Workflow Mitra (https://app.workflowmitra.com/credentials), scroll down under Meetings & Video and click on 'Zoom' to open the credential setup form.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2708,7 +2708,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step2.png",
+        image: "/credentials/zoom/step2.webp",
         title: "View Zoom Credential Form",
         description: "View the Zoom credential form requiring your Credential Name, Account ID, Client ID, and Client Secret for Server-to-Server OAuth authentication.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2723,7 +2723,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step3.png",
+        image: "/credentials/zoom/step3.webp",
         title: "Visit Zoom & Log In",
         description: "Open a new browser tab, navigate to the official Zoom sign-in portal at https://zoom.us/signin#/login, and log in with your admin Zoom account.",
         addressUrl: "https://zoom.us/signin#/login",
@@ -2738,7 +2738,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step4.png",
+        image: "/credentials/zoom/step4.webp",
         title: "Open Zoom App Marketplace & Build App",
         description: "Navigate to https://marketplace.zoom.us, click on the 'Develop' dropdown in the top right header menu, and select 'Build app'.",
         addressUrl: "https://marketplace.zoom.us",
@@ -2753,7 +2753,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step5.png",
+        image: "/credentials/zoom/step5.webp",
         title: "Select Server to Server OAuth App",
         description: "In the 'What kind of app are you creating' modal dialog, select 'Server to Server OAuth App' and click the blue 'Create' button.",
         addressUrl: "https://marketplace.zoom.us/develop/create",
@@ -2768,7 +2768,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step6.png",
+        image: "/credentials/zoom/step6.webp",
         title: "Enter App Name & Click Create",
         description: "In the 'Create a Server-to-Server OAuth app' dialog, enter your App Name (e.g. 'Workflow Mitra' or 'demo') and click the blue 'Create' button.",
         addressUrl: "https://marketplace.zoom.us/develop/create",
@@ -2783,7 +2783,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step7.png",
+        image: "/credentials/zoom/step7.webp",
         title: "Copy Account ID, Client ID & Client Secret",
         description: "Under the App Credentials tab, copy your Account ID, Client ID, and Client Secret to your clipboard using the respective 'Copy' buttons.",
         addressUrl: "https://marketplace.zoom.us/develop/apps",
@@ -2798,7 +2798,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/zoom/step8.png",
+        image: "/credentials/zoom/step8.webp",
         title: "Paste Credentials & Save in Workflow Mitra",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'zoom'), paste your copied Account ID, Client ID, and Client Secret, then click the black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2826,7 +2826,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://app.cal.com/settings/developer/api-keys",
     steps: [
       {
-        image: "/credentials/cal.com/step1.png",
+        image: "/credentials/cal.com/step1.webp",
         title: "Open Workflow Mitra & Select Cal.com",
         description: "In the Service Provider modal dialog on Workflow Mitra (https://app.workflowmitra.com/credentials), scroll down under Meetings & Scheduling and click on 'Cal.com' to open the credential setup form.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2841,7 +2841,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step2.png",
+        image: "/credentials/cal.com/step2.webp",
         title: "View Cal.com Credential Form",
         description: "View the Cal.com credential form requiring your Credential Name, API key (e.g. 'cal_live_...'), API version, and optional API base URL.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2856,7 +2856,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step3.png",
+        image: "/credentials/cal.com/step3.webp",
         title: "Visit Cal.com & Log In",
         description: "Open a new browser tab, navigate to the official Cal.com login portal at https://app.cal.com/auth/login, and sign in using Google, Microsoft, or your email credentials.",
         addressUrl: "https://app.cal.com/auth/login",
@@ -2871,7 +2871,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step4.png",
+        image: "/credentials/cal.com/step4.webp",
         title: "Navigate to Cal.com Settings",
         description: "Once logged into your Cal.com dashboard, scroll down to the bottom of the left navigation menu and click on the 'Settings' gear icon.",
         addressUrl: "https://app.cal.com/event-types",
@@ -2886,7 +2886,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step5.png",
+        image: "/credentials/cal.com/step5.webp",
         title: "Open API Keys in Developer Section",
         description: "In the Settings page, scroll down to the Developer section and click on the 'API keys' card to manage your account API credentials.",
         addressUrl: "https://app.cal.com/settings",
@@ -2901,7 +2901,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step6.png",
+        image: "/credentials/cal.com/step6.webp",
         title: "Click + New to Create API Key",
         description: "On the API keys screen under 'Create your first API key', click the black '+ New' button to open the key generation dialog.",
         addressUrl: "https://app.cal.com/settings/developer/api-keys",
@@ -2916,7 +2916,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step7.png",
+        image: "/credentials/cal.com/step7.webp",
         title: "Enter Key Name & Click Create",
         description: "In the 'Create an API key' modal dialog, enter a key name (e.g. 'Workflow Mitra' or 'demo') and click the black 'Create' button.",
         addressUrl: "https://app.cal.com/settings/developer/api-keys",
@@ -2931,7 +2931,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step8.png",
+        image: "/credentials/cal.com/step8.webp",
         title: "Copy Generated API Key",
         description: "In the 'API key created successfully' popup dialog, click the Copy icon on the right side of the key field to copy your secret key ('cal_live_...') to your clipboard.",
         addressUrl: "https://app.cal.com/settings/developer/api-keys",
@@ -2946,7 +2946,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/cal.com/step9.png",
+        image: "/credentials/cal.com/step9.webp",
         title: "Paste Key & Save Credential in Workflow Mitra",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'calcom'), paste your copied API key into the API key field, and click the black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2974,7 +2974,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://whereby.com",
     steps: [
       {
-        image: "/credentials/whereby/step1.png",
+        image: "/credentials/whereby/step1.webp",
         title: "Open Workflow Mitra & Select Whereby",
         description: "In the Service Provider modal dialog on Workflow Mitra (https://app.workflowmitra.com/credentials), scroll down under Meetings & Video and click on 'Whereby' to open the credential setup form.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -2989,7 +2989,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step2.png",
+        image: "/credentials/whereby/step2.webp",
         title: "View Whereby Credential Form",
         description: "View the Whereby credential form requiring your Credential Name, API key, and optional API base URL (https://api.whereby.com).",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -3004,7 +3004,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step3.png",
+        image: "/credentials/whereby/step3.webp",
         title: "Visit Whereby & Log In",
         description: "Open a new browser tab, navigate to the official Whereby sign-in portal at https://whereby.com/user/login, and sign in using Google, Apple, or your work email.",
         addressUrl: "https://whereby.com/user/login",
@@ -3019,7 +3019,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step4.png",
+        image: "/credentials/whereby/step4.webp",
         title: "Navigate to Embedded Product",
         description: "On the Whereby dashboard footer, under the 'Product' column, click on 'Embedded' to access Whereby's developer and API platform.",
         addressUrl: "https://whereby.com/user",
@@ -3034,7 +3034,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step5.png",
+        image: "/credentials/whereby/step5.webp",
         title: "Click Get Started on Whereby Embedded",
         description: "On the Whereby Embedded developer landing page, click the dark blue 'Get started' button to proceed with API setup.",
         addressUrl: "https://whereby.com/information/embedded",
@@ -3049,7 +3049,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step6.png",
+        image: "/credentials/whereby/step6.webp",
         title: "Select API & SDK Integration",
         description: "Under 'Integrate customizable video calls into your product, app, or website using our API and SDK', click the 'Get started' button.",
         addressUrl: "https://whereby.com/information/select-product",
@@ -3064,7 +3064,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step7.png",
+        image: "/credentials/whereby/step7.webp",
         title: "Choose Free Explore Plan ($0)",
         description: "On the plan selection page, choose the free 'Explore' plan ($0 / month with up to 2,000 participant minutes) and click the dark green 'Get started' button.",
         addressUrl: "https://whereby.com/information/embedded/select-plan",
@@ -3079,7 +3079,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step8.png",
+        image: "/credentials/whereby/step8.webp",
         title: "Enter Company Name & Subdomain",
         description: "In the 'Create your account' form, enter your Company Name (e.g. 'Workflow Mitra' or 'demo1'), choose your custom subdomain, and click the dark green 'Continue' button.",
         addressUrl: "https://whereby.com/org/signup/embedded",
@@ -3094,7 +3094,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step9.png",
+        image: "/credentials/whereby/step9.webp",
         title: "Complete Onboarding Survey",
         description: "Select your role (e.g. Developer), company details, and familiarity level, then click the dark green 'Continue' button to open your organization dashboard.",
         addressUrl: "https://whereby.com/org/embedded/survey",
@@ -3109,7 +3109,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step10.png",
+        image: "/credentials/whereby/step10.webp",
         title: "Open API Settings & Click Generate Key",
         description: "In your Whereby Organization dashboard under Configure > API, click the dark blue 'Generate key' button to create your integration token.",
         addressUrl: "https://whereby.com/org/settings/api",
@@ -3124,7 +3124,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step11.png",
+        image: "/credentials/whereby/step11.webp",
         title: "Copy Secret API Key (JWT)",
         description: "In the key modal dialog, click the Copy icon at the top right of the key box to copy your secret Whereby API key to your clipboard.",
         addressUrl: "https://whereby.com/org/settings/api",
@@ -3139,7 +3139,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/whereby/step12.png",
+        image: "/credentials/whereby/step12.webp",
         title: "Paste Key & Save Credential in Workflow Mitra",
         description: "Return to Workflow Mitra, enter your Credential Name (e.g. 'Whereby'), paste your copied API key into the API key field, and click the black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -3827,7 +3827,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://redis.io",
     steps: [
       {
-        image: "/credentials/Redis/step1.png",
+        image: "/credentials/Redis/step1.webp",
         title: "Step 1: Select Redis Provider",
         description: "Open Workflow Mitra Credentials page (https://app.workflowmitra.com/credentials) and click '+ New credential'. Scroll down in the modal and select 'Redis'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -3842,7 +3842,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step2.png",
+        image: "/credentials/Redis/step2.webp",
         title: "Step 2: Switch Tab -> Redis Cloud Console",
         description: "Review required credential fields (Name, Connection URI). Click the Redis Cloud tab (https://redis.io/cloud) in your browser top bar.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -3857,7 +3857,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step3.png",
+        image: "/credentials/Redis/step3.webp",
         title: "Step 3: Click Try Redis Free Button",
         description: "On the Redis Cloud homepage (https://redis.io/cloud), click the red 'Try Redis' button in the top navigation header.",
         addressUrl: "https://redis.io/cloud/?utm_source=chatgpt.com",
@@ -3872,7 +3872,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step4.png",
+        image: "/credentials/Redis/step4.webp",
         title: "Step 4: Register Free Redis Account",
         description: "On the sign-up page (https://redis.io/try-free/), enter First/Last Name, Email, Company, Password, and click 'Sign up with email' or 'Sign up with Google'.",
         addressUrl: "https://redis.io/try-free/",
@@ -3887,7 +3887,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step5.png",
+        image: "/credentials/Redis/step5.webp",
         title: "Step 5: Select Personal Project",
         description: "On the onboarding survey page (https://cloud.redis.io/#/icp), click the 'Personal project' card to continue.",
         addressUrl: "https://cloud.redis.io/#/icp",
@@ -3902,7 +3902,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step6.png",
+        image: "/credentials/Redis/step6.webp",
         title: "Step 6: Click Try 30 MB for Free",
         description: "Under the Essentials plan section on https://cloud.redis.io/#/add-subscription/essential, click the 'Try 30 MB for free' link.",
         addressUrl: "https://cloud.redis.io/#/add-subscription/essential",
@@ -3917,7 +3917,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step7.png",
+        image: "/credentials/Redis/step7.webp",
         title: "Step 7: Configure & Create Free Database",
         description: "On https://cloud.redis.io/#/add-subscription/free, type Database Name ('Workflowmitra'), choose Cloud & Region, then click blue 'Create database' button.",
         addressUrl: "https://cloud.redis.io/#/add-subscription/free",
@@ -3932,7 +3932,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step8.png",
+        image: "/credentials/Redis/step8.webp",
         title: "Step 8: Open Database Configuration & Click Connect",
         description: "On your database dashboard (https://cloud.redis.io/#/databases/...), click the blue 'Connect' button under the Connect section.",
         addressUrl: "https://cloud.redis.io/#/databases/14537249/subscription/3376017/view-bdb/configuration",
@@ -3947,7 +3947,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step9.png",
+        image: "/credentials/Redis/step9.webp",
         title: "Step 9: Copy Redis Connection URI",
         description: "In the side drawer under Redis CLI section, click the blue 'Copy' button to copy your Redis connection URI (redis-cli -u redis://default:******@...).",
         addressUrl: "https://cloud.redis.io/#/databases/14537249/subscription/3376017/view-bdb/configuration",
@@ -3962,7 +3962,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Redis/step10.png",
+        image: "/credentials/Redis/step10.webp",
         title: "Step 10: Switch Tab -> Paste URI & Save Credential",
         description: "Switch back to Workflow Mitra tab (https://app.workflowmitra.com/credentials). Type Credential Name ('Workflowmitra'), paste your Connection URI, and click black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -3990,7 +3990,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://console.cloud.google.com",
     steps: [
       {
-        image: "/credentials/Google_Auth/step1.png",
+        image: "/credentials/Google_Auth/step1.webp",
         title: "Step 1: Select Google (OAuth)",
         description: "Open Workflow Mitra Credentials page (https://app.workflowmitra.com/credentials) and click '+ New credential'. Scroll down in the modal and select 'Google (OAuth)'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4005,7 +4005,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step2.png",
+        image: "/credentials/Google_Auth/step2.webp",
         title: "Step 2: Switch Tab -> Google Cloud Console",
         description: "Review required credential fields (Client ID, Client secret, Refresh token). Click the Google Cloud Console tab (https://console.cloud.google.com) in your browser top bar.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4020,7 +4020,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step3.png",
+        image: "/credentials/Google_Auth/step3.webp",
         title: "Step 3: Choose Google Account",
         description: "On the Google Sign-In page (https://accounts.google.com), click your account (e.g. Rahul — rahul.chatmitra@gmail.com) to access Google Cloud Console.",
         addressUrl: "https://accounts.google.com/v3/signin/accountchooser",
@@ -4035,7 +4035,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step4.png",
+        image: "/credentials/Google_Auth/step4.webp",
         title: "Step 4: Open Project Selector",
         description: "On the Google Cloud welcome page (https://console.cloud.google.com/welcome), click the 'Select a project' dropdown button in the top navigation bar.",
         addressUrl: "https://console.cloud.google.com/welcome",
@@ -4050,7 +4050,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step5.png",
+        image: "/credentials/Google_Auth/step5.webp",
         title: "Step 5: Click New Project",
         description: "In the project selection popup modal on https://console.cloud.google.com/welcome, click the blue 'New project' button in the top-right corner.",
         addressUrl: "https://console.cloud.google.com/welcome",
@@ -4065,7 +4065,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step6.png",
+        image: "/credentials/Google_Auth/step6.webp",
         title: "Step 6: Enter Project Name & Create",
         description: "On project creation page (https://console.cloud.google.com/projectcreate), enter 'ChatMitra Sheets' in Project name * and click the blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/projectcreate",
@@ -4080,7 +4080,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step7.png",
+        image: "/credentials/Google_Auth/step7.webp",
         title: "Step 7: Select Active Project",
         description: "Click notification bell icon on https://console.cloud.google.com/welcome, then click 'Select project' under 'Create project ChatMitra Sheets'.",
         addressUrl: "https://console.cloud.google.com/welcome",
@@ -4095,7 +4095,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step8.png",
+        image: "/credentials/Google_Auth/step8.webp",
         title: "Step 8: Enable Google Sheets API",
         description: "Go to Sheets API page (https://console.cloud.google.com/apis/library/sheets.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/sheets.googleapis.com",
@@ -4110,7 +4110,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step9.png",
+        image: "/credentials/Google_Auth/step9.webp",
         title: "Step 9: Enable Google Drive API",
         description: "Go to Drive API page (https://console.cloud.google.com/apis/library/drive.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/drive.googleapis.com",
@@ -4125,7 +4125,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step10.png",
+        image: "/credentials/Google_Auth/step10.webp",
         title: "Step 10: Search Google Auth Platform",
         description: "On project dashboard (https://console.cloud.google.com/welcome?project=chatmitra-sheets), click the search bar at top center and type 'Google Auth Platform'.",
         addressUrl: "https://console.cloud.google.com/welcome?project=chatmitra-sheets",
@@ -4140,7 +4140,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step11.png",
+        image: "/credentials/Google_Auth/step11.webp",
         title: "Step 11: Click Google Auth Platform Result",
         description: "In search results dropdown overlay, click 'Google Auth Platform' under Top results.",
         addressUrl: "https://console.cloud.google.com/welcome?project=chatmitra-sheets",
@@ -4155,7 +4155,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step12.png",
+        image: "/credentials/Google_Auth/step12.webp",
         title: "Step 12: Click Get Started on Branding Page",
         description: "On Branding page (https://console.cloud.google.com/auth/branding?project=chatmitra-sheets), click blue 'Get started' button at bottom.",
         addressUrl: "https://console.cloud.google.com/auth/branding?project=chatmitra-sheets",
@@ -4170,7 +4170,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step13.png",
+        image: "/credentials/Google_Auth/step13.webp",
         title: "Step 13: Fill App Info & Click Next",
         description: "On wizard page (https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets), enter App name ('WorkflowMitra Google Sheets') & support email, then click 'Next'.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
@@ -4185,7 +4185,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step14.png",
+        image: "/credentials/Google_Auth/step14.webp",
         title: "Step 14: Select External Audience & Click Next",
         description: "Select 'External' radio button under Audience step, then click blue 'Next' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
@@ -4200,7 +4200,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step15.png",
+        image: "/credentials/Google_Auth/step15.webp",
         title: "Step 15: Enter Developer Email & Click Next",
         description: "Enter developer email under Contact Information step, then click blue 'Next' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
@@ -4215,7 +4215,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step16.png",
+        image: "/credentials/Google_Auth/step16.webp",
         title: "Step 16: Agree to Policy & Click Create",
         description: "Check user data policy agreement checkbox, click 'Continue', then click blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/auth/overview/create?project=chatmitra-sheets",
@@ -4230,7 +4230,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step17.png",
+        image: "/credentials/Google_Auth/step17.webp",
         title: "Step 17: Add Test Users",
         description: "Go to Audience page (https://console.cloud.google.com/auth/audience?project=chatmitra-sheets), and click '+ Add users' under Test users.",
         addressUrl: "https://console.cloud.google.com/auth/audience?project=chatmitra-sheets",
@@ -4245,7 +4245,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step18.png",
+        image: "/credentials/Google_Auth/step18.webp",
         title: "Step 18: Save Test User Email",
         description: "In side drawer on https://console.cloud.google.com/auth/audience?project=chatmitra-sheets, enter test user email and click blue 'Save' button.",
         addressUrl: "https://console.cloud.google.com/auth/audience?project=chatmitra-sheets",
@@ -4260,7 +4260,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step19.png",
+        image: "/credentials/Google_Auth/step19.webp",
         title: "Step 19: Open Credentials Page & Click Create",
         description: "Go to Credentials page (https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets) and click '+ Create credentials' in top toolbar.",
         addressUrl: "https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets",
@@ -4275,7 +4275,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step20.png",
+        image: "/credentials/Google_Auth/step20.webp",
         title: "Step 20: Select OAuth Client ID",
         description: "From the dropdown menu on https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets, click 'OAuth client ID' option.",
         addressUrl: "https://console.cloud.google.com/apis/credentials?project=chatmitra-sheets",
@@ -4290,7 +4290,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step21.png",
+        image: "/credentials/Google_Auth/step21.webp",
         title: "Step 21: Select Web Application",
         description: "On client creation page (https://console.cloud.google.com/auth/clients/create), click Application type dropdown and choose 'Web application'.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
@@ -4305,7 +4305,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step22.png",
+        image: "/credentials/Google_Auth/step22.webp",
         title: "Step 22: Enter Name & Add JS Origin",
         description: "Type Name as 'WorkflowMitra OAuth'. Under Authorised JavaScript origins, click '+ Add URI' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
@@ -4320,7 +4320,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step23.png",
+        image: "/credentials/Google_Auth/step23.webp",
         title: "Step 23: Fill JS Origin & Add Redirect URI",
         description: "Enter 'https://app.workflowmitra.com' in JS origins. Under Authorised redirect URIs, click '+ Add URI' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
@@ -4335,7 +4335,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step24.png",
+        image: "/credentials/Google_Auth/step24.webp",
         title: "Step 24: Enter OAuth Playground Redirect URI",
         description: "Enter 'https://developers.google.com/oauthplayground' into URIs 1 * field under Authorised redirect URIs.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
@@ -4350,7 +4350,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step25.png",
+        image: "/credentials/Google_Auth/step25.webp",
         title: "Step 25: Click Create Client",
         description: "Scroll to the bottom of https://console.cloud.google.com/auth/clients/create and click blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/auth/clients/create",
@@ -4365,7 +4365,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step26.png",
+        image: "/credentials/Google_Auth/step26.webp",
         title: "Step 26: Copy Client ID & Client Secret",
         description: "On client details page (https://console.cloud.google.com/auth/clients), copy Client ID from right panel and click copy icon next to Client secret.",
         addressUrl: "https://console.cloud.google.com/auth/clients",
@@ -4380,7 +4380,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step27.png",
+        image: "/credentials/Google_Auth/step27.webp",
         title: "Step 27: Switch Tab -> Paste Credentials in Workflow Mitra",
         description: "Switch back to Workflow Mitra tab (https://app.workflowmitra.com/credentials). Paste Client ID and Client secret. (Do not save yet — Refresh token is needed.)",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4395,7 +4395,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step28.png",
+        image: "/credentials/Google_Auth/step28.webp",
         title: "Step 28: Switch Tab -> Open OAuth Playground Settings",
         description: "Open OAuth 2.0 Playground (https://developers.google.com/oauthplayground) in a new tab. Click Settings gear icon in top right.",
         addressUrl: "https://developers.google.com/oauthplayground",
@@ -4410,7 +4410,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step29.png",
+        image: "/credentials/Google_Auth/step29.webp",
         title: "Step 29: Configure Credentials & Click Authorize APIs",
         description: "In settings on https://developers.google.com/oauthplayground, check 'Use your own OAuth credentials', paste Client ID & Secret. Type scope 'https://www.googleapis.com/auth/spreadsheets' and click 'Authorize APIs'.",
         addressUrl: "https://developers.google.com/oauthplayground",
@@ -4425,7 +4425,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step30.png",
+        image: "/credentials/Google_Auth/step30.webp",
         title: "Step 30: Bypass Unverified App Warning",
         description: "On Google security warning page (https://accounts.google.com/signin/oauth/warning), click 'Continue' link to bypass warning.",
         addressUrl: "https://accounts.google.com/signin/oauth/warning",
@@ -4440,7 +4440,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step31.png",
+        image: "/credentials/Google_Auth/step31.webp",
         title: "Step 31: Grant Google OAuth Permissions",
         description: "On Google consent page (https://accounts.google.com/signin/oauth/v2/consentsummary), click blue 'Continue' button to grant access.",
         addressUrl: "https://accounts.google.com/signin/oauth/v2/consentsummary",
@@ -4455,7 +4455,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step32.png",
+        image: "/credentials/Google_Auth/step32.webp",
         title: "Step 32: Exchange Authorization Code for Tokens",
         description: "Back on OAuth Playground (https://developers.google.com/oauthplayground), click blue 'Exchange authorization code for tokens' button in Step 2.",
         addressUrl: "https://developers.google.com/oauthplayground",
@@ -4470,7 +4470,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step33.png",
+        image: "/credentials/Google_Auth/step33.webp",
         title: "Step 33: Copy Generated Refresh Token",
         description: "On https://developers.google.com/oauthplayground, select and copy the generated Refresh token value (highlighted in blue).",
         addressUrl: "https://developers.google.com/oauthplayground",
@@ -4485,7 +4485,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_Auth/step34.png",
+        image: "/credentials/Google_Auth/step34.webp",
         title: "Step 34: Switch Tab -> Paste Refresh Token & Save",
         description: "Switch back to Workflow Mitra tab (https://app.workflowmitra.com/credentials). Paste Refresh token and click black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4513,7 +4513,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
     appUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts",
     steps: [
       {
-        image: "/credentials/Google_service/step1.png",
+        image: "/credentials/Google_service/step1.webp",
         title: "Step 1: Select Google (Service Account) in Workflow Mitra",
         description: "In the Credentials modal dialog on Workflow Mitra (https://app.workflowmitra.com/credentials), select 'Google (Service Account)' from the list of available service providers.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4528,7 +4528,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step2.png",
+        image: "/credentials/Google_service/step2.webp",
         title: "Step 2: Review Required Setup Steps",
         description: "Review the Service Account setup instructions: enable Google Sheets & Drive APIs in Google Cloud, create a Service Account, and download its JSON private key file.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4543,7 +4543,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step3.png",
+        image: "/credentials/Google_service/step3.webp",
         title: "Step 3: Sign in to Google Cloud Console",
         description: "Open a new browser tab, navigate to https://console.cloud.google.com, and sign in with your primary Google account.",
         addressUrl: "https://console.cloud.google.com",
@@ -4558,7 +4558,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step4.png",
+        image: "/credentials/Google_service/step4.webp",
         title: "Step 4: Navigate to Google Cloud Welcome Screen",
         description: "On the Google Cloud Platform welcome dashboard, click the 'Select a project' button in the top navigation bar.",
         addressUrl: "https://console.cloud.google.com/welcome/new",
@@ -4573,7 +4573,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step5.png",
+        image: "/credentials/Google_service/step5.webp",
         title: "Step 5: Open Project Selector & Click New Project",
         description: "In the project selector modal, click the blue 'New project' button in the top right corner.",
         addressUrl: "https://console.cloud.google.com/welcome/new",
@@ -4588,7 +4588,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step6.png",
+        image: "/credentials/Google_service/step6.webp",
         title: "Step 6: Enter Project Name & Click Create",
         description: "Type a Project Name (e.g. 'Chatmitra Sheets' or 'Workflow Mitra') and click the blue 'Create' button at the bottom left.",
         addressUrl: "https://console.cloud.google.com/projectcreate",
@@ -4603,7 +4603,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step7.png",
+        image: "/credentials/Google_service/step7.webp",
         title: "Step 7: Select Created Project from Notifications",
         description: "When the notification popup confirms project creation, click the 'Select Project' blue text link.",
         addressUrl: "https://console.cloud.google.com/welcome/new",
@@ -4618,7 +4618,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step8.png",
+        image: "/credentials/Google_service/step8.webp",
         title: "Step 8: Enable Google Sheets API",
         description: "Go to Google Sheets API details page (https://console.cloud.google.com/apis/library/sheets.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/sheets.googleapis.com",
@@ -4633,7 +4633,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step9.png",
+        image: "/credentials/Google_service/step9.webp",
         title: "Step 9: Enable Google Drive API",
         description: "Go to Google Drive API details page (https://console.cloud.google.com/apis/library/drive.googleapis.com) and click the blue 'Enable' button.",
         addressUrl: "https://console.cloud.google.com/apis/library/drive.googleapis.com",
@@ -4648,7 +4648,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step10.png",
+        image: "/credentials/Google_service/step10.webp",
         title: "Step 10: Open IAM & Admin Service Accounts",
         description: "In the left navigation menu, go to IAM & Admin -> Service Accounts (https://console.cloud.google.com/iam-admin/serviceaccounts) and click '+ Create service account'.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts",
@@ -4663,7 +4663,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step11.png",
+        image: "/credentials/Google_service/step11.webp",
         title: "Step 11: Enter Service Account Name & Click Create and Continue",
         description: "Type Service Account Name (e.g. 'Chatmitra Sheets') and click the blue 'Create and continue' button.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/create",
@@ -4678,7 +4678,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step12.png",
+        image: "/credentials/Google_service/step12.webp",
         title: "Step 12: Skip Optional Roles & Click Done",
         description: "Under optional Permissions & User Access steps, click the blue 'Done' button at the bottom left.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/create",
@@ -4693,7 +4693,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step13.png",
+        image: "/credentials/Google_service/step13.webp",
         title: "Step 13: Click Created Service Account Email",
         description: "In the Service Accounts list table, click on the newly created Service Account email link (e.g. 'chatmitra-sheets@...iam.gserviceaccount.com').",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts",
@@ -4708,7 +4708,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step14.png",
+        image: "/credentials/Google_service/step14.webp",
         title: "Step 14: Switch to Keys Tab",
         description: "On the Service account details page, click on the 'Keys' tab in the top navigation sub-bar.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/details/keys",
@@ -4723,7 +4723,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step15.png",
+        image: "/credentials/Google_service/step15.webp",
         title: "Step 15: Click Add Key & Select Create New Key",
         description: "Click the 'Add key' dropdown menu and select 'Create new key'.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/details/keys",
@@ -4738,7 +4738,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step16.png",
+        image: "/credentials/Google_service/step16.webp",
         title: "Step 16: Choose JSON Format & Click Create",
         description: "In the popup dialog, select 'JSON (Recommended)' key type and click the blue 'Create' button.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/details/keys",
@@ -4753,7 +4753,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step17.png",
+        image: "/credentials/Google_service/step17.webp",
         title: "Step 17: Verify Downloaded JSON Key File",
         description: "Confirm key file download in browser history (`chatmitra-sheets-...json`) and open it to copy full JSON contents.",
         addressUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts/details/keys",
@@ -4768,7 +4768,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step18.png",
+        image: "/credentials/Google_service/step18.webp",
         title: "Step 18: Return to Workflow Mitra & Enter Credential Name",
         description: "Switch back to Workflow Mitra (https://app.workflowmitra.com/credentials), enter Credential Name 'Chatmitra-Sheet', and click 'Save credential'.",
         addressUrl: "https://app.workflowmitra.com/credentials",
@@ -4783,7 +4783,7 @@ export const CREDENTIAL_PROVIDERS: Record<string, CredentialProvider> = {
         },
       },
       {
-        image: "/credentials/Google_service/step19.png",
+        image: "/credentials/Google_service/step19.webp",
         title: "Step 19: Paste Service Account JSON & Click Save Credential",
         description: "Paste your complete JSON key contents into the Service account JSON field and click the black 'Save credential' button.",
         addressUrl: "https://app.workflowmitra.com/credentials",
