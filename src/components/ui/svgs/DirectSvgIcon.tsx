@@ -30,6 +30,9 @@ export const DIRECT_SVG_MAP: Record<string, string> = {
   email: "/svg/gmail.svg",
   googlesheets: "/svg/icons8-google-sheets.svg",
   googleserviceaccount: "/svg/icons8-google-sheets.svg",
+  claude: "/svg/claude-ai-icon.svg",
+  claudeai: "/svg/claude-ai-icon.svg",
+  anthropic: "/svg/claude-ai-icon.svg",
 };
 
 interface DirectSvgIconProps {

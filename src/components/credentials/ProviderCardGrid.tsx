@@ -113,6 +113,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   linkedin: Linkedin,
   facebookpage: FacebookLogo,
   facebook: FacebookLogo,
+  anthropic: Claude,
   postgresql: Postgresql,
   postgres: Postgresql,
   mysql: MySqlLogo,
@@ -138,11 +139,13 @@ interface ProviderCardGridProps {
 
 export default function ProviderCardGrid({
   providers = PROVIDER_LIST,
-  title = "Supported Credentials & Service Providers (10+)",
+  title,
   subtitle = "Click any provider below to open its dedicated step-by-step interactive onboarding guide.",
 }: ProviderCardGridProps) {
   const { currentColor } = useTextColor();
   const navigate = useNavigate();
+
+  const displayTitle = title || `Supported Credentials & Service Providers (${providers.length}+)`;
 
   const [searchFilter, setSearchFilter] = React.useState<string>("");
   const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
@@ -179,7 +182,7 @@ export default function ProviderCardGrid({
           <div className="flex items-center gap-2">
             <KeyRound className={`h-5 w-5 ${currentColor.textClass}`} />
             <h2 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white">
-              {title}
+              {displayTitle}
             </h2>
           </div>
           <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 mt-1">

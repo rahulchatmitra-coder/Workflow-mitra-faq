@@ -126,6 +126,7 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   linkedin: Linkedin,
   facebookpage: FacebookLogo,
   facebook: FacebookLogo,
+  anthropic: Claude,
   postgresql: Postgresql,
   postgres: Postgresql,
   mysql: MySqlLogo,
@@ -355,15 +356,6 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
               {provider.description}
             </p>
           </div>
-
-          <button
-            onClick={() => setCurrentStepIndex(0)}
-            className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs sm:text-sm font-extrabold shadow-lg transition-all cursor-pointer border border-zinc-800 dark:border-zinc-200 shrink-0 ${currentColor.bgClass}`}
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Start Guide</span>
-            <Play className="h-3 w-3 fill-current ml-0.5" />
-          </button>
         </div>
 
         {/* REUSABLE INTERACTIVE PLAYER */}

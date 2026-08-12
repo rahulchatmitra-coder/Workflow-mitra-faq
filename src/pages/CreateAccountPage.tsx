@@ -2,120 +2,99 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Clock,
-  Calendar,
   ArrowLeft,
   Maximize2,
   ThumbsUp,
   ThumbsDown,
   Sparkles,
-  ExternalLink,
-  Play,
-  Pause,
-  ChevronLeft,
-  ChevronRight,
-  RotateCw,
   CheckCircle2,
-  ZoomIn,
-  ZoomOut,
-  X,
   Volume2,
   VolumeX,
+  X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
-
-export interface StepHotspot {
-  target: "url-bar" | "image";
-  top?: string;
-  left?: string;
-  popoverTop?: string;
-  popoverLeft?: string;
-  title: string;
-  detail: string;
-}
-
-export interface OnboardingStep {
-  image: string;
-  title: string;
-  description: string;
-  hotspot: StepHotspot;
-}
+import InteractivePlayer from "@/components/credentials/InteractivePlayer";
+import { OnboardingStep } from "@/data/credentials-data";
 
 export const onboardingGuide: OnboardingStep[] = [
   {
     image: "/onboarding/step1.webp",
-    title: "Open Workflow Mitra",
+    title: "Step 1: Open Workflow Mitra Portal",
     description:
-      "Open your preferred web browser (Chrome, Safari, Edge, Firefox).\n\nType https://app.workflowmitra.com into the address bar and press Enter.",
+      "Open your preferred web browser (Google Chrome, Safari, Firefox, Edge).\n\nType https://app.workflowmitra.com into the address bar and press Enter.",
+    addressUrl: "https://app.workflowmitra.com",
     hotspot: {
       target: "image",
       top: "4.2%",
       left: "24.5%",
       popoverTop: "38%",
       popoverLeft: "50%",
-      title: "Step 1: Open Address Bar.",
+      title: "Step 1: Open Address Bar",
       detail: "Type https://app.workflowmitra.com into your browser address bar and press Enter.",
     },
   },
   {
     image: "/onboarding/step2.webp",
-    title: "Welcome to Workflow Mitra",
+    title: "Step 2: Click 'Create Account' Link",
     description:
-      "You are on the official Login page.\n\n• New users: Click 'Create Account' at the bottom of the sign-in form.\n• Existing users: Enter Email & Password and click Sign In.",
+      "You are on the official Sign In page.\n\n• New users: Click 'Create Account' at the bottom of the sign-in form.\n• Existing users: Enter Email & Password and click Sign In.",
+    addressUrl: "https://app.workflowmitra.com/login",
     hotspot: {
       target: "image",
       top: "84%",
       left: "72%",
       popoverTop: "45%",
       popoverLeft: "35%",
-      title: "Step 2: Click 'Create Account'.",
-      detail: "New users click the 'Create Account' link located at the bottom of the sign-in form.",
+      title: "Step 2: Click Create Account",
+      detail: "Click the 'Create Account' link located at the bottom of the sign-in form.",
     },
   },
   {
     image: "/onboarding/step3.webp",
-    title: "Create Your Account",
+    title: "Step 3: Complete Registration Form",
     description:
-      "Complete the registration form:\n\n• Full Name: Enter the user's full name.\n• Email Address: Enter the user's email address.\n• Password: Create a strong password.\n• Confirm Password: Re-enter the same password.\n• Account Name: Enter a unique workspace name (e.g., 'myautomation123'). If unavailable, try another unique name by adding numbers.\n\nThen click Create Account",
+      "Fill in your registration details:\n\n• Full Name: Enter your full name.\n• Email Address: Enter your work email address.\n• Password: Create a strong password.\n• Confirm Password: Re-enter the same password.\n• Account Name: Enter a unique workspace handle (e.g. 'mycompany123').\n\nClick the dark 'Create Account' button to submit.",
+    addressUrl: "https://app.workflowmitra.com/signup",
     hotspot: {
       target: "image",
       top: "48%",
       left: "64%",
       popoverTop: "42%",
       popoverLeft: "26%",
-      title: "Step 3: Registration Form.",
-      detail: "Fill in your Email Address and Password.",
+      title: "Step 3: Registration Form",
+      detail: "Fill in your Name, Email, Password, and Workspace Name, then click Create Account.",
     },
   },
   {
     image: "/onboarding/step4.webp",
-    title: "Verify Your Email",
+    title: "Step 4: Verify Email Inbox",
     description:
-      "Open your email inbox.\n\nClick the verification link sent by Workflow Mitra, then return to the Login screen.",
+      "Open your email inbox (Gmail, Outlook, Yahoo, Work Mail).\n\nLocate the verification email sent by Workflow Mitra and click the confirmation link to activate your account.",
+    addressUrl: "https://app.workflowmitra.com/verify",
     hotspot: {
       target: "image",
       top: "88%",
       left: "85%",
       popoverTop: "45%",
       popoverLeft: "50%",
-      title: "Step 4: Verify Email Inbox.",
+      title: "Step 4: Verify Email Inbox",
       detail: "Open your email inbox and click the verification link sent by Workflow Mitra.",
     },
   },
- 
   {
     image: "/onboarding/step6.webp",
-    title: "Welcome Dashboard",
+    title: "Step 5: Access Welcome Dashboard",
     description:
-      "Congratulations! You have successfully logged in.\n\nNow you can create workflows, connect apps, and build AI automations!",
+      "Congratulations! Your account is verified and ready.\n\nLog in to access your Workflow Mitra dashboard, create AI workflows, and automate your business processes!",
+    addressUrl: "https://app.workflowmitra.com/dashboard",
     hotspot: {
       target: "image",
       top: "35%",
       left: "25%",
       popoverTop: "45%",
       popoverLeft: "50%",
-      title: "Step 5: Welcome Dashboard.",
+      title: "Step 5: Welcome Dashboard",
       detail: "Congratulations! You are inside Workflow Mitra. Click '+ New Workflow' to start automating.",
     },
   },
@@ -123,18 +102,23 @@ export const onboardingGuide: OnboardingStep[] = [
 
 export default function CreateAccountPage() {
   const { currentColor } = useTextColor();
-  const [currentStepIndex, setCurrentStepIndex] = React.useState(0);
-  const [isFullscreen, setIsFullscreen] = React.useState(false);
-  const [feedbackGiven, setFeedbackGiven] = React.useState(false);
-  const [imageVersion, setImageVersion] = React.useState<number>(0);
-  const [zoomScale, setZoomScale] = React.useState<number>(1);
-  const [isTourActive, setIsTourActive] = React.useState(false);
+  const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
+  const [isFullscreenModal, setIsFullscreenModal] = React.useState<boolean>(false);
+  const [selectedImageModal, setSelectedImageModal] = React.useState<string>("");
+  const [feedbackGiven, setFeedbackGiven] = React.useState<boolean>(false);
   const [activeSpeakingIndex, setActiveSpeakingIndex] = React.useState<number | null>(null);
 
   const totalSteps = onboardingGuide.length;
-  const currentStep = onboardingGuide[currentStepIndex];
 
-  // TTS VOICE HELPERS - PRIORITIZING PROPER ENGLISH MALE VOICES
+  const handleNextStep = () => {
+    setCurrentStepIndex((prev) => (prev + 1) % totalSteps);
+  };
+
+  const handlePrevStep = () => {
+    setCurrentStepIndex((prev) => (prev - 1 + totalSteps) % totalSteps);
+  };
+
+  // TTS VOICE HELPERS
   const getBestVoice = (): SpeechSynthesisVoice | null => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
     const voices = window.speechSynthesis.getVoices();
@@ -143,7 +127,6 @@ export default function CreateAccountPage() {
     const englishVoices = voices.filter((v) => v.lang.startsWith("en"));
     if (englishVoices.length === 0) return voices[0];
 
-    // Priority 1: High-Quality English Male Voices (Microsoft Guy, Apple Daniel, Google Male, etc.)
     const maleKeywords = [
       "Guy",
       "Daniel",
@@ -168,13 +151,11 @@ export default function CreateAccountPage() {
 
     if (preferredMaleVoice) return preferredMaleVoice;
 
-    // Priority 2: Natural / Online English Voices
     const naturalVoice = englishVoices.find(
       (v) => v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Online")
     );
     if (naturalVoice) return naturalVoice;
 
-    // Priority 3: Fallback English (en-US / en-GB)
     return (
       englishVoices.find((v) => v.lang === "en-US" || v.lang === "en-GB") ||
       englishVoices[0]
@@ -195,7 +176,7 @@ export default function CreateAccountPage() {
       .trim();
   };
 
-  const handleSpeakStep = (stepIndex: number, stepTitle: string, stepDesc: string) => {
+  const handleSpeakCard = (stepIndex: number, stepTitle: string, stepDesc: string) => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
 
     if (activeSpeakingIndex === stepIndex) {
@@ -221,69 +202,6 @@ export default function CreateAccountPage() {
     window.speechSynthesis.speak(utterance);
   };
 
-  const handleNextStep = () => {
-    setCurrentStepIndex((prev) => (prev < totalSteps - 1 ? prev + 1 : prev));
-  };
-
-  const handlePrevStep = () => {
-    setCurrentStepIndex((prev) => (prev > 0 ? prev - 1 : prev));
-  };
-
-  const handleZoomIn = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setZoomScale((prev) => Math.min(2.2, +(prev + 0.15).toFixed(2)));
-  };
-
-  const handleZoomOut = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setZoomScale((prev) => Math.max(0.8, +(prev - 0.15).toFixed(2)));
-  };
-
-  const handleResetZoom = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setZoomScale(1);
-  };
-
-  const handleStartTour = (stepIdx: number = 0) => {
-    setCurrentStepIndex(stepIdx);
-    setIsTourActive(true);
-  };
-
-  const handleFinishTour = () => {
-    setIsTourActive(false);
-    window.open("https://app.workflowmitra.com", "_blank");
-  };
-
-  React.useEffect(() => {
-    setZoomScale(1);
-    // Cancel speech when step changes
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      setActiveSpeakingIndex(null);
-    }
-  }, [currentStepIndex]);
-
-  // CLEANUP SPEECH ON UNMOUNT
-  React.useEffect(() => {
-    return () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
-
-  // ESCAPE KEY LISTENER TO CLOSE FULLSCREEN MODAL & TOUR
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsFullscreen(false);
-        setIsTourActive(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -298,8 +216,8 @@ export default function CreateAccountPage() {
 
       <main className="min-h-screen bg-white dark:bg-black transition-colors duration-200 text-zinc-900 dark:text-zinc-100 pb-20">
         {/* BACK NAVIGATION BAR */}
-        <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
-          <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 lg:px-8">
+        <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50 sticky top-0 z-30 backdrop-blur-md">
+          <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
@@ -310,918 +228,193 @@ export default function CreateAccountPage() {
           </div>
         </div>
 
-        {/* MAIN CONTAINER */}
-        <div className="mx-auto max-w-7xl px-4 pt-4 pb-8 sm:px-6 lg:px-8">
+        {/* MAIN CONTAINER - WIDESCREEN MAX-W-7XL */}
+        <div className="mx-auto max-w-7xl px-4 pt-6 pb-8 sm:px-6 lg:px-8 space-y-10">
 
-          {/* TOP SECTION HEADER: BADGE + TITLE + START GUIDE PILL BUTTON */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4">
+          {/* TOP SECTION HEADER */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-zinc-100 px-3 py-0.5 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white">
-                <Sparkles className={`h-3.5 w-3.5 ${currentColor.textClass}`} /> Interactive Onboarding
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-300 bg-zinc-100 px-3 py-1 text-xs font-bold text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white">
+                <Sparkles className={`h-3.5 w-3.5 ${currentColor.textClass}`} /> Interactive Account Registration Guide
               </span>
-              <h1 className="mt-1.5 text-xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                How to Create Account in Workflow Mitra
+              <h1 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
+                How to Create an Account in <span className={currentColor.textClass}>Workflow Mitra</span>
               </h1>
+              <p className="mt-1 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                Follow this 5-step visual guide to register, verify your email, and access your automation dashboard.
+              </p>
             </div>
-
-            <button
-              onClick={() => handleStartTour(0)}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs sm:text-sm font-extrabold shadow-lg transition-all cursor-pointer border border-zinc-800 dark:border-zinc-200 shrink-0 ${currentColor.bgClass}`}
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Start Guide</span>
-              <Play className="h-3 w-3 fill-current ml-0.5" />
-            </button>
           </div>
 
-          {/* CANVAS OUTER CARD */}
-          <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-3.5 sm:p-5 shadow-xl dark:border-zinc-800 dark:bg-zinc-950 transition-all">
+          {/* REUSABLE INTERACTIVE PLAYER (HD WIDESCREEN TV FRAME) */}
+          <InteractivePlayer
+            steps={onboardingGuide}
+            currentStepIndex={currentStepIndex}
+            onStepChange={(idx) => setCurrentStepIndex(idx)}
+            onNext={handleNextStep}
+            onPrev={handlePrevStep}
+            defaultAddressUrl="https://app.workflowmitra.com/signup"
+            providerName="Workflow Mitra Account"
+            externalAppUrl="https://app.workflowmitra.com"
+          />
 
-            {/* CARD INNER TOP HEADER BAR: PREV/NEXT NAVIGATOR & ANIMATED PROGRESS BAR */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-3.5 border-b border-zinc-100 dark:border-zinc-800/80">
-              {/* VISUAL PROGRESS BAR & STEP COUNTER */}
-              <div className="flex items-center gap-3 flex-1 min-w-[200px]">
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <span className={`text-xs font-mono font-black ${currentColor.textClass}`}>
-                    Step {currentStepIndex + 1} of {totalSteps}
-                  </span>
-                  <span className="text-[11px] font-bold text-zinc-400">
-                    ({Math.round(((currentStepIndex + 1) / totalSteps) * 100)}%)
-                  </span>
-                </div>
-
-                {/* ANIMATED PROGRESS BAR LINE */}
-                <div className="relative h-2.5 flex-1 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200 dark:border-zinc-700/60">
-                  <motion.div
-                    className={`h-full rounded-full shadow-md ${currentColor.bgClass}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((currentStepIndex + 1) / totalSteps) * 100}%` }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                  />
-                </div>
-              </div>
-
-              {/* STEP NAVIGATOR & DASHBOARD BUTTON */}
-              <div className="flex items-center gap-2 shrink-0">
-                {currentStepIndex === totalSteps - 1 ? (
-                  <a
-                    href="https://app.workflowmitra.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`inline-flex items-center gap-1.5 rounded-full text-white px-4 py-1 text-xs font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
-                  >
-                    <span>Go to Dashboard</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                ) : null}
-
-                <button
-                  onClick={() => handleSpeakStep(currentStepIndex, currentStep.title, currentStep.description)}
-                  aria-label={activeSpeakingIndex === currentStepIndex ? "Stop step voiceover" : "Listen to step voiceover"}
-                  className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold transition-all cursor-pointer border ${
-                    activeSpeakingIndex === currentStepIndex
-                      ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                      : "border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                  }`}
-                  title={activeSpeakingIndex === currentStepIndex ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                >
-                  {activeSpeakingIndex === currentStepIndex ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                  <span className="hidden sm:inline">{activeSpeakingIndex === currentStepIndex ? "Stop" : "Listen"}</span>
-                </button>
-
-                <div className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-800 dark:bg-zinc-900 shrink-0">
-                  <button
-                    onClick={handlePrevStep}
-                    disabled={currentStepIndex === 0}
-                    className="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold text-zinc-700 hover:bg-white hover:shadow-xs disabled:opacity-30 disabled:cursor-not-allowed dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all cursor-pointer"
-                  >
-                    <ChevronLeft className="h-3.5 w-3.5" />
-                    <span>Prev</span>
-                  </button>
-
-                  {/* INTERACTIVE STEP PILLS */}
-                  <div className="flex items-center gap-1 px-1">
-                    {onboardingGuide.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentStepIndex(idx)}
-                        className={`h-2 rounded-full transition-all cursor-pointer ${
-                          idx === currentStepIndex
-                            ? `w-5 shadow-sm ${currentColor.bgClass}`
-                            : idx < currentStepIndex
-                            ? `w-2 opacity-60 ${currentColor.bgClass}`
-                            : "w-2 bg-zinc-300 dark:bg-zinc-700"
-                        }`}
-                        title={`Go to Step ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={handleNextStep}
-                    disabled={currentStepIndex === totalSteps - 1}
-                    className="flex items-center gap-1 rounded-full bg-zinc-900 text-white px-3 py-1 text-xs font-bold hover:bg-black disabled:opacity-30 disabled:cursor-not-allowed dark:bg-white dark:text-zinc-900 transition-all cursor-pointer shadow-xs"
-                  >
-                    <span>Next</span>
-                    <ChevronRight className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* MAIN 2-COLUMN LAYOUT: LEFT DETAILS PANEL + RIGHT TV SCREEN */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start mt-3">
-
-              {/* LEFT SIDE PANEL: STEP DETAILS CARD (4 Cols) */}
-              <motion.div
-                key={`onboarding-details-${currentStepIndex}`}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.25 }}
-                className="lg:col-span-4 flex flex-col justify-between rounded-2xl border border-zinc-200/90 bg-zinc-50/80 p-4 sm:p-5 dark:border-zinc-800/90 dark:bg-zinc-900/60 shadow-sm space-y-4"
-              >
-                {/* STEP HEADER */}
-                <div className="flex items-center justify-between border-b border-zinc-200/80 pb-2.5 dark:border-zinc-800/80">
-                  <div className="flex items-center gap-2">
-                    <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
-                    <span className={`text-xs font-black uppercase tracking-wider ${currentColor.textClass}`}>
-                      Step {currentStepIndex + 1} of {totalSteps}
-                    </span>
-                  </div>
-
-                  <button
-                    onClick={() => handleSpeakStep(currentStepIndex, currentStep.title, currentStep.description)}
-                    aria-label={activeSpeakingIndex === currentStepIndex ? "Stop step voiceover" : "Listen to step voiceover"}
-                    className={`rounded-full p-1.5 transition-colors cursor-pointer ${
-                      activeSpeakingIndex === currentStepIndex
-                        ? `${currentColor.bgClass} text-white animate-pulse shadow-md`
-                        : "text-zinc-500 hover:bg-zinc-200/70 dark:text-zinc-400 dark:hover:bg-zinc-800"
-                    }`}
-                    title={activeSpeakingIndex === currentStepIndex ? "Stop Voiceover" : "Listen Voiceover"}
-                  >
-                    {activeSpeakingIndex === currentStepIndex ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-                  </button>
-                </div>
-
-                {/* STEP TITLE */}
-                <div className="space-y-1">
-                  <h3 className={`text-sm sm:text-base font-black leading-snug tracking-tight ${currentColor.textClass}`}>
-                    {currentStep.hotspot.title || currentStep.title}
-                  </h3>
-                  {currentStep.hotspot.detail && (
-                    <p className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
-                      {currentStep.hotspot.detail}
-                    </p>
-                  )}
-                </div>
-
-                {/* STEP DESCRIPTION */}
-                <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line bg-white dark:bg-zinc-950 p-3.5 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs max-h-48 overflow-y-auto scrollbar-thin">
-                  {currentStep.description}
-                </div>
-
-                {/* CELEBRATORY COMPLETION BANNER ON LAST STEP */}
-                {currentStepIndex === totalSteps - 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="rounded-xl border-2 border-emerald-500/40 bg-emerald-500/10 p-3.5 space-y-1.5 text-left shadow-sm"
-                  >
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-black text-xs sm:text-sm">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500 animate-bounce" />
-                      <span>Guide 100% Completed!</span>
-                    </div>
-                    <p className="text-[11px] font-semibold text-zinc-600 dark:text-zinc-300 leading-snug">
-                      You have finished all {totalSteps} steps! You are ready to create your account and use Workflow Mitra.
-                    </p>
-                  </motion.div>
-                )}
-
-                {/* STEP ACTION CONTROLS */}
-                <div className="flex items-center justify-between pt-2 border-t border-zinc-200/80 dark:border-zinc-800/80 gap-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {currentStepIndex > 0 && (
-                      <button
-                        onClick={handlePrevStep}
-                        className="rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-extrabold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer shadow-xs"
-                      >
-                        ← Prev
-                      </button>
-                    )}
-
-                    {currentStepIndex < totalSteps - 1 ? (
-                      <button
-                        onClick={handleNextStep}
-                        className={`flex items-center gap-1 rounded-xl text-white px-4 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                      >
-                        <span>Next →</span>
-                      </button>
-                    ) : (
-                      <>
-                        <a
-                          href="https://app.workflowmitra.com"
-                          target="_blank"
-                          rel="noreferrer"
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1.5 text-xs font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
-                        >
-                          <span>Go to Dashboard</span>
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-
-                        <button
-                          onClick={() => setCurrentStepIndex(0)}
-                          className="flex items-center gap-1 rounded-xl border border-zinc-300 bg-white px-3 py-1.5 text-xs font-extrabold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-all cursor-pointer shadow-xs"
-                          title="Restart Guide from Step 1"
-                        >
-                          <span>Restart</span>
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* RIGHT SIDE: COMPACT TV SCREEN / BROWSER FRAME (8 Cols) */}
-              <div id="onboarding-browser-frame" className="lg:col-span-8 w-full">
-                <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-900 shadow-md dark:border-zinc-800">
-
-                  {/* BROWSER TOP ADDRESS BAR */}
-                  <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900 px-3.5 py-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-rose-500 inline-block" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-amber-500 inline-block" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 inline-block" />
-                    </div>
-
-                    <div
-                      id="url-address-bar"
-                      className={`relative flex items-center justify-center rounded-full bg-zinc-950 px-4 py-1 text-xs font-mono text-zinc-200 min-w-[200px] sm:min-w-[320px] max-w-full border transition-all duration-300 cursor-pointer ${
-                        currentStepIndex === 0 || currentStep.hotspot.target === "url-bar"
-                          ? `${currentColor.borderClass} ring-2 ring-zinc-500/40 shadow-md`
-                          : "border-zinc-800 hover:border-zinc-700"
-                      }`}
-                    >
-                      <span className="truncate font-semibold text-zinc-200 tracking-wide select-none text-[11px]">
-                        https://app.workflowmitra.com
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0">
-                      {/* HIGH-CONTRAST ZOOM CONTROLS */}
-                      <div
-                        className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-1 py-0.5 text-xs shadow-inner"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <button
-                          onClick={handleZoomOut}
-                          disabled={zoomScale <= 0.8}
-                          className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
-                          title="Zoom Out (-)"
-                        >
-                          <ZoomOut className="h-3 w-3" />
-                        </button>
-
-                        <button
-                          onClick={handleResetZoom}
-                          className="px-2 py-0.5 text-xs font-mono font-bold text-white hover:text-zinc-200 transition-colors cursor-pointer bg-zinc-900/80 rounded border border-zinc-700"
-                          title="Click to Reset Zoom (100%)"
-                        >
-                          {Math.round(zoomScale * 100)}%
-                        </button>
-
-                        <button
-                          onClick={handleZoomIn}
-                          disabled={zoomScale >= 2.2}
-                          className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
-                          title="Zoom In (+)"
-                        >
-                          <ZoomIn className="h-3 w-3" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* SCREENSHOT CONTAINER WITH IN-PLACE ZOOM & PIN (NO FULLSCREEN POPUP) */}
-                  <div className="relative w-full aspect-[16/10] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`${currentStepIndex}-${currentStep.image}-${imageVersion}`}
-                        initial={{ opacity: 0, scale: zoomScale }}
-                        animate={{ opacity: 1, scale: zoomScale }}
-                        exit={{ opacity: 0, scale: zoomScale }}
-                        transition={{ duration: 0.2 }}
-                        className="relative h-full w-full origin-top transition-transform duration-200"
-                      >
-                        <img
-                          src={currentStep.image}
-                          alt={currentStep.title}
-                          className="absolute inset-0 w-full h-full object-cover object-top"
-                        />
-                      </motion.div>
-                    </AnimatePresence>
-
-                    {/* PRETTY, SLEEK & AESTHETIC INTERACTIVE HOTSPOT PIN WITH ROUND-ROUND ORBIT */}
-                    {currentStep.hotspot.target === "image" && (
-                      <motion.div
-                        className="absolute z-30 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group/hotspot select-none"
-                        style={{
-                          top: currentStep.hotspot.top,
-                          left: currentStep.hotspot.left,
-                        }}
-                        whileHover={{ scale: 1.3, transition: { duration: 0.15 } }}
-                        whileTap={{ scale: 0.82 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (currentStepIndex < totalSteps - 1) {
-                            handleNextStep();
-                          } else {
-                            setCurrentStepIndex(0);
-                          }
-                        }}
-                        title={`Click here to proceed (${currentStep.hotspot.title || currentStep.title})`}
-                      >
-                        {/* 1. DREAMY SOFT AMBIENT GLOW AURA */}
-                        <motion.span
-                          className="absolute -inset-2.5 rounded-full bg-indigo-500/25 blur-sm pointer-events-none"
-                          animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.2, 0.6] }}
-                          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                        />
-
-                        {/* 2. SILKY EXPANDING RIPPLE WAVE */}
-                        <motion.span
-                          className="absolute -inset-3 rounded-full border border-indigo-400/60 shadow-[0_0_10px_rgba(99,102,241,0.4)] pointer-events-none"
-                          animate={{ scale: [1, 1.65, 1], opacity: [0.8, 0, 0.8] }}
-                          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                        />
-
-                        {/* 3. SMOOTH ROTATING ROUND-ROUND ORBIT RING & GLISTENING SATELLITE PARTICLE */}
-                        <motion.div
-                          className="absolute -inset-2 rounded-full border border-indigo-300/40 pointer-events-none"
-                          animate={{ rotate: 360 }}
-                          transition={{ repeat: Infinity, duration: 3.5, ease: "linear" }}
-                        >
-                          <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
-                        </motion.div>
-
-                        {/* 4. GORGEOUS LUMINOUS GLASS PEARL PIN */}
-                        <motion.span
-                          animate={{ scale: [1, 1.08, 1] }}
-                          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                          className="relative flex h-4.5 w-4.5 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-950 shadow-[0_0_14px_rgba(99,102,241,0.9),0_4px_8px_rgba(0,0,0,0.5)] ring-2 ring-indigo-500/30"
-                        >
-                          <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
-                        </motion.span>
-                      </motion.div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* COMPREHENSIVE POINT-WISE STEP-BY-STEP GUIDE (STEPS 1 TO 5) */}
-          <section className="mt-14 space-y-8">
+          {/* COMPREHENSIVE POINT-WISE STEP-BY-STEP GUIDE */}
+          <section className="space-y-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
             <div className="border-b border-zinc-200 dark:border-zinc-800 pb-4">
               <div className={`flex items-center gap-2 font-extrabold text-xs tracking-wider uppercase ${currentColor.textClass}`}>
                 <Sparkles className="h-4 w-4" /> Visual Walkthrough
               </div>
               <h2 className="mt-1 text-2xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                Step-by-Step Registration Guide
+                Step-by-Step Registration Instructions
               </h2>
               <p className="mt-1 text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-                Follow these clear, point-wise instructions to complete your Workflow Mitra account creation.
+                Follow these detailed steps to complete your account registration.
               </p>
             </div>
 
-            {/* STEP 1 */}
-            <div className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                {/* SLIGHTLY LARGER SCREENSHOT PANEL (7 COLUMNS / 58% WIDTH) */}
+            <div className="space-y-6">
+              {onboardingGuide.map((s, idx) => (
                 <div
-                  className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                  onClick={() => {
-                    setCurrentStepIndex(0);
-                    setIsFullscreen(true);
-                  }}
+                  key={idx}
+                  className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg"
                 >
-                  <div className="relative aspect-[16/10] w-full">
-                    <img
-                      src="/onboarding/step1.webp"
-                      alt="Step 1: Navigate to Workflow Mitra Signup Page"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                        <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* POINT-WISE DETAILED GUIDE PANEL (5 COLUMNS) */}
-                <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                        1
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step 1. Navigate to the Workflow Mitra Signup Page
-                      </h3>
-                    </div>
-
-                    <button
-                      onClick={() => handleSpeakStep(0, "Step 1. Navigate to the Workflow Mitra Signup Page", "Open your web browser and navigate to the official Workflow Mitra portal. Open your preferred web browser. Click on the address bar at the top of your browser. Type https://app.workflowmitra.com and press Enter. Verify that the secure SSL lock icon is displayed in your browser address bar.")}
-                      aria-label={activeSpeakingIndex === 0 ? "Stop step voiceover" : "Listen to step voiceover"}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                        activeSpeakingIndex === 0
-                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                      }`}
-                      title={activeSpeakingIndex === 0 ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
+                    <div
+                      className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
+                      onClick={() => {
+                        setSelectedImageModal(s.image);
+                        setIsFullscreenModal(true);
+                      }}
                     >
-                      {activeSpeakingIndex === 0 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      <span className="hidden sm:inline">{activeSpeakingIndex === 0 ? "Stop" : "Listen"}</span>
-                    </button>
-                  </div>
+                      <div className="relative aspect-[16/10] w-full">
+                        <img
+                          src={s.image}
+                          alt={`Step ${idx + 1}: ${s.title}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
+                        />
+                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
+                            <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
+                          </span>
+                        </div>
+                      </div>
+                    </div>
 
-                  <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
-                    <p className="text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-                      Open your web browser and navigate to the official Workflow Mitra portal:
-                    </p>
+                    <div className="lg:col-span-5 space-y-3.5">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                            {idx + 1}
+                          </span>
+                          <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                            {s.title}
+                          </h3>
+                        </div>
 
-                    <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Open your preferred web browser (Google Chrome, Safari, Firefox, Edge).</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Click on the address bar at the top of your browser.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Type <code className={`px-1.5 py-0.5 rounded-md font-mono text-xs font-bold border bg-zinc-100 dark:bg-zinc-900 ${currentColor.textClass} ${currentColor.borderClass}`}>https://app.workflowmitra.com</code> and press <strong>Enter</strong>.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Verify that the secure SSL lock icon is displayed in your browser address bar.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+                        <button
+                          onClick={() => handleSpeakCard(idx, s.title, s.description)}
+                          aria-label={activeSpeakingIndex === idx ? "Stop step voiceover" : "Listen to step voiceover"}
+                          className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                            activeSpeakingIndex === idx
+                              ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                              : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                          }`}
+                          title={activeSpeakingIndex === idx ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                        >
+                          {activeSpeakingIndex === idx ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                          <span className="hidden sm:inline">{activeSpeakingIndex === idx ? "Stop" : "Listen"}</span>
+                        </button>
+                      </div>
 
-            {/* STEP 2 */}
-            <div className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                <div
-                  className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                  onClick={() => {
-                    setCurrentStepIndex(1);
-                    setIsFullscreen(true);
-                  }}
-                >
-                  <div className="relative aspect-[16/10] w-full">
-                    <img
-                      src="/onboarding/step2.webp"
-                      alt="Step 2: Access Registration Form"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                        <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                      </span>
+                      <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
+                        <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                          {s.description}
+                        </div>
+
+                        {s.hotspot.detail && (
+                          <div className="pt-2 flex items-center gap-2">
+                            <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 ${currentColor.textClass}`} />
+                            <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400">
+                              {s.hotspot.detail}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                        2
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step 2. Access the Registration Form
-                      </h3>
-                    </div>
-
-                    <button
-                      onClick={() => handleSpeakStep(1, "Step 2. Access the Registration Form", "From the portal login screen, switch to the new account registration form. You will see the official Workflow Mitra Login Portal screen. Locate the Create Account link at the bottom of the sign in card. Click on Create Account to open the new user registration form.")}
-                      aria-label={activeSpeakingIndex === 1 ? "Stop step voiceover" : "Listen to step voiceover"}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                        activeSpeakingIndex === 1
-                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                      }`}
-                      title={activeSpeakingIndex === 1 ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                    >
-                      {activeSpeakingIndex === 1 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      <span className="hidden sm:inline">{activeSpeakingIndex === 1 ? "Stop" : "Listen"}</span>
-                    </button>
-                  </div>
-
-                  <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
-                    <p className="text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-                      From the portal login screen, switch to the new account registration form:
-                    </p>
-
-                    <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>You will see the official Workflow Mitra Login Portal screen.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Locate the <strong>"Create Account"</strong> link at the bottom of the sign-in card.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Click on <strong>Create Account</strong> to open the new user registration form.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* STEP 3 */}
-            <div className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                <div
-                  className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                  onClick={() => {
-                    setCurrentStepIndex(2);
-                    setIsFullscreen(true);
-                  }}
-                >
-                  <div className="relative aspect-[16/10] w-full">
-                    <img
-                      src="/onboarding/step3.webp"
-                      alt="Step 3: Fill in Account Information"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                        <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                        3
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step 3. Fill in Account Details
-                      </h3>
-                    </div>
-
-                    <button
-                      onClick={() => handleSpeakStep(2, "Step 3. Fill in Account Details", "Complete the signup form fields with your details. Enter your full name and valid email address. Create a strong password. Enter a unique workspace name. Click the Create Account button to complete signup.")}
-                      aria-label={activeSpeakingIndex === 2 ? "Stop step voiceover" : "Listen to step voiceover"}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                        activeSpeakingIndex === 2
-                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                      }`}
-                      title={activeSpeakingIndex === 2 ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                    >
-                      {activeSpeakingIndex === 2 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      <span className="hidden sm:inline">{activeSpeakingIndex === 2 ? "Stop" : "Listen"}</span>
-                    </button>
-                  </div>
-
-                  <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
-                    <p className="text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-                      Complete the signup form fields with your details:
-                    </p>
-
-                    <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span><strong>Full Name & Email:</strong> Enter your user's full name and valid email address.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span><strong>Password:</strong> Create a strong password (at least 8 characters) and confirm it.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span><strong>Account Name:</strong> Enter a unique workspace name (e.g., <code className={`px-1.5 py-0.5 rounded font-mono text-xs font-bold border bg-zinc-100 dark:bg-zinc-900 ${currentColor.textClass} ${currentColor.borderClass}`}>'myautomation123'</code>). If unavailable, try another unique name by adding numbers.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Then click the <strong>"Create Account"</strong> button to complete signup.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* STEP 4 */}
-            <div className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                <div
-                  className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                  onClick={() => {
-                    setCurrentStepIndex(3);
-                    setIsFullscreen(true);
-                  }}
-                >
-                  <div className="relative aspect-[16/10] w-full">
-                    <img
-                      src="/onboarding/step4.webp"
-                      alt="Step 4: Email Verification"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                        <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                        4
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step 4. Verify Your Email Address
-                      </h3>
-                    </div>
-
-                    <button
-                      onClick={() => handleSpeakStep(3, "Step 4. Verify Your Email Address", "Confirm your email ownership to activate your account. Open your email inbox. Locate the verification email sent by Workflow Mitra. Click the Verify Email link to confirm your registration.")}
-                      aria-label={activeSpeakingIndex === 3 ? "Stop step voiceover" : "Listen to step voiceover"}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                        activeSpeakingIndex === 3
-                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                      }`}
-                      title={activeSpeakingIndex === 3 ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                    >
-                      {activeSpeakingIndex === 3 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      <span className="hidden sm:inline">{activeSpeakingIndex === 3 ? "Stop" : "Listen"}</span>
-                    </button>
-                  </div>
-
-                  <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
-                    <p className="text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-                      Confirm your email ownership to activate your account:
-                    </p>
-
-                    <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Open your email inbox (Gmail, Outlook, Yahoo, etc.).</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Locate the verification email sent by <strong>Workflow Mitra</strong>.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Click the <strong>"Verify Email Link"</strong> to confirm your registration.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* STEP 5 */}
-            <div className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                <div
-                  className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                  onClick={() => {
-                    setCurrentStepIndex(4);
-                    setIsFullscreen(true);
-                  }}
-                >
-                  <div className="relative aspect-[16/10] w-full">
-                    <img
-                      src="/onboarding/step6.webp"
-                      alt="Step 5: Sign In & Go to Dashboard"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                        <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5 space-y-3.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                        5
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                        Step 5. Sign In & Go to Dashboard
-                      </h3>
-                    </div>
-
-                    <button
-                      onClick={() => handleSpeakStep(4, "Step 5. Sign In and Go to Dashboard", "Log in with your newly created credentials to access your dashboard. Return to the Workflow Mitra Sign In page. Enter your registered email address and password. Click Sign In to access your main automation dashboard.")}
-                      aria-label={activeSpeakingIndex === 4 ? "Stop step voiceover" : "Listen to step voiceover"}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                        activeSpeakingIndex === 4
-                          ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                          : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                      }`}
-                      title={activeSpeakingIndex === 4 ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                    >
-                      {activeSpeakingIndex === 4 ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                      <span className="hidden sm:inline">{activeSpeakingIndex === 4 ? "Stop" : "Listen"}</span>
-                    </button>
-                  </div>
-
-                  <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-4">
-                    <p className="text-xs sm:text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-                      Log in with your newly created credentials to access your dashboard:
-                    </p>
-
-                    <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Return to the Workflow Mitra Sign In page.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Enter your registered <strong>Email Address</strong> and <strong>Password</strong>.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 mt-0.5 ${currentColor.textClass}`} />
-                        <span>Click <strong>"Sign In"</strong> to access your main automation dashboard!</span>
-                      </li>
-                    </ul>
-
-                    {/* GO TO DASHBOARD BUTTON */}
-                    <div className="pt-2">
-                      <a
-                        href="https://app.workflowmitra.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-black shadow-lg transition-all ${currentColor.bgClass} hover:opacity-90 hover:scale-[1.01] active:scale-[0.99]`}
-                      >
-                        Go to Dashboard 🚀 <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
 
+          {/* FEEDBACK WIDGET */}
+          <section className="pt-4">
+            <div className="flex flex-col items-center justify-center rounded-3xl border border-zinc-200 bg-zinc-50 p-6 text-center dark:border-zinc-800 dark:bg-zinc-950 shadow-sm">
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-white">
+                Was this Create Account Guide helpful?
+              </h4>
+
+              {feedbackGiven ? (
+                <div className="mt-3 flex items-center gap-2 text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
+                  <Sparkles className="h-4 w-4" />
+                  <span>Thank you for your feedback! 🎉</span>
+                </div>
+              ) : (
+                <div className="mt-4 flex items-center gap-3">
+                  <button
+                    onClick={() => setFeedbackGiven(true)}
+                    className="flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2 text-xs font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all cursor-pointer"
+                  >
+                    <ThumbsUp className="h-4 w-4" />
+                    <span>Yes</span>
+                  </button>
+                  <button
+                    onClick={() => setFeedbackGiven(true)}
+                    className="flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-4 py-2 text-xs font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all cursor-pointer"
+                  >
+                    <ThumbsDown className="h-4 w-4" />
+                    <span>No</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          </section>
         </div>
 
-        {/* HELPFUL FEEDBACK WIDGET */}
-        <section className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-center rounded-3xl border border-zinc-200 bg-zinc-50 p-6 text-center dark:border-zinc-800 dark:bg-zinc-900/60">
-            <h4 className="text-sm font-bold text-zinc-900 dark:text-white">
-              Was this article helpful?
-            </h4>
-
-            {feedbackGiven ? (
-              <div className={`mt-3 flex items-center gap-2 text-xs font-extrabold ${currentColor.textClass}`}>
-                <Sparkles className="h-4 w-4" />
-                <span>Thank you for your feedback! 🎉</span>
-              </div>
-            ) : (
-              <div className="mt-4 flex items-center gap-3">
-                <button
-                  onClick={() => setFeedbackGiven(true)}
-                  className="flex items-center gap-2 rounded-2xl border border-zinc-300 bg-white px-5 py-2.5 text-xs font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
-                >
-                  <ThumbsUp className="h-4 w-4" />
-                  <span>Yes</span>
-                </button>
-                <button
-                  onClick={() => setFeedbackGiven(true)}
-                  className="flex items-center gap-2 rounded-2xl border border-zinc-300 bg-white px-5 py-2.5 text-xs font-bold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
-                >
-                  <ThumbsDown className="h-4 w-4" />
-                  <span>No</span>
-                </button>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* FULLSCREEN LIGHTBOX MODAL WITH NATIVE STEP POPOVER */}
+        {/* FULLSCREEN LIGHTBOX MODAL */}
         <AnimatePresence>
-          {isFullscreen && (
+          {isFullscreenModal && selectedImageModal && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex flex-col bg-zinc-950/95 backdrop-blur-md p-4 sm:p-6 select-none"
+              className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-4 sm:p-6 backdrop-blur-xl"
+              onClick={() => setIsFullscreenModal(false)}
             >
-              {/* TOP HEADER CONTROLS */}
-              <div className="flex items-center justify-between pb-4 border-b border-zinc-800 shrink-0">
-                <div className="flex items-center gap-3">
-                  <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${currentColor.bgClass}`}>
-                    <Sparkles className="h-3.5 w-3.5" /> Fullscreen View
+              <div className="w-full max-w-7xl flex items-center justify-between z-50 text-white pb-2">
+                <div className="flex items-center gap-2">
+                  <span className={`h-2.5 w-2.5 rounded-full ${currentColor.bgClass}`} />
+                  <span className="text-sm sm:text-base font-black text-white">
+                    Workflow Mitra Registration Screenshot Preview
                   </span>
-                  <h3 className="text-sm sm:text-base font-bold text-white leading-tight truncate max-w-[300px] sm:max-w-[500px]">
-                    Step {currentStepIndex + 1}: {currentStep.title}
-                  </h3>
                 </div>
 
-                {/* RIGHT CONTROLS: STEP NAVIGATOR + ZOOM + CLOSE (ESC) */}
-                <div className="flex items-center gap-3">
-                  {/* STEP NAVIGATOR */}
-                  <div className="flex items-center gap-1 rounded-full border border-zinc-800 bg-zinc-900 p-1">
-                    <button
-                      onClick={handlePrevStep}
-                      disabled={currentStepIndex === 0}
-                      className="flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold text-zinc-300 hover:bg-zinc-800 disabled:opacity-30 transition-all cursor-pointer"
-                    >
-                      <ChevronLeft className="h-3.5 w-3.5" />
-                      <span>Prev</span>
-                    </button>
-                    <span className="px-2 text-xs font-mono font-bold text-zinc-400">
-                      {currentStepIndex + 1}/{totalSteps}
-                    </span>
-                    <button
-                      onClick={handleNextStep}
-                      disabled={currentStepIndex === totalSteps - 1}
-                      className={`flex items-center gap-1 rounded-full text-white px-2.5 py-0.5 text-xs font-semibold disabled:opacity-30 transition-all cursor-pointer ${currentColor.bgClass}`}
-                    >
-                      <span>Next</span>
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-
-                  {/* ZOOM CONTROLS */}
-                  <div className="flex items-center gap-0.5 rounded-lg border border-zinc-800 bg-zinc-900 p-0.5 text-xs text-zinc-300">
-                    <button
-                      onClick={handleZoomOut}
-                      disabled={zoomScale <= 0.8}
-                      className="flex h-6 w-6 items-center justify-center rounded bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white disabled:opacity-30 transition-all cursor-pointer font-bold text-xs"
-                      title="Zoom Out (-)"
-                    >
-                      <ZoomOut className="h-3.5 w-3.5" />
-                    </button>
-                    <button
-                      onClick={handleResetZoom}
-                      className={`px-2 py-0.5 text-xs font-mono font-extrabold ${currentColor.textClass} hover:opacity-80 transition-colors cursor-pointer`}
-                      title="Reset Zoom (100%)"
-                    >
-                      {Math.round(zoomScale * 100)}%
-                    </button>
-                    <button
-                      onClick={handleZoomIn}
-                      disabled={zoomScale >= 2.2}
-                      className="flex h-6 w-6 items-center justify-center rounded bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white disabled:opacity-30 transition-all cursor-pointer font-bold text-xs"
-                      title="Zoom In (+)"
-                    >
-                      <ZoomIn className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-
-                  {/* CLOSE / ESC BUTTON */}
-                  <button
-                    onClick={() => setIsFullscreen(false)}
-                    className="flex items-center gap-1.5 rounded-full bg-zinc-800 px-3.5 py-1.5 text-xs font-bold text-zinc-200 hover:bg-rose-600 hover:text-white transition-all cursor-pointer shadow-md"
-                    title="Close Fullscreen (Esc)"
-                  >
-                    <X className="h-4 w-4" />
-                    <span>Esc</span>
-                  </button>
-                </div>
+                <button
+                  onClick={() => setIsFullscreenModal(false)}
+                  className="rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700 shadow-lg"
+                >
+                  <X className="h-5 w-5" />
+                </button>
               </div>
 
-              {/* MAIN FULLSCREEN SCREENSHOT DISPLAY AREA - CLEAN VIEW WITHOUT PIN OR POPOVER */}
-              <div className="relative flex-1 w-full mt-4 bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex items-center justify-center">
-                <motion.div
-                  key={`fullscreen-${currentStepIndex}-${imageVersion}`}
-                  initial={{ opacity: 0, scale: zoomScale }}
-                  animate={{ opacity: 1, scale: zoomScale }}
-                  exit={{ opacity: 0, scale: zoomScale }}
-                  transition={{ duration: 0.2 }}
-                  className="relative h-full w-full origin-top transition-transform duration-200"
-                >
-                  <img
-                    src={imageVersion ? `${currentStep.image}?v=${imageVersion}` : currentStep.image}
-                    alt={currentStep.title}
-                    className="absolute inset-0 w-full h-full object-contain object-top"
-                  />
-                </motion.div>
+              <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 p-2">
+                <img
+                  src={selectedImageModal}
+                  alt="Registration Step Screenshot"
+                  className="absolute inset-0 w-full h-full object-contain"
+                />
               </div>
             </motion.div>
           )}
