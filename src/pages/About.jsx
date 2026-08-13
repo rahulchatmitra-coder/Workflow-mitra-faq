@@ -1,20 +1,20 @@
 import { FaBullseye, FaRocket, FaHandshake, FaGlobe } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
+import PageSeo from '../components/PageSeo'
 import './About.css'
 
 function About() {
-  const team = [
-    { name: 'Sarah Chen', role: 'CEO & Co-Founder', bio: 'Former VP of Product at TechCorp' },
-    { name: 'Michael Rodriguez', role: 'CTO & Co-Founder', bio: 'Ex-Engineering Lead at StartupHub' },
-    { name: 'Jessica Park', role: 'Head of Design', bio: 'Previously at Innovation Labs' },
-    { name: 'David Kim', role: 'Head of Engineering', bio: 'Former Senior Engineer at CloudTech' }
-  ]
-
   return (
     <div className="about-page">
+      <PageSeo
+        title="About WorkflowMitra — Our Mission & Values"
+        description="WorkflowMitra is a workflow automation platform that makes automation accessible to every team, with expert support when you need it."
+        path="/about"
+      />
+
       <section className="about-hero">
         <div className="container">
-          <h1 className="page-title">About FlowMitra</h1>
+          <h1 className="page-title">About WorkflowMitra</h1>
           <p className="page-subtitle">
             We're on a mission to make automation accessible to every team
           </p>
@@ -26,12 +26,11 @@ function About() {
           <div className="story-content">
             <h2>Our Story</h2>
             <p>
-              FlowMitra was founded in 2023 with a simple belief: automation shouldn't require coding expertise. 
+              WorkflowMitra was built with a simple belief: automation shouldn't require coding expertise.
               We've built a platform that empowers teams of all sizes to automate their workflows without writing a single line of code.
             </p>
             <p>
-              Today, over 10,000 teams use FlowMitra to automate everything from customer support to data analysis. 
-              We're backed by leading investors and continue to grow rapidly.
+              What makes us different is our team of automation experts who are ready to help you build your workflows. You focus on your business — we handle the automation.
             </p>
           </div>
         </div>
@@ -61,29 +60,14 @@ function About() {
         </div>
       </section>
 
-      <section className="about-team">
-        <div className="container">
-          <h2>Meet Our Team</h2>
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <div key={index} className="team-card">
-                <div className="team-avatar" style={{ background: ['#8B5CF6', '#3B82F6', '#EC4899', '#10B981'][index], width: 80, height: 80, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ color: 'white', fontSize: '28px', fontWeight: 700 }}>{member.name.split(' ').map(n => n[0]).join('')}</span>
-                </div>
-                <h3>{member.name}</h3>
-                <div className="role">{member.role}</div>
-                <p>{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="about-cta">
         <div className="container">
-          <h2>Join Us on Our Journey</h2>
-          <p>We're always looking for talented people to join our team</p>
-          <Link to="/contact" className="btn btn-primary btn-large">Get in Touch</Link>
+          <h2>Ready to automate your workflows?</h2>
+          <p>Start building for free, or talk to our team about your automation needs.</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="https://app.workflowmitra.com/signup" className="btn btn-primary btn-large">Start Building Free</a>
+            <Link to="/contact" className="btn btn-secondary btn-large">Get in Touch</Link>
+          </div>
         </div>
       </section>
     </div>

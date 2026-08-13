@@ -11,7 +11,7 @@ const aiModels = [
   { name: 'OpenAI', color: '#000', svg: (
     <svg viewBox="0 0 24 24" width="22" height="22" fill="#000"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073z"/></svg>
   )},
-  { name: 'FlowMitra', center: true, svg: (
+  { name: 'WorkflowMitra', center: true, svg: (
     <svg viewBox="0 0 24 24" width="28" height="28"><rect width="24" height="24" rx="6" fill="#6366f1"/><path d="M6 8h12v2H6zm0 4h8v2H6zm0 4h10v2H6z" fill="#fff"/></svg>
   )},
   { name: 'Meta', color: '#0082FB', svg: (

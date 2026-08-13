@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PageSeo from '../components/PageSeo';
 import './Pricing.css';
 
 function Pricing() {
@@ -79,6 +80,12 @@ function Pricing() {
 
   return (
     <div className="pricing-page">
+      <PageSeo
+        title="Pricing — Simple Plans That Scale | WorkflowMitra"
+        description="Start free on Starter, then upgrade when your workflows need more room to run. Plans from ₹999/mo."
+        path="/pricing"
+      />
+
       <section className="pricing-section">
         <div className="pricing-header">
           <span className="pricing-eyebrow">Pricing</span>

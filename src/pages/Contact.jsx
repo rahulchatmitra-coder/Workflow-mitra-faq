@@ -1,8 +1,12 @@
-import { FaEnvelope, FaCommentDots, FaPhoneAlt, FaBuilding, FaCheck } from 'react-icons/fa';
+import { FaEnvelope, FaCommentDots, FaCheck } from 'react-icons/fa';
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import PageSeo from '../components/PageSeo'
 import './Contact.css'
 
 function Contact() {
+  const [searchParams] = useSearchParams()
+  const isAutomationHelp = searchParams.get('from') === 'automation-help'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,11 +30,19 @@ function Contact() {
 
   return (
     <div className="contact-page">
+      <PageSeo
+        title="Contact WorkflowMitra — Get Help With Your Workflows"
+        description="Have questions about workflow automation? Need help building a workflow? Get in touch with the WorkflowMitra team."
+        path="/contact"
+      />
+
       <section className="contact-hero">
         <div className="container">
-          <h1 className="page-title">Get in Touch</h1>
+          <h1 className="page-title">{isAutomationHelp ? 'Tell Us What You Want to Automate' : 'Get in Touch'}</h1>
           <p className="page-subtitle">
-            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            {isAutomationHelp
+              ? "Describe the process you want to automate and the apps involved. Our automation experts will get back to you to help you build it."
+              : "Have questions about workflow automation? Need help building a workflow? Send us a message and we'll respond as soon as possible."}
           </p>
         </div>
       </section>
@@ -42,19 +54,11 @@ function Contact() {
               <h2>Contact Information</h2>
               <div className="info-item">
                 <h3><FaEnvelope /> Email</h3>
-                <p>hello@flowmitra.com</p>
+                <p>support@workflowmitra.com</p>
               </div>
               <div className="info-item">
-                <h3><FaCommentDots /> Live Chat</h3>
-                <p>Available Monday-Friday, 9am-6pm EST</p>
-              </div>
-              <div className="info-item">
-                <h3><FaPhoneAlt /> Phone</h3>
-                <p>+1 (555) 123-4567</p>
-              </div>
-              <div className="info-item">
-                <h3><FaBuilding /> Office</h3>
-                <p>123 Innovation Drive<br/>San Francisco, CA 94105</p>
+                <h3><FaCommentDots /> Support</h3>
+                <p>Available Monday–Friday, 10am–7pm IST</p>
               </div>
             </div>
 
@@ -69,7 +73,7 @@ function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Your name"
                   />
                 </div>
 
@@ -82,7 +86,7 @@ function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="john@company.com"
+                    placeholder="you@company.com"
                   />
                 </div>
 
@@ -99,7 +103,7 @@ function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message *</label>
+                  <label htmlFor="message">{isAutomationHelp ? 'What do you want to automate? *' : 'Message *'}</label>
                   <textarea
                     id="message"
                     name="message"
@@ -107,7 +111,9 @@ function Contact() {
                     onChange={handleChange}
                     required
                     rows="5"
-                    placeholder="Tell us about your project..."
+                    placeholder={isAutomationHelp
+                      ? 'Describe the process and the apps involved, e.g. "When a new lead comes in on our website, notify sales on WhatsApp and add them to our CRM."'
+                      : 'Tell us about your automation needs...'}
                   ></textarea>
                 </div>
 

@@ -52,6 +52,14 @@
   opacity: 0.7;
 }
 
+.hero-eyebrow {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-brand-teal);
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-4);
+}
+
 .hero-subtitle {
   font-size: clamp(16px, 2vw, 20px);
   color: var(--color-text-secondary);
@@ -60,6 +68,25 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.hero-reassurance {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+.hero-canvas-panel {
+  position: relative;
+  z-index: 10;
+  max-width: 620px;
+  margin: var(--space-16) auto 0;
+}
+
+.hero-canvas-panel .canvas-panel-body {
+  min-height: 238px;
+  display: flex;
+  align-items: center;
 }
 
 .hero-cta {

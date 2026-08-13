@@ -106,7 +106,7 @@ function Apps() {
     <div className="apps-page">
       <div className="apps-hero">
         <h1>App Directory</h1>
-        <p>Connect FlowMitra with your favorite tools. Over 3,000 integrations available.</p>
+        <p>Connect WorkflowMitra with your favorite tools and services.</p>
         <div className="apps-search">
           <input 
             type="text" 

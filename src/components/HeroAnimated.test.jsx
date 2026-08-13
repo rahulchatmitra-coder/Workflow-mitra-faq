@@ -35,13 +35,20 @@ describe('HeroAnimated', () => {
 
   it('keeps the headline and both calls to action', () => {
     const { getByText, getByRole } = renderHero()
-    expect(getByText(/by your team/)).toBeInTheDocument()
-    expect(getByRole('link', { name: /Start building for free/ })).toBeInTheDocument()
-    expect(getByRole('link', { name: /Watch demo/ })).toBeInTheDocument()
+    expect(getByText(/No coding required/i)).toBeInTheDocument()
+    expect(getByRole('link', { name: /Start Building Free/ })).toBeInTheDocument()
+    expect(getByRole('link', { name: /Get Help Building My Workflow/ })).toBeInTheDocument()
   })
 
   it('keeps the decorations hidden below the desktop breakpoint', () => {
     const { container } = renderHero()
     expect(container.querySelector('.hero-decorations').classList.contains('desktop-only')).toBe(true)
+  })
+
+  it('renders a real FlowCanvas product panel alongside the existing mascot decorations', () => {
+    const { container } = renderHero()
+    expect(container.querySelectorAll('.agent-decoration-wrapper')).toHaveLength(4)
+    expect(container.querySelector('.hero-canvas-panel .fc-canvas')).toBeInTheDocument()
+    expect(container.querySelectorAll('.hero-canvas-panel .fc-node').length).toBeGreaterThan(0)
   })
 })

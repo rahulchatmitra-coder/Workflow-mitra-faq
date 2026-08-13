@@ -360,7 +360,7 @@ export default function HeroWorkflowDemo({ nodes = DEFAULT_NODES }) {
           className="mt-4"
           style={{ color: '#6B7280', fontSize: '1.125rem' }}
         >
-          Describe what you need. FlowMitra&apos;s AI builds it for you.
+          Describe what you need. WorkflowMitra&apos;s AI builds it for you.
         </motion.p>
 
         {/* ── Prompt input bar ───────────────────────────────────────────── */}

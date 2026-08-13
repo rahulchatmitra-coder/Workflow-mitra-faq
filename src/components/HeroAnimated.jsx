@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom'
 import AgentDecoration from './AgentDecoration'
+import FlowCanvas from './FlowCanvas'
+import { useCanvasStep } from '../utils/useCanvasStep'
+import '../styles/CanvasPanel.css'
 import './HeroAnimated.css'
 
+const HERO_NODES = {
+  n1: { type: 'webhook-trigger', label: 'New Lead' },
+  n2: { type: 'ai', label: 'Classify' },
+  n3: { type: 'if', label: 'Qualified?' },
+  n4: { type: 'slack', label: 'Notify Sales' },
+  n5: { type: 'whatsapp', label: 'Follow Up' },
+}
+const HERO_TAGS = { n4: 'Yes', n5: 'No' }
+const HERO_PAYLOADS = ['{ company: "Acme" }', 'score: 0.92', 'qualified → Slack', 'not yet → WhatsApp']
+
 function HeroAnimated() {
+  const heroStep = useCanvasStep(5, 1400, 2)
   // Six real integrations per cluster. Indices 0-3 are the prominent chips,
   // 4-5 sit further out and dimmer. Every name resolves in brandIcons.jsx.
   const decorations = [
@@ -58,19 +72,38 @@ function HeroAnimated() {
       <div className="hero-content-wrapper">
         <div className="container">
           <div className="hero-text">
+            <p className="hero-eyebrow">A simpler alternative to Zapier, Make &amp; n8n</p>
             <h1 className="hero-title">
-             Build Powerful AI Workflows  <br />
-              <span className="strikethrough">Without</span>  Coding
+              Automate Your Business<br />
+              <span className="strikethrough">Without</span> The Complexity
             </h1>
             <p className="hero-subtitle">
- automate repetitive work, connect apps, integrate APIs, and build AI-powered workflows in minutes.replacing manual tasks automation simple, fast, and reliable </p>
+              Connect your apps, build workflows that run on autopilot, and get help from real automation experts when you need it. No coding required.
+            </p>
             <div className="hero-cta">
-              <Link to="/contact" className="btn btn-primary btn-large">
-                Start building for free <span className="arrow">→</span>
-              </Link>
+              <a href="https://app.workflowmitra.com/signup" className="btn btn-primary btn-large">
+                Start Building Free <span className="arrow">→</span>
+              </a>
               <Link to="/contact" className="btn btn-secondary btn-large">
-                Watch demo
+                Get Help Building My Workflow
               </Link>
+            </div>
+            <p className="hero-reassurance">Free to start &middot; No credit card required &middot; Expert help available</p>
+          </div>
+
+          <div className="hero-canvas-panel">
+            <div className="canvas-panel">
+              <div className="browser-bar">
+                <span className="browser-dot" style={{ background: '#ff5f57' }} />
+                <span className="browser-dot" style={{ background: '#febc2e' }} />
+                <span className="browser-dot" style={{ background: '#28c840' }} />
+                <span className="browser-url">app.workflowmitra.com/workflows/lead-to-whatsapp</span>
+                <span className="live-pill">running</span>
+              </div>
+              <div className="canvas-panel-body">
+                <div className="canvas-panel-dotgrid" aria-hidden="true" />
+                <FlowCanvas nodes={HERO_NODES} tags={HERO_TAGS} payloads={HERO_PAYLOADS} step={heroStep} />
+              </div>
             </div>
           </div>
         </div>

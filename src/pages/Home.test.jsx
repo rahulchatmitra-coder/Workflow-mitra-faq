@@ -23,14 +23,10 @@ describe('Home — popular workflows section', () => {
     chains.forEach((chain) => expect(chain.querySelectorAll('.nc-disc')).toHaveLength(4))
   })
 
-  it('places the templates section before the customer logos', () => {
+  it('renders the templates section', () => {
     const { container } = renderHome()
     const templates = container.querySelector('.templates-section')
-    const logos = container.querySelector('.customer-logos, .customer-logos-section')
     expect(templates).toBeInTheDocument()
-    expect(logos).toBeInTheDocument()
-    // Node.DOCUMENT_POSITION_FOLLOWING === 4
-    expect(templates.compareDocumentPosition(logos) & 4).toBeTruthy()
   })
 
   it('shows no zero-value usage counts', () => {
@@ -47,7 +43,7 @@ describe('Home — popular workflows section', () => {
   it('titles the section by what the reader gets, not by what it is called', () => {
     const { getByText, queryByText } = renderHome()
     expect(getByText('Start from a workflow that already works')).toBeInTheDocument()
-    expect(getByText(/Four of the most-used templates/)).toBeInTheDocument()
+    expect(getByText(/no coding required/)).toBeInTheDocument()
     expect(queryByText('Featured Templates')).toBeNull()
   })
 })

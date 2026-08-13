@@ -32,7 +32,7 @@ function IntegrationsShowcase() {
         
         <div className="n8n-header">
           <h2 className="n8n-title">
-            Plug AI into your own data &<br/>over 500 integrations
+            Plug AI into your own data &<br/>connect your favourite apps
           </h2>
           <p className="n8n-subtitle">
             Use pre-built nodes for common apps. Custom API connections for everything else.
@@ -77,7 +77,7 @@ function IntegrationsShowcase() {
         </div>
 
         <div className="n8n-cta-container">
-          <Link to="/apps" className="n8n-btn">
+          <Link to="/integrations" className="n8n-btn">
             Browse all integrations
           </Link>
         </div>

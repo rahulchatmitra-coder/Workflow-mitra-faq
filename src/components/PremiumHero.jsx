@@ -428,12 +428,12 @@ const PremiumHero = () => {
                 </div>
               </div>
 
-              {/* FlowMitra response card */}
+              {/* WorkflowMitra response card */}
               <div className="gum-response-card">
                 {/* Header row */}
                 <div className="gum-response-header">
                   <span className="gum-response-chevron">›</span>
-                  <span className="gum-response-brand">FlowMitra</span>
+                  <span className="gum-response-brand">WorkflowMitra</span>
                 </div>
                 <div className="gum-response-meta">
                   <div className="gum-step-icons">

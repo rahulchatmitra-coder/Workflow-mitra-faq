@@ -69,7 +69,7 @@ function Navigation() {
             <span className="logo-mark">
               <FlowMitraLogo size="sm" variant="icon" />
             </span>
-            FlowMitra
+            WorkflowMitra
           </Link>
 
           {/* Desktop Navigation */}
@@ -123,7 +123,7 @@ function Navigation() {
           {isMobileMenuOpen && (
             <div className="mobile-menu">
               <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
-              <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Resources</Link>
+              <Link to="/templates" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Templates</Link>
               <Link to="/integrations" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
               <Link to="/docs" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Docs</Link>
               <Link to="/pricing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>

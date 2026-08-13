@@ -207,7 +207,7 @@ export const templateFlows = [
       { from: 'n3', to: 'n5' },
     ],
     steps: [
-      { nodeId: 'n1', body: "Your website form posts to a FlowMitra webhook on submit — no third-party form service required. The payload carries name, email, phone, and whatever qualification fields the form includes." },
+      { nodeId: 'n1', body: "Your website form posts to a WorkflowMitra webhook on submit — no third-party form service required. The payload carries name, email, phone, and whatever qualification fields the form includes." },
       { nodeId: 'n2', body: "GPT-4o reads the form data and produces a lead type (enterprise, SMB, personal) and an intent score. This prioritisation step means the sales team's queue is sorted by value before anyone looks at it." },
       { nodeId: 'n3', body: "Creates a HubSpot contact with all the form fields plus the AI-generated category and score attached as properties, so CRM data is enriched from the first touch." },
       { nodeId: 'n4', body: "Sends an instant WhatsApp message to the lead's phone number — a short, warm acknowledgement that sets expectations and keeps them engaged while the team prepares to reach out." },

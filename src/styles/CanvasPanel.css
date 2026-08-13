@@ -1,0 +1,96 @@
+/* Browser-chrome framed panel — used anywhere a real product canvas
+   (FlowCanvas) needs to read as "this is the actual app", not a screenshot. */
+
+.canvas-panel {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.browser-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.browser-url {
+  margin-left: 4px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-text-tertiary);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  flex: 1;
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvas-panel-body {
+  position: relative;
+  padding: 28px 16px;
+  overflow-x: auto;
+}
+
+/* FlowCanvas's node graph is a fixed 440px-wide coordinate space — center it
+   rather than letting it hug the left edge of a wider panel. */
+.canvas-panel-body .fc-canvas {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.canvas-panel-dotgrid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-brand-teal);
+  background: var(--color-surface);
+  border: 1px solid #ccfbf1;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.live-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-teal);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .live-pill::before {
+    animation: canvasPanelBlink 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes canvasPanelBlink {
+  50% { opacity: 0.3; }
+}

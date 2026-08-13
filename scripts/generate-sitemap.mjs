@@ -11,7 +11,7 @@ const SITE_ORIGIN = 'https://workflowmitra.com'
 // top-level pages are added; it intentionally does NOT try to
 // auto-discover routes from App.jsx to keep this script simple and
 // dependency-free.
-const STATIC_ROUTES = ['/', '/pricing', '/apps', '/integrations', '/templates', '/solutions', '/about', '/contact', '/docs', '/docs/integrations']
+const STATIC_ROUTES = ['/', '/pricing', '/integrations', '/templates', '/solutions', '/about', '/contact', '/automation-help', '/features', '/docs', '/docs/integrations']
 
 const xml = buildSitemapXml(integrationRegistry, STATIC_ROUTES, SITE_ORIGIN)
 writeFileSync(join(__dirname, '../public/sitemap.xml'), xml)

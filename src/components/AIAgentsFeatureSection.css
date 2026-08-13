@@ -1,21 +1,10 @@
-.ai-agents-section {
-  --bg: #ffffff;
-  --ink: #14161f;
-  --ink-soft: #3b3e48;
-  --muted: #93969f;
-  --muted-light: #c7c9d1;
-  --line: #eceef1;
-  --card-white: #fdfdfc;
-  --accent: #ff5a34;
-  --grad-a: #fbe7e0;
-  --grad-b: #e7e1f6;
-  --grad-c: #dbebf8;
-  --grad-d: #fdeee6;
-  --shadow: 0 1px 2px rgba(20,22,31,.04), 0 12px 24px -12px rgba(20,22,31,.08);
+/* ============================================
+   AI Agents Feature Section – Bento Grid
+   ============================================ */
 
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+.ai-agents-section {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -26,14 +15,13 @@
 }
 
 .ai-agents-section h1.title {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(30px, 4.6vw, 50px);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-align: center;
   line-height: 1.15;
   margin: 0 0 14px;
-  color: var(--ink);
+  color: var(--color-text-primary);
   text-wrap: balance;
 }
 
@@ -43,7 +31,7 @@
   margin: 0 auto 52px;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--ink-soft);
+  color: var(--color-text-secondary);
   text-wrap: balance;
 }
 
@@ -55,25 +43,25 @@
 
 .ai-agents-section .card {
   position: relative;
-  border-radius: 26px;
-  border: 1px solid var(--line);
-  background: var(--card-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
   padding: 38px 34px 32px;
   min-height: 392px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: box-shadow .35s ease, transform .35s ease;
+  transition: box-shadow var(--transition-slow) ease, transform var(--transition-slow) ease;
 }
 
 .ai-agents-section .card:hover {
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
 .ai-agents-section .card.gradient {
   border: none;
-  background: linear-gradient(150deg, var(--grad-a) 0%, var(--grad-b) 38%, var(--grad-c) 68%, var(--grad-d) 100%);
+  background: linear-gradient(150deg, #fbe7e0 0%, #e7e1f6 38%, #dbebf8 68%, #fdeee6 100%);
 }
 .ai-agents-section .card.gradient::after {
   content: "";
@@ -84,15 +72,14 @@
 }
 
 .ai-agents-section .card h2 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 21px;
   line-height: 1.35;
   text-align: center;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   max-width: 330px;
   margin: 0 auto 6px;
-  color: var(--ink);
+  color: var(--color-text-primary);
   position: relative;
   z-index: 2;
 }
@@ -105,14 +92,10 @@
   margin: 0 auto 24px;
   font-size: 12.5px;
   line-height: 1.5;
-  color: var(--muted);
+  color: var(--color-text-tertiary);
 }
 
-/* ---------- CARD 1 : model arc ----------
-   --tok is the flagship's diameter; every token is a fraction of it, set
-   inline from MODELS[].share. That keeps the whole arc scaling together
-   between 900px and 1120px, where the card is at its narrowest — a fixed-px
-   arc overflows there. */
+/* ---------- CARD 1 : model arc ---------- */
 .ai-agents-section .logo-arc {
   --tok: clamp(52px, 6.8vw, 80px);
   position: relative;
@@ -135,7 +118,6 @@
 .ai-agents-section .logo-token:first-child { margin-left: 0; }
 
 .ai-agents-section .logo-glyph { display: grid; place-items: center; }
-/* lobehub marks default to 1em, so font-size is the sizing lever. */
 .ai-agents-section .logo-glyph svg { display: block; }
 
 .ai-agents-section .model-caption {
@@ -144,13 +126,11 @@
   text-align: center;
   margin: 0;
   font-size: 11.5px;
-  color: var(--ink-soft);
+  color: var(--color-text-secondary);
 }
 .ai-agents-section .model-caption b { font-weight: 650; }
 
-/* ---------- CARD 2 : integration field ----------
-   Wider than the card and clipped under a horizontal fade, so it reads as
-   "and many more" instead of a countable box of twenty. */
+/* ---------- CARD 2 : integration field ---------- */
 .ai-agents-section .field-mask {
   position: relative;
   z-index: 2;
@@ -173,18 +153,18 @@
 .ai-agents-section .tile {
   width: 46px;
   height: 46px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: #fff;
   display: grid;
   place-items: center;
-  box-shadow: 0 1px 2px rgba(20,22,31,.05), 0 8px 16px -10px rgba(20,22,31,.3);
+  box-shadow: 0 1px 2px rgba(20,22,31,.05), 0 8px 16px -10px rgba(20,22,31,.18);
 }
 .ai-agents-section .tile svg { display: block; }
 
 .ai-agents-section .tile.ghost {
   background: transparent;
   box-shadow: none;
-  border: 1.5px dashed #e4e6ea;
+  border: 1.5px dashed var(--color-border);
 }
 
 .ai-agents-section .field-foot {
@@ -193,9 +173,9 @@
   text-align: center;
   margin: 0;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--color-text-tertiary);
 }
-.ai-agents-section .field-foot b { color: var(--ink); font-weight: 650; }
+.ai-agents-section .field-foot b { color: var(--color-text-primary); font-weight: 650; }
 
 /* ---------- CARD 3 : recurring tasks ---------- */
 .ai-agents-section .tasks {
@@ -236,12 +216,12 @@
   display: block;
   font-size: 13.5px;
   font-weight: 650;
-  color: var(--ink);
+  color: var(--color-text-primary);
 }
 .ai-agents-section .task-text .schedule {
   display: block;
   font-size: 11.5px;
-  color: var(--muted);
+  color: var(--color-text-tertiary);
   margin-top: 1px;
 }
 
@@ -255,7 +235,7 @@
   right: 0;
   top: 50%;
   height: 1px;
-  background: var(--line);
+  background: var(--color-border);
   transform: translateY(-50%);
 }
 .ai-agents-section .timeline .fill {
@@ -274,13 +254,13 @@
   height: 9px;
   border-radius: 50%;
   background: #fff;
-  border: 1.5px solid var(--muted-light);
+  border: 1.5px solid var(--color-border-strong);
   transform: translate(-50%, -50%);
-  transition: background .35s ease, border-color .35s ease, width .35s ease, height .35s ease;
+  transition: background var(--transition-slow) ease, border-color var(--transition-slow) ease, width var(--transition-slow) ease, height var(--transition-slow) ease;
 }
 .ai-agents-section .dot.done {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
 }
 .ai-agents-section .dot.now {
   width: 11px;
@@ -294,14 +274,14 @@
   font-size: 10.5px;
   font-weight: 600;
   padding: 3px 9px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
   background: #fff;
-  border: 1px solid var(--line);
-  color: var(--muted);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-tertiary);
   transform: translateX(-50%);
-  box-shadow: 0 4px 10px -6px rgba(20,20,30,.3);
-  transition: left .5s ease, opacity .35s ease, color .3s ease, border-color .3s ease, background .3s ease;
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.15);
+  transition: left .5s ease, opacity var(--transition-slow) ease, color var(--transition-slow) ease, border-color var(--transition-slow) ease, background var(--transition-slow) ease;
 }
 
 .ai-agents-section .runs { text-align: right; line-height: 1.2; }
@@ -310,9 +290,9 @@
   font-size: 14px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--ink);
+  color: var(--color-text-primary);
 }
-.ai-agents-section .runs span { font-size: 10.5px; color: var(--muted); }
+.ai-agents-section .runs span { font-size: 10.5px; color: var(--color-text-tertiary); }
 
 .ai-agents-section .axis {
   display: grid;
@@ -324,7 +304,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 10.5px;
-  color: var(--muted-light);
+  color: var(--color-border-strong);
 }
 
 /* ---------- CARD 4 : canvas ---------- */
@@ -345,7 +325,7 @@
 }
 .ai-agents-section .flow {
   fill: none;
-  stroke: #c3c6cf;
+  stroke: var(--color-border-strong);
   stroke-width: 1.6;
   stroke-dasharray: 1 7;
   stroke-linecap: round;
@@ -353,9 +333,6 @@
 }
 @keyframes march { to { stroke-dashoffset: -16; } }
 
-/* The packet rides the wires on offset-path — no JS timer, and it stops dead
-   under reduced motion. On engines without offset-path it simply sits at the
-   trigger, which is a fine still frame. */
 .ai-agents-section .packet {
   position: absolute;
   left: 0;
@@ -364,14 +341,12 @@
   height: 7px;
   margin: -3.5px 0 0 -3.5px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255,90,52,.16);
+  background: var(--color-brand-teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, .16);
   opacity: 0;
   z-index: 4;
   animation: packetRun 7s ease-in-out infinite;
 }
-/* One packet per branch, each riding its own wire. They take turns: the left
-   branch over the first half of the cycle, the right over the second. */
 .ai-agents-section .packet.a {
   offset-path: path("M230 34 L230 96 Q230 104 222 104 L96 104 Q88 104 88 112 L88 176");
 }
@@ -394,11 +369,11 @@
   gap: 8px;
   background: #fff;
   padding: 7px 12px 7px 7px;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px -8px rgba(20,20,30,.3);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
   font-size: 12.5px;
   font-weight: 650;
-  color: var(--ink);
+  color: var(--color-text-primary);
   white-space: nowrap;
   animation: nodeLive 7s ease-in-out infinite;
 }
@@ -407,11 +382,10 @@
 .ai-agents-section .n3 { bottom: 0; right: 0; animation-delay: 4.666s; }
 
 @keyframes nodeLive {
-  0%, 26%, 100% { box-shadow: 0 6px 16px -8px rgba(20,20,30,.3); }
-  8%, 20% { box-shadow: 0 0 0 4px rgba(255,90,52,.14), 0 8px 20px -8px rgba(20,20,30,.38); }
+  0%, 26%, 100% { box-shadow: var(--shadow-md); }
+  8%, 20% { box-shadow: 0 0 0 4px rgba(15, 118, 110, .14), 0 8px 20px -8px rgba(20,20,30,.2); }
 }
 
-/* n1 sits centred by transform; the keyframe must not clobber it. */
 .ai-agents-section .node .avatar {
   width: 24px;
   height: 24px;
@@ -431,7 +405,7 @@
   width: 18px;
   height: 18px;
   border-radius: 6px;
-  background: #f4f5f7;
+  background: var(--color-surface-muted);
   display: grid;
   place-items: center;
 }
@@ -440,20 +414,18 @@
 .ai-agents-section .tag-float {
   position: absolute;
   background: #fff;
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
   font-size: 10.5px;
   font-weight: 600;
   padding: 3px 9px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px -6px rgba(20,20,30,.25);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.12);
   white-space: nowrap;
 }
 .ai-agents-section .t1 { top: 29%; left: 22%; }
 .ai-agents-section .t2 { top: 45%; right: 12%; }
 
-/* The three captions stack in one grid cell and cross-fade on the packet's
-   7s period, so the line reads as narration rather than three labels. */
 .ai-agents-section .canvas-foot {
   position: absolute;
   left: 0;
@@ -463,7 +435,7 @@
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  color: var(--muted);
+  color: var(--color-text-tertiary);
 }
 .ai-agents-section .canvas-foot .pulse { grid-area: 1 / 1; }
 .ai-agents-section .canvas-foot .cap {
@@ -483,7 +455,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--color-brand-green);
   animation: pulse 1.8s ease-in-out infinite;
 }
 @keyframes pulse {

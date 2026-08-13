@@ -1,23 +1,26 @@
+/* ============================================
+   FlowCanvas – SVG Node Graph with Animated Hops
+   ============================================ */
+
 .fc-canvas {
   position: relative;
   height: 238px;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.13) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(15, 23, 42, 0.10) 1px, transparent 1px);
   background-size: 15px 15px;
 }
 
 .fc-wires { position: absolute; inset: 0; overflow: visible; }
-.fc-wire  { fill: none; stroke: #cbd5e1; stroke-width: 2; opacity: 0.7; }
+.fc-wire  { fill: none; stroke: var(--color-border-strong); stroke-width: 2; opacity: 0.7; }
 
-/* The editor's own edge: same dash pattern and period as the canvas draws. */
 .fc-ants {
   fill: none;
-  stroke: #cbd5e1;
+  stroke: var(--color-border-strong);
   stroke-width: 2.5;
   stroke-dasharray: 0.1 8;
   stroke-linecap: round;
   animation: fcFlow 1.15s linear infinite;
 }
-.fc-ants.is-hot { stroke: #3b82f6; opacity: 1; }
+.fc-ants.is-hot { stroke: var(--color-brand-teal); opacity: 1; }
 
 @keyframes fcFlow { to { stroke-dashoffset: -16.2; } }
 
@@ -38,14 +41,14 @@
   display: grid;
   place-items: center;
   border: 2.5px solid #fff;
-  box-shadow: 0 4px 12px rgba(10, 10, 10, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.26);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, opacity 0.3s;
+  box-shadow: 0 4px 12px rgba(10, 10, 10, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.26);
+  transition: transform var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--transition-slow), opacity var(--transition-slow);
 }
 
 .fc-node.is-on .fc-disc {
   transform: scale(1.13);
-  box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.18),
-              0 6px 16px rgba(10, 10, 10, 0.22),
+  box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.18),
+              0 6px 16px rgba(10, 10, 10, 0.18),
               inset 0 2px 0 rgba(255, 255, 255, 0.26);
 }
 
@@ -58,7 +61,7 @@
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #ff9e43;
+  background: var(--color-brand-orange);
   border: 2px solid #fff;
 }
 
@@ -68,11 +71,11 @@
   font-weight: 650;
   line-height: 1.25;
   letter-spacing: -0.1px;
-  color: #334155;
+  color: var(--color-text-secondary);
   text-align: center;
 }
 
-.fc-node.is-idle .fc-label { color: #a4b0c0; }
+.fc-node.is-idle .fc-label { color: var(--color-text-tertiary); }
 
 .fc-tag {
   position: absolute;
@@ -82,18 +85,17 @@
   letter-spacing: 0.04em;
   white-space: nowrap;
   background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
   padding: 2px 7px;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
-/* The data moving between nodes — the point of the whole canvas. */
 .fc-payload {
   position: absolute;
   transform: translate(-50%, -50%);
   z-index: 5;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 9.5px;
   font-weight: 600;
   white-space: nowrap;
@@ -101,7 +103,7 @@
   color: #fff;
   border-radius: 6px;
   padding: 3px 8px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.28);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.24);
   transition: left 0.85s cubic-bezier(0.4, 0, 0.2, 1), top 0.85s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
