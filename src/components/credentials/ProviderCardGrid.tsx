@@ -79,6 +79,12 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   whatsapp: WhatsappIcon,
+  whatsappmeta: WhatsappIcon,
+  whatsappchatmitra: WhatsappIcon,
+  whatsappaisensy: WhatsappIcon,
+  whatsappwati: WhatsappIcon,
+  whatsappinterakt: WhatsappIcon,
+  whatsappgallabox: WhatsappIcon,
   smtp: SmtpLogo,
   groq: GroqLogo,
   gemini: GeminiLogo,
