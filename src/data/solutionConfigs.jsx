@@ -7,7 +7,7 @@ import {
 export const solutionConfigs = {
   marketing: {
     department: 'marketing',
-    badge: 'FlowMitra for Marketing',
+    badge: 'WorkflowMitra for Marketing',
     headline: 'Stop manually moving data between your marketing tools',
     subheadline: 'Form submissions automatically enrich in Clearbit, sync to your CRM, trigger email sequences, and update reports—connect HubSpot, Mailchimp, Google Sheets and a dozen other tools without touching a spreadsheet.',
     primaryCTA: 'Start Building',
@@ -44,7 +44,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Marketing teams use FlowMitra to score leads with custom ICP criteria, generate personalized outreach with GPT, and sync enriched contacts across their entire stack—HubSpot, Mailchimp, Sheets.',
+      description: 'Marketing teams use WorkflowMitra to score leads with custom ICP criteria, generate personalized outreach with GPT, and sync enriched contacts across their entire stack—HubSpot, Mailchimp, Sheets.',
       items: [
         {
           title: 'Score leads against ICP criteria',
@@ -126,9 +126,9 @@ export const solutionConfigs = {
 
   sales: {
     department: 'sales',
-    badge: 'FlowMitra for Sales',
+    badge: 'WorkflowMitra for Sales',
     headline: 'Your reps should not spend half their day on data entry',
-    subheadline: 'FlowMitra watches your inbox and calendar, updates Salesforce, schedules follow-ups, researches accounts, and drafts personalized emails—reps close deals while the system handles admin work.',
+    subheadline: 'WorkflowMitra watches your inbox and calendar, updates Salesforce, schedules follow-ups, researches accounts, and drafts personalized emails—reps close deals while the system handles admin work.',
     primaryCTA: 'Start Building',
     secondaryCTA: 'Talk to Sales',
     
@@ -163,7 +163,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Sales teams use FlowMitra to score inbound leads with MEDDIC criteria, generate account research briefs before calls, and auto-log email replies to Salesforce—no manual updates.',
+      description: 'Sales teams use WorkflowMitra to score inbound leads with MEDDIC criteria, generate account research briefs before calls, and auto-log email replies to Salesforce—no manual updates.',
       items: [
         {
           title: 'Score leads with MEDDIC framework',
@@ -245,9 +245,9 @@ export const solutionConfigs = {
 
   operations: {
     department: 'operations',
-    badge: 'FlowMitra for Operations',
+    badge: 'WorkflowMitra for Operations',
     headline: 'Stop copying data between Google Sheets and your other tools',
-    subheadline: 'Notion for requests, Airtable for inventory, Sheets for reporting, Slack for approvals—FlowMitra keeps everything in sync so when a row changes in one system, updates propagate automatically.',
+    subheadline: 'Notion for requests, Airtable for inventory, Sheets for reporting, Slack for approvals—WorkflowMitra keeps everything in sync so when a row changes in one system, updates propagate automatically.',
     primaryCTA: 'Start Building',
     secondaryCTA: 'View Templates',
     
@@ -282,7 +282,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Ops teams use FlowMitra to route purchase order approvals through Slack, sync inventory levels between Sheets and Airtable, and compile weekly metrics from Asana and Jira.',
+      description: 'Ops teams use WorkflowMitra to route purchase order approvals through Slack, sync inventory levels between Sheets and Airtable, and compile weekly metrics from Asana and Jira.',
       items: [
         {
           title: 'Build multi-step approval flows',
@@ -364,7 +364,7 @@ export const solutionConfigs = {
 
   engineering: {
     department: 'engineering',
-    badge: 'FlowMitra for Engineering',
+    badge: 'WorkflowMitra for Engineering',
     headline: 'Build internal tools without maintaining Node scripts',
     subheadline: 'Replace Bash scripts for deployments, Slack bots cobbled together with Replit, and webhook handlers running on forgotten EC2 instances with workflows you can actually debug.',
     primaryCTA: 'Start Building',
@@ -401,7 +401,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Engineering teams use FlowMitra to route GitHub webhooks, trigger deploy pipelines after CI passes, and auto-create Jira tickets when PagerDuty alerts fire.',
+      description: 'Engineering teams use WorkflowMitra to route GitHub webhooks, trigger deploy pipelines after CI passes, and auto-create Jira tickets when PagerDuty alerts fire.',
       items: [
         {
           title: 'Validate and route webhooks',
@@ -483,9 +483,9 @@ export const solutionConfigs = {
 
   support: {
     department: 'support',
-    badge: 'FlowMitra for Support',
+    badge: 'WorkflowMitra for Support',
     headline: 'Route tickets faster than your agents can read them',
-    subheadline: 'When a ticket arrives in Zendesk, FlowMitra checks the customer plan in Salesforce, scans past conversations, classifies urgency with GPT, and assigns the right agent—before anyone clicks refresh.',
+    subheadline: 'When a ticket arrives in Zendesk, WorkflowMitra checks the customer plan in Salesforce, scans past conversations, classifies urgency with GPT, and assigns the right agent—before anyone clicks refresh.',
     primaryCTA: 'Start Building',
     secondaryCTA: 'View Templates',
     
@@ -520,7 +520,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Support teams use FlowMitra to classify ticket urgency with GPT, auto-respond to password resets and billing questions, and escalate before SLA deadlines are missed.',
+      description: 'Support teams use WorkflowMitra to classify ticket urgency with GPT, auto-respond to password resets and billing questions, and escalate before SLA deadlines are missed.',
       items: [
         {
           title: 'Classify tickets with GPT',
@@ -602,9 +602,9 @@ export const solutionConfigs = {
 
   security: {
     department: 'security',
-    badge: 'FlowMitra for Security',
+    badge: 'WorkflowMitra for Security',
     headline: 'Automation with audit logs and access controls',
-    subheadline: 'FlowMitra stores credentials in encrypted vaults, logs every workflow execution, and lets you define who can edit or run which workflows—built for teams with compliance requirements.',
+    subheadline: 'WorkflowMitra stores credentials in encrypted vaults, logs every workflow execution, and lets you define who can edit or run which workflows—built for teams with compliance requirements.',
     primaryCTA: 'Start Building',
     secondaryCTA: 'Security Docs',
     
@@ -639,7 +639,7 @@ export const solutionConfigs = {
     ],
     
     skills: {
-      description: 'Security teams use FlowMitra to provision Okta accounts for new hires, respond to AWS CloudTrail alerts, and generate monthly compliance reports with full audit trails.',
+      description: 'Security teams use WorkflowMitra to provision Okta accounts for new hires, respond to AWS CloudTrail alerts, and generate monthly compliance reports with full audit trails.',
       items: [
         {
           title: 'Automate user provisioning',

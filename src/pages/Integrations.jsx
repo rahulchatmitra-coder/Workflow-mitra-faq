@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import PageSeo from '../components/PageSeo';
 import './Integrations.css';
 
 const integrationsData = [
@@ -142,6 +143,12 @@ function Integrations() {
 
   return (
     <div className="integrations-page">
+      <PageSeo
+        title="Integrations — Connect Your Apps | WorkflowMitra"
+        description="Browse all integrations available on WorkflowMitra. Connect your favourite apps, or reach anything else over HTTP."
+        path="/integrations"
+      />
+
       {/* Icon sprite */}
       <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
         <defs>
@@ -188,7 +195,7 @@ function Integrations() {
       </svg>
 
       <section className="int-hero">
-        <h1>Every integration FlowMitra supports</h1>
+        <h1>Every integration WorkflowMitra supports</h1>
         <p>Browse connectors for your favourite apps, or reach anything else over HTTP. Move data between tools without writing a line of code.</p>
       </section>
 

@@ -69,7 +69,7 @@ function Navigation() {
             <span className="logo-mark">
               <FlowMitraLogo size="sm" variant="icon" />
             </span>
-            FlowMitra
+            WorkflowMitra
           </Link>
 
           {/* Desktop Navigation */}
@@ -94,6 +94,7 @@ function Navigation() {
               <div className="simple-dropdown-menu">
                 <Link to="/templates" className="simple-dropdown-item">Templates</Link>
                 <Link to="/integrations" className="simple-dropdown-item">Integrations</Link>
+                <Link to="/docs" className="simple-dropdown-item">Docs</Link>
               </div>
             </li>
             <li><Link to="/integrations">Integrations</Link></li>
@@ -122,8 +123,9 @@ function Navigation() {
           {isMobileMenuOpen && (
             <div className="mobile-menu">
               <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Solutions</Link>
-              <Link to="/solutions" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Resources</Link>
+              <Link to="/templates" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Templates</Link>
               <Link to="/integrations" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
+              <Link to="/docs" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Docs</Link>
               <Link to="/pricing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
               <div className="mobile-menu-actions">
                 <a href="https://app.workflowmitra.com/login" className="nav-btn nav-btn-ghost" onClick={() => setIsMobileMenuOpen(false)}>Login</a>

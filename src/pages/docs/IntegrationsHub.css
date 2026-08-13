@@ -1,0 +1,18 @@
+/* Width/centering already comes from DocsLayout's .docs-main — this
+   page only adds its own bottom breathing room. */
+.ihub { padding-bottom: 3rem; }
+.ihub__eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--docs-pink); margin-bottom: 0.9rem; }
+.ihub h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 650; letter-spacing: -0.01em; }
+.ihub__sub { color: var(--docs-ink-soft); font-size: 1.02rem; margin-top: 0.8rem; max-width: 54ch; }
+.ihub__search { display: block; margin: 1.6rem 0 1.2rem; max-width: 420px; width: 100%; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid var(--docs-line); font-size: 0.9rem; }
+.ihub__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.ihub__chips button { font: inherit; font-size: 0.78rem; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--docs-line); background: #fff; color: var(--docs-ink-soft); cursor: pointer; }
+.ihub__chips button.active { background: var(--docs-ink); color: #fff; border-color: var(--docs-ink); }
+.ihub__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+.ihub__card { border: 1px solid var(--docs-line); border-radius: 14px; padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; background: #fff; position: relative; text-decoration: none; color: var(--docs-ink); }
+.ihub__card--dim { opacity: 0.55; }
+.ihub__tile { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--docs-warm); }
+.ihub__card h3 { font-size: 0.98rem; font-weight: 650; }
+.ihub__card p { font-size: 0.82rem; color: var(--docs-ink-soft); margin: 0; }
+.ihub__status { position: absolute; top: 1rem; right: 1rem; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--docs-line); color: var(--docs-ink-soft); }
+.ihub__status--live { background: #E6F5F3; color: var(--docs-teal); }

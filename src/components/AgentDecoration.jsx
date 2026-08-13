@@ -1,149 +1,107 @@
-import { useEffect, useState } from 'react'
+import { getHeroBrandIcon } from '../utils/heroBrandIcons'
 import './AgentDecoration.css'
 
-export default function AgentDecoration({ 
-  shape, 
-  color, 
-  position, 
-  cursors = [], 
-  badges = [], 
-  delay = 0,
-  scale = 1
-}) {
-  const [rotation, setRotation] = useState(0)
+/**
+ * One hero cluster: a small grey mascot with real integration marks scattered
+ * around it, and an optional teammate cursor.
+ *
+ * The badges used to orbit on a 15s requestAnimationFrame loop that called
+ * setState every frame. Positions are fixed now and every motion is CSS, so
+ * the homepage no longer re-renders 60 times a second.
+ */
 
-  // Orbit animation loop
-  useEffect(() => {
-    let animationFrame
-    let start
-    const duration = 15000 // 15 seconds per full rotation
+// Fixed scatter inside the 250x180 box. First four are the prominent chips.
+const SPOTS = [
+  { x: 8, y: 20, size: 34 },
+  { x: 62, y: 0, size: 34 },
+  { x: 150, y: 8, size: 34 },
+  { x: 200, y: 62, size: 34 },
+  { x: 2, y: 92, size: 28 },
+  { x: 206, y: 122, size: 28 },
+]
 
-    const step = (timestamp) => {
-      if (start === undefined) start = timestamp
-      const elapsed = timestamp - start
-      const currentRotation = (elapsed / duration) * 360
-      setRotation(currentRotation)
-      animationFrame = window.requestAnimationFrame(step)
-    }
+const MASCOTS = [
+  'M33 2c14 0 29 8 29 27 0 20-13 35-29 35S4 49 4 29C4 10 19 2 33 2z',
+  'M18 16a13 13 0 0 1 25-4 12 12 0 0 1 13 15 13 13 0 0 1-4 27H20A15 15 0 0 1 8 30a13 13 0 0 1 10-14z',
+  null, // index 2 is the rounded square, drawn as a <rect> below
+  'M33 3c17 0 27 9 27 26s-9 34-27 34S6 46 6 29 16 3 33 3z',
+]
 
-    animationFrame = window.requestAnimationFrame(step)
-    return () => window.cancelAnimationFrame(animationFrame)
-  }, [])
+const EYES = [
+  { cx: [25, 41], cy: 30 },
+  { cx: [26, 42], cy: 33 },
+  { cx: [26, 42], cy: 31 },
+  { cx: [26, 42], cy: 31 },
+]
 
-  const renderShape = () => {
-    switch (shape) {
-      case 'blob':
-        return (
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill={color} d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,97.7,-2.1C98.6,13.8,94.4,30.1,84.9,43.2C75.4,56.3,60.6,66.2,45.4,74.2C30.2,82.2,14.6,88.3,-1.1,90.3C-16.8,92.3,-32.6,90.2,-47.4,82.7C-62.2,75.2,-76,62.3,-84.9,46.9C-93.8,31.5,-97.8,13.6,-96.2,-3.5C-94.6,-20.6,-87.4,-36.9,-77.2,-50.7C-67,-64.5,-53.8,-75.8,-39.3,-82.5C-24.8,-89.2,-9.1,-91.3,5.1,-90.4C19.3,-89.5,30.5,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
-            {renderEyes()}
-          </svg>
-        )
-      case 'square':
-        return (
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <rect fill={color} x="20" y="20" width="160" height="160" rx="40" />
-            {renderEyes()}
-          </svg>
-        )
-      case 'cross':
-        return (
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill={color} d="M130,20 L130,70 L180,70 C191.045695,70 200,78.954305 200,90 L200,110 C200,121.045695 191.045695,130 180,130 L130,130 L130,180 C130,191.045695 121.045695,200 110,200 L90,200 C78.954305,200 70,191.045695 70,180 L70,130 L20,130 C8.954305,130 0,121.045695 0,110 L0,90 C0,78.954305 8.954305,70 20,70 L70,70 L70,20 C70,8.954305 78.954305,0 90,0 L110,0 C121.045695,0 130,8.954305 130,20 Z" />
-            {renderEyes()}
-          </svg>
-        )
-      case 'organic':
-        return (
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill={color} d="M51.9,-75.6C66.5,-65.4,77.1,-49.2,84.7,-31.6C92.3,-14,96.9,5,93,22.3C89.1,39.6,76.7,55.2,61.1,65.6C45.5,76,26.7,81.2,7.2,84.1C-12.3,87,-32.5,87.6,-48.9,79.5C-65.3,71.4,-77.9,54.6,-85.9,35.9C-93.9,17.2,-97.3,-3.4,-91.3,-21.3C-85.3,-39.2,-69.9,-54.4,-52.7,-64.1C-35.5,-73.8,-16.5,-78,-0.2,-77.7C16.1,-77.4,37.3,-85.8,51.9,-75.6Z" transform="translate(100 100)" />
-            {renderEyes()}
-          </svg>
-        )
-      default:
-        return null
-    }
-  }
-
-  const renderEyes = () => (
-    <g className="mascot-eyes">
-      <ellipse fill="#ffffff" cx="80" cy="90" rx="8" ry="16" />
-      <ellipse fill="#ffffff" cx="120" cy="90" rx="8" ry="16" />
-    </g>
+function Mascot({ index }) {
+  const eyes = EYES[index] || EYES[0]
+  return (
+    <svg
+      className="agent-mascot" data-mascot={index}
+      width="66" height="66" viewBox="0 0 66 66" aria-hidden="true"
+    >
+      {MASCOTS[index]
+        ? <path d={MASCOTS[index]} fill="var(--agent-mascot-fill)" />
+        : <rect x="6" y="6" width="54" height="54" rx="17" fill="var(--agent-mascot-fill)" />}
+      <ellipse className="agent-eye" cx={eyes.cx[0]} cy={eyes.cy} rx="4.3" ry="6.4" fill="#ffffff" />
+      <ellipse className="agent-eye" cx={eyes.cx[1]} cy={eyes.cy} rx="4.3" ry="6.4" fill="#ffffff" />
+    </svg>
   )
+}
 
-  const renderBadgeLogo = (type) => {
-    switch (type) {
-      case 'gmail': return <span style={{color: '#EA4335', fontSize: '18px', fontWeight: 'bold'}}>G</span>;
-      case 'slack': return <span style={{color: '#E01E5A', fontSize: '18px', fontWeight: 'bold'}}>#</span>;
-      case 'sheets': return <span style={{color: '#10b981', fontSize: '18px', fontWeight: 'bold'}}>S</span>;
-      case 'drive': return <span style={{color: '#FFBA00', fontSize: '18px', fontWeight: 'bold'}}>D</span>;
-      case 'airtable': return <span style={{color: '#FCB400', fontSize: '18px', fontWeight: 'bold'}}>A</span>;
-      case 'zapier': return <span style={{color: '#FF4F00', fontSize: '18px', fontWeight: 'bold'}}>Z</span>;
-      case 'discord': return <span style={{color: '#5865F2', fontSize: '18px', fontWeight: 'bold'}}>D</span>;
-      default: return <span style={{color: '#000', fontSize: '18px', fontWeight: 'bold'}}>?</span>;
-    }
-  }
+export default function AgentDecoration({
+  logos = [],
+  mascot = 0,
+  position = {},
+  cursor = null,
+  delay = 0,
+}) {
+  // Resolve first, so a brand with no mark drops out instead of rendering a
+  // placeholder glyph next to Gmail and Shopify.
+  const chips = logos
+    .map((name, i) => ({
+      name,
+      spot: SPOTS[i],
+      icon: getHeroBrandIcon(name, { size: Math.round((SPOTS[i]?.size ?? 34) * 0.5) }),
+    }))
+    .filter((c) => c.spot && c.icon?.component)
 
   return (
-    <div 
-      className={`agent-decoration-wrapper ${shape}`}
-      style={{
-        ...position,
-        '--float-delay': `${delay}s`,
-        transform: `scale(${scale})`
-      }}
+    <div
+      className="agent-decoration-wrapper"
+      style={{ ...position, '--float-delay': `${delay}s` }}
     >
-      <div className="mascot-container">
-        {/* Core Mascot Shape */}
-        <div className="mascot-shape">
-          {renderShape()}
-        </div>
+      <div className="agent-mascot-slot"><Mascot index={mascot} /></div>
 
-        {/* Orbiting Badges */}
-        <div className="badges-orbit-ring" style={{ transform: `rotate(${rotation}deg)` }}>
-          {badges.map((badge, idx) => {
-            const angle = (idx / badges.length) * 360
-            const orbitRadius = 140
-            const x = Math.cos(angle * (Math.PI / 180)) * orbitRadius
-            const y = Math.sin(angle * (Math.PI / 180)) * orbitRadius
-            
-            return (
-              <div 
-                key={idx} 
-                className="orbiting-badge"
-                style={{ 
-                  transform: `translate(${x}px, ${y}px) rotate(${-rotation}deg)` 
-                }}
-              >
-                <div className="badge-inner">
-                  {renderBadgeLogo(badge)}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Cursors */}
-      {cursors.map((cursor, idx) => (
-        <div 
-          key={idx} 
-          className={`cursor-wrapper cursor-${idx + 1}`}
+      {chips.map((chip, i) => (
+        <div
+          key={`${chip.name}-${i}`}
+          className={`agent-chip${i > 3 ? ' is-ambient' : ''}`}
           style={{
-            '--cursor-color': cursor.color,
-            '--cursor-delay': `${delay + idx * 0.5}s`
+            left: `${chip.spot.x}px`,
+            top: `${chip.spot.y}px`,
+            width: `${chip.spot.size}px`,
+            height: `${chip.spot.size}px`,
           }}
         >
-          <svg className="cursor-pointer" viewBox="0 0 80 90" width="28" height="28">
-            <filter id={`shadow-${shape}-${idx}`}><feDropShadow dx="2" dy="3" stdDeviation="2" floodColor="rgba(0,0,0,0.15)" /></filter>
-            <path fill={cursor.color} stroke="#fff" strokeWidth="4" strokeLinejoin="round" d="M37.1 6.8a7.1 7.1 0 0 1 13 0l34.6 77c.8 1.7-1 3.6-2.8 3l-39-13.3q-2-.8-4.2 0l-33 12.7a2.3 2.3 0 0 1-2.9-3z" filter={`url(#shadow-${shape}-${idx})`} />
-          </svg>
-          <div className="cursor-label" style={{ backgroundColor: cursor.color }}>
-            {cursor.name}
-          </div>
+          {chip.icon.component}
         </div>
       ))}
+
+      {cursor && (
+        <div className="agent-cursor" style={{ '--cursor-delay': `${delay + 0.4}s` }}>
+          <svg width="15" height="19" viewBox="0 0 15 19" aria-hidden="true">
+            <path
+              d="M1 1l12 9-5.2 1.4L10 18 7 19 4.6 12.6 1 16V1z"
+              fill={cursor.color} stroke="#ffffff" strokeWidth="1"
+            />
+          </svg>
+          <span className="agent-cursor-label" style={{ backgroundColor: cursor.color }}>
+            {cursor.name}
+          </span>
+        </div>
+      )}
     </div>
   )
 }

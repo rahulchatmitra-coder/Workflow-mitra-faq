@@ -18,6 +18,7 @@ import { FaLinkedin, FaSlack, FaGithub, FaAws, FaSalesforce, FaUserCircle, FaCub
 import { OpenAI, Anthropic, Google, Meta, DeepSeek } from '@lobehub/icons';
 import './UnifiedSolutionTemplate.css';
 import { getBrandIcon } from '../utils/brandIcons';
+import PageSeo from './PageSeo';
 
 const getAppIcon = (name) => {
   const brandData = getBrandIcon(name, { size: 18 });
@@ -92,6 +93,12 @@ const UnifiedSolutionTemplate = ({ config }) => {
 
   return (
     <div className="unified-solution">
+      <PageSeo
+        title={`${config.badge || 'Solutions'} | WorkflowMitra`}
+        description={config.subheadline || `Automate ${config.department} workflows with WorkflowMitra. No coding required.`}
+        path={`/solutions/${config.department}`}
+      />
+
       {/* SECTION 1 — Hero */}
       <section className="solution-hero">
         <div className="container">
@@ -267,7 +274,7 @@ const UnifiedSolutionTemplate = ({ config }) => {
 
             <div className="text-content">
               <h2>Choose your AI model</h2>
-              <p>Pick the latest models from OpenAI, Anthropic, Google, and more to fit any task — switch any time. All built into FlowMitra, no API keys required.</p>
+              <p>Pick the latest models from OpenAI, Anthropic, Google, and more to fit any task — switch any time. All built into WorkflowMitra, no API keys required.</p>
             </div>
           </div>
         </div>
@@ -403,7 +410,7 @@ const UnifiedSolutionTemplate = ({ config }) => {
 
           <div className="hero-text">
             <h2>Interact with agents like co-workers</h2>
-            <p>Tag <span className="mention">@FlowMitra</span> in Slack, Teams, or email and your agent responds like another teammate — right where conversations already happen.</p>
+            <p>Tag <span className="mention">@WorkflowMitra</span> in Slack, Teams, or email and your agent responds like another teammate — right where conversations already happen.</p>
           </div>
         </div>
       </section>
@@ -511,7 +518,7 @@ const UnifiedSolutionTemplate = ({ config }) => {
             <span className="hiw-eyebrow">How it works</span>
             <h2>Connect. Customize. Conquer.</h2>
             <p className="hiw-subhead">
-              You can choose how to use <span className="brand">FlowMitra</span>. Either sign up for the hosted FlowMitra Cloud or self-host via Docker.
+              You can choose how to use <span className="brand">WorkflowMitra</span>. Either sign up for the hosted WorkflowMitra Cloud or self-host via Docker.
             </p>
           </div>
 

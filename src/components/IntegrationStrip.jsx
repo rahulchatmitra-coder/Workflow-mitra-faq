@@ -1,7 +1,12 @@
 import { motion } from 'framer-motion'
 import { FaCube } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import '../styles/IntegrationStrip.css'
 import { getBrandIcon } from '../utils/brandIcons'
+import { docsPathForApp } from '../utils/docs/appLinkable'
+import integrationRegistry from '../data/integrationRegistry'
+
+const APP_ALIAS_MAP = { sheets: 'google-sheets', zoho: 'zoho-books', truck: 'shiprocket' }
 
 function IntegrationStrip({ integrations, color }) {
   return (
@@ -23,7 +28,20 @@ function IntegrationStrip({ integrations, color }) {
         <div className="integration-strip-grid">
           {integrations.map((integration, index) => {
             const brandData = getBrandIcon(integration, { size: 24, color: color });
-            
+            const docsPath = docsPathForApp(integration, { registry: integrationRegistry, aliasMap: APP_ALIAS_MAP });
+
+            const content = (
+              <>
+                <div className="integration-strip-item-icon" style={{
+                  backgroundColor: `${color}15`,
+                  color
+                }}>
+                  {brandData ? brandData.component : <FaCube />}
+                </div>
+                <span className="integration-strip-item-name">{integration}</span>
+              </>
+            )
+
             return (
               <motion.div
                 key={integration}
@@ -32,18 +50,14 @@ function IntegrationStrip({ integrations, color }) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)'
                 }}
               >
-                <div className="integration-strip-item-icon" style={{ 
-                  backgroundColor: `${color}15`,
-                  color
-                }}>
-                  {brandData ? brandData.component : <FaCube />}
-                </div>
-                <span className="integration-strip-item-name">{integration}</span>
+                {docsPath ? (
+                  <Link to={docsPath} className="integration-strip-item-link">{content}</Link>
+                ) : content}
               </motion.div>
             )
           })}

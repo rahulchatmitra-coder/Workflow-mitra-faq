@@ -1,0 +1,10 @@
+.copyable-field label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--docs-ink-soft); margin-bottom: 0.3rem; }
+.copyable-field__row { display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--docs-line); border-radius: 8px; padding: 0.5rem 0.7rem; }
+.copyable-field__value { font-family: ui-monospace, monospace; font-size: 0.74rem; color: var(--docs-ink-soft); flex: 1; word-break: break-all; }
+.copyable-field__btn {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font: inherit; font-size: 0.74rem; font-weight: 700; color: var(--docs-ink);
+  background: #fff; border: 1px solid var(--docs-line); border-radius: 6px; padding: 0.3rem 0.6rem;
+  cursor: pointer; flex: none;
+}
+.copyable-field__btn:hover { background: var(--docs-warm); }

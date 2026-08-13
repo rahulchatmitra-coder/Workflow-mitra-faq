@@ -1,0 +1,37 @@
+// Thin re-export layer over lucide-react (already a project dependency)
+// so every docs component imports icon *names* from one place instead
+// of reaching into lucide-react directly — see spec "Icon system": no
+// emoji/Unicode-symbol icons anywhere in the docs section.
+export {
+  Search as SearchIcon,
+  Clock as ClockIcon,
+  KeyRound as KeyIcon,
+  Gauge as GaugeIcon,
+  ChevronDown as ChevronDownIcon,
+  ChevronRight as ChevronRightIcon,
+  X as CloseIcon,
+  Link2 as LinkIcon,
+  Lightbulb as LightbulbIcon,
+  Undo2 as UndoIcon,
+  Redo2 as RedoIcon,
+  Scaling as ResizeIcon,
+  Trash2 as TrashIcon,
+  Copy as CopyIcon,
+  Calendar as CalendarIcon,
+  Headphones as HeadsetIcon,
+  Bell as BellIcon,
+  ShoppingBag as BagIcon,
+  MessageCircle as MessageIcon,
+  HelpCircle as HelpIcon,
+  LayoutGrid as GridIcon,
+  Maximize as FrameIcon,
+  Braces as HttpRequestIcon,
+  Sparkles as AiAgentIcon,
+  ExternalLink as ExternalLinkIcon,
+  FileText as FileIcon,
+  Image as ImageIcon,
+  List as ListIcon,
+  ShoppingCart as CartIcon,
+  MapPin as PinIcon,
+  Contact as CardIcon,
+} from 'lucide-react'

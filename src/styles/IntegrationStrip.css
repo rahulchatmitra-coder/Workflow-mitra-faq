@@ -69,6 +69,17 @@
   text-align: center;
 }
 
+/* When an item links to its docs page, the link should look identical
+   to the unlinked version — no default underline/blue, full click area. */
+.integration-strip-item-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .integration-strip {

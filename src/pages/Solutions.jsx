@@ -1,6 +1,7 @@
 import { FaBullseye, FaLock, FaChartBar, FaCommentDots, FaPhoneAlt, FaBullhorn, FaBriefcase, FaCog, FaLaptop, FaCalendarAlt, FaHeadphones, FaSearch, FaMobileAlt, FaPen, FaAddressCard, FaGift, FaShoppingBag, FaUsers, FaLightbulb } from 'react-icons/fa';
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import PageSeo from '../components/PageSeo'
 import './Solutions.css'
 
 function Solutions() {
@@ -140,18 +141,24 @@ function Solutions() {
 
   return (
     <div className="solutions-page">
+      <PageSeo
+        title="Solutions — Workflow Automation for Every Team | WorkflowMitra"
+        description="Automate workflows for marketing, sales, operations, engineering, support, and security teams. No coding required."
+        path="/solutions"
+      />
+
       {/* Hero Section */}
       <section className="solutions-hero">
         <div className="solutions-hero-content">
           <h1 className="solutions-hero-title">
-            Build AI agents for every team
+            Automation Solutions for Every Team
           </h1>
           <p className="solutions-hero-description">
-            FlowMitra helps you and your team build AI agents across all of your business operations — from marketing, sales, support, to engineering and more.
-          </p>
+WorkflowMitra helps businesses automate repetitive work, connect apps, integrate APIs, and build AI-powered workflows in minutes. Whether you're replacing manual tasks, creating business automations, or connecting hundreds of applications, WorkflowMitra makes automation simple, fast, and reliable. 
+ </p>
           <div className="solutions-hero-actions">
-            <Link to="/contact" className="btn-primary-large">Get Started</Link>
-            <Link to="/contact" className="btn-secondary-large">Talk to Sales</Link>
+            <a href="https://app.workflowmitra.com/signup" className="btn-primary-large">Start Building Free</a>
+            <Link to="/contact" className="btn-secondary-large">Get Help Building My Workflow</Link>
           </div>
         </div>
 
@@ -159,7 +166,7 @@ function Solutions() {
         <div className="integration-logos">
           <span className="integration-label">Works with</span>
           <div className="logo-grid">
-            {['Slack', 'Gmail', 'Sheets', 'Airtable', 'Notion', 'Salesforce', 'HubSpot', 'Zapier'].map((name) => (
+            {['Slack', 'Gmail', 'Sheets', 'Airtable', 'Notion', 'Salesforce', 'HubSpot', 'Shopify'].map((name) => (
               <div key={name} className="integration-logo">
                 <span>{name}</span>
               </div>
@@ -231,22 +238,17 @@ function Solutions() {
             </div>
           )}
 
-          <div className="see-more">
-            <Link to="/solutions/all" className="see-more-link">
-              See more {activeTab === 'roles' ? 'roles' : 'use cases'} →
-            </Link>
-          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="solutions-cta">
         <div className="solutions-cta-content">
-          <h2>Ready to build your AI agents?</h2>
-          <p>Start automating your workflows today with FlowMitra</p>
+          <h2>Ready to automate your workflows?</h2>
+          <p>Start building for free, or let our automation experts help.</p>
           <div className="cta-buttons">
-            <Link to="/contact" className="btn-primary-large">Get Started</Link>
-            <Link to="/contact" className="btn-secondary-large">View Documentation</Link>
+            <a href="https://app.workflowmitra.com/signup" className="btn-primary-large">Start Building Free</a>
+            <Link to="/contact" className="btn-secondary-large">Get Help Building My Workflow</Link>
           </div>
         </div>
       </section>

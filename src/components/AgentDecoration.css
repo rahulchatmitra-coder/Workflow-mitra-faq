@@ -1,138 +1,95 @@
+/*
+ * Hero cluster. Everything here is CSS-driven: the old orbit ran on
+ * requestAnimationFrame and re-rendered React every frame.
+ */
+
 .agent-decoration-wrapper {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  animation: floatMascot 8s ease-in-out infinite;
-  animation-delay: var(--float-delay);
-  z-index: 10;
-}
-
-@keyframes floatMascot {
-  0%, 100% {
-    transform: translateY(0) scale(var(--scale, 1));
-  }
-  50% {
-    transform: translateY(-20px) scale(var(--scale, 1));
-  }
-}
-
-.mascot-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mascot-shape {
-  width: 100px;
-  height: 100px;
-  position: relative;
+  width: 250px;
+  height: 180px;
   z-index: 2;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+  pointer-events: none;
+  --agent-mascot-fill: #d7d7dc;
+  animation: agentFloat 8s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
 }
 
-.mascot-shape svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+@keyframes agentFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
 }
 
-.mascot-eyes ellipse {
-  animation: blinkMascot 5s infinite;
+.agent-mascot-slot {
+  position: absolute;
+  left: 90px;
+  top: 54px;
+}
+
+.agent-mascot { display: block; }
+
+.agent-eye {
   transform-origin: center;
+  transform-box: fill-box;
+  animation: agentBlink 5.2s infinite;
+  animation-delay: var(--float-delay, 0s);
 }
 
-@keyframes blinkMascot {
-  0%, 45%, 55%, 100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(0.1);
-  }
+@keyframes agentBlink {
+  0%, 46%, 54%, 100% { transform: scaleY(1); }
+  50%                { transform: scaleY(0.1); }
 }
 
-/* Orbiting Badges */
-.badges-orbit-ring {
+.agent-chip {
   position: absolute;
-  width: 280px;
-  height: 280px;
-  top: 50%;
-  left: 50%;
-  margin-top: -140px;
-  margin-left: -140px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  z-index: 1;
+  background: #ffffff;
+  border: 1px solid #ececef;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.09);
 }
 
-.orbiting-badge {
+.agent-chip.is-ambient { opacity: 0.85; }
+
+.agent-cursor {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -24px;
-  margin-left: -24px;
-  width: 48px;
-  height: 48px;
-}
-
-.badge-inner {
-  width: 100%;
-  height: 100%;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
-  border: 1px solid var(--color-border);
-}
-
-/* Cursors */
-.cursor-wrapper {
-  position: absolute;
+  left: 30px;
+  top: 96px;
+  z-index: 4;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  z-index: 20;
-  animation: wobbleCursor 6s ease-in-out infinite;
-  animation-delay: var(--cursor-delay);
-  pointer-events: none;
+  animation: agentCursorWobble 6.4s ease-in-out infinite;
+  animation-delay: var(--cursor-delay, 0s);
 }
 
-.cursor-1 {
-  top: 60%;
-  left: 70%;
+@keyframes agentCursorWobble {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(9px, -7px); }
+  50%      { transform: translate(-5px, 6px); }
+  75%      { transform: translate(7px, 3px); }
 }
 
-.cursor-2 {
-  top: 20%;
-  left: -20%;
-}
-
-.cursor-label {
-  color: white;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 12px;
-  border-top-left-radius: 2px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  margin-top: 20px;
+.agent-cursor-label {
+  margin-left: -3px;
+  margin-top: 9px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-@keyframes wobbleCursor {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(15px, -15px);
-  }
-  50% {
-    transform: translate(-5px, 10px);
-  }
-  75% {
-    transform: translate(-15px, -5px);
+/*
+ * The old component animated `transform` in the float keyframe while also
+ * setting `transform: scale()` inline, so the scale prop never took effect.
+ * There is no scale prop now, and this block honours the OS preference the
+ * previous version ignored entirely.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .agent-decoration-wrapper,
+  .agent-eye,
+  .agent-cursor {
+    animation: none;
   }
 }

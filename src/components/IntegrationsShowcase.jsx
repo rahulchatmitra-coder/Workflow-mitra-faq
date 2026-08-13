@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './IntegrationsShowcase.css'
 
-import { getBrandIcon } from '../utils/brandIcons'
+import { getIntegrationBrandIcon } from '../utils/integrationBrandIcons'
 
 const apps = [
   { name: 'DeepSeek AI', icon: null, color: '#4d6bfe', key: 'deepseek' },
@@ -32,7 +32,7 @@ function IntegrationsShowcase() {
         
         <div className="n8n-header">
           <h2 className="n8n-title">
-            Plug AI into your own data &<br/>over 500 integrations
+            Plug AI into your own data &<br/>connect your favourite apps
           </h2>
           <p className="n8n-subtitle">
             Use pre-built nodes for common apps. Custom API connections for everything else.
@@ -45,11 +45,11 @@ function IntegrationsShowcase() {
           <div className="n8n-carousel-track n8n-move-left">
             {row1Apps.map((app, idx) => (
               <div key={`r1-${idx}`} className="n8n-app-card">
-                <div className="n8n-app-icon" style={{ color: app.color }}>
+                <div className="n8n-app-icon" style={{ color: app.color }} aria-hidden="true">
                   {app.icon ? (
                     <span style={{ fontSize: '32px' }}>{app.icon}</span>
                   ) : (
-                    getBrandIcon(app.name, { size: 32 })?.component
+                    getIntegrationBrandIcon(app.name, { size: 32 })?.component
                   )}
                 </div>
               </div>
@@ -60,11 +60,11 @@ function IntegrationsShowcase() {
           <div className="n8n-carousel-track n8n-move-right">
             {row2Apps.map((app, idx) => (
               <div key={`r2-${idx}`} className="n8n-app-card">
-                <div className="n8n-app-icon" style={{ color: app.color }}>
+                <div className="n8n-app-icon" style={{ color: app.color }} aria-hidden="true">
                   {app.icon ? (
                     <span style={{ fontSize: '32px' }}>{app.icon}</span>
                   ) : (
-                    getBrandIcon(app.name, { size: 32 })?.component
+                    getIntegrationBrandIcon(app.name, { size: 32 })?.component
                   )}
                 </div>
               </div>
@@ -77,7 +77,7 @@ function IntegrationsShowcase() {
         </div>
 
         <div className="n8n-cta-container">
-          <Link to="/apps" className="n8n-btn">
+          <Link to="/integrations" className="n8n-btn">
             Browse all integrations
           </Link>
         </div>
@@ -88,4 +88,3 @@ function IntegrationsShowcase() {
 }
 
 export default IntegrationsShowcase
-

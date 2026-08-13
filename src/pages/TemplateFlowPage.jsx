@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { templateFlows } from '../data/TemplateFlowData';
 import FlowPreview from '../components/FlowPreview';
+import PageSeo from '../components/PageSeo';
 import './TemplateFlowPage.css';
 
 // Inline template meta — mirrors Templates.jsx data
@@ -42,6 +43,11 @@ export default function TemplateFlowPage() {
 
   return (
     <div className="tfp-page">
+      <PageSeo
+        title={`${template.title} — Workflow Template | WorkflowMitra`}
+        description={template.description}
+        path={`/template/${id}`}
+      />
       {/* SVG sprite sheet so FlowPreview icons work */}
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
         <defs>

@@ -1,39 +1,38 @@
+/* ============================================
+   AI Agents Feature Section – Bento Grid
+   ============================================ */
+
 .ai-agents-section {
-  --bg: #ffffff;
-  --ink: #14161f;
-  --ink-soft: #3b3e48;
-  --muted: #93969f;
-  --muted-light: #c7c9d1;
-  --line: #eceef1;
-  --card-white: #fdfdfc;
-  --accent: #ff5a34;
-  --grad-a: #fbe7e0;
-  --grad-b: #e7e1f6;
-  --grad-c: #dbebf8;
-  --grad-d: #fdeee6;
-  --shadow: 0 1px 2px rgba(20,22,31,.04), 0 12px 24px -12px rgba(20,22,31,.08);
-  
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
 }
 
-.ai-agents-section .wrap { 
-  max-width: 1120px; 
-  margin: 0 auto; 
-  padding: 100px 24px 130px; 
+.ai-agents-section .wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 100px 24px 130px;
 }
 
 .ai-agents-section h1.title {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(30px, 4.6vw, 50px);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-align: center;
   line-height: 1.15;
-  margin: 0 0 56px;
-  color: var(--ink);
+  margin: 0 0 14px;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.ai-agents-section .section-sub {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 52px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-wrap: balance;
 }
 
 .ai-agents-section .grid {
@@ -44,318 +43,444 @@
 
 .ai-agents-section .card {
   position: relative;
-  border-radius: 26px;
-  border: 1px solid var(--line);
-  background: var(--card-white);
-  padding: 40px 34px 34px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 38px 34px 32px;
   min-height: 392px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: box-shadow .35s ease, transform .35s ease;
+  transition: box-shadow var(--transition-slow) ease, transform var(--transition-slow) ease;
 }
 
-.ai-agents-section .card:hover { 
-  box-shadow: var(--shadow); 
-  transform: translateY(-2px); 
+.ai-agents-section .card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
 }
 
 .ai-agents-section .card.gradient {
   border: none;
-  background: linear-gradient(150deg, var(--grad-a) 0%, var(--grad-b) 38%, var(--grad-c) 68%, var(--grad-d) 100%);
+  background: linear-gradient(150deg, #fbe7e0 0%, #e7e1f6 38%, #dbebf8 68%, #fdeee6 100%);
 }
 .ai-agents-section .card.gradient::after {
   content: "";
-  position: absolute; 
+  position: absolute;
   inset: 0;
   background: radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%);
   pointer-events: none;
 }
 
 .ai-agents-section .card h2 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 21px;
   line-height: 1.35;
   text-align: center;
-  letter-spacing: -0.005em;
-  max-width: 320px;
-  margin: 0 auto 30px;
-  color: var(--ink);
+  letter-spacing: -0.01em;
+  max-width: 330px;
+  margin: 0 auto 6px;
+  color: var(--color-text-primary);
   position: relative;
   z-index: 2;
 }
 
-/* ---------- CARD 1 : model logos ---------- */
-.ai-agents-section .logo-row {
-  position: relative; 
+.ai-agents-section .h2sub {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto 24px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- CARD 1 : model arc ---------- */
+.ai-agents-section .logo-arc {
+  --tok: clamp(52px, 6.8vw, 80px);
+  position: relative;
   z-index: 2;
   margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding: 0 6px 18px;
-}
-.ai-agents-section .logo-token {
-  width: 58px; 
-  height: 58px;
-  border-radius: 50%;
-  background: #fff;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(20,20,30,.06), 0 8px 18px -8px rgba(20,20,30,.14);
-  flex: 0 0 auto;
-}
-.ai-agents-section .logo-token svg { 
-  display: block; 
+  padding: 0 6px 22px;
 }
 
-/* ---------- CARD 2 : integrations grid ---------- */
-.ai-agents-section .icon-field {
-  position: relative; 
+.ai-agents-section .logo-token {
+  border-radius: 50%;
+  background: #fff;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  margin-left: calc(var(--tok) * -0.19);
+}
+.ai-agents-section .logo-token:first-child { margin-left: 0; }
+
+.ai-agents-section .logo-glyph { display: grid; place-items: center; }
+.ai-agents-section .logo-glyph svg { display: block; }
+
+.ai-agents-section .model-caption {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--color-text-secondary);
+}
+.ai-agents-section .model-caption b { font-weight: 650; }
+
+/* ---------- CARD 2 : integration field ---------- */
+.ai-agents-section .field-mask {
+  position: relative;
   z-index: 2;
   flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 0 -34px;
+  padding-bottom: 14px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 11%, #000 82%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 11%, #000 82%, transparent);
+}
+
+.ai-agents-section .icon-field {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 14px;
-  align-content: center;
+  grid-template-columns: repeat(8, 62px);
+  gap: 12px;
+  transform: translateX(-26px);
 }
-.ai-agents-section .cell { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
+
 .ai-agents-section .tile {
-  width: 44px; 
-  height: 44px;
-  border-radius: 13px;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  box-shadow: 0 6px 14px -8px rgba(20,20,30,.25);
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 2px rgba(20,22,31,.05), 0 8px 16px -10px rgba(20,22,31,.18);
 }
+.ai-agents-section .tile svg { display: block; }
+
 .ai-agents-section .tile.ghost {
-  width: 44px; 
-  height: 44px;
-  border-radius: 13px;
-  background: #f3f4f6;
+  background: transparent;
   box-shadow: none;
+  border: 1.5px dashed var(--color-border);
 }
+
+.ai-agents-section .field-foot {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+.ai-agents-section .field-foot b { color: var(--color-text-primary); font-weight: 650; }
 
 /* ---------- CARD 3 : recurring tasks ---------- */
 .ai-agents-section .tasks {
-  position: relative; 
+  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  margin-top: 6px;
+  gap: 24px;
+  margin-top: 4px;
   flex: 1;
 }
+
 .ai-agents-section .task-row {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 176px 1fr 74px;
   align-items: center;
-  gap: 18px;
-}
-.ai-agents-section .task-id { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
-}
-.ai-agents-section .task-icon {
-  width: 22px; 
-  height: 22px;
-  border-radius: 6px;
-  background: var(--ink);
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  flex: 0 0 auto;
-}
-.ai-agents-section .task-icon svg { 
-  width: 12px; 
-  height: 12px; 
-}
-.ai-agents-section .task-text { 
-  line-height: 1.3; 
-}
-.ai-agents-section .task-text .name { 
-  font-size: 13.5px; 
-  font-weight: 600; 
-  color: var(--ink); 
-}
-.ai-agents-section .task-text .schedule { 
-  font-size: 12px; 
-  color: var(--muted); 
-  margin-top: 1px; 
+  gap: 16px;
 }
 
-.ai-agents-section .timeline { 
-  position: relative; 
-  height: 22px; 
+.ai-agents-section .task-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-agents-section .task-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.ai-agents-section .task-icon svg { display: block; }
+
+.ai-agents-section .task-text { display: block; line-height: 1.3; }
+.ai-agents-section .task-text .name {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--color-text-primary);
+}
+.ai-agents-section .task-text .schedule {
+  display: block;
+  font-size: 11.5px;
+  color: var(--color-text-tertiary);
+  margin-top: 1px;
+}
+
+.ai-agents-section .timeline {
+  position: relative;
+  height: 22px;
 }
 .ai-agents-section .timeline .track {
-  position: absolute; 
-  left: 0; 
-  right: 0; 
+  position: absolute;
+  left: 0;
+  right: 0;
   top: 50%;
-  height: 1px; 
-  background: var(--line);
+  height: 1px;
+  background: var(--color-border);
   transform: translateY(-50%);
 }
-.ai-agents-section .timeline .dot {
-  position: absolute; 
-  top: 50%; 
-  width: 7px; 
-  height: 7px; 
+.ai-agents-section .timeline .fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  transition: width .5s ease;
+}
+
+.ai-agents-section .dot {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--muted-light);
-  transform: translate(-50%,-50%);
+  background: #fff;
+  border: 1.5px solid var(--color-border-strong);
+  transform: translate(-50%, -50%);
+  transition: background var(--transition-slow) ease, border-color var(--transition-slow) ease, width var(--transition-slow) ease, height var(--transition-slow) ease;
 }
-.ai-agents-section .timeline .dot.on { 
-  background: var(--ink); 
-  width: 8px; 
-  height: 8px; 
+.ai-agents-section .dot.done {
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
 }
-.ai-agents-section .timeline .tag {
-  position: absolute; 
-  top: -26px; 
-  font-size: 10.5px; 
-  font-weight: 500; 
-  padding: 3px 8px; 
-  border-radius: 7px;
+.ai-agents-section .dot.now {
+  width: 11px;
+  height: 11px;
+  border-color: transparent;
+}
+
+.ai-agents-section .tag {
+  position: absolute;
+  top: -25px;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
-  box-shadow: 0 4px 10px -6px rgba(20,20,30,.25);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-tertiary);
+  transform: translateX(-50%);
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.15);
+  transition: left .5s ease, opacity var(--transition-slow) ease, color var(--transition-slow) ease, border-color var(--transition-slow) ease, background var(--transition-slow) ease;
 }
+
+.ai-agents-section .runs { text-align: right; line-height: 1.2; }
+.ai-agents-section .runs b {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+.ai-agents-section .runs span { font-size: 10.5px; color: var(--color-text-tertiary); }
 
 .ai-agents-section .axis {
   display: grid;
-  grid-template-columns: 170px 1fr;
-  margin-top: 2px;
+  grid-template-columns: 176px 1fr 74px;
+  margin-top: 6px;
 }
 .ai-agents-section .axis .labels {
-  display: flex; 
-  justify-content: space-between;
-  font-size: 10.5px; 
-  color: var(--muted-light);
   grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--color-border-strong);
 }
 
 /* ---------- CARD 4 : canvas ---------- */
 .ai-agents-section .canvas {
-  position: relative; 
+  position: relative;
   z-index: 2;
   flex: 1;
-  min-height: 250px;
-  margin-top: 8px;
-}
-.ai-agents-section .node {
-  position: absolute;
-  display: inline-flex; 
-  align-items: center; 
-  gap: 8px;
-  background: #fff;
-  padding: 8px 12px 8px 8px;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px -8px rgba(20,20,30,.28);
-  font-size: 12.5px; 
-  font-weight: 600; 
-  color: var(--ink);
-  white-space: nowrap;
-}
-.ai-agents-section .node .avatar {
-  width: 22px; 
-  height: 22px; 
-  border-radius: 50%;
-  background: var(--ink);
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  flex: 0 0 auto;
-}
-.ai-agents-section .node .avatar svg { 
-  width: 12px; 
-  height: 12px; 
-}
-.ai-agents-section .node .mini {
-  display: flex; 
-  gap: 3px; 
-  margin-left: 2px;
-}
-.ai-agents-section .node .mini span {
-  width: 15px; 
-  height: 15px; 
-  border-radius: 5px;
-  display: inline-block;
-}
-.ai-agents-section .n1 { top: 2%; left: 50%; transform: translateX(-50%); }
-.ai-agents-section .n2 { bottom: 12%; left: 0%; }
-.ai-agents-section .n3 { bottom: 0%; right: 2%; }
-
-.ai-agents-section .tag-float {
-  position: absolute;
-  background: #fff; 
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  font-size: 10.5px; 
-  font-weight: 500;
-  padding: 3px 9px; 
-  border-radius: 7px;
-  box-shadow: 0 4px 10px -6px rgba(20,20,30,.25);
-  white-space: nowrap;
-}
-.ai-agents-section .t1 { top: 30%; left: 26%; }
-.ai-agents-section .t2 { top: 48%; right: 14%; }
-
-.ai-agents-section .cursor {
-  position: absolute;
-  width: 20px; 
-  height: 20px;
-  left: 38%; 
-  top: 63%;
-  filter: drop-shadow(0 4px 6px rgba(255,90,52,.35));
-  animation: drift 3.6s ease-in-out infinite;
-}
-@keyframes drift {
-  0%, 100% { transform: translate(0,0); }
-  50% { transform: translate(6px,-6px); }
+  min-height: 258px;
+  margin-top: 4px;
 }
 
-.ai-agents-section svg.paths { 
-  position: absolute; 
-  inset: 0; 
-  width: 100%; 
-  height: 100%; 
-  overflow: visible; 
+.ai-agents-section svg.paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 .ai-agents-section .flow {
-  fill: none; 
-  stroke: #c9cbd3; 
+  fill: none;
+  stroke: var(--color-border-strong);
   stroke-width: 1.6;
-  stroke-dasharray: 1 7; 
+  stroke-dasharray: 1 7;
   stroke-linecap: round;
   animation: march 1.4s linear infinite;
 }
-@keyframes march { 
-  to { stroke-dashoffset: -16; } 
+@keyframes march { to { stroke-dashoffset: -16; } }
+
+.ai-agents-section .packet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--color-brand-teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, .16);
+  opacity: 0;
+  z-index: 4;
+  animation: packetRun 7s ease-in-out infinite;
+}
+.ai-agents-section .packet.a {
+  offset-path: path("M230 34 L230 96 Q230 104 222 104 L96 104 Q88 104 88 112 L88 176");
+}
+.ai-agents-section .packet.b {
+  offset-path: path("M230 34 L230 128 Q230 136 238 136 L364 136 Q372 136 372 144 L372 226");
+  animation-delay: 3.5s;
+}
+@keyframes packetRun {
+  0%  { offset-distance: 0%;   opacity: 0; }
+  4%  { opacity: 1; }
+  44% { offset-distance: 100%; opacity: 1; }
+  50% { offset-distance: 100%; opacity: 0; }
+  100% { offset-distance: 100%; opacity: 0; }
 }
 
-@media (max-width: 860px) {
+.ai-agents-section .node {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 7px 12px 7px 7px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  animation: nodeLive 7s ease-in-out infinite;
+}
+.ai-agents-section .n1 { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+.ai-agents-section .n2 { bottom: 14%; left: 0; animation-delay: 2.333s; }
+.ai-agents-section .n3 { bottom: 0; right: 0; animation-delay: 4.666s; }
+
+@keyframes nodeLive {
+  0%, 26%, 100% { box-shadow: var(--shadow-md); }
+  8%, 20% { box-shadow: 0 0 0 4px rgba(15, 118, 110, .14), 0 8px 20px -8px rgba(20,20,30,.2); }
+}
+
+.ai-agents-section .node .avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.ai-agents-section .node .avatar svg { display: block; }
+
+.ai-agents-section .node .mini {
+  display: flex;
+  gap: 4px;
+  margin-left: 3px;
+}
+.ai-agents-section .node .mini i {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: var(--color-surface-muted);
+  display: grid;
+  place-items: center;
+}
+.ai-agents-section .node .mini i svg { display: block; }
+
+.ai-agents-section .tag-float {
+  position: absolute;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 10px -6px rgba(20,20,30,.12);
+  white-space: nowrap;
+}
+.ai-agents-section .t1 { top: 29%; left: 22%; }
+.ai-agents-section .t2 { top: 45%; right: 12%; }
+
+.ai-agents-section .canvas-foot {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+.ai-agents-section .canvas-foot .pulse { grid-area: 1 / 1; }
+.ai-agents-section .canvas-foot .cap {
+  grid-area: 1 / 2;
+  opacity: 0;
+  white-space: nowrap;
+  animation: capFade 7s linear infinite;
+}
+
+@keyframes capFade {
+  0%, 2% { opacity: 0; }
+  6%, 28% { opacity: 1; }
+  33%, 100% { opacity: 0; }
+}
+
+.ai-agents-section .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-green);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .35; transform: scale(.8); }
+}
+
+@media (max-width: 900px) {
   .ai-agents-section .grid { grid-template-columns: 1fr; }
   .ai-agents-section .card { min-height: auto; padding: 32px 24px 30px; }
-  .ai-agents-section .task-row { grid-template-columns: 130px 1fr; }
-  .ai-agents-section .axis { grid-template-columns: 130px 1fr; }
-  .ai-agents-section .canvas { min-height: 230px; }
+  .ai-agents-section .task-row,
+  .ai-agents-section .axis { grid-template-columns: 132px 1fr 66px; }
+  .ai-agents-section .field-mask { margin: 0 -24px; }
+  .ai-agents-section .canvas { min-height: 240px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ai-agents-section .cursor, 
-  .ai-agents-section .flow { 
-    animation: none; 
-  }
+  .ai-agents-section .flow,
+  .ai-agents-section .packet,
+  .ai-agents-section .node,
+  .ai-agents-section .pulse { animation: none; }
+  .ai-agents-section .canvas-foot .cap { animation: none; opacity: 0; }
+  .ai-agents-section .canvas-foot .cap:first-of-type { opacity: 1; }
+  .ai-agents-section .dot,
+  .ai-agents-section .tag,
+  .ai-agents-section .timeline .fill,
+  .ai-agents-section .card { transition: none; }
 }
