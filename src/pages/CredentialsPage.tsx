@@ -5,13 +5,16 @@ export default function CredentialsPage() {
   return (
     <>
       <Helmet>
-        <title>Credentials Vault | Workflow Mitra Help Center</title>
+        <html lang="en" />
+        <title>Credential Configuration Guides | Workflow Mitra Documentation</title>
         <meta
           name="description"
-          content="Step-by-step guides to set up and connect credentials in Workflow Mitra. Connect HubSpot, OpenAI, Slack, and 10+ integrations securely."
+          content="Step-by-step guides for configuring API credentials for HubSpot, OpenAI, Slack, WhatsApp, and 30+ integrations in Workflow Mitra."
         />
+        <link rel="canonical" href="https://workflowmitra-docs.vercel.app/credentials" />
         <meta property="og:url" content="https://workflowmitra-docs.vercel.app/credentials" />
-        <meta property="og:title" content="Credentials Vault | Workflow Mitra Help Center" />
+        <meta property="og:title" content="Credential Configuration Guides | Workflow Mitra" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <CredentialsOverviewClient />
     </>

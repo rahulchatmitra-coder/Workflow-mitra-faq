@@ -14,10 +14,6 @@ import {
   Calendar,
   CreditCard,
   Package,
-  Mail,
-  Zap,
-  Sparkles,
-  Cpu,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -34,6 +30,12 @@ import {
   Supabase,
   VercelDark,
   SanityDark,
+  Postgresql,
+  Mysql,
+  Mongodb,
+  Redis,
+  Claude,
+  Linkedin,
   HubSpotLogo,
   ZohoLogo,
   PipedriveLogo,
@@ -43,7 +45,25 @@ import {
   ZoomLogo,
   CalComLogo,
   WherebyLogo,
+  CalendlyLogo,
+  MSTeamsLogo,
+  ZohoBookingsLogo,
+  JitsiMeetLogo,
+  CiscoWebexLogo,
+  ZendeskLogo,
+  FreshdeskLogo,
+  FacebookLogo,
+  SmtpLogo,
+  GroqLogo,
+  GeminiLogo,
+  OllamaLogo,
+  IntercomLogo,
+  ZohoDeskLogo,
+  GoogleSheetsLogo,
+  GmailLogo,
+  MySqlLogo,
 } from "@/components/ui/svgs";
+import { DIRECT_SVG_MAP } from "@/components/ui/svgs/DirectSvgIcon";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -55,13 +75,26 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Calendar,
   CreditCard,
   Package,
-  Mail,
-  Zap,
-  Sparkles,
-  Cpu,
 };
 
 const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  whatsapp: WhatsappIcon,
+  whatsappmeta: WhatsappIcon,
+  whatsappchatmitra: WhatsappIcon,
+  whatsappaisensy: WhatsappIcon,
+  whatsappwati: WhatsappIcon,
+  whatsappinterakt: WhatsappIcon,
+  whatsappgallabox: WhatsappIcon,
+  smtp: SmtpLogo,
+  groq: GroqLogo,
+  gemini: GeminiLogo,
+  claude: Claude,
+  openai: Openai,
+  ollama: OllamaLogo,
+  slack: Slack,
+  discord: Discord,
+  telegram: Telegram,
+  email: SmtpLogo,
   hubspot: HubSpotLogo,
   zohocrm: ZohoLogo,
   pipedrive: PipedriveLogo,
@@ -72,11 +105,31 @@ const BRAND_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>
   zoom: ZoomLogo,
   calcom: CalComLogo,
   whereby: WherebyLogo,
-  openai: Openai,
-  slack: Slack,
-  whatsapp: WhatsappIcon,
-  telegram: Telegram,
-  discord: Discord,
+  calendly: CalendlyLogo,
+  msteams: MSTeamsLogo,
+  teams: MSTeamsLogo,
+  zohobookings: ZohoBookingsLogo,
+  jitsimeet: JitsiMeetLogo,
+  webex: CiscoWebexLogo,
+  ciscowebex: CiscoWebexLogo,
+  zendesk: ZendeskLogo,
+  freshdesk: FreshdeskLogo,
+  intercom: IntercomLogo,
+  zohodesk: ZohoDeskLogo,
+  linkedin: Linkedin,
+  facebookpage: FacebookLogo,
+  facebook: FacebookLogo,
+  anthropic: Claude,
+  postgresql: Postgresql,
+  postgres: Postgresql,
+  mysql: MySqlLogo,
+  mongodb: Mongodb,
+  mongo: Mongodb,
+  redis: Redis,
+  gmail: GmailLogo,
+  googleoauth: Google,
+  googleserviceaccount: GoogleSheetsLogo,
+  googlesheets: GoogleSheetsLogo,
   google: Google,
   github: GithubDark,
   supabase: Supabase,
@@ -92,40 +145,19 @@ interface ProviderCardGridProps {
 
 export default function ProviderCardGrid({
   providers = PROVIDER_LIST,
-  title = "Supported Credentials & Service Providers (35+)",
+  title,
   subtitle = "Click any provider below to open its dedicated step-by-step interactive onboarding guide.",
 }: ProviderCardGridProps) {
   const { currentColor } = useTextColor();
   const navigate = useNavigate();
 
+  const displayTitle = title || `Supported Credentials & Service Providers (${providers.length}+)`;
+
   const [searchFilter, setSearchFilter] = React.useState<string>("");
   const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
-
-  const categories = [
-    "All",
-    "CRM & Sales",
-    "AI Models",
-    "Communication",
-    "E-Commerce",
-    "Meetings",
-    "Databases",
-    "Customer Support",
-    "Social Media",
-  ];
-
   const tabsRef = React.useRef<HTMLDivElement>(null);
 
-  const scrollTabs = (direction: "left" | "right") => {
-    if (tabsRef.current) {
-      const scrollAmount = direction === "left" ? -220 : 220;
-      tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  const getCategoryCount = (cat: string) => {
-    if (cat === "All") return providers.length;
-    return providers.filter((p) => p.category === cat).length;
-  };
+  const categories = ["All", "CRM & Sales", "AI Models", "Communication", "E-Commerce"];
 
   const filteredProviders = providers.filter((p) => {
     const matchesSearch =
@@ -136,6 +168,18 @@ export default function ProviderCardGrid({
     return matchesSearch && matchesCat;
   });
 
+  const getCategoryCount = (cat: string) => {
+    if (cat === "All") return providers.length;
+    return providers.filter((p) => p.category === cat).length;
+  };
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (tabsRef.current) {
+      const scrollAmount = direction === "left" ? -200 : 200;
+      tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="providers-grid" className="space-y-6 pt-6 border-t border-zinc-200 dark:border-zinc-800 scroll-mt-20">
       {/* SECTION HEADER & SEARCH */}
@@ -144,7 +188,7 @@ export default function ProviderCardGrid({
           <div className="flex items-center gap-2">
             <KeyRound className={`h-5 w-5 ${currentColor.textClass}`} />
             <h2 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white">
-              {title}
+              {displayTitle}
             </h2>
           </div>
           <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 mt-1">
@@ -158,6 +202,7 @@ export default function ProviderCardGrid({
           <input
             type="text"
             placeholder="Search provider (e.g. HubSpot, OpenAI)..."
+            aria-label="Search integration provider"
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
             className="w-full rounded-2xl border border-zinc-300 bg-zinc-50 pl-9 pr-4 py-2 text-xs font-semibold text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-white transition-all shadow-inner"
@@ -169,6 +214,7 @@ export default function ProviderCardGrid({
       <div className="relative flex items-center group/scroll">
         <button
           onClick={() => scrollTabs("left")}
+          aria-label="Scroll category tabs left"
           className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 mr-2 z-10 transition-transform active:scale-95 cursor-pointer"
           title="Scroll Left"
         >
@@ -216,6 +262,7 @@ export default function ProviderCardGrid({
 
         <button
           onClick={() => scrollTabs("right")}
+          aria-label="Scroll category tabs right"
           className="hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white shadow-md backdrop-blur-md shrink-0 ml-2 z-10 transition-transform active:scale-95 cursor-pointer"
           title="Scroll Right"
         >
@@ -226,6 +273,7 @@ export default function ProviderCardGrid({
       {/* CARDS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredProviders.map((p) => {
+          const directSvg = DIRECT_SVG_MAP[p.id.toLowerCase()];
           const BrandIcon = BRAND_ICON_MAP[p.id.toLowerCase()];
           const LucideIconComp = ICON_MAP[p.iconName] || Building2;
           return (
@@ -239,13 +287,13 @@ export default function ProviderCardGrid({
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 group-hover:scale-105 transition-transform p-2.5">
-                    {BrandIcon ? (
+                    {directSvg ? (
+                      <img src={directSvg} alt={p.name} className="h-6 w-6 object-contain shrink-0" />
+                    ) : BrandIcon ? (
                       <BrandIcon className="h-6 w-6" />
                     ) : (
                       <LucideIconComp className={`h-6 w-6 ${currentColor.textClass}`} />
                     )}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700/80 transition-colors">
-                    <IconComponent className={`h-5 w-5 ${currentColor.textClass}`} />
                   </div>
 
                   <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200/80 dark:border-zinc-700/80">

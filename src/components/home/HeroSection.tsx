@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { HelpCircle, MessageCircleQuestion, Sparkles, Search, ClipboardList, Zap, Building2 } from "lucide-react";
+import { HelpCircle, MessageCircleQuestion, Sparkles, Search, Zap, Building2 } from "lucide-react";
 import { Openai, Slack, WhatsappIcon, Google } from "@/components/ui/svgs";
 
 interface HeroSectionProps {
@@ -113,13 +113,6 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
             ))}
           </div>
         </motion.div>
-
-        {/* Floating Clipboard Icon */}
-        <div className="mt-8 flex justify-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-zinc-900 shadow-md border border-zinc-200 dark:bg-zinc-900 dark:text-white dark:border-zinc-800">
-            <ClipboardList className="h-6 w-6" />
-          </div>
-        </div>
       </div>
     </motion.section>
   );

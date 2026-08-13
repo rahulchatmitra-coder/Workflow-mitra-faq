@@ -1,10 +1,15 @@
 "use client";
 
 import * as React from "react";
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { DriverTourButton } from "@/components/docs/DriverTourButton";
-import { WorkflowCanvas } from "@/components/docs/WorkflowCanvas";
+
+// Lazy load DriverTourButton - only loads when visible
+const DriverTourButton = lazy(() => import("@/components/docs/DriverTourButton").then(m => ({ default: m.DriverTourButton })));
+
+// Lazy load WorkflowCanvas - heavy component with animations
+const WorkflowCanvas = lazy(() => import("@/components/docs/WorkflowCanvas").then(m => ({ default: m.WorkflowCanvas })));
 
 export function WorkflowDemoSection() {
   return (
@@ -24,11 +29,15 @@ export function WorkflowDemoSection() {
             Workflow Automation Builder
           </h3>
         </div>
-        <DriverTourButton title="Interactive Workflow Demo" size="lg" className="shrink-0" />
+        <Suspense fallback={<div className="h-10 w-24 bg-zinc-100 dark:bg-zinc-900 rounded-xl animate-pulse" />}>
+          <DriverTourButton title="Interactive Workflow Demo" size="lg" className="shrink-0" />
+        </Suspense>
       </div>
 
-      {/* VISUAL WORKFLOW CANVAS COMPONENT */}
-      <WorkflowCanvas />
+      {/* VISUAL WORKFLOW CANVAS COMPONENT - LAZY LOADED */}
+      <Suspense fallback={<div className="w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-slate-50/70 dark:bg-[#07090E] h-[520px] animate-pulse" />}>
+        <WorkflowCanvas />
+      </Suspense>
     </motion.section>
   );
 }

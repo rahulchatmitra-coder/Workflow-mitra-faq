@@ -1,65 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { driver, Driver, DriveStep } from "driver.js";
-import "driver.js/dist/driver.css";
-import { DocStep } from "@/types/docs";
 
-export function useDriverTour(stepsData?: DocStep[], title?: string, onComplete?: () => void) {
-  const driverObjRef = React.useRef<Driver | null>(null);
+export function useDriverTour(stepsData?: any[], title?: string, onComplete?: () => void) {
+  const driverObjRef = React.useRef<any | null>(null);
 
-  // Drag functionality for Driver.js popover
-  React.useEffect(() => {
-    let isDragging = false;
-    let currentX = 0;
-    let currentY = 0;
-    let initialX = 0;
-    let initialY = 0;
-    let popoverElement: HTMLElement | null = null;
+  const startTour = React.useCallback(async () => {
+    // Lazy load driver.js only when tour starts
+    const { driver } = await import("driver.js");
+    await import("driver.js/dist/driver.css");
 
-    const handleMouseDown = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      popoverElement = target.closest('.driver-popover.workflow-mitra-popover') as HTMLElement;
-      
-      if (popoverElement) {
-        isDragging = true;
-        initialX = e.clientX - currentX;
-        initialY = e.clientY - currentY;
-        popoverElement.style.transition = 'none';
-      }
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isDragging && popoverElement) {
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-
-        popoverElement.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        popoverElement.style.position = 'fixed';
-      }
-    };
-
-    const handleMouseUp = () => {
-      if (isDragging && popoverElement) {
-        isDragging = false;
-        popoverElement.style.transition = '';
-      }
-    };
-
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, []);
-
-  const startTour = React.useCallback(() => {
-    const steps: DriveStep[] = [
+    const steps: any[] = [
       {
         element: "#tour-overview",
         popover: {

@@ -28,6 +28,7 @@ export function ImageViewer({ src, alt, caption, className, id }: ImageViewerPro
           <img
             src={src}
             alt={alt}
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
           <div className="absolute inset-0 bg-slate-900/10 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
@@ -72,7 +73,7 @@ export function ImageViewer({ src, alt, caption, className, id }: ImageViewerPro
               </button>
 
               <div className="relative aspect-video w-full min-w-[320px] sm:min-w-[600px] md:min-w-[800px] lg:min-w-[1000px]">
-                <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain" />
+                <img src={src} alt={alt} loading="eager" className="absolute inset-0 w-full h-full object-contain" />
               </div>
 
               {caption && (

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Sparkles,
   ExternalLink,
@@ -7,10 +8,14 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
-  Maximize2,
   Lock,
-  X,
   CheckCircle2,
+  Volume2,
+  VolumeX,
+  RotateCcw,
+  Rocket,
+  Eye,
+  KeyRound,
 } from "lucide-react";
 import { useTextColor } from "@/context/TextColorContext";
 import { OnboardingStep } from "@/data/credentials-data";
@@ -36,442 +41,536 @@ export default function InteractivePlayer({
   onPrev,
   defaultAddressUrl = "https://app.workflowmitra.com/credentials",
   externalAppUrl,
-  providerName,
+  providerName = "Integration",
   customButtonText,
   onCompleteAction,
 }: InteractivePlayerProps) {
   const { currentColor } = useTextColor();
+  const navigate = useNavigate();
   const [zoomLevel, setZoomLevel] = React.useState<number>(100);
-  const [isFullscreen, setIsFullscreen] = React.useState<boolean>(false);
-  const [isTourActive, setIsTourActive] = React.useState<boolean>(true);
+  const [showCompletionOverlay, setShowCompletionOverlay] = React.useState<boolean>(false);
 
   const currentStep = steps[currentStepIndex] || steps[0];
   const totalSteps = steps.length;
   const addressBarUrl = currentStep.addressUrl || defaultAddressUrl;
 
-  // Esc key listener to exit fullscreen
+  // Reset completion overlay when user changes steps manually
   React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isFullscreen) {
-        setIsFullscreen(false);
+    if (currentStepIndex !== totalSteps - 1) {
+      setShowCompletionOverlay(false);
+    }
+  }, [currentStepIndex, totalSteps]);
+
+  const handleNextOrFinish = () => {
+    if (currentStepIndex < totalSteps - 1) {
+      onNext();
+    } else {
+      setShowCompletionOverlay(true);
+      if (onCompleteAction) {
+        onCompleteAction();
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isFullscreen]);
-
-  const handleZoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 25, 200));
+    }
   };
 
-  const handleZoomOut = () => {
-    setZoomLevel((prev) => Math.max(prev - 25, 80));
+  const handleRestartTour = () => {
+    setShowCompletionOverlay(false);
+    setZoomLevel(100);
+    onStepChange(0);
   };
 
-  // Compute safe popover position so it NEVER overflows off-screen on big monitors
-  const getSafePopoverPosition = () => {
-    const rawLeft = parseFloat(currentStep.hotspot.popoverLeft || currentStep.hotspot.left || "50%");
-    const rawTop = parseFloat(currentStep.hotspot.popoverTop || currentStep.hotspot.top || "50%");
-
-    // Clamp left position between 24% and 76% to prevent horizontal clipping
-    const safeLeft = Math.max(24, Math.min(76, rawLeft));
-    // Clamp top position between 25% and 75%
-    const safeTop = Math.max(25, Math.min(75, rawTop));
-
-    return {
-      top: `${safeTop}%`,
-      left: `${safeLeft}%`,
-    };
+  const handleExploreCredentials = () => {
+    setShowCompletionOverlay(false);
+    const el = document.getElementById("providers-grid");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/credentials#providers-grid");
+      setTimeout(() => {
+        const targetEl = document.getElementById("providers-grid");
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 800, behavior: "smooth" });
+        }
+      }, 150);
+    }
   };
 
-  const safePopoverStyle = getSafePopoverPosition();
+  const [isSpeaking, setIsSpeaking] = React.useState<boolean>(false);
+
+  // Stop speech synthesis on step change or unmount
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+  }, [currentStepIndex]);
+
+  const getBestVoice = (): SpeechSynthesisVoice | null => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices || voices.length === 0) return null;
+
+    const englishVoices = voices.filter((v) => v.lang.startsWith("en"));
+    if (englishVoices.length === 0) return voices[0];
+
+    const maleKeywords = [
+      "Guy",
+      "Daniel",
+      "George",
+      "Ryan",
+      "Christopher",
+      "James",
+      "David",
+      "Mark",
+      "Oliver",
+      "Arthur",
+      "Brian",
+      "Steffan",
+      "Male",
+      "Microsoft Guy",
+      "Google US English",
+    ];
+
+    const preferredMaleVoice = englishVoices.find((v) =>
+      maleKeywords.some((keyword) => v.name.toLowerCase().includes(keyword.toLowerCase()))
+    );
+
+    if (preferredMaleVoice) return preferredMaleVoice;
+
+    const naturalVoice = englishVoices.find(
+      (v) => v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Online")
+    );
+    if (naturalVoice) return naturalVoice;
+
+    return (
+      englishVoices.find((v) => v.lang === "en-US" || v.lang === "en-GB") ||
+      englishVoices[0]
+    );
+  };
+
+  const formatTextForSpeech = (text: string): string => {
+    if (!text) return "";
+    return text
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/https?:\/\/(www\.)?/gi, "")
+      .replace(/\.com/gi, " dot com")
+      .replace(/\.org/gi, " dot org")
+      .replace(/api/gi, "A P I")
+      .replace(/crm/gi, "C R M")
+      .replace(/oauth/gi, "O Auth")
+      .replace(/aes-256/gi, "A E S 256")
+      .replace(/•/g, ". ")
+      .replace(/[\n\r]+/g, ". ")
+      .replace(/[^\w\s.,'-]/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const renderFormattedDescription = (text: string) => {
+    if (!text) return null;
+    const parts: React.ReactNode[] = [];
+    const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s,\)]+)/g;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = linkRegex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+      if (match[1] && match[2]) {
+        parts.push(
+          <a
+            key={`md-link-${match.index}`}
+            href={match[2]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer bg-indigo-50 dark:bg-indigo-950/70 px-2.5 py-1 rounded-lg border border-indigo-200 dark:border-indigo-800 shadow-2xs mx-1 transition-all my-1 hover:scale-[1.02] align-baseline break-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span>{match[1]}</span>
+            <ExternalLink className="h-3.5 w-3.5 inline text-indigo-500 shrink-0" />
+          </a>
+        );
+      } else if (match[3]) {
+        const url = match[3];
+        parts.push(
+          <a
+            key={`raw-link-${match.index}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer break-all align-baseline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {url}
+          </a>
+        );
+      }
+      lastIndex = linkRegex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts;
+  };
+
+  const handleSpeakStep = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const rawTitle = (currentStep.hotspot.title || currentStep.title || "").replace(/Step \d+:/i, "");
+    const rawDesc = currentStep.description || "";
+    const rawDetail = currentStep.hotspot.detail || "";
+
+    const textToRead = formatTextForSpeech(`Step ${currentStepIndex + 1}. ${rawTitle}. ${rawDesc}. ${rawDetail}`);
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.rate = 0.96;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    const selectedVoice = getBestVoice();
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    setIsSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 20, 200));
+  const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 20, 80));
+
+  const progressPercentage = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-3.5 sm:p-5 shadow-lg dark:border-zinc-800 dark:bg-zinc-950 transition-all">
-      {/* HEADER BAR: PREV/NEXT NAVIGATOR & ANIMATED PROGRESS BAR */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-3 border-b border-zinc-100 dark:border-zinc-800/80">
-        {/* STEP COUNTER & PROGRESS BAR */}
-        <div className="flex items-center gap-3 flex-1 min-w-[200px]">
-          <div className="flex items-center gap-1.5 shrink-0">
-            <span className={`text-xs font-mono font-black ${currentColor.textClass}`}>
-              Step {currentStepIndex + 1} of {totalSteps}
-            </span>
-            <span className="text-[11px] font-bold text-zinc-400">
-              ({Math.round(((currentStepIndex + 1) / totalSteps) * 100)}%)
-            </span>
-          </div>
-
-          <div className="relative h-2.5 flex-1 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200 dark:border-zinc-700/60">
-            <motion.div
-              className={`h-full rounded-full shadow-md ${currentColor.bgClass}`}
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentStepIndex + 1) / totalSteps) * 100}%` }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-            />
-          </div>
-        </div>
-
-        {/* STEP NAVIGATOR */}
-        <div className="flex items-center gap-2 shrink-0 justify-end">
-          <div className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-800 dark:bg-zinc-900 shrink-0">
-            <button
-              onClick={onPrev}
-              disabled={currentStepIndex === 0}
-              className="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold text-zinc-700 hover:bg-white hover:shadow-xs disabled:opacity-30 disabled:cursor-not-allowed dark:text-zinc-300 dark:hover:bg-zinc-800 transition-all cursor-pointer"
-            >
-              <ChevronLeft className="h-3.5 w-3.5" />
-              <span>Prev</span>
-            </button>
-
-            {/* STEP PILLS */}
-            <div className="flex items-center gap-1 px-1">
-              {steps.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => onStepChange(idx)}
-                  className={`h-2 rounded-full transition-all cursor-pointer ${
-                    idx === currentStepIndex
-                      ? `w-5 shadow-sm ${currentColor.bgClass}`
-                      : idx < currentStepIndex
-                      ? `w-2 opacity-60 ${currentColor.bgClass}`
-                      : "w-2 bg-zinc-300 dark:bg-zinc-700"
-                  }`}
-                  title={`Go to Step ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={onNext}
-              disabled={currentStepIndex === totalSteps - 1}
-              className="flex items-center gap-1 rounded-full bg-zinc-900 text-white px-3 py-1 text-xs font-bold hover:bg-black disabled:opacity-30 disabled:cursor-not-allowed dark:bg-white dark:text-zinc-900 transition-all cursor-pointer shadow-xs"
-            >
-              <span>Next</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* BROWSER FRAME & SCREENSHOT */}
-      <div id="onboarding-browser-frame" className="mt-3">
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-900 shadow-md dark:border-zinc-800">
-
-          {/* BROWSER TOP ADDRESS BAR */}
-          <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900 px-3.5 py-2">
-            <div className="flex items-center gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-rose-500 inline-block" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-500 inline-block" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 inline-block" />
-            </div>
-
-            <div
-              id="url-address-bar"
-              onClick={() => setIsTourActive(true)}
-              className={`relative flex items-center justify-center rounded-full bg-zinc-950 px-4 py-1.5 text-xs font-mono text-zinc-200 min-w-[260px] sm:min-w-[360px] max-w-full border transition-all duration-300 cursor-pointer ${
-                (currentStep.hotspot.target as string) === "url-bar"
-                  ? `${currentColor.borderClass} ring-2 ring-zinc-500/40 shadow-md`
-                  : "border-zinc-800 hover:border-zinc-700"
-              }`}
-            >
-              <Lock className="h-3 w-3 mr-1.5 text-zinc-400 shrink-0" />
-              <span className="truncate font-semibold text-zinc-200 tracking-wide select-none">
-                {addressBarUrl}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              <div
-                className="flex items-center gap-0.5 rounded-lg border border-zinc-800 bg-zinc-950 p-0.5 text-xs text-zinc-300 shadow-inner"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={handleZoomOut}
-                  disabled={zoomLevel <= 80}
-                  className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
-                  title="Zoom Out (-)"
-                >
-                  <ZoomOut className="h-3 w-3" />
-                </button>
-
-                <button
-                  onClick={() => setZoomLevel(100)}
-                  className={`px-1.5 py-0.5 text-[10px] font-mono font-extrabold ${currentColor.textClass} hover:opacity-80 transition-colors cursor-pointer`}
-                  title="Reset Zoom (100%)"
-                >
-                  {zoomLevel}%
-                </button>
-
-                <button
-                  onClick={handleZoomIn}
-                  disabled={zoomLevel >= 200}
-                  className="flex h-5 w-5 items-center justify-center rounded bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
-                  title="Zoom In (+)"
-                >
-                  <ZoomIn className="h-3 w-3" />
-                </button>
-              </div>
-
-              <button
-                onClick={() => setIsFullscreen(true)}
-                className="flex items-center gap-1 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer"
-                title="Click for Fullscreen"
-              >
-                <Maximize2 className="h-3 w-3" />
-                <span className="hidden sm:inline text-[11px]">Fullscreen</span>
-              </button>
-            </div>
-          </div>
-
-          {/* SCREENSHOT CONTAINER WITH HOTSPOT */}
-          <div
-            className="relative w-full aspect-[16/9] max-h-[520px] bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer group"
-            onClick={() => setIsFullscreen(true)}
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${currentStepIndex}-${currentStep.image}`}
-                initial={{ opacity: 0, scale: zoomLevel / 100 }}
-                animate={{ opacity: 1, scale: zoomLevel / 100 }}
-                exit={{ opacity: 0, scale: zoomLevel / 100 }}
-                transition={{ duration: 0.2 }}
-                className="relative h-full w-full origin-top transition-transform duration-200"
-              >
-                <img
-                  src={currentStep.image}
-                  alt={currentStep.title}
-                  className="absolute inset-0 w-full h-full object-cover object-top"
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* HOTSPOT PIN ON SCREENSHOT */}
-            {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
-              <div
-                id={`hotspot-step-${currentStepIndex + 1}`}
-                style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}
-                className="absolute -translate-x-1/2 -translate-y-1/2 z-30 group/hotspot cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onStepChange(currentStepIndex);
-                  setIsTourActive(true);
-                }}
-              >
-                <span className="absolute -inset-1.5 rounded-full bg-zinc-400 opacity-80 animate-ping" />
-                <span className="absolute -inset-0.5 rounded-full bg-zinc-500/50 animate-pulse" />
-
-                <span className={`relative flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-white font-black text-[11px] sm:text-xs shadow-lg border-2 border-white dark:border-zinc-950 transition-transform group-hover/hotspot:scale-110 ${currentColor.bgClass}`}>
-                  {currentStepIndex + 1}
-                </span>
-              </div>
-            )}
-
-            {/* SAFE BOUNDARY-CONTAINED STEP POPOVER CARD */}
-            <AnimatePresence>
-              {isTourActive && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.92, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    top: safePopoverStyle.top,
-                    left: safePopoverStyle.left,
-                  }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-40 w-[90%] max-w-[340px] sm:max-w-[380px] rounded-3xl border-2 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl p-4 sm:p-5 shadow-2xl text-left text-zinc-900 dark:text-zinc-100 pointer-events-auto ${currentColor.borderClass}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                    <div className="flex items-center gap-2">
-                      <span className={`h-2.5 w-2.5 rounded-full animate-pulse ${currentColor.bgClass}`} />
-                      <h3 className={`text-xs sm:text-sm font-black leading-tight ${currentColor.textClass}`}>
-                        {currentStep.hotspot.title}
-                      </h3>
-                    </div>
-                    <button
-                      onClick={() => setIsTourActive(false)}
-                      className="rounded-full p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors cursor-pointer"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-
-                  <div className="py-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line max-h-48 sm:max-h-56 overflow-y-auto scrollbar-thin pr-1">
-                    {currentStep.description}
-                  </div>
-
-                  <div className="flex items-center justify-between pt-2.5 border-t border-zinc-100 dark:border-zinc-800">
-                    <span className="text-[11px] font-mono font-extrabold text-zinc-400">
-                      {currentStepIndex + 1} / {totalSteps}
-                    </span>
-
-                    <div className="flex items-center gap-2">
-                      {currentStepIndex > 0 && (
-                        <button
-                          onClick={onPrev}
-                          className="rounded-xl border border-zinc-300 bg-zinc-100 px-3 py-1 text-[11px] font-extrabold text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 transition-all cursor-pointer"
-                        >
-                          ← Prev
-                        </button>
-                      )}
-
-                      {currentStepIndex < totalSteps - 1 ? (
-                        <button
-                          onClick={onNext}
-                          className={`flex items-center gap-1 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                        >
-                          <span>Next →</span>
-                        </button>
-                      ) : onCompleteAction ? (
-                        <button
-                          onClick={() => {
-                            setIsTourActive(false);
-                            onCompleteAction();
-                          }}
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
-                        >
-                          <span>{customButtonText || "Create Credential 🚀"}</span>
-                        </button>
-                      ) : externalAppUrl ? (
-                        <a
-                          href={externalAppUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer animate-pulse ${currentColor.bgClass}`}
-                        >
-                          <span>{customButtonText || `Open ${providerName || "App"} 🚀`}</span>
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
-                      ) : (
-                        <button
-                          onClick={() => setIsTourActive(false)}
-                          className={`flex items-center gap-1.5 rounded-xl text-white px-3.5 py-1 text-[11px] font-black shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                        >
-                          <span>Done 🎉</span>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-
-      {/* ULTRA-SAFE FULLSCREEN LIGHTBOX MODAL WITH FLOATING CONTROL PANEL */}
-      <AnimatePresence>
-        {isFullscreen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-3 sm:p-6 backdrop-blur-xl"
-            onClick={() => setIsFullscreen(false)}
-          >
-            {/* LIGHTBOX HEADER */}
-            <div className="w-full max-w-7xl flex items-center justify-between z-50 text-white pb-2">
-              <div className="flex items-center gap-3">
-                <span className={`flex h-7 w-7 items-center justify-center rounded-xl font-black text-xs shadow-md ${currentColor.bgClass}`}>
-                  {currentStepIndex + 1}
-                </span>
-                <div>
-                  <h3 className="text-sm sm:text-base font-black text-white">
-                    {currentStep.hotspot.title}
-                  </h3>
-                  <p className="text-xs font-mono text-zinc-400">
-                    Step {currentStepIndex + 1} of {totalSteps} • {addressBarUrl}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsFullscreen(false)}
-                className="rounded-full bg-zinc-800/90 p-2 text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors cursor-pointer border border-zinc-700 shadow-lg"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* LIGHTBOX SCREENSHOT WITH PIN */}
-            <div className="relative flex-1 w-full max-w-7xl my-2 flex items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
-              <img
-                src={currentStep.image}
-                alt={currentStep.title}
-                className="absolute inset-0 w-full h-full object-contain"
-              />
-
-              {/* PIN ON LIGHTBOX SCREENSHOT */}
-              {currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
-                <div
-                  className="absolute z-30 transition-all duration-300"
-                  style={{
-                    top: currentStep.hotspot.top,
-                    left: currentStep.hotspot.left,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <div className="relative flex items-center justify-center">
-                    <span className="absolute inline-flex h-12 w-12 animate-ping rounded-full bg-zinc-400 opacity-80" />
-                    <span className={`relative flex h-9 w-9 items-center justify-center rounded-full font-black text-xs shadow-2xl border-2 border-white ring-4 ring-zinc-500/40 ${currentColor.bgClass}`}>
-                      {currentStepIndex + 1}
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* FLOATING BOTTOM STEPS CONTROLLER PANEL (NEVER CLIPS OFF SCREEN) */}
-            <div
-              className="w-full max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/95 backdrop-blur-2xl p-4 shadow-2xl text-white z-50 flex flex-col sm:flex-row items-center justify-between gap-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="space-y-1 text-left flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <span className={`h-2 w-2 rounded-full ${currentColor.bgClass}`} />
-                  <span className="text-xs font-bold text-zinc-300 truncate">
-                    {currentStep.title}
+    <div className="w-full space-y-4">
+      {/* 2-COLUMN MAIN PLAYER CONTAINER */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        {/* LEFT SIDE: STEP CONTROLS & DESCRIPTION CARD (4 Cols) */}
+        <div className="lg:col-span-4 flex flex-col justify-between h-full min-h-[440px] rounded-2xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 transition-all">
+          
+          <div className="space-y-4">
+            {/* TOP HEADER & PROGRESS BAR */}
+            <div className="space-y-2.5 border-b border-zinc-100 pb-3.5 dark:border-zinc-800">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 font-mono tabular-nums">
+                  <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-black text-white ${currentColor.bgClass}`}>
+                    Step {currentStepIndex + 1} of {totalSteps}
+                  </span>
+                  <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
+                    ({progressPercentage}%)
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 font-medium line-clamp-2">
-                  {currentStep.description || currentStep.hotspot.detail}
-                </p>
+
+                {/* AUDIO VOICE ASSISTANT BUTTON */}
+                <button
+                  onClick={handleSpeakStep}
+                  className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                    isSpeaking
+                      ? "bg-rose-500 text-white border-rose-600 animate-pulse"
+                      : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 border-zinc-200 dark:border-zinc-700"
+                  }`}
+                  title={isSpeaking ? "Click to stop voice assistant" : "Click to listen to step instructions"}
+                >
+                  {isSpeaking ? (
+                    <>
+                      <VolumeX className="h-3.5 w-3.5 shrink-0" />
+                      <span>Stop</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="h-3.5 w-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
+                      <span>Listen</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* VISUAL PROGRESS BAR LINE */}
+              <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200/60 dark:border-zinc-700/60">
+                <div
+                  className={`h-full ${currentColor.bgClass} transition-all duration-300 rounded-full`}
+                  style={{ width: `${progressPercentage}%` }}
+                />
+              </div>
+            </div>
+
+            {/* STEP TITLE */}
+            <div>
+              <h3 className="text-lg font-black text-zinc-900 dark:text-white leading-snug tracking-tight">
+                {currentStep.title}
+              </h3>
+            </div>
+
+            {/* STEP DESCRIPTION WITH RICH LINK PARSING & NO HORIZONTAL SCROLLBAR */}
+            <div className="text-xs sm:text-sm leading-relaxed font-medium text-zinc-700 dark:text-zinc-200 space-y-3 max-h-[220px] overflow-y-auto pr-1">
+              <div className="whitespace-pre-line font-medium leading-normal break-words">
+                {renderFormattedDescription(currentStep.description)}
+              </div>
+              {currentStep.hotspot.detail && (
+                <div className="rounded-xl border border-amber-200 bg-amber-50/80 p-3 text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-200 flex items-start gap-2 shadow-2xs break-words">
+                  <Sparkles className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <span className="font-bold text-xs leading-snug break-words">
+                    {currentStep.hotspot.detail}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* STEP NAVIGATION BUTTONS (CLEAN & SPACIOUS WITHOUT BOTTOM CONSOLE BUTTON) */}
+          <div className="pt-3.5 border-t border-zinc-100 dark:border-zinc-800">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={onPrev}
+                disabled={currentStepIndex === 0}
+                className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-xs font-bold text-zinc-700 hover:bg-zinc-100 disabled:opacity-30 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-all cursor-pointer shadow-2xs"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                <span>Prev Step</span>
+              </button>
+
+              <button
+                onClick={handleNextOrFinish}
+                className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl px-4 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:opacity-95 ${
+                  currentStepIndex === totalSteps - 1
+                    ? "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30 ring-2 ring-emerald-500/40"
+                    : currentColor.bgClass
+                }`}
+              >
+                <span>
+                  {currentStepIndex === totalSteps - 1
+                    ? "Complete Setup"
+                    : "Next Step"}
+                </span>
+                {currentStepIndex === totalSteps - 1 ? (
+                  <CheckCircle2 className="h-4 w-4" />
+                ) : (
+                  <ChevronRight className="h-4 w-4" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: COMPACT TV SCREEN / BROWSER FRAME (8 Cols) */}
+        <div id="onboarding-browser-frame" className="lg:col-span-8 w-full">
+          <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-900 shadow-md dark:border-zinc-800">
+
+            {/* BROWSER TOP ADDRESS BAR */}
+            <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900 px-3.5 py-2">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-rose-500 inline-block" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-500 inline-block" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 inline-block" />
+              </div>
+
+              <div
+                id="url-address-bar"
+                className={`relative flex items-center justify-center rounded-full bg-zinc-950 px-4 py-1 text-xs font-mono text-zinc-200 min-w-[200px] sm:min-w-[320px] max-w-full border transition-all duration-300 cursor-pointer ${
+                  (currentStep.hotspot.target as string) === "url-bar"
+                    ? `${currentColor.borderClass} ring-2 ring-zinc-500/40 shadow-md`
+                    : "border-zinc-800 hover:border-zinc-700"
+                }`}
+              >
+                <Lock className="h-3 w-3 mr-1.5 text-zinc-400 shrink-0" />
+                <span className="truncate font-semibold text-zinc-200 tracking-wide select-none text-[11px]">
+                  {addressBarUrl}
+                </span>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={onPrev}
-                  disabled={currentStepIndex === 0}
-                  className="rounded-xl border border-zinc-700 bg-zinc-800 px-3.5 py-1.5 text-xs font-bold text-zinc-200 hover:bg-zinc-700 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  ← Prev
-                </button>
+                {/* HIGH-CONTRAST ZOOM CONTROLS */}
+                <div className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-1 py-0.5 text-xs shadow-inner">
+                  <button
+                    onClick={handleZoomOut}
+                    disabled={zoomLevel <= 80 || showCompletionOverlay}
+                    aria-label="Zoom Out"
+                    className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                    title="Zoom Out (-)"
+                  >
+                    <ZoomOut className="h-3 w-3" />
+                  </button>
 
-                <div className="flex items-center gap-1 px-1">
-                  {steps.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => onStepChange(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        idx === currentStepIndex
-                          ? `w-4 ${currentColor.bgClass}`
-                          : "w-2 bg-zinc-700 hover:bg-zinc-600"
-                      }`}
-                    />
-                  ))}
+                  <button
+                    onClick={handleZoomIn}
+                    disabled={zoomLevel >= 200 || showCompletionOverlay}
+                    aria-label="Zoom In"
+                    className="flex h-5.5 w-5.5 items-center justify-center rounded bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer font-bold text-xs"
+                    title="Zoom In (+)"
+                  >
+                    <ZoomIn className="h-3 w-3" />
+                  </button>
                 </div>
-
-                <button
-                  onClick={onNext}
-                  className={`rounded-xl px-4 py-1.5 text-xs font-black text-white shadow-md transition-all cursor-pointer ${currentColor.bgClass}`}
-                >
-                  {currentStepIndex === totalSteps - 1 ? "Done 🎉" : "Next Step →"}
-                </button>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* SCREENSHOT CONTAINER WITH TV COMPLETION OVERLAY */}
+            <div className="relative w-full aspect-[16/9] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden">
+              
+              {/* NORMAL SCREENSHOT STEP VIEW */}
+              <AnimatePresence mode="wait">
+                {!showCompletionOverlay ? (
+                  <motion.div
+                    key={`${currentStepIndex}-${currentStep.image}`}
+                    initial={{ opacity: 0, scale: zoomLevel / 100 }}
+                    animate={{ opacity: 1, scale: zoomLevel / 100 }}
+                    exit={{ opacity: 0, scale: zoomLevel / 100 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative h-full w-full origin-top transition-transform duration-200"
+                  >
+                    <img
+                      src={currentStep.image}
+                      alt={currentStep.title}
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
+                  </motion.div>
+                ) : (
+                  /* GORGEOUS TV SCREEN COMPLETION OVERLAY */
+                  <motion.div
+                    key="completion-screen"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="absolute inset-0 z-40 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-6 sm:p-8 flex flex-col items-center justify-center text-center overflow-y-auto"
+                  >
+                    {/* AMBIENT BACKGROUND GLOW RINGS */}
+                    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
+                    <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
+
+                    {/* ANIMATED SUCCESS CHECKMARK BADGE */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: [0, 1.25, 1] }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="relative mb-4 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/10 border-2 border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+                    >
+                      <CheckCircle2 className="h-10 w-10 text-emerald-400" />
+                      <span className="animate-ping absolute inset-0 rounded-3xl border border-emerald-400/40" />
+                    </motion.div>
+
+                    {/* TITLE & DESCRIPTION */}
+                    <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
+                      Integration Setup Completed!
+                    </h2>
+                    <p className="text-xs sm:text-sm font-medium text-zinc-300 max-w-md mb-6 leading-relaxed">
+                      You have successfully completed all <span className="text-emerald-400 font-bold">{totalSteps} steps</span> for <span className="text-white font-bold">{providerName}</span>. Your credentials are ready to be used in Workflow Mitra.
+                    </p>
+
+                    {/* INTERACTIVE TV SCREEN ACTION BUTTONS */}
+                    <div className="flex flex-wrap items-center justify-center gap-3 w-full max-w-lg">
+                      {/* START AGAIN BUTTON */}
+                      <button
+                        onClick={handleRestartTour}
+                        className="flex-1 min-w-[140px] flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/90 px-4 py-2.5 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-all cursor-pointer shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <RotateCcw className="h-3.5 w-3.5 text-indigo-400" />
+                        <span>Start Tour Again</span>
+                      </button>
+
+                      {/* EXPLORE ALL CREDENTIALS BUTTON (SCROLLS DOWN SMOOTHLY TO PROVIDERS GRID) */}
+                      <button
+                        onClick={handleExploreCredentials}
+                        className="flex-1 min-w-[140px] flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-xs font-bold text-zinc-200 hover:bg-zinc-800 hover:text-white transition-all cursor-pointer shadow-md hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <KeyRound className="h-3.5 w-3.5 text-amber-400" />
+                        <span>Explore Credentials</span>
+                      </button>
+
+                      {/* LAUNCH APP BUTTON */}
+                      <a
+                        href="https://app.workflowmitra.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 min-w-[140px] flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-black text-white hover:bg-emerald-500 transition-all cursor-pointer shadow-lg shadow-emerald-600/30 hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <Rocket className="h-3.5 w-3.5" />
+                        <span>Launch App</span>
+                      </a>
+                    </div>
+
+                    {/* VIEW FINAL SCREENSHOT LINK */}
+                    <button
+                      onClick={() => setShowCompletionOverlay(false)}
+                      className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-semibold text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
+                    >
+                      <Eye className="h-3.5 w-3.5" />
+                      <span>View Step {totalSteps} Screenshot</span>
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* PRETTY, SLEEK & AESTHETIC INTERACTIVE HOTSPOT PIN WITH ROUND-ROUND ORBIT */}
+              {!showCompletionOverlay && currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
+                <motion.div
+                  id={`hotspot-step-${currentStepIndex + 1}`}
+                  style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 z-30 group/hotspot cursor-pointer select-none"
+                  whileHover={{ scale: 1.3, transition: { duration: 0.15 } }}
+                  whileTap={{ scale: 0.82 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextOrFinish();
+                  }}
+                  title={`Click here to proceed (${currentStep.hotspot.title || currentStep.title})`}
+                >
+                  {/* 1. DREAMY SOFT AMBIENT GLOW AURA */}
+                  <motion.span
+                    className="absolute -inset-2.5 rounded-full bg-indigo-500/25 blur-sm pointer-events-none"
+                    animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.2, 0.6] }}
+                    transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                  />
+
+                  {/* 2. SILKY EXPANDING RIPPLE WAVE */}
+                  <motion.span
+                    className="absolute -inset-3 rounded-full border border-indigo-400/60 shadow-[0_0_10px_rgba(99,102,241,0.4)] pointer-events-none"
+                    animate={{ scale: [1, 1.65, 1], opacity: [0.8, 0, 0.8] }}
+                    transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                  />
+
+                  {/* 3. SMOOTH ROTATING ROUND-ROUND ORBIT RING & GLISTENING SATELLITE PARTICLE */}
+                  <motion.div
+                    className="absolute -inset-2 rounded-full border border-indigo-300/40 pointer-events-none"
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 3.5, ease: "linear" }}
+                  >
+                    <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                  </motion.div>
+
+                  {/* 4. GORGEOUS LUMINOUS GLASS PEARL PIN */}
+                  <motion.span
+                    animate={{ scale: [1, 1.08, 1] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    className="relative flex h-4.5 w-4.5 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-950 shadow-[0_0_14px_rgba(99,102,241,0.9),0_4px_8px_rgba(0,0,0,0.5)] ring-2 ring-indigo-500/30"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+                  </motion.span>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

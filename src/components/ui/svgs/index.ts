@@ -26,14 +26,42 @@ export { Telegram } from "./telegram";
 export { Discord } from "./discord";
 export { Google } from "./google";
 
+export { Postgresql } from "./postgresql";
+export { MysqlIconDark as Mysql } from "./mysqlIconDark";
+export { MongodbIconDark as Mongodb } from "./mongodbIconDark";
+export { Redis } from "./redis";
+
+export { AnthropicBlack as Claude } from "./anthropicBlack";
+export { Linkedin } from "./linkedin";
+
+export { GeminiLogo } from "./gemini";
+export { GmailLogo } from "./gmail";
+export { HubSpotLogo } from "./hubspot";
+export { WorkflowMitraLogo } from "./workflowMitraLogo";
+
 export {
-  HubSpotLogo,
   ZohoLogo,
+  ZohoBooksLogo,
+  ZohoDeskLogo,
+  ZohoBookingsLogo,
   PipedriveLogo,
   WooCommerceLogo,
-  ZohoBooksLogo,
   ShiprocketLogo,
   ZoomLogo,
   CalComLogo,
   WherebyLogo,
+  CalendlyLogo,
+  MSTeamsLogo,
+  JitsiMeetLogo,
+  CiscoWebexLogo,
+  ZendeskLogo,
+  FreshdeskLogo,
+  FacebookLogo,
+  SmtpLogo,
+  GroqLogo,
+  OllamaLogo,
+  IntercomLogo,
+  GoogleSheetsLogo,
+  ShopifyLogo,
+  MySqlLogo,
 } from "./customLogos";

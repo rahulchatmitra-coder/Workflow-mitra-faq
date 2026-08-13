@@ -3,23 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    
+    <!-- Preload critical assets for LCP -->
+    <link rel="preload" as="image" href="/images/logo.webp" type="image/webp" />
+    
+    <link rel="canonical" href="https://workflowmitra-docs.vercel.app/" />
 
-    <!-- Geist Sans Font (replaces next/font/google Geist) -->
+    <!-- DNS Prefetch & Preconnect for external font domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical fonts for faster LCP -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap"
     />
-    <!-- Geist Mono Font -->
+
+    <!-- Geist & Geist Mono Google Fonts with swap display (async load) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Default SEO (overridden by react-helmet-async per page) -->
     <title>Workflow Mitra Documentation | No-Code Automation Help Center</title>
@@ -32,6 +52,7 @@
       content="Workflow Mitra, Documentation, No-Code, Automation, OpenAI, HubSpot, Slack, Webhooks"
     />
     <meta name="robots" content="index, follow" />
+    <meta name="author" content="Workflow Mitra Team" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -42,12 +63,56 @@
       property="og:description"
       content="Official production documentation for Workflow Mitra. Learn how to configure credentials, visual workflow nodes, webhooks, and AI integrations."
     />
+    <meta property="og:image" content="https://workflowmitra-docs.vercel.app/images/logo.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@WorkflowMitra" />
+    <meta name="twitter:title" content="Workflow Mitra Documentation | No-Code Automation Help Center" />
+    <meta
+      name="twitter:description"
+      content="Official production documentation for Workflow Mitra. Learn how to configure credentials, visual workflow nodes, webhooks, and AI integrations."
+    />
+    <meta name="twitter:image" content="https://workflowmitra-docs.vercel.app/images/logo.webp" />
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Workflow Mitra",
+        "url": "https://workflowmitra-docs.vercel.app",
+        "logo": "https://workflowmitra-docs.vercel.app/images/logo.webp",
+        "description": "No-code automation platform for building AI workflows",
+        "sameAs": [
+          "https://app.workflowmitra.com"
+        ]
+      }
+    </script>
+
+    <!-- Structured Data - WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Workflow Mitra Documentation",
+        "url": "https://workflowmitra-docs.vercel.app",
+        "description": "Official documentation for Workflow Mitra no-code automation platform",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://workflowmitra-docs.vercel.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white focus:rounded-lg focus:font-semibold dark:focus:bg-white dark:focus:text-zinc-900">
+      Skip to main content
+    </a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
