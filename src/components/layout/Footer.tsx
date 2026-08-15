@@ -94,7 +94,7 @@ export function Footer() {
                 Ready to Automate Your Visual Workflows?
               </h3>
               <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 max-w-2xl">
-                Connect 10+ integrations including Google Sheets, HubSpot, Cisco Webex, Zendesk, Shopify, Discord, and Slack in under 2 minutes.
+                Connect 37+ integrations including WhatsApp, OpenAI, HubSpot, Shopify, Discord, Slack, and Google Sheets in under 2 minutes.
               </p>
             </div>
 

@@ -31,6 +31,7 @@ interface InteractivePlayerProps {
   providerName?: string;
   customButtonText?: string;
   onCompleteAction?: () => void;
+  isUpcoming?: boolean;
 }
 
 export default function InteractivePlayer({
@@ -44,6 +45,7 @@ export default function InteractivePlayer({
   providerName = "Integration",
   customButtonText,
   onCompleteAction,
+  isUpcoming = false,
 }: InteractivePlayerProps) {
   const { currentColor } = useTextColor();
   const navigate = useNavigate();
@@ -269,12 +271,20 @@ export default function InteractivePlayer({
             <div className="space-y-2.5 border-b border-zinc-100 pb-3.5 dark:border-zinc-800">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 font-mono tabular-nums">
-                  <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-black text-white ${currentColor.bgClass}`}>
-                    Step {currentStepIndex + 1} of {totalSteps}
-                  </span>
-                  <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
-                    ({progressPercentage}%)
-                  </span>
+                  {isUpcoming ? (
+                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-black text-amber-300 bg-amber-500/20 border border-amber-500/30">
+                      <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Upcoming Integration
+                    </span>
+                  ) : (
+                    <>
+                      <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-black text-white ${currentColor.bgClass}`}>
+                        Step {currentStepIndex + 1} of {totalSteps}
+                      </span>
+                      <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400">
+                        ({progressPercentage}%)
+                      </span>
+                    </>
+                  )}
                 </div>
 
                 {/* AUDIO VOICE ASSISTANT BUTTON */}
@@ -302,12 +312,14 @@ export default function InteractivePlayer({
               </div>
 
               {/* VISUAL PROGRESS BAR LINE */}
-              <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200/60 dark:border-zinc-700/60">
-                <div
-                  className={`h-full ${currentColor.bgClass} transition-all duration-300 rounded-full`}
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
+              {!isUpcoming && (
+                <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200/60 dark:border-zinc-700/60">
+                  <div
+                    className={`h-full ${currentColor.bgClass} transition-all duration-300 rounded-full`}
+                    style={{ width: `${progressPercentage}%` }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* STEP TITLE */}
@@ -333,38 +345,48 @@ export default function InteractivePlayer({
             </div>
           </div>
 
-          {/* STEP NAVIGATION BUTTONS (CLEAN & SPACIOUS WITHOUT BOTTOM CONSOLE BUTTON) */}
+          {/* STEP NAVIGATION BUTTONS */}
           <div className="pt-3.5 border-t border-zinc-100 dark:border-zinc-800">
-            <div className="flex items-center gap-3">
+            {isUpcoming ? (
               <button
-                onClick={onPrev}
-                disabled={currentStepIndex === 0}
-                className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-xs font-bold text-zinc-700 hover:bg-zinc-100 disabled:opacity-30 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-all cursor-pointer shadow-2xs"
+                onClick={handleExploreCredentials}
+                className={`w-full flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:opacity-95 ${currentColor.bgClass}`}
               >
-                <ChevronLeft className="h-4 w-4" />
-                <span>Prev Step</span>
+                <KeyRound className="h-4 w-4" />
+                <span>Explore 35+ Ready Integrations</span>
               </button>
+            ) : (
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={onPrev}
+                  disabled={currentStepIndex === 0}
+                  className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-xs font-bold text-zinc-700 hover:bg-zinc-100 disabled:opacity-30 disabled:cursor-not-allowed dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 transition-all cursor-pointer shadow-2xs"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  <span>Prev Step</span>
+                </button>
 
-              <button
-                onClick={handleNextOrFinish}
-                className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl px-4 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:opacity-95 ${
-                  currentStepIndex === totalSteps - 1
-                    ? "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30 ring-2 ring-emerald-500/40"
-                    : currentColor.bgClass
-                }`}
-              >
-                <span>
-                  {currentStepIndex === totalSteps - 1
-                    ? "Complete Setup"
-                    : "Next Step"}
-                </span>
-                {currentStepIndex === totalSteps - 1 ? (
-                  <CheckCircle2 className="h-4 w-4" />
-                ) : (
-                  <ChevronRight className="h-4 w-4" />
-                )}
-              </button>
-            </div>
+                <button
+                  onClick={handleNextOrFinish}
+                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl px-4 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:opacity-95 ${
+                    currentStepIndex === totalSteps - 1
+                      ? "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30 ring-2 ring-emerald-500/40"
+                      : currentColor.bgClass
+                  }`}
+                >
+                  <span>
+                    {currentStepIndex === totalSteps - 1
+                      ? "Complete Setup"
+                      : "Next Step"}
+                  </span>
+                  {currentStepIndex === totalSteps - 1 ? (
+                    <CheckCircle2 className="h-4 w-4" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -423,9 +445,81 @@ export default function InteractivePlayer({
             {/* SCREENSHOT CONTAINER WITH TV COMPLETION OVERLAY */}
             <div className="relative w-full aspect-[16/9] max-h-[470px] bg-zinc-950 flex items-center justify-center overflow-hidden">
               
-              {/* NORMAL SCREENSHOT STEP VIEW */}
+              {/* TV SCREEN CONTENT: UPCOMING SCREEN, COMPLETION OVERLAY, OR NORMAL SCREENSHOT */}
               <AnimatePresence mode="wait">
-                {!showCompletionOverlay ? (
+                {isUpcoming ? (
+                  /* GORGEOUS TV SCREEN UPCOMING INTEGRATION SCREEN */
+                  <motion.div
+                    key="upcoming-screen"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="absolute inset-0 z-40 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-6 sm:p-8 flex flex-col items-center justify-center text-center overflow-y-auto"
+                  >
+                    {/* AMBIENT BACKGROUND GLOW RINGS */}
+                    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-amber-500/15 blur-3xl pointer-events-none" />
+                    <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
+
+                    {/* ANIMATED ROCKET ICON BADGE */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: [0, 1.25, 1] }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="relative mb-3.5 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-3xl bg-amber-500/10 border-2 border-amber-500/40 shadow-[0_0_35px_rgba(245,158,11,0.3)]"
+                    >
+                      <Rocket className="h-8 w-8 sm:h-10 sm:w-10 text-amber-400" />
+                      <span className="animate-ping absolute inset-0 rounded-3xl border border-amber-400/40" />
+                    </motion.div>
+
+                    {/* UPCOMING BADGE */}
+                    <span className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40 mb-2 shadow-2xs">
+                      <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Upcoming Integration
+                    </span>
+
+                    {/* TITLE & SUBTITLE */}
+                    <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
+                      {providerName} Connector Coming Soon
+                    </h2>
+                    <p className="text-xs sm:text-sm font-medium text-zinc-300 max-w-md mb-5 leading-relaxed">
+                      Full visual step-by-step onboarding, automated workflows, and direct connector triggers are actively in development for <span className="text-amber-400 font-bold">{providerName}</span>.
+                    </p>
+
+                    {/* ROADMAP HIGHLIGHTS PILLS */}
+                    <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                      <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold bg-zinc-800/90 text-zinc-200 border border-zinc-700 shadow-2xs">
+                        ⚡ Real-Time Triggers
+                      </span>
+                      <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold bg-zinc-800/90 text-zinc-200 border border-zinc-700 shadow-2xs">
+                        🔐 AES-256 Vault Encryption
+                      </span>
+                      <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold bg-zinc-800/90 text-zinc-200 border border-zinc-700 shadow-2xs">
+                        🔄 Automated Sync
+                      </span>
+                    </div>
+
+                    {/* INTERACTIVE TV SCREEN ACTION BUTTONS */}
+                    <div className="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                      <button
+                        onClick={handleExploreCredentials}
+                        className={`flex-1 min-w-[150px] flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95 ${currentColor.bgClass}`}
+                      >
+                        <KeyRound className="h-3.5 w-3.5" />
+                        <span>Explore 35+ Integrations</span>
+                      </button>
+
+                      <a
+                        href="https://app.workflowmitra.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 min-w-[150px] flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/90 px-4 py-2.5 text-xs font-bold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5 text-zinc-400" />
+                        <span>Launch App</span>
+                      </a>
+                    </div>
+                  </motion.div>
+                ) : !showCompletionOverlay ? (
                   <motion.div
                     key={`${currentStepIndex}-${currentStep.image}`}
                     initial={{ opacity: 0, scale: zoomLevel / 100 }}
@@ -521,7 +615,7 @@ export default function InteractivePlayer({
               </AnimatePresence>
 
               {/* PRETTY, SLEEK & AESTHETIC INTERACTIVE HOTSPOT PIN WITH ROUND-ROUND ORBIT */}
-              {!showCompletionOverlay && currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
+              {!isUpcoming && !showCompletionOverlay && currentStep.hotspot.target === "image" && currentStep.hotspot.top && currentStep.hotspot.left && (
                 <motion.div
                   id={`hotspot-step-${currentStepIndex + 1}`}
                   style={{ top: currentStep.hotspot.top, left: currentStep.hotspot.left }}

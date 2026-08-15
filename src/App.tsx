@@ -3,7 +3,6 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { TextColorProvider } from "@/context/TextColorContext";
-import { TextColorPicker } from "@/components/common/TextColorPicker";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -30,9 +29,8 @@ export default function App() {
       disableTransitionOnChange={false}
     >
       <TextColorProvider>
-        <div className="antialiased min-h-screen flex flex-col bg-white text-zinc-900 dark:bg-black dark:text-zinc-100 transition-colors duration-200">
+        <div className="antialiased min-h-screen flex flex-col bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200">
           <Navbar />
-          <TextColorPicker />
           <div className="flex-1">
             <Suspense fallback={<PageLoader />}>
               <Routes>

@@ -342,11 +342,15 @@ export default function ProviderCardGrid({
                     </div>
 
                     <div className="flex items-center gap-1.5 flex-wrap justify-end">
-                      {p.popular && (
+                      {p.isUpcoming ? (
+                        <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 shadow-2xs">
+                          Upcoming
+                        </span>
+                      ) : p.popular ? (
                         <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full text-white shadow-2xs ${currentColor.bgClass}`}>
                           Popular
                         </span>
-                      )}
+                      ) : null}
 
                       <span className="text-[10px] font-bold font-mono px-2.5 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800">
                         {p.badge}
@@ -376,12 +380,21 @@ export default function ProviderCardGrid({
                 {/* REAL WEBSITE CARD FOOTER BOX BAR (-MX-6 -MB-6) */}
                 <div className="-mx-6 -mb-6 mt-6 px-6 py-3.5 bg-zinc-50 dark:bg-zinc-900/60 border-t-2 border-zinc-200/90 dark:border-zinc-800/90 flex items-center justify-between rounded-b-xl group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-900 transition-colors">
                   <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
-                    <Layers className="h-3.5 w-3.5 text-zinc-400" />
-                    <span>{hasSubProviders ? `${p.subProviders!.length} Sub-Providers` : `${p.steps.length} Steps`}</span>
+                    {p.isUpcoming ? (
+                      <>
+                        <Sparkles className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                        <span className="text-amber-600 dark:text-amber-400 font-bold">Coming Soon</span>
+                      </>
+                    ) : (
+                      <>
+                        <Layers className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
+                        <span>{hasSubProviders ? `${p.subProviders!.length} Gateways` : `${p.steps.length} Steps`}</span>
+                      </>
+                    )}
                   </span>
 
-                  <span className={`inline-flex items-center gap-1 text-xs font-black transition-all group-hover:translate-x-1 ${currentColor.textClass}`}>
-                    <span>View Guide</span>
+                  <span className={`inline-flex items-center gap-1 text-xs font-black transition-all group-hover:translate-x-1 ${p.isUpcoming ? "text-amber-500" : currentColor.textClass}`}>
+                    <span>{p.isUpcoming ? "Preview" : "View Guide"}</span>
                     <ChevronRight className="h-4 w-4" />
                   </span>
                 </div>

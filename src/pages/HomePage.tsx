@@ -45,7 +45,7 @@ export default function HomePage() {
         <meta property="og:image" content="https://workflowmitra-docs.vercel.app/images/logo.webp" />
       </Helmet>
 
-      <main id="main-content" className="min-h-screen pb-20 bg-white dark:bg-black transition-colors duration-200">
+      <main id="main-content" className="min-h-screen pb-20 bg-white dark:bg-zinc-950 transition-colors duration-200">
         {/* 1. HERO SEARCH SECTION */}
         <HeroSection onOpenSearch={() => setIsSearchOpen(true)} />
 

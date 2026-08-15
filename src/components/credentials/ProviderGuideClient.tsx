@@ -24,6 +24,9 @@ import {
   Zap,
   Cpu,
   Globe,
+  Rocket,
+  KeyRound,
+  ShieldCheck,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -281,7 +284,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
         <meta property="og:title" content={`How to Connect ${effectiveName} Credentials`} />
       </Helmet>
 
-      <main className="min-h-screen bg-white dark:bg-black transition-colors duration-200 text-zinc-900 dark:text-zinc-100 pb-20">
+      <main className="min-h-screen bg-white dark:bg-zinc-950 transition-colors duration-200 text-zinc-900 dark:text-zinc-100 pb-20">
         {/* BACK NAVIGATION BAR */}
         <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50 sticky top-0 z-30 backdrop-blur-md">
           <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -376,111 +379,172 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
             defaultAddressUrl={effectiveAppUrl}
             externalAppUrl={effectiveAppUrl}
             providerName={effectiveName}
+            isUpcoming={Boolean(provider.isUpcoming)}
           />
 
-          {/* POINT-BY-POINT INSTRUCTION CARDS */}
+          {/* POINT-BY-POINT INSTRUCTION CARDS / UPCOMING ROADMAP */}
           <section className="space-y-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
             <div className="border-b border-zinc-200 dark:border-zinc-800 pb-4">
               <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                Detailed Step-by-Step Instructions (<span className={currentColor.textClass}>{effectiveName}</span>)
+                {provider.isUpcoming ? (
+                  <>Integration Roadmap & Features (<span className={currentColor.textClass}>{effectiveName}</span>)</>
+                ) : (
+                  <>Detailed Step-by-Step Instructions (<span className={currentColor.textClass}>{effectiveName}</span>)</>
+                )}
               </h2>
               <p className="mt-1 text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-                Follow these exact steps to connect {effectiveName} with Workflow Mitra.
+                {provider.isUpcoming
+                  ? `Overview of upcoming features and automation capabilities planned for ${effectiveName}.`
+                  : `Follow these exact steps to connect ${effectiveName} with Workflow Mitra.`}
               </p>
             </div>
 
-            <div className="space-y-6">
-              {steps.map((s, idx) => (
-                <div
-                  key={idx}
-                  className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
-                    <div
-                      className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
-                      onClick={() => {
-                        setSelectedImageModal(s.image);
-                        setIsFullscreenModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[16/10] w-full">
-                        <img
-                          src={s.image}
-                          alt={`Step ${idx + 1}: ${s.title}`}
-                          loading="lazy"
-                          decoding="async"
-                          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
-                        />
-                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
-                            <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
-                          </span>
-                        </div>
-                      </div>
+            {provider.isUpcoming ? (
+              /* UPCOMING ROADMAP FEATURE CARDS */
+              <div className="rounded-3xl border border-amber-200/80 bg-amber-50/50 dark:border-amber-900/40 dark:bg-amber-950/20 p-6 sm:p-8 text-center space-y-6 shadow-sm">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-amber-500/15 border border-amber-500/30 text-amber-500 shadow-2xs">
+                  <Rocket className="h-8 w-8" />
+                </div>
+                <div className="space-y-2 max-w-xl mx-auto">
+                  <h3 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white">
+                    {effectiveName} Connector is Under Active Development
+                  </h3>
+                  <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                    We are currently building direct connector nodes, automated triggers, and full step-by-step visual guides for {effectiveName}.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-2 text-left">
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 shadow-2xs">
+                    <div className="text-xs font-black text-zinc-900 dark:text-white flex items-center gap-2 mb-1.5">
+                      <Zap className="h-4 w-4 text-amber-500" /> Event Triggers
                     </div>
+                    <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed">
+                      Instant webhook listeners, table polling, and real-time triggers to run automated workflows.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 shadow-2xs">
+                    <div className="text-xs font-black text-zinc-900 dark:text-white flex items-center gap-2 mb-1.5">
+                      <ShieldCheck className="h-4 w-4 text-emerald-500" /> Encrypted Vault
+                    </div>
+                    <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed">
+                      Enterprise-grade AES-256 encrypted credential storage with zero-knowledge token management.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 shadow-2xs">
+                    <div className="text-xs font-black text-zinc-900 dark:text-white flex items-center gap-2 mb-1.5">
+                      <Sparkles className="h-4 w-4 text-indigo-500" /> Seamless Actions
+                    </div>
+                    <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed">
+                      Execute queries, send channel messages, and chain database results across 35+ other services.
+                    </p>
+                  </div>
+                </div>
 
-                    <div className="lg:col-span-5 space-y-3.5">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
-                            {idx + 1}
-                          </span>
-                          <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
-                            {s.title}
-                          </h3>
+                <div className="pt-3 flex items-center justify-center gap-3">
+                  <Link
+                    to="/credentials"
+                    className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95 ${currentColor.bgClass}`}
+                  >
+                    <KeyRound className="h-4 w-4" />
+                    <span>Explore 35+ Ready Integrations</span>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {steps.map((s, idx) => (
+                  <div
+                    key={idx}
+                    className="group rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 transition-all hover:shadow-lg"
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-center">
+                      <div
+                        className="lg:col-span-7 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-md cursor-pointer relative group/img"
+                        onClick={() => {
+                          setSelectedImageModal(s.image);
+                          setIsFullscreenModal(true);
+                        }}
+                      >
+                        <div className="relative aspect-[16/10] w-full">
+                          <img
+                            src={s.image}
+                            alt={`Step ${idx + 1}: ${s.title}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover/img:scale-[1.02]"
+                          />
+                          <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                            <span className="flex items-center gap-1.5 rounded-full bg-zinc-900/90 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold text-white border border-zinc-700 shadow-lg">
+                              <Maximize2 className="h-3.5 w-3.5" /> Click to Expand
+                            </span>
+                          </div>
                         </div>
-
-                        <button
-                          onClick={() => handleSpeakCard(idx, s.title, s.description)}
-                          aria-label={activeSpeakingIndex === idx ? "Stop step voiceover" : "Listen to step voiceover"}
-                          className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
-                            activeSpeakingIndex === idx
-                              ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
-                              : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                          }`}
-                          title={activeSpeakingIndex === idx ? "Stop Voiceover" : "Listen to Step Voiceover"}
-                        >
-                          {activeSpeakingIndex === idx ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-                          <span className="hidden sm:inline">{activeSpeakingIndex === idx ? "Stop" : "Listen"}</span>
-                        </button>
                       </div>
 
-                      <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
-                        <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
-                          {s.description}
+                      <div className="lg:col-span-5 space-y-3.5">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className={`flex h-8 w-8 items-center justify-center rounded-xl font-black text-sm shadow-md shrink-0 text-white ${currentColor.bgClass}`}>
+                              {idx + 1}
+                            </span>
+                            <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-white leading-tight">
+                              {s.title}
+                            </h3>
+                          </div>
+
+                          <button
+                            onClick={() => handleSpeakCard(idx, s.title, s.description)}
+                            aria-label={activeSpeakingIndex === idx ? "Stop step voiceover" : "Listen to step voiceover"}
+                            className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold transition-all cursor-pointer border shrink-0 ${
+                              activeSpeakingIndex === idx
+                                ? `${currentColor.bgClass} text-white shadow-md border-transparent animate-pulse`
+                                : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                            }`}
+                            title={activeSpeakingIndex === idx ? "Stop Voiceover" : "Listen to Step Voiceover"}
+                          >
+                            {activeSpeakingIndex === idx ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                            <span className="hidden sm:inline">{activeSpeakingIndex === idx ? "Stop" : "Listen"}</span>
+                          </button>
                         </div>
 
-                        {s.addressUrl && (
-                          <div className="pt-2 flex items-center gap-2 flex-wrap">
-                            <span className="text-[11px] font-extrabold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 flex items-center gap-1 shrink-0">
-                              <Globe className="h-3.5 w-3.5 text-zinc-400 shrink-0" /> Target URL:
-                            </span>
-                            <a
-                              href={s.addressUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className={`inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-xs font-mono font-bold text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500 shadow-2xs transition-all cursor-pointer group/link`}
-                            >
-                              <span className="truncate max-w-[280px] sm:max-w-xs">{s.addressUrl}</span>
-                              <ExternalLink className="h-3 w-3 text-zinc-400 group-hover/link:text-zinc-900 dark:group-hover/link:text-white shrink-0" />
-                            </a>
+                        <div className="rounded-2xl bg-zinc-50 dark:bg-zinc-900/70 p-4 sm:p-5 border border-zinc-200 dark:border-zinc-800/80 space-y-3">
+                          <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                            {s.description}
                           </div>
-                        )}
 
-                        {s.hotspot.detail && (
-                          <div className="pt-2 flex items-center gap-2">
-                            <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 ${currentColor.textClass}`} />
-                            <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400">
-                              {s.hotspot.detail}
-                            </span>
-                          </div>
-                        )}
+                          {s.addressUrl && (
+                            <div className="pt-2 flex items-center gap-2 flex-wrap">
+                              <span className="text-[11px] font-extrabold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 flex items-center gap-1 shrink-0">
+                                <Globe className="h-3.5 w-3.5 text-zinc-400 shrink-0" /> Target URL:
+                              </span>
+                              <a
+                                href={s.addressUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={`inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-xs font-mono font-bold text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500 shadow-2xs transition-all cursor-pointer group/link`}
+                              >
+                                <span className="truncate max-w-[280px] sm:max-w-xs">{s.addressUrl}</span>
+                                <ExternalLink className="h-3 w-3 text-zinc-400 group-hover/link:text-zinc-900 dark:group-hover/link:text-white shrink-0" />
+                              </a>
+                            </div>
+                          )}
+
+                          {s.hotspot.detail && (
+                            <div className="pt-2 flex items-center gap-2">
+                              <CheckCircle2 className={`h-4.5 w-4.5 shrink-0 ${currentColor.textClass}`} />
+                              <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400">
+                                {s.hotspot.detail}
+                              </span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* FEEDBACK WIDGET */}

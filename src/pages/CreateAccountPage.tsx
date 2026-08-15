@@ -214,7 +214,7 @@ export default function CreateAccountPage() {
         <meta property="og:title" content="How to Create Account in Workflow Mitra" />
       </Helmet>
 
-      <main className="min-h-screen bg-white dark:bg-black transition-colors duration-200 text-zinc-900 dark:text-zinc-100 pb-20">
+      <main className="min-h-screen bg-white dark:bg-zinc-950 transition-colors duration-200 text-zinc-900 dark:text-zinc-100 pb-20">
         {/* BACK NAVIGATION BAR */}
         <div className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50 sticky top-0 z-30 backdrop-blur-md">
           <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
