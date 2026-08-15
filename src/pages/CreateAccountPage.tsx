@@ -42,8 +42,8 @@ export const onboardingGuide: OnboardingStep[] = [
     addressUrl: "https://app.workflowmitra.com/login",
     hotspot: {
       target: "image",
-      top: "84%",
-      left: "72%",
+      top: "81%",
+      left: "83%",
       popoverTop: "45%",
       popoverLeft: "35%",
       title: "Step 2: Click Create Account",
@@ -74,8 +74,8 @@ export const onboardingGuide: OnboardingStep[] = [
     addressUrl: "https://app.workflowmitra.com/verify",
     hotspot: {
       target: "image",
-      top: "88%",
-      left: "85%",
+      top: "83%",
+      left: "82%",
       popoverTop: "45%",
       popoverLeft: "50%",
       title: "Step 4: Verify Email Inbox",

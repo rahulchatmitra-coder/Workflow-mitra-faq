@@ -23,6 +23,7 @@ import {
   Mail,
   Zap,
   Cpu,
+  Globe,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTextColor } from "@/context/TextColorContext";
@@ -298,7 +299,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
               rel="noreferrer"
               className={`hidden sm:inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold text-white shadow-sm transition-all cursor-pointer ${currentColor.bgClass}`}
             >
-              <span>Open {provider.name} Console</span>
+              <span>Open {activeSubProvider ? activeSubProvider.name : provider.name} Console</span>
               <ExternalLink className="h-3 w-3" />
             </a>
           </div>
@@ -448,6 +449,23 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                         <div className="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
                           {s.description}
                         </div>
+
+                        {s.addressUrl && (
+                          <div className="pt-2 flex items-center gap-2 flex-wrap">
+                            <span className="text-[11px] font-extrabold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 flex items-center gap-1 shrink-0">
+                              <Globe className="h-3.5 w-3.5 text-zinc-400 shrink-0" /> Target URL:
+                            </span>
+                            <a
+                              href={s.addressUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className={`inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-2.5 py-1 text-xs font-mono font-bold text-zinc-900 dark:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500 shadow-2xs transition-all cursor-pointer group/link`}
+                            >
+                              <span className="truncate max-w-[280px] sm:max-w-xs">{s.addressUrl}</span>
+                              <ExternalLink className="h-3 w-3 text-zinc-400 group-hover/link:text-zinc-900 dark:group-hover/link:text-white shrink-0" />
+                            </a>
+                          </div>
+                        )}
 
                         {s.hotspot.detail && (
                           <div className="pt-2 flex items-center gap-2">
