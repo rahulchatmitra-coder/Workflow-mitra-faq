@@ -4,9 +4,23 @@ import { Helmet } from "react-helmet-async";
 import { CREDENTIAL_PROVIDERS } from "@/data/credentials-data";
 import ProviderGuideClient from "@/components/credentials/ProviderGuideClient";
 
+// Provider ID Aliases mapping to ensure smooth navigation without 404s
+const PROVIDER_ALIASES: Record<string, string> = {
+  zoho: "zohocrm",
+  ciscowebex: "webex",
+  email: "smtp",
+  sheets: "googleserviceaccount",
+  google: "googleoauth",
+  teams: "msteams",
+  facebook: "facebookpage",
+  mongo: "mongodb",
+};
+
 export default function CredentialProviderPage() {
   const { providerId } = useParams<{ providerId: string }>();
-  const provider = CREDENTIAL_PROVIDERS[(providerId ?? "").toLowerCase()];
+  const normalizedId = (providerId ?? "").toLowerCase();
+  const resolvedId = PROVIDER_ALIASES[normalizedId] || normalizedId;
+  const provider = CREDENTIAL_PROVIDERS[resolvedId];
 
   // If provider doesn't exist, redirect to 404 (equivalent to Next.js notFound())
   if (!provider) {

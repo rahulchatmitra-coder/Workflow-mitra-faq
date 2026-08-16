@@ -11,22 +11,25 @@ export function useFuseSearch() {
     return new Fuse(DOCS_SEARCH_INDEX, {
       keys: [
         { name: "title", weight: 0.5 },
-        { name: "description", weight: 0.3 },
-        { name: "snippet", weight: 0.2 },
-        { name: "category", weight: 0.1 },
+        { name: "category", weight: 0.25 },
+        { name: "description", weight: 0.15 },
+        { name: "snippet", weight: 0.1 },
       ],
       threshold: 0.35,
+      distance: 100,
+      ignoreLocation: true,
       includeMatches: true,
-      minMatchCharLength: 2,
+      minMatchCharLength: 1,
     });
   }, []);
 
   React.useEffect(() => {
-    if (!query.trim()) {
+    const trimmed = query.trim();
+    if (!trimmed) {
       setResults([]);
       return;
     }
-    const searchResults = fuse.search(query).map((res) => res.item);
+    const searchResults = fuse.search(trimmed).map((res) => res.item);
     setResults(searchResults);
   }, [query, fuse]);
 

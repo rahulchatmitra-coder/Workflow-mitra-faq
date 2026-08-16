@@ -12,12 +12,19 @@ const SearchModal = lazy(() => import("@/components/common/SearchModal").then(m 
 
 export default function HomePage() {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const [searchInitialQuery, setSearchInitialQuery] = React.useState("");
+
+  const handleOpenSearch = (initialQuery?: string) => {
+    setSearchInitialQuery(initialQuery || "");
+    setIsSearchOpen(true);
+  };
 
   // Global Keyboard Shortcut (Ctrl+K or Cmd+K) to open search modal
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
+        setSearchInitialQuery("");
         setIsSearchOpen((prev) => !prev);
       }
     };
@@ -47,7 +54,7 @@ export default function HomePage() {
 
       <main id="main-content" className="min-h-screen pb-20 bg-white dark:bg-zinc-950 transition-colors duration-200">
         {/* 1. HERO SEARCH SECTION */}
-        <HeroSection onOpenSearch={() => setIsSearchOpen(true)} />
+        <HeroSection onOpenSearch={handleOpenSearch} />
 
         {/* 2. POPULAR ARTICLE CARDS GRID (WORKFLOW MITRA FAQ GUIDE) */}
         <PopularCategoryGrid />
@@ -70,7 +77,11 @@ export default function HomePage() {
         {/* SEARCH MODAL - LAZY LOADED */}
         {isSearchOpen && (
           <Suspense fallback={null}>
-            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+            <SearchModal
+              isOpen={isSearchOpen}
+              onClose={() => setIsSearchOpen(false)}
+              initialQuery={searchInitialQuery}
+            />
           </Suspense>
         )}
       </main>

@@ -1,39 +1,47 @@
 import { SearchResultItem } from "@/types/docs";
+import { PROVIDER_LIST } from "@/data/credentials-data";
 
-export const DOCS_SEARCH_INDEX: SearchResultItem[] = [
+const CORE_DOC_ITEMS: SearchResultItem[] = [
   {
     title: "Workflow Mitra Help Center",
     slug: "/",
     category: "Getting Started",
-    description: "Welcome to Workflow Mitra single-page help center and visual integration walkthrough.",
-    snippet: "Interactive Driver.js guided tour, secret key inputs, step-by-step configuration, and verification banner.",
+    description: "Welcome to Workflow Mitra help center and visual integration walkthrough.",
+    snippet: "Interactive guided tour, secret key inputs, step-by-step configuration.",
   },
   {
-    title: "Step 1: Obtain Credentials",
-    slug: "/#tour-step-1",
-    category: "Guide Step",
-    description: "Locate your integration API key or OAuth secret token from your platform dashboard.",
-    snippet: "Credentials generation, API keys, secret tokens.",
+    title: "Credentials Vault & Integrations Overview",
+    slug: "/credentials",
+    category: "Credentials",
+    description: "Browse all active pre-built integration connectors for AI Models, CRMs, Databases, Communication, and E-commerce.",
+    snippet: "AES-256 encrypted key storage, OAuth 2.0 flows, and API keys.",
   },
-  {
-    title: "Step 2: Configure Node",
-    slug: "/#tour-step-2",
-    category: "Guide Step",
-    description: "Paste credentials into the Workflow Mitra node configuration panel.",
-    snippet: "Node parameters, field mapping, secret storage.",
-  },
-  {
-    title: "Step 3: Test Connection",
-    slug: "/#tour-step-3",
-    category: "Guide Step",
-    description: "Click 'Test Connection' to verify authentication & API permissions.",
-    snippet: "Authentication verification, HTTP status 200 OK.",
-  },
-  {
-    title: "Step 4: Save & Activate",
-    slug: "/#tour-step-4",
-    category: "Guide Step",
-    description: "Save your credentials securely and activate automated workflow execution.",
-    snippet: "AES-256 encryption, active production trigger.",
-  },
+];
+
+// Include ONLY active, non-upcoming providers that have actual routes (/credentials/:providerId)
+const ACTIVE_PROVIDERS = PROVIDER_LIST.filter((provider) => !provider.isUpcoming);
+
+const PROVIDER_DOC_ITEMS: SearchResultItem[] = ACTIVE_PROVIDERS.flatMap((provider) => {
+  const mainItem: SearchResultItem = {
+    title: `${provider.name} Credentials Guide`,
+    slug: `/credentials/${provider.id}`,
+    category: provider.category,
+    description: provider.description,
+    snippet: `${provider.badge} • ${provider.category} active connector for Workflow Mitra.`,
+  };
+
+  const subItems: SearchResultItem[] = (provider.subProviders || []).map((sub) => ({
+    title: `${provider.name} - ${sub.name} Gateway`,
+    slug: `/credentials/${provider.id}`,
+    category: provider.category,
+    description: sub.description,
+    snippet: `${sub.badge} • Connect ${sub.name} with Workflow Mitra.`,
+  }));
+
+  return [mainItem, ...subItems];
+});
+
+export const DOCS_SEARCH_INDEX: SearchResultItem[] = [
+  ...CORE_DOC_ITEMS,
+  ...PROVIDER_DOC_ITEMS,
 ];

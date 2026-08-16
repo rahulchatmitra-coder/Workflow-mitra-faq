@@ -77,24 +77,32 @@ export function Footer() {
   return (
     <footer className="relative mt-24 border-t border-zinc-200 bg-zinc-50/90 dark:border-zinc-800/80 dark:bg-zinc-950 transition-colors duration-200">
       {/* TOP CALL TO ACTION BANNER */}
-      <div className="border-b border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md">
+      <div className="border-b border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 bg-gradient-to-r from-zinc-100/90 via-white to-zinc-50/90 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 p-6 sm:p-8 shadow-sm">
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2.5 w-2.5">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-r from-zinc-100/90 via-white to-zinc-50/90 dark:from-zinc-900/90 dark:via-zinc-950 dark:to-zinc-900/90 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div className="space-y-2.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/90 bg-emerald-50/90 px-3 py-1 text-xs font-mono font-extrabold text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-950/60 dark:text-emerald-300 shadow-2xs">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span className="text-xs font-mono font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                  Workflow Mitra v2.4 Live • All Systems Operational
-                </span>
+                <span>Workflow Mitra v2.4 Live • All Systems Operational</span>
               </div>
+
               <h3 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tight">
                 Ready to Automate Your Visual Workflows?
               </h3>
-              <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 max-w-2xl">
-                Connect 37+ integrations including WhatsApp, OpenAI, HubSpot, Shopify, Discord, Slack, and Google Sheets in under 2 minutes.
+
+              <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed flex flex-wrap items-center gap-1">
+                <span>Connect 37+ integrations including</span>
+                <Link to="/credentials/whatsapp" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">WhatsApp</Link>,
+                <Link to="/credentials/openai" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">OpenAI</Link>,
+                <Link to="/credentials/hubspot" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">HubSpot</Link>,
+                <Link to="/credentials/shopify" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Shopify</Link>,
+                <Link to="/credentials/discord" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Discord</Link>,
+                <Link to="/credentials/slack" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Slack</Link>, and
+                <Link to="/credentials/googleserviceaccount" onClick={handleNavClick} className="font-bold text-zinc-900 dark:text-white underline decoration-zinc-300 dark:decoration-zinc-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Google Sheets</Link>
+                <span>in under 2 minutes.</span>
               </p>
             </div>
 
@@ -103,7 +111,7 @@ export function Footer() {
                 href="https://app.workflowmitra.com"
                 target="_blank"
                 rel="noreferrer"
-                className={`flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-xs font-black text-white shadow-lg transition-all cursor-pointer hover:opacity-95 ${currentColor.bgClass}`}
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-xs font-black text-white shadow-md transition-all cursor-pointer hover:opacity-95 active:scale-95 ${currentColor.bgClass}`}
               >
                 <span>Launch Workflow Mitra</span>
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -111,9 +119,9 @@ export function Footer() {
               <Link
                 to="/credentials"
                 onClick={handleNavClick}
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors shadow-xs"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4.5 py-3 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all shadow-2xs active:scale-95"
               >
-                <KeyRound className="h-3.5 w-3.5" />
+                <KeyRound className="h-3.5 w-3.5 text-amber-500" />
                 <span>Credentials Vault</span>
               </Link>
             </div>
@@ -300,9 +308,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/credentials/zoho" onClick={handleNavClick} className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/zohocrm" onClick={handleNavClick} className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span className="flex items-center gap-2.5">
-                    <FooterProviderIcon id="zoho" name="Zoho" fallback={<ZohoLogo className="h-4.5 w-4.5" />} />
+                    <FooterProviderIcon id="zohocrm" name="Zoho CRM" fallback={<ZohoLogo className="h-4.5 w-4.5" />} />
                     <span>Zoho Suite OAuth</span>
                   </span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400" />
@@ -355,9 +363,9 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
               <li>
-                <Link to="/credentials/ciscowebex" onClick={handleNavClick} className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
+                <Link to="/credentials/webex" onClick={handleNavClick} className="hover:text-zinc-900 dark:hover:text-white transition-colors flex items-center justify-between group">
                   <span className="flex items-center gap-2.5">
-                    <FooterProviderIcon id="ciscowebex" name="Cisco Webex" fallback={<CiscoWebexLogo className="h-4.5 w-4.5" />} />
+                    <FooterProviderIcon id="webex" name="Cisco Webex" fallback={<CiscoWebexLogo className="h-4.5 w-4.5" />} />
                     <span>Cisco Webex Bot</span>
                   </span>
                   <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400" />

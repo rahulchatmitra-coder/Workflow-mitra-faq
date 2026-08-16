@@ -1,28 +1,37 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { HelpCircle, MessageCircleQuestion, Sparkles, Search, Zap, Building2 } from "lucide-react";
-import { Openai, Slack, WhatsappIcon, Google } from "@/components/ui/svgs";
+import { Openai, Slack, WhatsappIcon, Google, Claude } from "@/components/ui/svgs";
 
 interface HeroSectionProps {
-  onOpenSearch: () => void;
+  onOpenSearch: (initialQuery?: string) => void;
 }
 
 const HERO_TAG_ICONS: Record<string, React.ReactNode> = {
   OpenAI: <Openai className="h-4 w-4 shrink-0" />,
-  Webhooks: <Zap className="h-4 w-4 shrink-0 text-amber-500" />,
-  HubSpot: <Building2 className="h-4 w-4 shrink-0 text-orange-500" />,
   Slack: <Slack className="h-4 w-4 shrink-0" />,
+  HubSpot: <Building2 className="h-4 w-4 shrink-0 text-orange-500" />,
   WhatsApp: <WhatsappIcon className="h-4 w-4 shrink-0" />,
   Google: <Google className="h-4 w-4 shrink-0" />,
+  Claude: <Claude className="h-4 w-4 shrink-0" />,
 };
 
 const HERO_TAG_LABELS: Record<string, string> = {
   OpenAI: "AI Agents & OpenAI",
-  Webhooks: "Webhook Triggers",
-  HubSpot: "HubSpot CRM",
   Slack: "Slack Alerts",
+  HubSpot: "HubSpot CRM",
   WhatsApp: "WhatsApp Cloud API",
   Google: "Google Sheets",
+  Claude: "Claude AI",
+};
+
+const HERO_TAG_QUERIES: Record<string, string> = {
+  OpenAI: "OpenAI",
+  Slack: "Slack",
+  HubSpot: "HubSpot",
+  WhatsApp: "WhatsApp",
+  Google: "Google",
+  Claude: "Claude",
 };
 
 export function HeroSection({ onOpenSearch }: HeroSectionProps) {
@@ -52,7 +61,7 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-4 py-1.5 text-xs font-bold text-zinc-900 shadow-sm dark:border-zinc-700 dark:bg-zinc-900 dark:text-white mb-6"
         >
-          <Sparkles className="h-4 w-4" /> Workflow Mitra Automation Help Center
+          <Sparkles className="h-4 w-4 text-amber-500" /> Workflow Mitra Automation Help Center
         </motion.div>
 
         {/* Main Headline */}
@@ -74,7 +83,7 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
           Search 100+ automation guides, AI agent nodes, webhook triggers, API credentials, and execution troubleshooting FAQs.
         </motion.p>
 
-        {/* SLEEK MEDIUM COOL SEARCH BAR */}
+        {/* SLEEK HIGH PERFORMANCE SEARCH BAR */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,18 +91,19 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
           className="mx-auto mt-7 max-w-2xl"
         >
           <button
-            onClick={onOpenSearch}
-            className="group relative flex w-full items-center justify-between gap-3 rounded-2xl border border-zinc-200 bg-zinc-50/80 px-4.5 py-3 shadow-sm backdrop-blur-xs transition-all duration-200 hover:border-zinc-400 hover:bg-white hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:shadow-zinc-950/50 cursor-pointer"
+            type="button"
+            onClick={() => onOpenSearch()}
+            className="group relative flex w-full items-center justify-between gap-3 rounded-2xl border border-zinc-300 bg-zinc-50/90 px-4.5 py-3.5 shadow-sm backdrop-blur-xs transition-all duration-200 hover:border-zinc-400 hover:bg-white hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/90 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:shadow-zinc-950/50 cursor-pointer"
           >
             <div className="flex items-center gap-3 text-zinc-400 dark:text-zinc-500 overflow-hidden">
-              <Search className="h-4.5 w-4.5 shrink-0 text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-200" />
-              <span className="text-sm font-normal text-zinc-500 truncate group-hover:text-zinc-800 dark:text-zinc-400 dark:group-hover:text-zinc-200">
-                Search guides, API keys, webhooks, or ask a question...
+              <Search className="h-5 w-5 shrink-0 text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-200" />
+              <span className="text-sm font-medium text-zinc-500 truncate group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-100">
+                Search 40+ integrations, API keys, webhooks, or ask a question...
               </span>
             </div>
 
             <div className="flex items-center gap-1.5 shrink-0">
-              <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-lg border border-zinc-200 bg-white px-2 py-1 text-[11px] font-semibold text-zinc-500 shadow-2xs group-hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:group-hover:border-zinc-700">
+              <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-lg border border-zinc-300 bg-white px-2 py-1 text-[11px] font-bold text-zinc-600 shadow-2xs group-hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:group-hover:border-zinc-700">
                 <span className="text-[10px]">Ctrl</span> K
               </kbd>
             </div>
@@ -104,8 +114,9 @@ export function HeroSection({ onOpenSearch }: HeroSectionProps) {
             {Object.keys(HERO_TAG_ICONS).map((key) => (
               <button
                 key={key}
-                onClick={onOpenSearch}
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 text-xs font-semibold text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800/80 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-all cursor-pointer shadow-xs"
+                type="button"
+                onClick={() => onOpenSearch(HERO_TAG_QUERIES[key])}
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 text-xs font-semibold text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800/80 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white transition-all cursor-pointer shadow-xs active:scale-95"
               >
                 {HERO_TAG_ICONS[key]}
                 <span>{HERO_TAG_LABELS[key]}</span>
