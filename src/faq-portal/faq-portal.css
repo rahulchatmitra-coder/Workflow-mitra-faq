@@ -1,0 +1,858 @@
+/* ==========================================================================
+   WORKFLOW MITRA - FAQ & DOCS PORTAL DESIGN SYSTEM (EXACT TOKENS & TYPOGRAPHY)
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --wm-bg: #ffffff;
+  --wm-fg: #09090b;
+  --wm-secondary-bg: #f4f4f5;
+  --wm-muted-fg: #71717a;
+  --wm-border: #e4e4e7;
+  --wm-border-hover: #a1a1aa;
+  
+  /* Radii */
+  --wm-radius-md: 12px;
+  --wm-radius-lg: 16px;
+  --wm-radius-xl: 24px;
+  --wm-radius-full: 9999px;
+}
+
+/* Base Wrapper */
+.wm-faq-portal {
+  width: 100%;
+  background: var(--wm-bg);
+  color: #09090b;
+  font-family: 'Geist Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clean Crisp Provider Cards Hover & Click Scale (No Blur) */
+.wm-provider-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  transform: translateZ(0);
+}
+
+.wm-provider-card:hover {
+  transform: scale(1.02) translateY(-3px) translateZ(0) !important;
+  border-color: #a1a1aa !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+.wm-provider-card:active {
+  transform: scale(0.985) translateZ(0) !important;
+}
+
+/* Simple Clean Guide Cards (No Blur) */
+.wm-simple-guide-card:hover {
+  border-color: #a1a1aa !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04) !important;
+  transform: translateY(-2px);
+}
+
+.wm-guide-link:hover {
+  color: #09090b !important;
+}
+
+.wm-guide-link:hover .wm-guide-arrow {
+  transform: translateX(4px);
+  color: #09090b !important;
+}
+
+/* Thumbnail Expand Overlay & Subtle Normal Scale on Hover */
+.wm-thumbnail-hover-box:hover .wm-expand-overlay {
+  opacity: 1 !important;
+}
+
+.wm-thumbnail-hover-box:hover .wm-thumbnail-image {
+  transform: scale(1.02);
+}
+
+/* Custom Sleek Scrollbar for Step Cards */
+.wm-custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.wm-custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wm-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+
+.wm-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.wm-faq-portal * {
+  box-sizing: border-box;
+}
+
+/* Layout Containers */
+.wm-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wm-container-narrow {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   1. HERO SECTION & SEARCH BAR
+   ========================================================================== */
+.wm-hero-section {
+  position: relative;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 70%, #fbfcfd 100%);
+  padding: 56px 20px 64px;
+  border-bottom: 1px solid var(--wm-border);
+  text-align: center;
+}
+
+/* Floating Bubbles in Hero */
+.wm-floating-bubble {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.wm-floating-bubble-left {
+  left: -20px;
+  top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--wm-border);
+  animation: wm-bounce 3s ease-in-out infinite;
+}
+
+.wm-floating-bubble-right {
+  right: -20px;
+  top: 30px;
+  background: #09090b;
+  border: 1px solid #27272a;
+}
+
+@keyframes wm-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .wm-floating-bubble {
+    display: none;
+  }
+}
+
+.wm-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--wm-radius-full);
+  border: 1px solid var(--wm-border);
+  background: var(--wm-secondary-bg);
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--wm-fg);
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.wm-hero-title {
+  font-size: 54px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--wm-fg);
+  line-height: 1.12;
+  margin: 0 0 16px;
+}
+
+.wm-hero-desc {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--wm-muted-fg);
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.wm-search-trigger {
+  display: flex;
+  width: 100%;
+  max-width: 670px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: var(--wm-radius-lg);
+  border: 1px solid #d4d4d8;
+  background: #f9fafb;
+  padding: 14px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.wm-search-trigger:hover {
+  border-color: #a1a1aa;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.wm-search-trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #71717a;
+  overflow: hidden;
+  flex: 1;
+  transition: color 0.15s ease;
+}
+
+.wm-search-trigger:hover .wm-search-trigger-content {
+  color: #09090b;
+}
+
+.wm-search-trigger-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #71717a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s ease;
+}
+
+.wm-search-trigger:hover .wm-search-trigger-text {
+  color: #09090b;
+}
+
+.wm-search-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #d4d4d8;
+  font-size: 11px;
+  font-weight: 700;
+  color: #52525b;
+  font-family: inherit;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease;
+}
+
+.wm-search-trigger:hover .wm-search-kbd {
+  border-color: #a1a1aa;
+  color: #09090b;
+}
+
+.wm-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.wm-hero-tag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--wm-radius-full);
+  border: 1px solid var(--wm-border);
+  background: #ffffff;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #3f3f46;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.wm-hero-tag-btn:hover {
+  border-color: #a1a1aa;
+  background: #f4f4f5;
+  color: #09090b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.wm-hero-tag-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   2. POPULAR FAQ GUIDE CARDS GRID
+   ========================================================================== */
+.wm-guides-section {
+  padding: 64px 0 32px;
+}
+
+.wm-section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.wm-section-title {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: #09090b;
+  margin: 0 0 10px;
+}
+
+.wm-section-desc {
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #3f3f46;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.wm-cards-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.wm-guide-card,
+.wm-guide-card-exact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--wm-radius-xl);
+  border: 2px solid var(--wm-border);
+  background: #ffffff;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+}
+
+.wm-guide-card:hover,
+.wm-guide-card-exact:hover {
+  border-color: #a1a1aa !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* SVG Animated Connection Lines */
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.animate-\[dash_2s_linear_infinite\],
+.wm-dash-line,
+svg line,
+svg path {
+  animation: dash 2s linear infinite;
+}
+
+.wm-guide-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wm-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--wm-radius-full);
+  border: 1px solid var(--wm-border);
+  background: var(--wm-secondary-bg);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #3f3f46;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.wm-guide-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--wm-radius-md);
+  background: var(--wm-secondary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.wm-guide-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--wm-fg);
+  margin: 0 0 10px;
+  transition: color 0.15s ease;
+}
+
+.wm-guide-card:hover .wm-guide-title {
+  color: #000000;
+}
+
+.wm-guide-summary {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--wm-muted-fg);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wm-guide-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  margin-top: 20px;
+  border-top: 1px solid var(--wm-secondary-bg);
+  font-size: 12px;
+  color: var(--wm-muted-fg);
+  font-weight: 400;
+}
+
+.wm-guide-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--wm-fg);
+  transition: all 0.15s ease;
+}
+
+.wm-guide-card:hover .wm-guide-read-link {
+  color: #000000;
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   3. WORKFLOW CANVAS BUILDER
+   ========================================================================== */
+.wm-canvas-section {
+  padding: 48px 0;
+}
+
+.wm-canvas-card {
+  position: relative;
+  width: 100%;
+  border-radius: var(--wm-radius-xl);
+  border: 1px solid var(--wm-border);
+  background: #f8fafc;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.wm-canvas-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--wm-border);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wm-canvas-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #09090b;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.wm-canvas-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-canvas-cat {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wm-muted-fg);
+}
+
+.wm-canvas-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--wm-fg);
+  margin: 0;
+}
+
+.wm-canvas-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--wm-secondary-bg);
+  padding: 4px;
+  border-radius: var(--wm-radius-md);
+  border: 1px solid var(--wm-border);
+}
+
+.wm-canvas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-canvas-btn--ghost {
+  background: transparent;
+  color: #52525b;
+}
+
+.wm-canvas-btn--ghost:hover {
+  background: #e4e4e7;
+  color: var(--wm-fg);
+}
+
+.wm-canvas-btn--dark {
+  background: #09090b;
+  color: #ffffff;
+}
+
+.wm-canvas-btn--dark:hover {
+  background: #27272a;
+}
+
+.wm-canvas-viewport {
+  position: relative;
+  min-height: 480px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#d4d4d8 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.wm-canvas-floating-bar {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--wm-radius-full);
+  border: 1px solid var(--wm-border);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 6px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.wm-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--wm-radius-full);
+  background: #09090b;
+  color: #ffffff;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-run-btn:hover {
+  background: #000000;
+  transform: scale(1.02);
+}
+
+.wm-canvas-zoom-box {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--wm-radius-md);
+  border: 1px solid var(--wm-border);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.wm-zoom-btn {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #52525b;
+  cursor: pointer;
+}
+
+.wm-zoom-btn:hover {
+  background: var(--wm-secondary-bg);
+  color: var(--wm-fg);
+}
+
+/* ==========================================================================
+   4. ONBOARDING & SETUP PILLARS
+   ========================================================================== */
+.wm-onboarding-section {
+  padding: 56px 0;
+}
+
+.wm-onboarding-card {
+  border-radius: var(--wm-radius-xl);
+  border: 2px solid var(--wm-border);
+  background: #ffffff;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.wm-onboarding-card:hover {
+  border-color: var(--wm-border-hover);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+  transform: translateY(-3px);
+}
+
+.wm-onboarding-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--wm-secondary-bg);
+}
+
+.wm-onboarding-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--wm-radius-md);
+  background: var(--wm-secondary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wm-fg);
+  border: 1px solid var(--wm-border);
+}
+
+.wm-onboarding-links-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wm-onboarding-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3f3f46;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.wm-onboarding-link-row:hover {
+  color: #000000;
+}
+
+.wm-onboarding-footer-action {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--wm-secondary-bg);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wm-fg);
+  text-decoration: none;
+}
+
+.wm-onboarding-footer-action:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. FAQS ACCORDION SECTION
+   ========================================================================== */
+.wm-faq-section {
+  padding: 56px 0 72px;
+}
+
+.wm-accordion-item {
+  border-radius: var(--wm-radius-lg);
+  border: 1px solid var(--wm-border);
+  background: #ffffff;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.15s ease;
+}
+
+.wm-accordion-item:hover {
+  border-color: #d4d4d8;
+}
+
+.wm-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 800;
+  color: #09090b;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.wm-accordion-btn:hover {
+  color: #000000;
+}
+
+.wm-accordion-body {
+  padding: 0 24px 20px;
+  border-top: 1px solid #f8fafc;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #3f3f46;
+}
+
+/* ==========================================================================
+   6. ARTICLE READER MODAL & SEARCH MODAL
+   ========================================================================== */
+.wm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+.wm-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  border-radius: var(--wm-radius-xl);
+  border: 1px solid var(--wm-border);
+  background: #ffffff;
+  padding: 36px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  color: var(--wm-fg);
+}
+
+.wm-modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--wm-secondary-bg);
+  color: var(--wm-muted-fg);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-modal-close-btn:hover {
+  background: #e4e4e7;
+  color: var(--wm-fg);
+}
+
+/* RESPONSIVE SCALES */
+@media (max-width: 1024px) {
+  .wm-hero-title {
+    font-size: 48px;
+  }
+  .wm-section-title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wm-cards-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .wm-hero-title {
+    font-size: 36px;
+  }
+  .wm-hero-desc {
+    font-size: 16px;
+  }
+  .wm-modal-card {
+    padding: 24px;
+  }
+}

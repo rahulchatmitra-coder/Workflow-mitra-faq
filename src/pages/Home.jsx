@@ -9,6 +9,7 @@ import './Home.css'
 const IntegrationsShowcase = lazy(() => import('../components/IntegrationsShowcase'))
 const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
 const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
+const OnboardingSection = lazy(() => import('../credentials-portal/OnboardingSection'))
 
 const TEMPLATES = [
   {
@@ -412,7 +413,14 @@ function Home() {
         </div>
       </section>
 
-      {/* 14 — FAQ */}
+      {/* 14 — Documentation & Onboarding Hub */}
+      <DeferredHomeSection minHeight={380}>
+        <Suspense fallback={null}>
+          <OnboardingSection />
+        </Suspense>
+      </DeferredHomeSection>
+
+      {/* 15 — FAQ */}
       <section className="faq-section" itemScope itemType="https://schema.org/FAQPage">
         <div className="container">
           <div className="section-header">

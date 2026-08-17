@@ -2,8 +2,21 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@lobehub/ui/storybook': path.resolve(__dirname, 'src/utils/lobehubUiStub/storybook.jsx'),
+      '@lobehub/ui/icons': path.resolve(__dirname, 'src/utils/lobehubUiStub/icons.jsx'),
+      '@lobehub/ui': path.resolve(__dirname, 'src/utils/lobehubUiStub/index.jsx')
+    }
+  },
   server: {
     port: 3000,
     open: true
