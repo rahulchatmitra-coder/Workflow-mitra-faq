@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { TextColorProvider } from './credentials-portal/TextColorContext'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import CookieConsent from './components/CookieConsent'
 import Home from './pages/Home'
 import './App.css'
 
@@ -67,6 +68,7 @@ function App() {
             </Suspense>
           </main>
           <Footer />
+          <CookieConsent />
         </div>
       </Router>
     </TextColorProvider>

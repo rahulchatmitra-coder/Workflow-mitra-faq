@@ -161,29 +161,37 @@
   font-size: 15px;
   font-weight: 800;
   letter-spacing: -0.01em;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid transparent;
   text-decoration: none;
   cursor: pointer;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
+  will-change: transform;
 }
 
 .hero-btn-primary:hover {
-  background: #27272a;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.32), 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #18181b;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.26);
 }
 
 .hero-btn-primary:active {
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .hero-arrow-icon {
+  display: inline-block;
   transition: transform 0.2s ease;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .hero-btn-primary:hover .hero-arrow-icon {
-  transform: translateX(4px);
+  transform: translate3d(4px, 0, 0);
 }
 
 .hero-btn-secondary {
@@ -199,21 +207,26 @@
   font-size: 15px;
   font-weight: 750;
   letter-spacing: -0.01em;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
+  will-change: transform;
 }
 
 .hero-btn-secondary:hover {
   background: #f8fafc;
   border-color: #09090b;
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 .hero-btn-secondary:active {
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* 5. REASSURANCE TRUST ROW */

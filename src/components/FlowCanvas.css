@@ -1,113 +1,96 @@
-/* ============================================
-   FlowCanvas – SVG Node Graph with Animated Hops
-   ============================================ */
+/* ==========================================================================
+   Hero FlowCanvas – Clean SVG Node Pipeline with Animated Hops
+   ========================================================================== */
 
 .fc-canvas {
   position: relative;
-  height: 238px;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.10) 1px, transparent 1px);
-  background-size: 15px 15px;
+  width: 100%;
+  max-width: 520px;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
 }
 
-.fc-wires { position: absolute; inset: 0; overflow: visible; }
-.fc-wire  { fill: none; stroke: var(--color-border-strong); stroke-width: 2; opacity: 0.7; }
-
-.fc-ants {
-  fill: none;
-  stroke: var(--color-border-strong);
-  stroke-width: 2.5;
-  stroke-dasharray: 0.1 8;
-  stroke-linecap: round;
-  animation: fcFlow 1.15s linear infinite;
+.fc-wires {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
 }
-.fc-ants.is-hot { stroke: var(--color-brand-teal); opacity: 1; }
 
-@keyframes fcFlow { to { stroke-dashoffset: -16.2; } }
+.fc-animated-wire {
+  animation: fcWireRun 1.2s linear infinite;
+}
 
-.fc-node {
+@keyframes fcWireRun {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.fc-node-item {
   position: absolute;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 84px;
+  z-index: 10;
+  cursor: default;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fc-disc {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  border: 2.5px solid #fff;
-  box-shadow: 0 4px 12px rgba(10, 10, 10, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.26);
-  transition: transform var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--transition-slow), opacity var(--transition-slow);
+.fc-node-item:hover {
+  transform: translate(-50%, -54%) scale(1.05);
 }
 
-.fc-node.is-on .fc-disc {
-  transform: scale(1.13);
-  box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.18),
-              0 6px 16px rgba(10, 10, 10, 0.18),
-              inset 0 2px 0 rgba(255, 255, 255, 0.26);
-}
-
-.fc-node.is-idle .fc-disc { opacity: 0.42; }
-
-.fc-bolt {
+.fc-badge {
   position: absolute;
-  top: -4px;
-  left: -4px;
-  width: 13px;
-  height: 13px;
+  top: -6px;
+  right: -4px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
-  background: var(--color-brand-orange);
-  border: 2px solid #fff;
-}
-
-.fc-label {
-  margin-top: 7px;
+  color: #ffffff;
   font-size: 9.5px;
-  font-weight: 650;
-  line-height: 1.25;
-  letter-spacing: -0.1px;
-  color: var(--color-text-secondary);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  z-index: 12;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.fc-disc-container {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.fc-node-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
   text-align: center;
-}
-
-.fc-node.is-idle .fc-label { color: var(--color-text-tertiary); }
-
-.fc-tag {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
   white-space: nowrap;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  padding: 2px 7px;
-  color: var(--color-text-secondary);
 }
 
-.fc-payload {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  font-family: var(--font-mono);
+.fc-label-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #09090b;
+}
+
+.fc-label-sub {
   font-size: 9.5px;
   font-weight: 600;
-  white-space: nowrap;
-  background: #0f172a;
-  color: #fff;
-  border-radius: 6px;
-  padding: 3px 8px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.24);
-  transition: left 0.85s cubic-bezier(0.4, 0, 0.2, 1), top 0.85s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fc-ants { animation: none; }
-  .fc-disc, .fc-payload { transition: none; }
+  color: #64748b;
+  margin-top: 1px;
 }

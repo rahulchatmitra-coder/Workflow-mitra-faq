@@ -1,24 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Sparkles, ArrowRight, ShieldCheck, Check } from 'lucide-react'
+import { Sparkles, ArrowRight, Check } from 'lucide-react'
 import AgentDecoration from './AgentDecoration'
-import FlowCanvas from './FlowCanvas'
-import { useCanvasStep } from '../utils/useCanvasStep'
-import '../styles/CanvasPanel.css'
 import './HeroAnimated.css'
 
-const HERO_NODES = {
-  n1: { type: 'webhook-trigger', label: 'New Lead' },
-  n2: { type: 'ai', label: 'Classify' },
-  n3: { type: 'if', label: 'Qualified?' },
-  n4: { type: 'slack', label: 'Notify Sales' },
-  n5: { type: 'whatsapp', label: 'Follow Up' },
-}
-const HERO_TAGS = { n4: 'Yes', n5: 'No' }
-const HERO_PAYLOADS = ['{ company: "Acme" }', 'score: 0.92', 'qualified → Slack', 'not yet → WhatsApp']
-
 function HeroAnimated() {
-  const heroStep = useCanvasStep(5, 1400, 2)
-
   const decorations = [
     {
       id: 'cluster-1',
@@ -76,14 +61,6 @@ function HeroAnimated() {
       <div className="hero-content-wrapper">
         <div className="container">
           <div className="hero-text">
-            {/* 1. EYEBROW BADGE */}
-            <div className="hero-eyebrow-container">
-              <span className="hero-eyebrow-badge">
-                <Sparkles size={14} className="hero-sparkle-icon" />
-                <span>A simpler alternative to Zapier, Make &amp; n8n</span>
-              </span>
-            </div>
-
             {/* 2. MAIN HEADLINE (AI AUTOMATION FOCUSED & CENTERED) */}
             <h1 className="hero-title">
               Automate Your Business With AI
@@ -133,23 +110,6 @@ function HeroAnimated() {
                 <Check size={14} className="hero-trust-check" />
                 <span>Expert help available</span>
               </span>
-            </div>
-          </div>
-
-          {/* 6. INTERACTIVE BROWSER CANVAS PANEL */}
-          <div className="hero-canvas-panel">
-            <div className="canvas-panel">
-              <div className="browser-bar">
-                <span className="browser-dot" style={{ background: '#ff5f57' }} />
-                <span className="browser-dot" style={{ background: '#febc2e' }} />
-                <span className="browser-dot" style={{ background: '#28c840' }} />
-                <span className="browser-url">app.workflowmitra.com/workflows/lead-to-whatsapp</span>
-                <span className="live-pill">running</span>
-              </div>
-              <div className="canvas-panel-body">
-                <div className="canvas-panel-dotgrid" aria-hidden="true" />
-                <FlowCanvas nodes={HERO_NODES} tags={HERO_TAGS} payloads={HERO_PAYLOADS} step={heroStep} />
-              </div>
             </div>
           </div>
         </div>

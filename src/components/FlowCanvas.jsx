@@ -1,102 +1,224 @@
-import { DocsNodeIcon, nodeDiscBg } from './docs/icons/docsNodeIcons'
+import React, { useState, useEffect } from 'react'
+import {
+  Slack,
+  WhatsappIcon,
+  HubSpotLogo,
+  FacebookLogo,
+} from './ui/svgs'
+import { GitBranch } from 'lucide-react'
 import './FlowCanvas.css'
 
-/**
- * The showcase's node graph. One fixed skeleton carries every automation:
- * three steps in a row, then a two-way fan. The payload chip rides the hop
- * that is executing, so the data moving between nodes is visible rather than
- * implied.
- */
-const ORDER = ['n1', 'n2', 'n3', 'n4', 'n5']
-const POS = {
-  n1: { x: 52, y: 78 }, n2: { x: 150, y: 78 }, n3: { x: 248, y: 78 },
-  n4: { x: 360, y: 38 }, n5: { x: 360, y: 130 },
-}
-const EDGES = [['n1', 'n2'], ['n2', 'n3'], ['n3', 'n4'], ['n3', 'n5']]
-const R = 22   // disc radius plus the white rim
+const HERO_FLOW_NODES = [
+  { id: '1', label: 'On Webhook', sub: 'Lead Form', Icon: FacebookLogo, color: '#1877F2', x: 50, y: 100 },
+  { id: '2', label: 'IF Filter', sub: 'Has Email?', Icon: GitBranch, color: '#EA580C', x: 170, y: 100 },
+  { id: '3', label: 'HubSpot CRM', sub: 'Sync Contact', Icon: HubSpotLogo, color: '#FF7A59', x: 290, y: 100 },
+  { id: '4', label: 'WhatsApp', sub: 'Fast 5s Reply', Icon: WhatsappIcon, color: '#25D366', x: 440, y: 55 },
+  { id: '5', label: 'Slack Alert', sub: '#sales-leads', Icon: Slack, color: '#4A154B', x: 440, y: 145 },
+]
 
-function wirePath(from, to) {
-  const s = POS[from]
-  const t = POS[to]
-  const midX = (s.x + t.x) / 2
-  return `M${s.x + R} ${s.y} C${midX} ${s.y} ${midX} ${t.y} ${t.x - R} ${t.y}`
-}
+export default function FlowCanvas({ step: externalStep }) {
+  const [internalStep, setInternalStep] = useState(0)
 
-/** Which hop is carrying data on this step: 0→1, 1→2, then the branch. */
-function activeHop(step) {
-  if (step <= 0) return null
-  if (step === 1) return ['n1', 'n2']
-  if (step === 2) return ['n2', 'n3']
-  return ['n3', step === 3 ? 'n4' : 'n5']
-}
+  useEffect(() => {
+    if (externalStep !== undefined) {
+      setInternalStep(externalStep)
+      return
+    }
+    const timer = setInterval(() => {
+      setInternalStep((s) => (s + 1) % 5)
+    }, 1500)
+    return () => clearInterval(timer)
+  }, [externalStep])
 
-export default function FlowCanvas({ nodes, tags = {}, payloads = [], step = 0 }) {
-  const hop = activeHop(step)
-  const payload = step > 0 ? payloads[step - 1] : null
+  const curStep = internalStep % 5
 
   return (
-    <div className="fc-canvas">
-      <svg className="fc-wires" viewBox="0 0 440 238" width="440" height="238" aria-hidden="true">
-        {EDGES.map(([a, b], i) => {
-          const d = wirePath(a, b)
-          const hot = (i < 2 && step === i + 1) || (i >= 2 && step >= 3)
-          return (
-            <g key={`${a}-${b}`}>
-              <path className="fc-wire" d={d} />
-              <path className={`fc-ants${hot ? ' is-hot' : ''}`} d={d} />
-            </g>
-          )
-        })}
+    <div
+      className="fc-canvas"
+      style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: '520px',
+        height: '210px',
+        margin: '0 auto',
+        display: 'block',
+      }}
+    >
+      {/* SVG CONNECTING WIRES */}
+      <svg
+        viewBox="0 0 520 210"
+        width="100%"
+        height="100%"
+        style={{ position: 'absolute', inset: 0, overflow: 'visible', pointerEvents: 'none' }}
+      >
+        {/* Wire 1: Node 1 -> Node 2 */}
+        <path
+          d="M 74 100 L 146 100"
+          fill="none"
+          stroke="#cbd5e1"
+          strokeWidth="2.5"
+          strokeDasharray="4 4"
+        />
+        {curStep >= 1 && (
+          <path
+            d="M 74 100 L 146 100"
+            fill="none"
+            stroke="#1877F2"
+            strokeWidth="3"
+            strokeDasharray="6 6"
+            className="fc-wire-anim"
+          />
+        )}
+
+        {/* Wire 2: Node 2 -> Node 3 */}
+        <path
+          d="M 194 100 L 266 100"
+          fill="none"
+          stroke="#cbd5e1"
+          strokeWidth="2.5"
+          strokeDasharray="4 4"
+        />
+        {curStep >= 2 && (
+          <path
+            d="M 194 100 L 266 100"
+            fill="none"
+            stroke="#EA580C"
+            strokeWidth="3"
+            strokeDasharray="6 6"
+            className="fc-wire-anim"
+          />
+        )}
+
+        {/* Wire 3: Node 3 -> Node 4 (WhatsApp Branch) */}
+        <path
+          d="M 314 100 C 365 100, 365 55, 416 55"
+          fill="none"
+          stroke="#cbd5e1"
+          strokeWidth="2.5"
+          strokeDasharray="4 4"
+        />
+        {curStep >= 3 && (
+          <path
+            d="M 314 100 C 365 100, 365 55, 416 55"
+            fill="none"
+            stroke="#25D366"
+            strokeWidth="3"
+            strokeDasharray="6 6"
+            className="fc-wire-anim"
+          />
+        )}
+
+        {/* Wire 4: Node 3 -> Node 5 (Slack Branch) */}
+        <path
+          d="M 314 100 C 365 100, 365 145, 416 145"
+          fill="none"
+          stroke="#cbd5e1"
+          strokeWidth="2.5"
+          strokeDasharray="4 4"
+        />
+        {curStep >= 4 && (
+          <path
+            d="M 314 100 C 365 100, 365 145, 416 145"
+            fill="none"
+            stroke="#4A154B"
+            strokeWidth="3"
+            strokeDasharray="6 6"
+            className="fc-wire-anim"
+          />
+        )}
       </svg>
 
-      {Object.entries(tags).map(([id, label]) => (
-        <span
-          key={id}
-          className="fc-tag"
-          style={{
-            left: `${(POS.n3.x + POS[id].x) / 2 + 4}px`,
-            top: `${(POS.n3.y + POS[id].y) / 2}px`,
-          }}
-        >
-          {label}
-        </span>
-      ))}
+      {/* RENDER THE 5 FLOW NODES */}
+      {HERO_FLOW_NODES.map((node, i) => {
+        const isCurrent = i === curStep
+        const NodeIcon = node.Icon
 
-      {ORDER.map((id, i) => {
-        const node = nodes[id]
-        if (!node) return null
-        // Once the flow fans out, both branch ends read as done — neither is
-        // "still to come" the way a linear step would be.
-        const state = i === step
-          ? 'is-on'
-          : i < step || (step >= 3 && i >= 3) ? 'is-done' : 'is-idle'
         return (
           <div
-            key={id}
-            className={`fc-node ${state}`}
-            data-node={id}
-            style={{ left: `${POS[id].x}px`, top: `${POS[id].y}px` }}
+            key={node.id}
+            style={{
+              position: 'absolute',
+              left: `${node.x}px`,
+              top: `${node.y}px`,
+              transform: 'translate(-50%, -50%)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 10,
+              cursor: 'default',
+              transition: 'all 0.2s ease',
+            }}
           >
-            <span className="fc-disc" style={{ background: nodeDiscBg(node.type) }}>
-              <DocsNodeIcon type={node.type} size={17} mono />
-              {i === 0 && <span className="fc-bolt" aria-hidden="true" />}
+            {/* Step Number Badge */}
+            <span
+              style={{
+                position: 'absolute',
+                top: '-7px',
+                right: '-4px',
+                width: '18px',
+                height: '18px',
+                borderRadius: '50%',
+                background: isCurrent ? '#09090b' : node.color,
+                color: '#ffffff',
+                fontSize: '10px',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '2px solid #ffffff',
+                zIndex: 12,
+                boxShadow: '0 2px 5px rgba(0,0,0,0.15)',
+              }}
+            >
+              {node.id}
             </span>
-            <span className="fc-label">{node.label}</span>
+
+            {/* Icon Disc */}
+            <div
+              style={{
+                width: '46px',
+                height: '46px',
+                borderRadius: '13px',
+                background: node.type === 'if' ? '#EA580C' : '#ffffff',
+                border: `2px solid ${isCurrent ? '#09090b' : '#cbd5e1'}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: isCurrent
+                  ? `0 0 0 5px ${node.color}33, 0 8px 18px rgba(0,0,0,0.12)`
+                  : '0 2px 8px rgba(0,0,0,0.06)',
+                transition: 'all 0.2s ease',
+                padding: '8px',
+              }}
+            >
+              {node.type === 'if' ? (
+                <GitBranch size={22} color="#ffffff" />
+              ) : (
+                <NodeIcon className="h-6 w-6" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+              )}
+            </div>
+
+            {/* Titles */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginTop: '6px',
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <span style={{ fontSize: '12px', fontWeight: 800, color: '#09090b', lineHeight: 1.2 }}>
+                {node.label}
+              </span>
+              <span style={{ fontSize: '10px', fontWeight: 600, color: '#64748b', marginTop: '1px' }}>
+                {node.sub}
+              </span>
+            </div>
           </div>
         )
       })}
-
-      {payload && hop && (
-        <span
-          className="fc-payload"
-          style={{
-            left: `${(POS[hop[0]].x + POS[hop[1]].x) / 2}px`,
-            top: `${(POS[hop[0]].y + POS[hop[1]].y) / 2 - 24}px`,
-          }}
-        >
-          {payload}
-        </span>
-      )}
     </div>
   )
 }
