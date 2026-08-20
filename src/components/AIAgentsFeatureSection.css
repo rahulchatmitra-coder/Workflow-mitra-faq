@@ -9,9 +9,10 @@
 }
 
 .ai-agents-section .wrap {
-  max-width: 1120px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 100px 24px 130px;
+  width: 100%;
 }
 
 .ai-agents-section h1.title {

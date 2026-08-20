@@ -17,6 +17,19 @@ if (!window.matchMedia) {
   })
 }
 
+// jsdom lacks IntersectionObserver for framer-motion's whileInView
+if (!global.IntersectionObserver) {
+  global.IntersectionObserver = class IntersectionObserver {
+    constructor() {}
+    disconnect() {}
+    observe() {}
+    unobserve() {}
+    takeRecords() {
+      return []
+    }
+  }
+}
+
 // @lobehub/icons (used by brandIcons.jsx for two icons this docs
 // section never needs, OpenAI/DeepSeek) transitively imports
 // @emoji-mart/data, whose JSON imports trip Node's native ESM loader

@@ -1,0 +1,600 @@
+/* ==========================================================================
+   Ultra-Clean World-Class Cookie Consent Banner & Preferences Modal
+   ========================================================================== */
+
+/* ─── Floating Toast Notification ─── */
+.wm-cookie-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100002;
+  background: #ffffff;
+  border: 1.5px solid #a7f3d0;
+  border-radius: 14px;
+  padding: 12px 20px;
+  box-shadow: 0 10px 28px -4px rgba(16, 185, 129, 0.18), 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.wm-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-toast-text {
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #065f46;
+}
+
+/* ─── Bottom Sticky Cookie Banner ─── */
+.wm-cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1.5px solid #e2e8f0;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+  padding: 16px 24px;
+  animation: cookieBannerSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cookieBannerSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.wm-cookie-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* Left Content */
+.wm-cookie-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+}
+
+.wm-cookie-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #09090b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.wm-cookie-icon {
+  color: #d97706;
+}
+
+.wm-cookie-text-box {
+  flex: 1;
+}
+
+.wm-cookie-text {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 480;
+}
+
+.wm-cookie-link {
+  color: #09090b;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.wm-cookie-link:hover {
+  color: #2563eb;
+}
+
+/* Right Actions */
+.wm-cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.wm-cookie-btn-settings {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.wm-cookie-btn-settings:hover {
+  background: #f8fafc;
+  border-color: #09090b;
+  color: #09090b;
+  transform: translateY(-1px);
+}
+
+.wm-cookie-btn-accept {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 10px;
+  background: #09090b;
+  border: 1.5px solid #09090b;
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 850;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.15);
+}
+
+.wm-cookie-btn-accept:hover {
+  background: #27272a;
+  border-color: #27272a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(9, 9, 11, 0.22);
+}
+
+.wm-cookie-btn-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-cookie-btn-close:hover {
+  background: #f1f5f9;
+  color: #09090b;
+}
+
+/* ─── Preferences Modal ─── */
+.wm-cookie-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(9, 9, 11, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.2s ease forwards;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.wm-cookie-modal {
+  width: 100%;
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Modal Header */
+.wm-modal-header {
+  padding: 24px 28px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.wm-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wm-modal-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-modal-title {
+  font-size: 18px;
+  font-weight: 850;
+  color: #09090b;
+  margin: 0 0 3px;
+  letter-spacing: -0.02em;
+}
+
+.wm-modal-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.wm-modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-modal-close-btn:hover {
+  background: #f1f5f9;
+  color: #09090b;
+}
+
+/* Modal Body */
+.wm-modal-body {
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.wm-pref-card {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.wm-pref-info {
+  flex: 1;
+}
+
+.wm-pref-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.wm-pref-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #09090b;
+}
+
+.wm-pref-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-always {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-opt {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.wm-pref-desc {
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Custom iOS Style Switch Toggle */
+.wm-toggle-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.wm-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.wm-toggle-label {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #cbd5e1;
+  border-radius: 24px;
+  transition: all 0.25s ease;
+}
+
+.wm-toggle-knob {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.wm-toggle-input:checked + .wm-toggle-label {
+  background-color: #09090b;
+}
+
+.wm-toggle-input:checked + .wm-toggle-label .wm-toggle-knob {
+  transform: translateX(20px);
+}
+
+.wm-toggle-label.disabled {
+  background-color: #10b981 !important;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.wm-toggle-label.disabled .wm-toggle-knob {
+  transform: translateX(20px);
+}
+
+/* Modal Footer */
+.wm-modal-footer {
+  padding: 18px 28px 22px;
+  border-top: 1px solid #f1f5f9;
+  background: #fafbfc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.wm-modal-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wm-modal-btn-decline {
+  padding: 9px 16px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1.5px solid #e2e8f0;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-modal-btn-decline:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #09090b;
+}
+
+.wm-modal-btn-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 13px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px dashed #cbd5e1;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-modal-btn-reset:hover {
+  background: #fff1f2;
+  border-color: #fca5a5;
+  color: #e11d48;
+}
+
+.wm-modal-primary-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wm-modal-btn-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1.5px solid #09090b;
+  color: #09090b;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wm-modal-btn-save:hover {
+  background: #f4f4f5;
+}
+
+.wm-modal-btn-accept-all {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #09090b;
+  border: 1.5px solid #09090b;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 850;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.15);
+}
+
+.wm-modal-btn-accept-all:hover {
+  background: #27272a;
+}
+
+/* ─── Responsive Breakpoints ─── */
+@media (max-width: 900px) {
+  .wm-cookie-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .wm-cookie-actions {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-cookie-banner {
+    padding: 16px;
+  }
+
+  .wm-cookie-content {
+    gap: 10px;
+  }
+
+  .wm-cookie-icon-wrap {
+    display: none;
+  }
+
+  .wm-cookie-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .wm-cookie-btn-settings,
+  .wm-cookie-btn-accept {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .wm-cookie-btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .wm-modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wm-modal-left-actions,
+  .wm-modal-primary-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .wm-modal-btn-save,
+  .wm-modal-btn-accept-all,
+  .wm-modal-btn-decline,
+  .wm-modal-btn-reset {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,135 +1,234 @@
-.footer {
-  background: #ffffff;
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-24) 0 var(--space-12) 0;
+/* ==========================================================================
+   Ultra-Modern Clean Light AI Automation Footer
+   ========================================================================== */
+
+.wm-ai-footer {
+  background: #f8fafc;
+  color: #09090b;
+  border-top: 1px solid #e2e8f0;
+  padding: 72px 24px 36px;
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
 }
 
-.footer-content {
+.wm-footer-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── MAIN FOOTER GRID: BRAND INFO (LEFT) + 4 LINK COLUMNS (RIGHT) ─── */
+.wm-footer-main-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  gap: var(--space-16);
-  margin-bottom: var(--space-16);
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-bottom: 20px;
 }
 
-.footer-brand {
-  max-width: 280px;
+/* BRAND COLUMN */
+.wm-footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 320px;
 }
 
-.footer-logo {
+.wm-footer-brand-logo {
+  display: inline-block;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.wm-footer-tagline {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  font-weight: 450;
+}
+
+/* SOCIALS */
+.wm-footer-socials {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  text-decoration: none;
-  margin-bottom: var(--space-4);
+  gap: 10px;
 }
 
-.footer-logo:hover {
-  opacity: 0.8;
-}
-
-.footer-tagline {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-6);
-}
-
-.footer-social {
-  display: flex;
-  gap: var(--space-4);
-}
-
-.social-icon {
+.wm-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  color: var(--color-text-secondary);
-  transition: all var(--transition-base) ease;
-}
-
-.social-icon:hover {
-  background: #ffffff;
-  color: var(--color-text-primary);
-}
-
-.footer-links {
-  display: contents;
-}
-
-.footer-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.footer-heading {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
-}
-
-.footer-column ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.footer-column a {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
   text-decoration: none;
-  transition: color var(--transition-base) ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
-.footer-column a:hover {
-  color: var(--color-text-primary);
+.wm-social-btn:hover {
+  background: #09090b;
+  color: #ffffff;
+  border-color: #09090b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.footer-bottom {
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-border);
-  text-align: center;
+/* ─── 4 LINK COLUMNS ─── */
+.wm-footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
 }
 
-.footer-copyright {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+.wm-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
+.wm-col-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #09090b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.wm-col-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.wm-col-list a {
+  font-size: 13.5px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.wm-col-list a:hover {
+  color: #09090b;
+  font-weight: 600;
+  transform: translateX(2px);
+}
+
+/* PILLS IN LINKS */
+.wm-link-pill {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1.5px 6px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.wm-hiring-pill {
+  background: #fff7ed;
+  color: #ea580c;
+  border-color: #ffedd5;
+}
+
+/* ─── DIVIDER ─── */
+.wm-footer-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 36px 0;
+}
+
+/* ─── BOTTOM SECTION: LEGAL BAR + COPYRIGHT ─── */
+.wm-footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.wm-footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.wm-footer-legal-links a,
+.wm-cookie-settings-btn {
+  font-size: 12.5px;
+  color: #64748b;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.wm-footer-legal-links a:hover,
+.wm-cookie-settings-btn:hover {
+  color: #09090b;
+}
+
+.wm-legal-dot {
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.wm-footer-copyright {
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+/* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
-  .footer-content {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-12);
+  .wm-footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .footer-brand {
-    grid-column: 1 / -1;
+  .wm-footer-brand-col {
     max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .footer-content {
+  .wm-footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .wm-footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-footer-links-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: 28px;
   }
+}
 
-  .footer-brand {
-    text-align: center;
-  }
-
-  .footer-social {
-    justify-content: center;
-  }
-
-  .footer-column {
-    text-align: center;
+@media (max-width: 640px) {
+  .wm-ai-footer {
+    padding: 52px 16px 28px;
   }
 }

@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Documentation & Onboarding Hub (Learn Workflow Mitra in Minutes)
+   ========================================================================== */
+
+.wm-doc-hub-section {
+  width: 100%;
+  padding: 72px 24px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.wm-doc-hub-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* SECTION HEADER */
+.wm-doc-hub-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wm-doc-hub-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f1f5f9;
+  color: #09090b;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 12px;
+}
+
+.wm-doc-hub-title {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 900;
+  color: #09090b;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+
+.wm-doc-hub-subtitle {
+  font-size: 15.5px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+/* 3-COLUMN CARDS GRID */
+.wm-doc-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* CARD CONTAINER */
+.wm-doc-hub-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px 22px 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.wm-doc-hub-card:hover {
+  border-color: #09090b;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px -4px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+/* TOP RIGHT CORNER BADGE */
+.wm-doc-corner-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 800;
+  background: #09090b;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+/* CARD TOP ICON & TITLE */
+.wm-doc-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.wm-doc-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #09090b;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.wm-doc-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #09090b;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.wm-doc-card-sub {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+/* CATEGORY TAG */
+.wm-doc-category-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin: 16px 0 8px;
+}
+
+/* LINKS LIST */
+.wm-doc-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wm-doc-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  line-height: 1.35;
+}
+
+.wm-doc-link-item:hover {
+  color: #09090b;
+  transform: translateX(2px);
+}
+
+.wm-doc-link-item svg {
+  color: #94a3b8;
+  flex-shrink: 0;
+  margin-left: 8px;
+  transition: transform 0.15s ease;
+}
+
+.wm-doc-link-item:hover svg {
+  color: #09090b;
+  transform: translateX(2px);
+}
+
+/* BOTTOM ACTION CTA */
+.wm-doc-bottom-cta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #09090b;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.wm-doc-bottom-cta:hover {
+  color: #ea580c;
+  gap: 8px;
+}
+
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+@media (max-width: 1024px) {
+  .wm-doc-hub-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .wm-doc-hub-section {
+    padding: 48px 16px;
+  }
+
+  .wm-doc-hub-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,18 +1,307 @@
-/* Width/centering already comes from DocsLayout's .docs-main — this
-   page only adds its own bottom breathing room. */
-.ihub { padding-bottom: 3rem; }
-.ihub__eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--docs-pink); margin-bottom: 0.9rem; }
-.ihub h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 650; letter-spacing: -0.01em; }
-.ihub__sub { color: var(--docs-ink-soft); font-size: 1.02rem; margin-top: 0.8rem; max-width: 54ch; }
-.ihub__search { display: block; margin: 1.6rem 0 1.2rem; max-width: 420px; width: 100%; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid var(--docs-line); font-size: 0.9rem; }
-.ihub__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-.ihub__chips button { font: inherit; font-size: 0.78rem; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--docs-line); background: #fff; color: var(--docs-ink-soft); cursor: pointer; }
-.ihub__chips button.active { background: var(--docs-ink); color: #fff; border-color: var(--docs-ink); }
-.ihub__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
-.ihub__card { border: 1px solid var(--docs-line); border-radius: 14px; padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; background: #fff; position: relative; text-decoration: none; color: var(--docs-ink); }
-.ihub__card--dim { opacity: 0.55; }
-.ihub__tile { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--docs-warm); }
-.ihub__card h3 { font-size: 0.98rem; font-weight: 650; }
-.ihub__card p { font-size: 0.82rem; color: var(--docs-ink-soft); margin: 0; }
-.ihub__status { position: absolute; top: 1rem; right: 1rem; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--docs-line); color: var(--docs-ink-soft); }
-.ihub__status--live { background: #E6F5F3; color: var(--docs-teal); }
+/* Docs Welcome Page Styles */
+
+.docs-welcome-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* HERO CARD */
+.docs-hero-card {
+  text-align: center;
+  padding: 48px 28px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+  border: 1px solid #e6e8eb;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.docs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #f1f3f5;
+  border: 1px solid #dfe3e6;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1d20;
+}
+
+.docs-title {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #111418;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.docs-desc {
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #5c6370;
+  margin: 0;
+}
+
+.docs-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.docs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.docs-btn--primary {
+  background: #111418;
+  color: #ffffff;
+  border: 1px solid #111418;
+}
+
+.docs-btn--primary:hover {
+  background: #2b3036;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.docs-btn--secondary {
+  background: #ffffff;
+  color: #111418;
+  border: 1px solid #d5d9df;
+}
+
+.docs-btn--secondary:hover {
+  background: #f8fafc;
+  border-color: #b0b8c4;
+}
+
+/* 4 FEATURE PILLARS */
+.docs-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.docs-pillar-card {
+  padding: 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.docs-pillar-card:hover {
+  border-color: #111418;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.docs-pillar-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.docs-pillar-icon--pink {
+  background: #fff0f5;
+  color: #e8388a;
+}
+
+.docs-pillar-icon--purple {
+  background: #f4f0fd;
+  color: #6c5ce7;
+}
+
+.docs-pillar-icon--teal {
+  background: #eefcf8;
+  color: #0f766e;
+}
+
+.docs-pillar-icon--amber {
+  background: #fff8eb;
+  color: #d97706;
+}
+
+.docs-pillar-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111418;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.docs-pillar-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #5c6370;
+  margin: 0;
+  flex: 1;
+}
+
+.docs-pillar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111418;
+  text-decoration: none;
+  margin-top: 6px;
+  transition: gap 0.15s ease;
+}
+
+.docs-pillar-link:hover {
+  gap: 10px;
+  color: #e8388a;
+}
+
+/* 3 STEPS WALKTHROUGH */
+.docs-steps-box {
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: #fbfbfc;
+  border: 1px solid #e8eaed;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.docs-steps-box h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111418;
+  margin: 0;
+}
+
+.docs-steps-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.docs-step-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.docs-step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #111418;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-step-item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111418;
+  margin: 0;
+}
+
+.docs-step-item p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #636b78;
+  margin: 0;
+}
+
+/* SUPPORT CARD */
+.docs-support-card {
+  padding: 28px 32px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.docs-support-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.docs-support-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #f1f5f9;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  shrink: 0;
+}
+
+.docs-support-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111418;
+  margin: 0 0 4px;
+}
+
+.docs-support-info p {
+  font-size: 13.5px;
+  color: #636b78;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .docs-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-steps-list {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-support-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .docs-title {
+    font-size: 28px;
+  }
+}

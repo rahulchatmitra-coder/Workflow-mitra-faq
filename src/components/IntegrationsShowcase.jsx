@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import './IntegrationsShowcase.css'
 
 import { getIntegrationBrandIcon } from '../utils/integrationBrandIcons'
@@ -32,7 +33,7 @@ function IntegrationsShowcase() {
         
         <div className="n8n-header">
           <h2 className="n8n-title">
-            Plug AI into your own data &<br/>connect your favourite apps
+            Plug AI into your own data &amp; connect your favourite apps
           </h2>
           <p className="n8n-subtitle">
             Use pre-built nodes for common apps. Custom API connections for everything else.
@@ -78,7 +79,8 @@ function IntegrationsShowcase() {
 
         <div className="n8n-cta-container">
           <Link to="/integrations" className="n8n-btn">
-            Browse all integrations
+            <span>Browse all integrations</span>
+            <ArrowRight size={15} />
           </Link>
         </div>
 
