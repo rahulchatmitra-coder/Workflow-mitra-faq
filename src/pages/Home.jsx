@@ -12,6 +12,7 @@ const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
 const IntegrationsShowcase = lazy(() => import('../components/IntegrationsShowcase'))
 const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
 const OnboardingSection = lazy(() => import('../credentials-portal/OnboardingSection'))
+const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
 
 const TEMPLATES = [
   {
@@ -781,7 +782,7 @@ function Home() {
                 <div className="wm-afford-pricing-card">
                   <div className="wm-afford-badge-row">
                     <span className="wm-afford-popular-pill">
-                      <Sparkles size={12} />
+                      <Sparkles size={13} />
                       <span>Starter Plan</span>
                     </span>
                     <span className="wm-afford-save-chip">Best Value</span>
@@ -801,29 +802,29 @@ function Home() {
 
                   <div className="wm-afford-specs-box">
                     <div className="wm-afford-spec-row">
-                      <span className="spec-label">Monthly Credits</span>
-                      <span className="spec-val">10,000 tasks</span>
+                      <span className="wm-spec-label">Monthly Credits</span>
+                      <span className="wm-spec-val font-bold">10,000 tasks</span>
                     </div>
                     <div className="wm-afford-spec-row">
-                      <span className="spec-label">Workflows</span>
-                      <span className="spec-val">Unlimited</span>
+                      <span className="wm-spec-label">Workflows</span>
+                      <span className="wm-spec-val val-green">Unlimited</span>
                     </div>
                     <div className="wm-afford-spec-row">
-                      <span className="spec-label">Team Members</span>
-                      <span className="spec-val">5 Included</span>
+                      <span className="wm-spec-label">Team Members</span>
+                      <span className="wm-spec-val">5 Included</span>
                     </div>
                     <div className="wm-afford-spec-row">
-                      <span className="spec-label">Execution Speed</span>
-                      <span className="spec-val">&lt; 0.2s Real-time</span>
+                      <span className="wm-spec-label">Execution Speed</span>
+                      <span className="wm-spec-val val-green">&lt; 0.2s Real-time</span>
                     </div>
                   </div>
 
-                  <a href="https://app.workflowmitra.com/signup" className="wm-afford-primary-btn">
+                  <a href="https://app.workflowmitra.com/signup" className="wm-afford-start-btn">
                     <span>Start Free 14-Day Trial</span>
-                    <ArrowRight size={15} />
+                    <ArrowRight size={16} />
                   </a>
 
-                  <span className="wm-afford-disclaimer">Instant access &middot; No credit card needed</span>
+                  <span className="wm-afford-card-subnote">Instant access &middot; No credit card needed</span>
                 </div>
               </div>
 
@@ -1193,49 +1194,11 @@ function Home() {
         </section>
       </DeferredHomeSection>
 
-      {/* 13 — Why WorkflowMitra */}
-      <DeferredHomeSection minHeight={420}>
-        <section className="why-section" id="why-us">
-          <div className="container">
-            <div className="section-header why-header-centered">
-              <div className="why-eyebrow-badge">
-                <span className="why-eyebrow-dot" />
-                <span>Built for Ambitious Teams</span>
-              </div>
-              <h2 className="section-title">Why teams choose WorkflowMitra</h2>
-              <p className="section-subtitle">The modern automation platform engineered to scale your operations without friction or enterprise pricing.</p>
-            </div>
-
-            <div className="why-grid">
-              {WHY_ITEMS.map((item) => (
-                <div className="why-card" key={item.label}>
-                  
-                  <div className="why-card-top">
-                    <div className="why-icon-wrap" style={{ background: item.bg, color: item.accent }}>
-                      {item.icon === 'easy' && <MousePointerClick size={22} />}
-                      {item.icon === 'affordable' && <Coins size={22} />}
-                      {item.icon === 'expert' && <Headphones size={22} />}
-                      {item.icon === 'powerful' && <Cpu size={22} />}
-                      {item.icon === 'flexible' && <Network size={22} />}
-                    </div>
-                    <span className="why-role-badge" style={{ color: item.accent, background: item.bg }}>
-                      {item.roleTag}
-                    </span>
-                  </div>
-
-                  <h3 className="why-label">{item.label}</h3>
-                  <p className="why-desc">{item.desc}</p>
-
-                  <div className="why-footer">
-                    <CheckCircle2 size={14} color="#059669" />
-                    <span>{item.benefit}</span>
-                  </div>
-
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+      {/* 13 — Why WorkflowMitra / Testimonials Slider */}
+      <DeferredHomeSection minHeight={480}>
+        <Suspense fallback={<div className="section-placeholder" style={{ minHeight: 480 }} />}>
+          <TestimonialSlider />
+        </Suspense>
       </DeferredHomeSection>
 
       {/* 14 — Documentation & Onboarding Hub */}
