@@ -1,12 +1,9 @@
 import {
   SiDeepseek, SiHubspot, SiZendesk, SiAsana, SiGmail, SiGooglesheets,
-  SiDiscord, SiNotion, SiStripe, SiGithub, SiJira, SiAirtable,
+  SiDiscord, SiNotion, SiStripe, SiGithub, SiJira, SiAirtable, SiWhatsapp, SiMake, SiZapier,
 } from 'react-icons/si'
 import { FaSalesforce, FaSlack } from 'react-icons/fa'
 
-// The integrations marquee only needs these marks. Keeping its registry
-// separate prevents the first homepage section from importing the much larger
-// AI/model icon catalog used by the docs and AI feature sections.
 function OpenAIIcon({ size = 32, color = '#10A37F' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
@@ -18,7 +15,9 @@ function OpenAIIcon({ size = 32, color = '#10A37F' }) {
 const INTEGRATION_ICONS = {
   deepseekai: { icon: SiDeepseek, color: '#4d6bfe' },
   openaichatgpt: { icon: OpenAIIcon, color: '#10A37F' },
+  openai: { icon: OpenAIIcon, color: '#10A37F' },
   hubspotcrm: { icon: SiHubspot, color: '#FF7A59' },
+  hubspot: { icon: SiHubspot, color: '#FF7A59' },
   zendesk: { icon: SiZendesk, color: '#03363D' },
   asana: { icon: SiAsana, color: '#273347' },
   salesforce: { icon: FaSalesforce, color: '#00A1E0' },
@@ -31,6 +30,9 @@ const INTEGRATION_ICONS = {
   github: { icon: SiGithub, color: '#181717' },
   jira: { icon: SiJira, color: '#0052CC' },
   airtable: { icon: SiAirtable, color: '#18BFFF' },
+  whatsapp: { icon: SiWhatsapp, color: '#25D366' },
+  make: { icon: SiMake, color: '#6F2CFF' },
+  zapier: { icon: SiZapier, color: '#FF4A00' },
 }
 
 export function getIntegrationBrandIcon(name, props = {}) {

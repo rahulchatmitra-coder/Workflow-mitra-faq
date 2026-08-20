@@ -18,12 +18,8 @@ export default function OnboardingSection() {
     <section className="wm-doc-hub-section" id="documentation-hub">
       <div className="wm-doc-hub-container">
         
-        {/* SECTION HEADER (CENTERED) */}
+        {/* SECTION HEADER (CLEAN SOLID THEME) */}
         <div className="wm-doc-hub-header">
-          <div className="wm-doc-hub-eyebrow">
-            <Sparkles size={13} color="#09090b" />
-            <span>Documentation Hub</span>
-          </div>
           <h2 className="wm-doc-hub-title">
             Learn Workflow Mitra in Minutes
           </h2>

@@ -1,0 +1,263 @@
+/* ==========================================================================
+   VisualAdaptSpeedSection — Make.com Exact Layout & Style with Photo + App Nodes
+   ========================================================================== */
+
+.wm-adapt-speed-section {
+  width: 100%;
+  padding: 84px 0 108px;
+  background: #ffffff;
+  border-top: 1px solid #f4f4f5;
+  border-bottom: 1px solid #f4f4f5;
+  position: relative;
+  font-family: inherit;
+}
+
+.wm-adapt-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* ─── Centered Header ─── */
+.wm-adapt-header {
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 36px;
+}
+
+.wm-adapt-title {
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: #09090b;
+  letter-spacing: -0.035em;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.wm-title-br {
+  display: block;
+}
+
+.wm-adapt-subtitle {
+  font-size: clamp(15.5px, 1.4vw, 17.5px);
+  color: #52525b;
+  line-height: 1.6;
+  font-weight: 450;
+  margin: 0 auto;
+  max-width: 760px;
+  text-wrap: balance;
+}
+
+/* ─── Department Filter Navigation Pills (Make.com Exact Look) ─── */
+.wm-dept-pills-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.wm-dept-pill-btn {
+  border: 1.5px solid transparent;
+  background: transparent;
+  padding: 8px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #52525b;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wm-dept-pill-btn:hover {
+  color: #09090b;
+  background: #f4f4f5;
+}
+
+.wm-dept-pill-btn.active {
+  color: #09090b;
+  background: #f4f4f5;
+  border-color: #09090b;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ─── Showcase Card Wrapper ─── */
+.wm-adapt-card-wrapper {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.wm-adapt-card-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* ─── Left Photo Column & Floating App Nodes ─── */
+.wm-adapt-photo-col {
+  width: 100%;
+}
+
+.wm-adapt-photo-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 380px;
+  border-radius: 24px;
+  overflow: visible;
+  background: #f4f4f5;
+  border: 1.5px solid #e4e4e7;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.wm-adapt-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 22px;
+  display: block;
+}
+
+/* Floating Connected App Node Bubble (Make.com Signature Look) */
+.wm-adapt-floating-node-pill {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1.5px solid #e4e4e7;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wm-adapt-floating-node-pill:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.18);
+}
+
+.wm-node-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.wm-node-dots-wire {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wm-node-dots-wire .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a1a1aa;
+}
+
+/* ─── Right Content Column ─── */
+.wm-adapt-content-col {
+  width: 100%;
+}
+
+.wm-adapt-content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.wm-adapt-dept-heading {
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 900;
+  color: #09090b;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.wm-adapt-dept-desc {
+  font-size: clamp(15.5px, 1.35vw, 17px);
+  color: #52525b;
+  line-height: 1.65;
+  font-weight: 450;
+  margin: 0 0 30px;
+}
+
+.wm-adapt-cta-row {
+  width: 100%;
+}
+
+.wm-adapt-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #09090b;
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 750;
+  padding: 13px 32px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.wm-adapt-action-btn:hover {
+  background: #27272a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+/* ─── Responsive Breakpoints ─── */
+@media (max-width: 960px) {
+  .wm-adapt-card-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .wm-adapt-photo-box {
+    aspect-ratio: 16 / 10;
+    min-height: auto;
+  }
+
+  .wm-title-br {
+    display: inline;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-adapt-speed-section {
+    padding: 60px 0 80px;
+  }
+
+  .wm-dept-pill-btn {
+    padding: 6px 16px;
+    font-size: 13.5px;
+  }
+
+  .wm-node-bubble {
+    width: 36px;
+    height: 36px;
+  }
+
+  .wm-adapt-dept-heading {
+    font-size: 26px;
+  }
+}

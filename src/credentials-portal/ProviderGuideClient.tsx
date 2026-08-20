@@ -202,17 +202,16 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
       {/* TOP NAVIGATION BACK BAR */}
       <div style={{ borderBottom: "1px solid #e4e4e7", background: "#fafafa", position: "sticky", top: 0, zIndex: 30 }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <button
-            onClick={handleBackToCredentials}
+          <Link
+            to="/credentials"
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
               fontSize: "13px",
-              fontWeight: 700,
+              fontWeight: 750,
               color: "#3f3f46",
-              background: "transparent",
-              border: "none",
+              textDecoration: "none",
               cursor: "pointer",
               padding: 0,
             }}
@@ -220,7 +219,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
           >
             <ArrowLeft size={16} />
             <span>Back to All Credentials</span>
-          </button>
+          </Link>
 
           {effectiveAppUrl && (
             <a

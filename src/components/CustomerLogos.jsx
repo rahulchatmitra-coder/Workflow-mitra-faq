@@ -1,4 +1,4 @@
-import './CustomerLogos.css'
+import React from 'react'
 
 export default function CustomerLogos() {
   const logos = [
@@ -11,12 +11,16 @@ export default function CustomerLogos() {
   ]
 
   return (
-    <section className="customer-logos-section">
-      <div className="container">
-        <div className="logos-wrapper">
+    <section className="py-8 bg-white border-y border-slate-100 overflow-hidden">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between gap-8 flex-wrap md:flex-nowrap opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
           {logos.map((logo, idx) => (
-            <div key={idx} className="logo-item">
-              <img src={logo.src} alt={`${logo.name} logo`} className="customer-logo" />
+            <div key={idx} className="flex items-center justify-center p-2 flex-1 min-w-[120px]">
+              <img 
+                src={logo.src} 
+                alt={`${logo.name} logo`} 
+                className="max-h-7 w-auto object-contain hover:scale-105 transition-transform" 
+              />
             </div>
           ))}
         </div>

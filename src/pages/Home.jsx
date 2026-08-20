@@ -1,16 +1,19 @@
 import { lazy, Suspense, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
+import VisualAdaptSpeedSection from '../components/VisualAdaptSpeedSection'
+import IntegrationsShowcase from '../components/IntegrationsShowcase'
+import ConicornHowWeWorkSection from '../components/ConicornHowWeWorkSection'
 import NodeChain from '../components/NodeChain'
 import DeferredHomeSection from '../components/DeferredHomeSection'
 import PageSeo from '../components/PageSeo'
-import { Sparkles, ArrowRight, CheckCircle2, Zap, Users, CreditCard, Layers, Bot, Play, XCircle, Clock, AlertCircle, ChevronRight, ChevronDown, TrendingUp, Headphones, ShoppingBag, MousePointerClick, Coins, Cpu, Network, HelpCircle, MessageCircle } from 'lucide-react'
+import { Sparkles, ArrowRight, CheckCircle2, Zap, Users, CreditCard, Layers, Bot, Play, XCircle, Clock, AlertCircle, ChevronRight, ChevronDown, TrendingUp, Headphones, ShoppingBag, MousePointerClick, Coins, Cpu, Network, HelpCircle, MessageCircle, Sliders } from 'lucide-react'
 import { SiZapier, SiMake, SiN8N } from 'react-icons/si'
 import './Home.css'
 
 const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
-const IntegrationsShowcase = lazy(() => import('../components/IntegrationsShowcase'))
 const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
+const ManualChaosVsAIClarity = lazy(() => import('../components/ManualChaosVsAIClarity'))
 const OnboardingSection = lazy(() => import('../credentials-portal/OnboardingSection'))
 const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
 
@@ -74,20 +77,23 @@ const HOW_STEPS = [
 ]
 
 const BEFORE_STEPS = [
-  { step: '01', title: 'Lead arrives via website form', desc: 'Sits unread in employee inbox for hours waiting for manual review.', tag: 'Manual Delay' },
-  { step: '02', title: 'Employee manually opens email', desc: 'Copy-pastes customer name, phone & email into a spreadsheet.', tag: 'Manual Entry' },
-  { step: '03', title: 'Logs into CRM & creates contact', desc: 'Risk of typos, duplicate records, and forgotten notes.', tag: 'Typo Risk' },
-  { step: '04', title: 'Pings sales team on Slack / WhatsApp', desc: 'Waits for someone on the team to manually claim the lead.', tag: 'Team Bottleneck' },
-  { step: '05', title: 'Drafts manual follow-up reminder', desc: 'Sets calendar reminders manually or forgets to follow up.', tag: 'Missed Follow-up' },
-  { step: '06', title: 'Sends confirmation email / message', desc: 'Takes 15–45 minutes while the prospect has already moved on.', tag: 'Lost Lead' },
+  { step: '01', title: '1. Build lead spreadsheet', desc: 'Manually gather lead details and meticulously organize them into structured rows and columns in a spreadsheet.', tag: 'Hours' },
+  { step: '02', title: '2. Hunt down valid emails', desc: 'Spend valuable hours researching prospects online and cross-checking databases to find accurate, working email addresses.', tag: 'Data Hunting' },
+  { step: '03', title: '3. Draft cold emails', desc: 'Individually write personalized outreach emails from scratch, hoping to resonate with each recipient.', tag: 'Manual Copy' },
+  { step: '04', title: '4. Schedule batch send', desc: 'Manually configure email campaigns, carefully selecting ideal send times to maximize open rates.', tag: 'Batch Delay' },
+  { step: '05', title: '5. Wait for replies', desc: 'Sit idly and wait, sometimes days, for prospects to slowly respond, creating uncertainty in your pipeline.', tag: 'Days Wasted' },
+  { step: '06', title: '6. Manual follow-ups', desc: 'Regularly revisit the spreadsheet, identify unresponsive leads, and manually craft and send additional follow-up messages.', tag: 'Tedious Work' },
+  { step: '07', title: '7. Qualify prospects on calls', desc: 'Schedule and conduct phone calls individually to determine the genuine interest level and qualification of prospects.', tag: 'Time Drain' },
+  { step: '08', title: '8. Back-and-forth scheduling', desc: 'Playing the never-ending back and forth with clients to coordinate calendar availability and meeting links.', tag: 'Calendar Chaos' },
+  { step: '09', title: '9. Update CRM fields', desc: 'Spend extra hours manually logging interactions, notes, updates, and lead status into your CRM to keep records up-to-date.', tag: 'Admin Work' },
+  { step: '10', title: '10. Meeting finally confirmed', desc: 'After numerous manual tasks, repeated efforts, and days of waiting, finally confirm the meeting with your prospect.', tag: 'Slow Velocity' },
 ]
 
 const AFTER_STEPS = [
-  { step: '01', title: 'Instant Webhook Trigger', desc: 'Form submission triggers WorkflowMitra pipeline in under 0.2s.', tag: 'Instant Trigger' },
-  { step: '02', title: 'Automated CRM & Contact Sync', desc: 'Instantly enriches, deduplicates, and logs contact in HubSpot CRM.', tag: '100% Accurate' },
-  { step: '03', title: 'AI Scoring & Round-Robin Routing', desc: 'Claude AI scores lead urgency and assigns to next available rep.', tag: 'AI Qualified' },
-  { step: '04', title: 'Instant WhatsApp Outreach', desc: 'Personalized WhatsApp welcome message & brochure sent instantly.', tag: '< 2s Response' },
-  { step: '05', title: 'Team Slack Alert & Task Schedule', desc: 'Sales rep gets instant ping with prospect brief and next steps.', tag: '24/7 Autopilot' },
+  { step: '01', title: '1. Connect your CRM & Inbound Sources', desc: 'Seamlessly plug your existing CRM and tools into WorkflowMitra—no setup headaches, zero code. Just connect and let the automation begin.', tag: 'Instant Sync' },
+  { step: '02', title: '2. AI scores & personalizes leads', desc: 'Instantly analyzes and ranks your leads based on relevance and buying intent, then tailors outreach to each one—before you even lift a finger.', tag: 'AI Powered' },
+  { step: '03', title: '3. Smart follow-up launches on Autopilot', desc: 'Outreach never sleeps. Your AI agent sends timely, personalized follow-ups across WhatsApp & Email around the clock to maximize response rates.', tag: '24/7 Autopilot' },
+  { step: '04', title: '4. Calendar filled—meeting booked & closed', desc: 'Once replies come in, the AI handles scheduling and confirmations—dropping booked meetings directly into your calendar, no back-and-forth.', tag: '5× Faster' },
 ]
 
 const CATEGORIES = ['All', 'Lead capture', 'E-commerce', 'AI', 'Customer support']
@@ -120,7 +126,7 @@ const STACKED_USE_CASES = [
     title: 'Autonomous Support Ticket Triage & SLA Escalation',
     desc: 'Parse incoming support tickets across email, WhatsApp, and chat. AI categorizes urgency, drafts verified replies from your knowledge base, and escalates complex issues directly to Slack channels.',
     link: '/solutions/support',
-    accent: '#2563eb',
+    accent: '#059669',
     nodes: [
       { step: '01 Trigger', label: 'New Ticket', app: 'Zendesk / Email' },
       { step: '02 AI Logic', label: 'Sentiment & Triage', app: 'Claude AI Engine' },
@@ -140,7 +146,7 @@ const STACKED_USE_CASES = [
     title: 'Multi-Channel Order Routing & Inventory Sync',
     desc: 'Automate post-purchase fulfillment from order receipt to tracking delivery. Automatically generate GST invoices in Zoho Books, update Shopify inventory, and send personalized WhatsApp shipping updates.',
     link: '/solutions/operations',
-    accent: '#7c3aed',
+    accent: '#059669',
     nodes: [
       { step: '01 Trigger', label: 'New Order Paid', app: 'Shopify Store' },
       { step: '02 Finance', label: 'GST Invoice Generated', app: 'Zoho Books' },
@@ -160,7 +166,7 @@ const STACKED_USE_CASES = [
     title: 'Meeting Booked → Research Dossier → Follow-Up Automation',
     desc: 'When a prospect schedules a demo on Cal.com, AI runs web research on their company, creates a customized briefing doc in Google Docs, and drafts personalized follow-up templates ready for the call.',
     link: '/solutions/sales',
-    accent: '#0284c7',
+    accent: '#059669',
     nodes: [
       { step: '01 Trigger', label: 'Demo Booked', app: 'Cal.com / Calendly' },
       { step: '02 Research', label: 'Company Deep-Dive', app: 'AI Web Agent' },
@@ -350,256 +356,11 @@ function Home() {
       {/* 1 — Hero */}
       <HeroAnimated />
 
-      {/* 2 — Trust / Positioning Strip (Ultra-Modern AI Automation Strip) */}
-      <section className="wm-trust-section" aria-label="Key benefits">
-        <div className="wm-trust-container">
-          
-          {/* Top Centered Headline */}
-          <div className="wm-trust-header">
-            <h2 className="wm-trust-headline">
-              Built for people who want automation — not an automation degree.
-            </h2>
-          </div>
+      {/* 2 — Adapt at speed with visual-first automation and AI (Departmental Solutions Showcase) */}
+      <VisualAdaptSpeedSection />
 
-          {/* 4 Premium Value Cards Grid */}
-          <div className="wm-trust-cards-grid">
-            
-            {/* Card 1: Easy to Use */}
-            <div className="wm-trust-card wm-trust-card-orange">
-              <div className="wm-trust-card-top">
-                <div className="wm-trust-icon-disc disc-orange">
-                  <Sparkles size={18} />
-                </div>
-                <span className="wm-trust-card-pill pill-orange">Visual Canvas</span>
-              </div>
-              <h3 className="wm-trust-card-title">Easy to use</h3>
-              <p className="wm-trust-card-desc">No coding or scripting required. Pre-built drag-and-drop workflow nodes.</p>
-            </div>
-
-            {/* Card 2: Affordable */}
-            <div className="wm-trust-card wm-trust-card-emerald">
-              <div className="wm-trust-card-top">
-                <div className="wm-trust-icon-disc disc-emerald">
-                  <CreditCard size={18} />
-                </div>
-                <span className="wm-trust-card-pill pill-emerald">From ₹999/mo</span>
-              </div>
-              <h3 className="wm-trust-card-title">Fair &amp; Affordable</h3>
-              <p className="wm-trust-card-desc">Includes 10,000 credits, unlimited active workflows &amp; 5 team seats.</p>
-            </div>
-
-            {/* Card 3: Expert Assistance */}
-            <div className="wm-trust-card wm-trust-card-indigo">
-              <div className="wm-trust-card-top">
-                <div className="wm-trust-icon-disc disc-indigo">
-                  <Users size={18} />
-                </div>
-                <span className="wm-trust-card-pill pill-indigo">1-on-1 Help</span>
-              </div>
-              <h3 className="wm-trust-card-title">Expert Assistance</h3>
-              <p className="wm-trust-card-desc">Real automation engineers help you audit, design, and launch live.</p>
-            </div>
-
-            {/* Card 4: Powerful Workflows */}
-            <div className="wm-trust-card wm-trust-card-purple">
-              <div className="wm-trust-card-top">
-                <div className="wm-trust-icon-disc disc-purple">
-                  <Zap size={18} />
-                </div>
-                <span className="wm-trust-card-pill pill-purple">AI + Logic</span>
-              </div>
-              <h3 className="wm-trust-card-title">Powerful Workflows</h3>
-              <p className="wm-trust-card-desc">Branching rules, Claude AI agents, loops, routing &amp; 37+ integrations.</p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3 — How It Works (Ultra-Modern Connected AI Workflow Rail) */}
-      <section className="wm-how-section" id="how-it-works">
-        <div className="wm-how-container">
-          
-          {/* Centered Section Header */}
-          <div className="wm-how-header">
-            <h2 className="wm-how-title">
-              From trigger to autopilot in 5 simple steps.
-            </h2>
-            <p className="wm-how-subtitle">
-              Connect your favorite business apps, inject AI intelligence, and let your workflows run 24/7 — without writing a single line of code.
-            </p>
-          </div>
-
-          {/* Continuous Flow Pipeline Rail */}
-          <div className="wm-how-rail-wrapper">
-            
-            {/* The Horizontal Glowing Data Flow Wire (Desktop) */}
-            <div className="wm-how-flow-wire" aria-hidden="true">
-              <div className="wm-how-wire-pulse" />
-            </div>
-
-            {/* 5-Step Floating Interactive Cards Grid */}
-            <div className="wm-how-pipeline-grid">
-              
-              {/* Step 1: Trigger */}
-              <div className="wm-how-step-card step-orange">
-                <div className="wm-how-card-glow-bg glow-orange" />
-                <div className="wm-how-card-header">
-                  <div className="wm-how-node-avatar disc-orange">
-                    <Zap size={18} />
-                    <span className="wm-how-node-seq">01</span>
-                  </div>
-                  <div className="wm-how-node-status">
-                    <span className="wm-how-status-live" />
-                    <span>Trigger</span>
-                  </div>
-                </div>
-
-                <div className="wm-how-card-content">
-                  <h3 className="wm-how-card-title">Choose what starts your workflow</h3>
-                  <p className="wm-how-card-desc">
-                    Pick a trigger — form submission, new Stripe order, scheduled cron, or webhook from any app.
-                  </p>
-                </div>
-
-                <div className="wm-how-card-footer">
-                  <div className="wm-how-meta-chip chip-orange">
-                    <span className="chip-dot" />
-                    <span>Instant Webhook / Polling</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2: AI & Logic */}
-              <div className="wm-how-step-card step-indigo">
-                <div className="wm-how-card-glow-bg glow-indigo" />
-                <div className="wm-how-card-header">
-                  <div className="wm-how-node-avatar disc-indigo">
-                    <Bot size={18} />
-                    <span className="wm-how-node-seq">02</span>
-                  </div>
-                  <div className="wm-how-node-status">
-                    <span className="wm-how-status-live" style={{ background: '#6366f1' }} />
-                    <span>AI Logic</span>
-                  </div>
-                </div>
-
-                <div className="wm-how-card-content">
-                  <h3 className="wm-how-card-title">Add the actions you need</h3>
-                  <p className="wm-how-card-desc">
-                    Send WhatsApp notifications, update HubSpot records, run Claude AI triage, or branch rules.
-                  </p>
-                </div>
-
-                <div className="wm-how-card-footer">
-                  <div className="wm-how-meta-chip chip-indigo">
-                    <span className="chip-dot" style={{ background: '#6366f1' }} />
-                    <span>Claude / OpenAI Agents</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3: Integrations */}
-              <div className="wm-how-step-card step-emerald">
-                <div className="wm-how-card-glow-bg glow-emerald" />
-                <div className="wm-how-card-header">
-                  <div className="wm-how-node-avatar disc-emerald">
-                    <Layers size={18} />
-                    <span className="wm-how-node-seq">03</span>
-                  </div>
-                  <div className="wm-how-node-status">
-                    <span className="wm-how-status-live" style={{ background: '#10b981' }} />
-                    <span>Connected</span>
-                  </div>
-                </div>
-
-                <div className="wm-how-card-content">
-                  <h3 className="wm-how-card-title">Connect your tools</h3>
-                  <p className="wm-how-card-desc">
-                    Securely authenticate WhatsApp, Google Sheets, Zoho, Shopify, Slack, and 37+ popular SaaS apps.
-                  </p>
-                </div>
-
-                <div className="wm-how-card-footer">
-                  <div className="wm-how-meta-chip chip-emerald">
-                    <span className="chip-dot" style={{ background: '#10b981' }} />
-                    <span>Zero-Code OAuth &amp; API</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4: Sandbox Testing */}
-              <div className="wm-how-step-card step-blue">
-                <div className="wm-how-card-glow-bg glow-blue" />
-                <div className="wm-how-card-header">
-                  <div className="wm-how-node-avatar disc-blue">
-                    <Play size={18} />
-                    <span className="wm-how-node-seq">04</span>
-                  </div>
-                  <div className="wm-how-node-status">
-                    <span className="wm-how-status-live" style={{ background: '#3b82f6' }} />
-                    <span>Sandbox</span>
-                  </div>
-                </div>
-
-                <div className="wm-how-card-content">
-                  <h3 className="wm-how-card-title">Test before you go live</h3>
-                  <p className="wm-how-card-desc">
-                    Execute a simulation run with test payloads. Inspect output logs &amp; debug in real-time.
-                  </p>
-                </div>
-
-                <div className="wm-how-card-footer">
-                  <div className="wm-how-meta-chip chip-blue">
-                    <span className="chip-dot" style={{ background: '#3b82f6' }} />
-                    <span>1-Click Test Execution</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5: Autopilot */}
-              <div className="wm-how-step-card step-purple">
-                <div className="wm-how-card-glow-bg glow-purple" />
-                <div className="wm-how-card-header">
-                  <div className="wm-how-node-avatar disc-purple">
-                    <CheckCircle2 size={18} />
-                    <span className="wm-how-node-seq">05</span>
-                  </div>
-                  <div className="wm-how-node-status">
-                    <span className="wm-how-status-live" style={{ background: '#a855f7' }} />
-                    <span>Autopilot</span>
-                  </div>
-                </div>
-
-                <div className="wm-how-card-content">
-                  <h3 className="wm-how-card-title">Turn it on &amp; scale</h3>
-                  <p className="wm-how-card-desc">
-                    Toggle active and let WorkflowMitra handle operations 24/7 with enterprise reliability.
-                  </p>
-                </div>
-
-                <div className="wm-how-card-footer">
-                  <div className="wm-how-meta-chip chip-purple">
-                    <span className="chip-dot" style={{ background: '#a855f7' }} />
-                    <span>99.8% SLA &amp; Auto-Retry</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Bottom Interactive CTA Note */}
-          <div className="wm-how-bottom-cta">
-            <a href="https://app.workflowmitra.com/signup" className="wm-how-cta-pill">
-              <span>Start building your first workflow for free</span>
-              <ArrowRight size={14} />
-            </a>
-          </div>
-
-        </div>
-      </section>
+      {/* 3 — Effortless Tool Integrations (Orbital Interactive Showcase) */}
+      <IntegrationsShowcase />
 
       {/* 4 — Interactive Workflow Showcase (Left Canvas + Right Selection) */}
       <DeferredHomeSection minHeight={580}>
@@ -608,112 +369,11 @@ function Home() {
         </Suspense>
       </DeferredHomeSection>
 
-      {/* 5 — Before vs After (Ultra-Colorful Visual Comparison) */}
-      <DeferredHomeSection minHeight={520}>
-        <section className="before-after-section" id="comparison">
-          <div className="container">
-            <div className="section-header">
-              <h2 className="section-title">One trigger. Everything else handled.</h2>
-              <p className="section-subtitle">See how a single automated workflow replaces hours of painful manual steps.</p>
-            </div>
-
-            <div className="wm-ba-comparison-grid">
-              
-              {/* Column 1: Without WorkflowMitra (Manual Chaos) */}
-              <div className="wm-ba-card wm-ba-manual">
-                <div className="wm-ba-card-header">
-                  <div className="wm-ba-badge-row">
-                    <span className="wm-ba-status-badge badge-red">
-                      <span className="wm-ba-pulse-red" />
-                      <span>Manual Process</span>
-                    </span>
-                    <span className="wm-ba-time-pill pill-red">
-                      <Clock size={12} />
-                      <span>~15 Mins / Lead</span>
-                    </span>
-                  </div>
-                  <h3 className="wm-ba-card-title text-red">Without WorkflowMitra</h3>
-                  <p className="wm-ba-card-desc">Repetitive copy-pasting across fragmented browser tabs and spreadsheets.</p>
-                </div>
-
-                <div className="wm-ba-steps-list">
-                  {BEFORE_STEPS.map((item, i) => (
-                    <div className="wm-ba-step-row row-manual" key={i}>
-                      <div className="wm-ba-step-icon-wrap icon-red">
-                        <XCircle size={16} />
-                      </div>
-                      <div className="wm-ba-step-body">
-                        <div className="wm-ba-step-top">
-                          <span className="wm-ba-step-num">Step {item.step}</span>
-                          <span className="wm-ba-step-tag tag-red">{item.tag}</span>
-                        </div>
-                        <h4 className="wm-ba-step-heading">{item.title}</h4>
-                        <p className="wm-ba-step-sub">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="wm-ba-card-footer footer-red">
-                  <div className="wm-ba-footer-icon">
-                    <AlertCircle size={18} color="#ef4444" />
-                  </div>
-                  <div className="wm-ba-footer-text">
-                    <span className="wm-ba-footer-highlight">~15 minutes per lead, every time</span>
-                    <span className="wm-ba-footer-sub">High human error risk · Missed follow-ups · Frustrated team</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Column 2: With WorkflowMitra (Automated Autopilot) */}
-              <div className="wm-ba-card wm-ba-automated">
-                <div className="wm-ba-card-header">
-                  <div className="wm-ba-badge-row">
-                    <span className="wm-ba-status-badge badge-green">
-                      <span className="wm-ba-pulse-green" />
-                      <span>100% Autopilot</span>
-                    </span>
-                    <span className="wm-ba-time-pill pill-green">
-                      <Zap size={12} />
-                      <span>&lt; 2s Instant</span>
-                    </span>
-                  </div>
-                  <h3 className="wm-ba-card-title text-green">With WorkflowMitra</h3>
-                  <p className="wm-ba-card-desc">One trigger automatically executes your entire business pipeline in parallel.</p>
-                </div>
-
-                <div className="wm-ba-steps-list">
-                  {AFTER_STEPS.map((item, i) => (
-                    <div className="wm-ba-step-row row-automated" key={i}>
-                      <div className="wm-ba-step-icon-wrap icon-green">
-                        <CheckCircle2 size={16} />
-                      </div>
-                      <div className="wm-ba-step-body">
-                        <div className="wm-ba-step-top">
-                          <span className="wm-ba-step-num num-green">Step {item.step}</span>
-                          <span className="wm-ba-step-tag tag-green">{item.tag}</span>
-                        </div>
-                        <h4 className="wm-ba-step-heading">{item.title}</h4>
-                        <p className="wm-ba-step-sub">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="wm-ba-card-footer footer-green">
-                  <div className="wm-ba-footer-icon">
-                    <Sparkles size={18} color="#10b981" />
-                  </div>
-                  <div className="wm-ba-footer-text">
-                    <span className="wm-ba-footer-highlight text-emerald">Instant &amp; error-free — every single time</span>
-                    <span className="wm-ba-footer-sub">Zero manual effort · Instant WhatsApp outreach · 99.8% SLA</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+      {/* 5 — Manual Chaos → AI Clarity (Side-by-Side Comparison & Interactive Mock UI) */}
+      <DeferredHomeSection minHeight={580}>
+        <Suspense fallback={<div className="section-placeholder" style={{ minHeight: 580 }} />}>
+          <ManualChaosVsAIClarity />
+        </Suspense>
       </DeferredHomeSection>
 
       {/* 6 — AI-powered Automation */}
@@ -1001,12 +661,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 10 — Integrations */}
-      <DeferredHomeSection minHeight={520}>
-        <Suspense fallback={null}>
-          <IntegrationsShowcase />
-        </Suspense>
-      </DeferredHomeSection>
+      {/* 10 — How It Works (Conicorn-style 5-Step Process with Scroll-Linked Timeline Line) */}
+      <ConicornHowWeWorkSection />
 
       {/* 11 — Templates */}
       <DeferredHomeSection minHeight={540}>

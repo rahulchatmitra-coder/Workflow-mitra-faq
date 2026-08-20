@@ -23,26 +23,7 @@ export function OnboardingSection() {
     >
       {/* SECTION HEADER */}
       <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            borderRadius: '9999px',
-            padding: '5px 16px',
-            fontSize: '11px',
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.06em',
-            background: '#f4f4f5',
-            border: '1px solid #e4e4e7',
-            color: '#09090b',
-            marginBottom: '12px',
-          }}
-        >
-          <Sparkles size={13} color="#09090b" />
-          <span>Documentation Hub</span>
-        </div>
+
 
         <h2
           style={{

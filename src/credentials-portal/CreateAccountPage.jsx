@@ -115,11 +115,7 @@ export default function CreateAccountPage() {
 
   const handleBackToHelpCenter = (e) => {
     e.preventDefault()
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1)
-    } else {
-      navigate('/')
-    }
+    navigate('/automation-help')
   }
 
   const totalSteps = onboardingGuide.length
@@ -243,8 +239,8 @@ export default function CreateAccountPage() {
       {/* TOP NAVIGATION BACK BAR */}
       <div style={{ borderBottom: '1px solid #e4e4e7', background: '#fafafa', position: 'sticky', top: 0, zIndex: 30 }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '12px 24px' }}>
-          <button
-            onClick={handleBackToHelpCenter}
+          <Link
+            to="/docs"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -252,8 +248,7 @@ export default function CreateAccountPage() {
               fontSize: '13px',
               fontWeight: 700,
               color: '#3f3f46',
-              background: 'transparent',
-              border: 'none',
+              textDecoration: 'none',
               cursor: 'pointer',
               padding: 0,
             }}
@@ -261,7 +256,7 @@ export default function CreateAccountPage() {
           >
             <ArrowLeft size={16} />
             <span>Back to Help Center</span>
-          </button>
+          </Link>
         </div>
       </div>
 
