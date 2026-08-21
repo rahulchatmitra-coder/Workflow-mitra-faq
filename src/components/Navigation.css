@@ -9,13 +9,22 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  width: 100%;
+  --ink: #1a1615;
+  --border: #e2e8f0;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-wrapper.scrolled {
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #eef2f6;
-  width: 100%;
-  --ink: #09090b;
-  --border: #e2e8f0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
 .navbar {
@@ -40,30 +49,30 @@
 }
 
 .navbar.scrolled {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 850;
+  font-weight: 800;
   font-size: 20px;
   letter-spacing: -0.025em;
   text-decoration: none;
-  color: var(--ink);
+  color: #1a1615;
   transition: opacity 0.2s ease;
 }
 
 .logo:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .logo-mark {
   width: 26px;
   height: 26px;
-  border-radius: 8px;
-  background: var(--ink);
+  border-radius: 7px;
+  background: #1a1615;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -83,8 +92,8 @@
 
 .navbar .nav-links li, .navbar .nav-links a, .nav-dropdown-btn {
   font-size: 14.5px;
-  font-weight: 600;
-  color: #475569;
+  font-weight: 550;
+  color: #1a1615;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -101,8 +110,8 @@
 .navbar .nav-links li:hover > a,
 .navbar .nav-links li:hover > .nav-dropdown-btn,
 .navbar .nav-links a:hover {
-  color: #09090b;
-  background: #f1f5f9;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .navbar .nav-links svg {
@@ -128,12 +137,14 @@
 .wm-nav-login-btn,
 .talk-to-sales {
   font-size: 14px;
-  font-weight: 750;
-  color: #334155;
+  font-weight: 600;
+  color: #1a1615;
   padding: 8px 18px;
-  border-radius: 10px;
-  border: 1.5px solid #e2e8f0;
-  background: #ffffff;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -144,25 +155,25 @@
 
 .wm-nav-login-btn:hover,
 .talk-to-sales:hover {
-  color: #09090b;
-  border-color: #cbd5e1;
-  background: #f8fafc;
+  color: #1a1615;
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* 2. Signup Button */
 .wm-nav-signup-btn,
 .get-started {
   font-size: 14px;
-  font-weight: 850;
+  font-weight: 600;
   color: #ffffff !important;
-  padding: 8.5px 20px;
-  border-radius: 10px;
-  background: #09090b;
-  border: 1px solid #09090b;
+  padding: 8.5px 22px;
+  border-radius: 100px;
+  background: #1a1615;
+  border: 1px solid #1a1615;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(26, 22, 21, 0.2);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
@@ -176,10 +187,10 @@
 
 .wm-nav-signup-btn:hover,
 .get-started:hover {
-  background: #27272a;
-  border-color: #27272a;
+  background: #2b2624;
+  border-color: #2b2624;
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 20px rgba(26, 22, 21, 0.3);
 }
 
 .wm-nav-signup-btn:hover svg {
@@ -254,28 +265,31 @@
 }
 
 .nav-link {
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color: var(--color-text-secondary);
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 550;
+  color: #1a1615;
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-2) var(--space-1);
+  padding: 6px 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  transition: color var(--transition-fast);
+  gap: 5px;
+  transition: all 0.18s ease;
 }
 
 .nav-link .chevron {
   font-size: 10px;
-  opacity: 0.5;
+  opacity: 0.8;
+  color: currentColor;
 }
 
 .nav-link:hover {
-  color: var(--color-text-primary);
+  color: #000000;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .simple-dropdown-menu {

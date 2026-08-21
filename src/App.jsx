@@ -1,5 +1,6 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Lenis from 'lenis'
 import { TextColorProvider } from './credentials-portal/TextColorContext'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
@@ -32,6 +33,25 @@ const CredentialsPage = lazy(() => import('./credentials-portal/CredentialsPage'
 const CredentialProviderPage = lazy(() => import('./credentials-portal/CredentialProviderPage'))
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
   return (
     <TextColorProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>

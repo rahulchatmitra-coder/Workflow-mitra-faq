@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
-import VisualAdaptSpeedSection from '../components/VisualAdaptSpeedSection'
+import EnterpriseScaleSection from '../components/EnterpriseScaleSection'
 import IntegrationsShowcase from '../components/IntegrationsShowcase'
 import ConicornHowWeWorkSection from '../components/ConicornHowWeWorkSection'
 import NodeChain from '../components/NodeChain'
@@ -356,8 +356,8 @@ function Home() {
       {/* 1 — Hero */}
       <HeroAnimated />
 
-      {/* 2 — Adapt at speed with visual-first automation and AI (Departmental Solutions Showcase) */}
-      <VisualAdaptSpeedSection />
+      {/* 2 — Built for enterprise scale and trust (OmniAgent Reference 1:1) */}
+      <EnterpriseScaleSection />
 
       {/* 3 — Effortless Tool Integrations (Orbital Interactive Showcase) */}
       <IntegrationsShowcase />

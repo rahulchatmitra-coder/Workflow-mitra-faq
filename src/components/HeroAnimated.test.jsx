@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import HeroAnimated from './HeroAnimated'
 
@@ -7,48 +7,51 @@ const renderHero = () =>
   render(<MemoryRouter><HeroAnimated /></MemoryRouter>)
 
 describe('HeroAnimated', () => {
-  it('renders four clusters', () => {
-    const { container } = renderHero()
-    expect(container.querySelectorAll('.agent-decoration-wrapper')).toHaveLength(4)
-  })
-
-  it('renders 24 real logo chips across the clusters', () => {
-    const { container } = renderHero()
-    const chips = container.querySelectorAll('.agent-chip')
-    expect(chips).toHaveLength(24)
-    chips.forEach((chip) => expect(chip.querySelector('svg')).toBeInTheDocument())
-  })
-
-  it('renders one named cursor per cluster', () => {
+  it('renders the main headline, subtitle, and eyebrow pill', () => {
     const { getByText } = renderHero()
-    ;['Katherine', 'Aron', 'Marcelo', 'Rahul'].forEach((name) =>
-      expect(getByText(name)).toBeInTheDocument()
-    )
+    expect(getByText(/Build & Scale AI Workflows/i)).toBeInTheDocument()
+    expect(getByText(/Next-Gen AI Workflow Automation/i)).toBeInTheDocument()
+    expect(getByText(/Connect your SaaS apps, orchestrate autonomous AI reasoning agents/i)).toBeInTheDocument()
   })
 
-  it('uses all four mascot silhouettes', () => {
+  it('renders primary and secondary calls to action with valid links', () => {
+    const { getByRole } = renderHero()
+    const primaryBtn = getByRole('link', { name: /Start Building Free/i })
+    const secondaryBtn = getByRole('link', { name: /Get 1-on-1 Automation Help/i })
+
+    expect(primaryBtn).toBeInTheDocument()
+    expect(primaryBtn).toHaveAttribute('href', 'https://app.workflowmitra.com/signup')
+
+    expect(secondaryBtn).toBeInTheDocument()
+    expect(secondaryBtn).toHaveAttribute('href', '/contact')
+  })
+
+  it('renders trust reassurance badges', () => {
+    const { getByText } = renderHero()
+    expect(getByText(/Free 14-day trial/i)).toBeInTheDocument()
+    expect(getByText(/No credit card required/i)).toBeInTheDocument()
+    expect(getByText(/1-on-1 Expert setup help/i)).toBeInTheDocument()
+  })
+
+  it('renders all 5 workflow pipeline stages', () => {
     const { container } = renderHero()
-    ;[0, 1, 2, 3].forEach((i) =>
-      expect(container.querySelector(`[data-mascot="${i}"]`)).toBeInTheDocument()
-    )
+    const nodeCards = container.querySelectorAll('.canvas-node-card')
+    expect(nodeCards).toHaveLength(5)
   })
 
-  it('keeps the headline and both calls to action', () => {
-    const { getByText, getByRole } = renderHero()
-    expect(getByText(/No coding required/i)).toBeInTheDocument()
-    expect(getByRole('link', { name: /Start Building Free/ })).toBeInTheDocument()
-    expect(getByRole('link', { name: /Get Help Building My Workflow/ })).toBeInTheDocument()
+  it('renders the interactive workflow mockup with simulation button', () => {
+    const { getByRole, getByText } = renderHero()
+    const testBtn = getByRole('button', { name: /Run workflow simulation/i })
+    expect(testBtn).toBeInTheDocument()
+
+    // Clicking test button activates simulation
+    fireEvent.click(testBtn)
+    expect(getByText(/Simulating/i)).toBeInTheDocument()
   })
 
-  it('keeps the decorations hidden below the desktop breakpoint', () => {
-    const { container } = renderHero()
-    expect(container.querySelector('.hero-decorations').classList.contains('desktop-only')).toBe(true)
-  })
-
-  it('renders a real FlowCanvas product panel alongside the existing mascot decorations', () => {
-    const { container } = renderHero()
-    expect(container.querySelectorAll('.agent-decoration-wrapper')).toHaveLength(4)
-    expect(container.querySelector('.hero-canvas-panel .fc-canvas')).toBeInTheDocument()
-    expect(container.querySelectorAll('.hero-canvas-panel .fc-node').length).toBeGreaterThan(0)
+  it('renders live execution telemetry and inspector box', () => {
+    const { getByText, container } = renderHero()
+    expect(container.querySelector('.canvas-telemetry-banner')).toBeInTheDocument()
+    expect(getByText(/Live Execution Payload & AI Output/i)).toBeInTheDocument()
   })
 })

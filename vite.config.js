@@ -21,6 +21,9 @@ export default defineConfig({
     port: 3000,
     open: true
   },
+  optimizeDeps: {
+    include: ['lenis', 'gsap', 'framer-motion']
+  },
   build: {
     target: 'esnext',
     cssCodeSplit: true,

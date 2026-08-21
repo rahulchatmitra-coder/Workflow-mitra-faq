@@ -69,7 +69,7 @@ function Navigation() {
 
   return (
     <>
-      <div className="nav-wrapper">
+      <div className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="navbar-container">
             {/* Logo */}
@@ -92,12 +92,12 @@ function Navigation() {
                   aria-expanded={isSolutionsOpen}
                   aria-haspopup="true"
                 >
-                  Solutions <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#6b7280" strokeWidth="1.4" fill="none"/></svg>
+                  Solutions <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none"/></svg>
                 </Link>
               </li>
               <li className="nav-dropdown">
                 <button className="nav-link nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Resources menu">
-                  Resources <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#6b7280" strokeWidth="1.4" fill="none"/></svg>
+                  Resources <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none"/></svg>
                 </button>
                 <div className="simple-dropdown-menu">
                   <Link to="/templates" className="simple-dropdown-item">Templates</Link>
@@ -111,12 +111,6 @@ function Navigation() {
 
             {/* CTA Buttons */}
             <div className="nav-right desktop-only">
-              <a
-                href="https://app.workflowmitra.com/login"
-                className="wm-nav-login-btn"
-              >
-                Login
-              </a>
               <a
                 href="https://app.workflowmitra.com/signup"
                 className="wm-nav-signup-btn"
