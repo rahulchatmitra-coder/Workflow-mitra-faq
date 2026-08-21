@@ -6,7 +6,7 @@ import {
   UserPlus,
   Zap,
   ChevronRight,
-  Sparkles,
+  ArrowRight,
 } from 'lucide-react'
 import { PROVIDER_LIST } from './credentials-data'
 import './OnboardingSection.css'
@@ -18,17 +18,17 @@ export default function OnboardingSection() {
     <section className="wm-doc-hub-section" id="documentation-hub">
       <div className="wm-doc-hub-container">
         
-        {/* SECTION HEADER (CLEAN SOLID THEME) */}
+        {/* SECTION HEADER */}
         <div className="wm-doc-hub-header">
           <h2 className="wm-doc-hub-title">
-            Learn Workflow Mitra in Minutes
+            Learn WorkflowMitra in <span className="wm-doc-title-highlight">Minutes</span>
           </h2>
           <p className="wm-doc-hub-subtitle">
-            Explore our interactive visual guides to create your account, connect API credentials, and automate workflows.
+            Explore step-by-step interactive visual guides to create your account, connect {providerCount}+ API credentials, and automate workflows effortlessly.
           </p>
         </div>
 
-        {/* 3-COLUMN CARDS GRID */}
+        {/* 3-COLUMN UNIFIED THEME CARDS GRID */}
         <div className="wm-doc-hub-grid">
           
           {/* CARD 1: ACCOUNT REGISTRATION */}
@@ -39,23 +39,25 @@ export default function OnboardingSection() {
             transition={{ duration: 0.35 }}
             className="wm-doc-hub-card"
           >
-            <div className="wm-doc-corner-badge">
-              5 Steps Guide
-            </div>
-
             <div>
-              <div className="wm-doc-card-top">
+              {/* TOP BAR: ICON (LEFT) + BADGE (RIGHT) */}
+              <div className="wm-doc-card-top-bar">
                 <div className="wm-doc-icon-box">
-                  <UserPlus size={22} color="#09090b" />
+                  <UserPlus size={20} />
                 </div>
-                <div>
-                  <h3 className="wm-doc-card-title">
-                    Account Registration
-                  </h3>
-                  <p className="wm-doc-card-sub">
-                    Step-by-step Setup
-                  </p>
-                </div>
+                <span className="wm-doc-corner-badge">
+                  5 Steps Guide
+                </span>
+              </div>
+
+              {/* TITLE & SUBTITLE */}
+              <div className="wm-doc-title-block">
+                <h3 className="wm-doc-card-title">
+                  Account Registration
+                </h3>
+                <p className="wm-doc-card-sub">
+                  Step-by-step Setup
+                </p>
               </div>
 
               <div className="wm-doc-category-tag">
@@ -92,7 +94,7 @@ export default function OnboardingSection() {
               className="wm-doc-bottom-cta"
             >
               <span>Start Account Setup Guide</span>
-              <ChevronRight size={14} />
+              <ArrowRight size={14} />
             </Link>
           </motion.div>
 
@@ -104,27 +106,29 @@ export default function OnboardingSection() {
             transition={{ duration: 0.35, delay: 0.1 }}
             className="wm-doc-hub-card"
           >
-            <div className="wm-doc-corner-badge">
-              {providerCount}+ Providers
-            </div>
-
             <div>
-              <div className="wm-doc-card-top">
+              {/* TOP BAR: ICON (LEFT) + BADGE (RIGHT) */}
+              <div className="wm-doc-card-top-bar">
                 <div className="wm-doc-icon-box">
-                  <KeyRound size={22} color="#09090b" />
+                  <KeyRound size={20} />
                 </div>
-                <div>
-                  <h3 className="wm-doc-card-title">
-                    Integrations &amp; Credentials
-                  </h3>
-                  <p className="wm-doc-card-sub">
-                    Secure API Key Vault
-                  </p>
-                </div>
+                <span className="wm-doc-corner-badge">
+                  {providerCount}+ Providers
+                </span>
+              </div>
+
+              {/* TITLE & SUBTITLE */}
+              <div className="wm-doc-title-block">
+                <h3 className="wm-doc-card-title">
+                  Integrations &amp; Credentials
+                </h3>
+                <p className="wm-doc-card-sub">
+                  Secure API Key Vault
+                </p>
               </div>
 
               <div className="wm-doc-category-tag">
-                {providerCount}+ Connected Services
+                Connected Services
               </div>
 
               <div className="wm-doc-links-list">
@@ -157,7 +161,7 @@ export default function OnboardingSection() {
               className="wm-doc-bottom-cta"
             >
               <span>Explore {providerCount}+ Integrations Guide</span>
-              <ChevronRight size={14} />
+              <ArrowRight size={14} />
             </Link>
           </motion.div>
 
@@ -169,23 +173,25 @@ export default function OnboardingSection() {
             transition={{ duration: 0.35, delay: 0.2 }}
             className="wm-doc-hub-card"
           >
-            <div className="wm-doc-corner-badge">
-              Instant Help
-            </div>
-
             <div>
-              <div className="wm-doc-card-top">
+              {/* TOP BAR: ICON (LEFT) + BADGE (RIGHT) */}
+              <div className="wm-doc-card-top-bar">
                 <div className="wm-doc-icon-box">
-                  <Zap size={22} color="#09090b" />
+                  <Zap size={20} />
                 </div>
-                <div>
-                  <h3 className="wm-doc-card-title">
-                    Workflow Mitra Support
-                  </h3>
-                  <p className="wm-doc-card-sub">
-                    Automation &amp; AI Assistance
-                  </p>
-                </div>
+                <span className="wm-doc-corner-badge">
+                  Instant Help
+                </span>
+              </div>
+
+              {/* TITLE & SUBTITLE */}
+              <div className="wm-doc-title-block">
+                <h3 className="wm-doc-card-title">
+                  Workflow Mitra Support
+                </h3>
+                <p className="wm-doc-card-sub">
+                  Automation &amp; AI Assistance
+                </p>
               </div>
 
               <div className="wm-doc-category-tag">
@@ -222,7 +228,7 @@ export default function OnboardingSection() {
               className="wm-doc-bottom-cta"
             >
               <span>Explore All Templates</span>
-              <ChevronRight size={14} />
+              <ArrowRight size={14} />
             </Link>
           </motion.div>
 

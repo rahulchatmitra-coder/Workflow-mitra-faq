@@ -1,263 +1,1214 @@
 /* ==========================================================================
-   VisualAdaptSpeedSection — Make.com Exact Layout & Style with Photo + App Nodes
+   Section 2 — Connect Your Apps. Let AI Do The Work. (WorkflowMitra Product UI)
    ========================================================================== */
 
-.wm-adapt-speed-section {
+.wm-section2-root {
   width: 100%;
-  padding: 84px 0 108px;
+  padding: 80px 0 96px;
   background: #ffffff;
-  border-top: 1px solid #f4f4f5;
-  border-bottom: 1px solid #f4f4f5;
   position: relative;
-  font-family: inherit;
+  overflow: hidden;
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
 }
 
-.wm-adapt-container {
-  max-width: 1220px;
+.wm-section2-container {
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
-  width: 100%;
+  position: relative;
 }
 
-/* ─── Centered Header ─── */
-.wm-adapt-header {
+/* ─── Floating Decorative App Tiles ─── */
+.wm-decor-floating-apps {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wm-floating-tile {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.3s ease;
+}
+
+.wm-float-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.wm-float-gmail {
+  top: 20px;
+  left: 10%;
+  transform: rotate(-4deg);
+}
+
+.wm-float-slack {
+  top: 95px;
+  left: 5%;
+  transform: rotate(3deg);
+}
+
+.wm-float-whatsapp {
+  top: 155px;
+  left: 11%;
+  transform: rotate(-2deg);
+}
+
+.wm-float-hubspot {
+  top: 25px;
+  right: 11%;
+  transform: rotate(5deg);
+}
+
+.wm-float-shopify {
+  top: 90px;
+  right: 5%;
+  transform: rotate(-4deg);
+}
+
+.wm-float-notion {
+  top: 155px;
+  right: 12%;
+  transform: rotate(3deg);
+}
+
+@media (max-width: 1024px) {
+  .wm-decor-floating-apps {
+    display: none;
+  }
+}
+
+/* ─── Section Header ─── */
+.wm-section2-header {
   text-align: center;
-  max-width: 840px;
-  margin: 0 auto 36px;
+  max-width: 760px;
+  margin: 0 auto 44px;
+  position: relative;
+  z-index: 2;
 }
 
-.wm-adapt-title {
-  font-size: clamp(32px, 3.8vw, 46px);
-  font-weight: 900;
-  line-height: 1.15;
+.wm-eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-radius: 9999px;
+  color: #7c3aed;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.wm-eyebrow-icon {
+  color: #7c3aed;
+}
+
+.wm-main-heading {
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 850;
+  line-height: 1.12;
   color: #09090b;
   letter-spacing: -0.035em;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   text-wrap: balance;
 }
 
-.wm-title-br {
-  display: block;
-}
-
-.wm-adapt-subtitle {
-  font-size: clamp(15.5px, 1.4vw, 17.5px);
+.wm-main-subtext {
+  font-size: clamp(15.5px, 1.35vw, 17px);
   color: #52525b;
   line-height: 1.6;
   font-weight: 450;
   margin: 0 auto;
-  max-width: 760px;
+  max-width: 660px;
   text-wrap: balance;
 }
 
-/* ─── Department Filter Navigation Pills (Make.com Exact Look) ─── */
-.wm-dept-pills-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
+/* ─── Main Product Window Container ─── */
+.wm-product-window {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
-.wm-dept-pill-btn {
-  border: 1.5px solid transparent;
-  background: transparent;
-  padding: 8px 24px;
+/* ─── Topbar ─── */
+.wm-product-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #ffffff;
+  gap: 16px;
+}
+
+.wm-topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wm-brand-icon-box {
+  width: 28px;
+  height: 28px;
+  background: #09090b;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-brand-u {
+  color: #ffffff;
+  font-weight: 800;
   font-size: 15px;
-  font-weight: 700;
-  color: #52525b;
+  line-height: 1;
+}
+
+.wm-brand-name {
+  font-size: 16px;
+  font-weight: 750;
+  color: #09090b;
+  letter-spacing: -0.02em;
+}
+
+.wm-topbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.wm-tab-item {
+  background: transparent;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.wm-tab-item:hover {
+  color: #09090b;
+}
+
+.wm-tab-item.active {
+  color: #4f46e5;
+  font-weight: 650;
+}
+
+.wm-tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4f46e5;
+  border-radius: 2px;
+}
+
+.wm-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wm-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wm-icon-btn:hover {
+  background: #f1f5f9;
+  color: #09090b;
+}
+
+.wm-notif-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  background: #6366f1;
+  border-radius: 50%;
+}
+
+.wm-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.wm-dept-pill-btn:hover {
-  color: #09090b;
-  background: #f4f4f5;
-}
-
-.wm-dept-pill-btn.active {
-  color: #09090b;
-  background: #f4f4f5;
-  border-color: #09090b;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* ─── Showcase Card Wrapper ─── */
-.wm-adapt-card-wrapper {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.wm-adapt-card-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 56px;
-  align-items: center;
-}
-
-/* ─── Left Photo Column & Floating App Nodes ─── */
-.wm-adapt-photo-col {
-  width: 100%;
-}
-
-.wm-adapt-photo-box {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  min-height: 380px;
-  border-radius: 24px;
-  overflow: visible;
-  background: #f4f4f5;
-  border: 1.5px solid #e4e4e7;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
-}
-
-.wm-adapt-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 22px;
-  display: block;
-}
-
-/* Floating Connected App Node Bubble (Make.com Signature Look) */
-.wm-adapt-floating-node-pill {
-  position: absolute;
-  bottom: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  padding: 8px 18px;
-  border-radius: 9999px;
-  border: 1.5px solid #e4e4e7;
-  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.05);
-  z-index: 10;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.wm-adapt-floating-node-pill:hover {
-  transform: translateX(-50%) translateY(-2px);
-  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.18);
-}
-
-.wm-node-bubble {
-  width: 44px;
-  height: 44px;
+.wm-user-avatar {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 1.5px solid #e4e4e7;
+  background: #09090b;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.wm-node-dots-wire {
+.wm-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #09090b;
+}
+
+.wm-user-chevron {
+  color: #64748b;
+}
+
+/* ─── Product Body (3 Columns) ─── */
+.wm-product-body {
+  display: grid;
+  grid-template-columns: 210px 1fr 230px;
+  min-height: 520px;
+  background: #ffffff;
+}
+
+/* ─── 1. Left Sidebar ─── */
+.wm-sidebar-col {
+  border-right: 1px solid #f1f5f9;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+}
+
+.wm-sidebar-heading-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.wm-sidebar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #09090b;
+  margin: 0;
+}
+
+.wm-add-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #09090b;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.wm-add-btn:hover {
+  opacity: 0.85;
+}
+
+.wm-sidebar-search {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.wm-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.wm-search-input {
+  width: 100%;
+  padding: 7px 10px 7px 32px;
+  font-size: 12.5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #09090b;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.wm-search-input:focus {
+  background: #ffffff;
+  border-color: #6366f1;
+}
+
+.wm-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.wm-workflow-nav {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
-.wm-node-dots-wire .dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #a1a1aa;
-}
-
-/* ─── Right Content Column ─── */
-.wm-adapt-content-col {
-  width: 100%;
-}
-
-.wm-adapt-content-box {
+.wm-workflow-item {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.wm-adapt-dept-heading {
-  font-size: clamp(30px, 3.2vw, 42px);
-  font-weight: 900;
-  color: #09090b;
-  line-height: 1.16;
-  letter-spacing: -0.03em;
-  margin: 0 0 16px;
-}
-
-.wm-adapt-dept-desc {
-  font-size: clamp(15.5px, 1.35vw, 17px);
-  color: #52525b;
-  line-height: 1.65;
-  font-weight: 450;
-  margin: 0 0 30px;
-}
-
-.wm-adapt-cta-row {
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  text-align: left;
   width: 100%;
+  transition: all 0.15s ease;
 }
 
-.wm-adapt-action-btn {
-  display: inline-flex;
+.wm-workflow-item:hover {
+  background: #f8fafc;
+  color: #09090b;
+}
+
+.wm-workflow-item.active {
+  background: #eff0fe;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.wm-workflow-item.active .wm-item-icon {
+  color: #4f46e5;
+}
+
+.wm-item-icon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.wm-sidebar-cta-card {
+  background: linear-gradient(135deg, #faf5ff 0%, #eff6ff 100%);
+  border: 1px solid #ede9fe;
+  border-radius: 12px;
+  padding: 14px 12px;
+  margin-top: 20px;
+}
+
+.wm-cta-sparkle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.wm-cta-sparkle-icon {
+  color: #8b5cf6;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.wm-cta-title {
+  font-size: 12px;
+  font-weight: 650;
+  color: #1e1b4b;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.wm-sidebar-cta-btn {
+  display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 7px 10px;
   background: #09090b;
-  color: #ffffff !important;
-  font-size: 15px;
-  font-weight: 750;
-  padding: 13px 32px;
-  border-radius: 9999px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 650;
+  border-radius: 7px;
   text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: background 0.15s ease;
 }
 
-.wm-adapt-action-btn:hover {
+.wm-sidebar-cta-btn:hover {
   background: #27272a;
+}
+
+/* ─── 2. Main Workflow Canvas ─── */
+.wm-canvas-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  background: #fcfcfd;
+  position: relative;
+}
+
+.wm-canvas-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  width: 100%;
+}
+
+.wm-canvas-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-canvas-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.wm-canvas-title {
+  font-size: 15px;
+  font-weight: 750;
+  color: #09090b;
+  margin: 0;
+}
+
+.wm-title-edit-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.wm-title-edit-btn:hover {
+  color: #09090b;
+}
+
+.wm-canvas-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.wm-canvas-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.wm-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wm-toggle-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  user-select: none;
+}
+
+.wm-switch-pill {
+  width: 38px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s ease;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wm-switch-pill.on {
+  background: #6366f1;
+}
+
+.wm-switch-thumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.wm-switch-pill.on .wm-switch-thumb {
+  transform: translateX(16px);
+}
+
+.wm-ctrl-btn {
+  padding: 6px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #09090b;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.wm-btn-save:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.wm-btn-run {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wm-btn-run:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.wm-btn-run.running {
+  background: #eff0fe;
+  border-color: #6366f1;
+  color: #4f46e5;
+}
+
+.wm-play-icon {
+  color: #6366f1;
+  fill: #6366f1;
+}
+
+/* ─── Interactive Node Canvas & Connectors ─── */
+.wm-nodes-canvas {
+  position: relative;
+  padding: 24px 0 18px;
+  min-height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-nodes-layout {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.wm-nodes-horizontal-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+}
+
+.wm-wire-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-wire-trigger-ai {
+  width: 36px;
+  height: 10px;
+}
+
+.wm-wire-fork {
+  width: 40px;
+  height: 150px;
+}
+
+.wm-wire-vertical-ai-slack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.wm-v-line {
+  display: block;
+  width: 2px;
+  height: 28px;
+  background: #8b5cf6;
+  border-radius: 1px;
+}
+
+.wm-nodes-bottom-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ─── Node Cards ─── */
+.wm-node-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wm-node-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+}
+
+.wm-node-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #09090b;
+  margin: 0 0 2px;
+}
+
+.wm-node-subtitle {
+  font-size: 11px;
+  color: #64748b;
+  margin: 0 0 8px;
+}
+
+.wm-node-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: capitalize;
+}
+
+.wm-badge-trigger {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.wm-badge-action {
+  background: #ffe4e6;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+/* Trigger Node */
+.wm-node-trigger {
+  padding: 16px 14px;
+  text-align: center;
+  width: 145px;
+  flex-shrink: 0;
+}
+
+.wm-trigger-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.wm-trigger-icon {
+  color: #059669;
+}
+
+/* AI Agent Node (Hero Centerpiece) */
+.wm-node-ai {
+  padding: 16px 18px;
+  width: 200px;
+  flex-shrink: 0;
+  border: 1.5px solid #8b5cf6;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+  box-shadow: 0 10px 25px -4px rgba(139, 92, 246, 0.16), 0 2px 6px rgba(139, 92, 246, 0.08);
+}
+
+.wm-ai-pulsing {
+  animation: wmAiPulse 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes wmAiPulse {
+  0% {
+    box-shadow: 0 10px 25px -4px rgba(139, 92, 246, 0.16);
+  }
+  100% {
+    box-shadow: 0 12px 32px 2px rgba(139, 92, 246, 0.32);
+  }
+}
+
+.wm-ai-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.wm-ai-sparkle-disc {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+}
+
+.wm-ai-sparkle-icon {
+  color: #7c3aed;
+}
+
+.wm-ai-title {
+  color: #09090b;
+  font-size: 13.5px;
+}
+
+.wm-ai-subtitle {
+  color: #6d28d9;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.wm-ai-checklist {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wm-check-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.wm-check-green {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* Action Nodes (Right Stack & Slack Bottom) */
+.wm-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 195px;
+  flex-shrink: 0;
+}
+
+.wm-node-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.wm-action-logo-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.wm-action-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.wm-action-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wm-action-content .wm-node-subtitle {
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.wm-node-slack {
+  width: 205px;
+}
+
+/* ─── Canvas Stats Bar ─── */
+.wm-canvas-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-top: 14px;
+}
+
+.wm-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wm-stat-icon-disc {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ede9fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-stat-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-stat-num {
+  font-size: 14px;
+  font-weight: 800;
+  color: #09090b;
+  line-height: 1.15;
+}
+
+.wm-stat-lbl {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ─── 3. Right Integrations & Activity Panel ─── */
+.wm-integrations-col {
+  border-left: 1px solid #f1f5f9;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #ffffff;
+}
+
+.wm-panel-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.wm-panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #09090b;
+  margin: 0;
+}
+
+.wm-panel-link {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.wm-panel-link:hover {
+  text-decoration: underline;
+}
+
+/* 3x3 Integrations Grid */
+.wm-int-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.wm-int-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.wm-int-item:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.wm-int-icon-box {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.wm-int-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.wm-int-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Recent Runs */
+.wm-runs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wm-run-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+}
+
+.wm-run-icon-disc {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #ede9fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wm-run-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-run-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #09090b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wm-run-time {
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+.wm-run-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.wm-run-badge.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.wm-run-badge.running {
+  background: #fef3c7;
+  color: #b45309;
 }
 
 /* ─── Responsive Breakpoints ─── */
+@media (max-width: 1100px) {
+  .wm-product-body {
+    grid-template-columns: 190px 1fr 200px;
+  }
+  
+  .wm-node-trigger {
+    width: 130px;
+  }
+
+  .wm-node-ai {
+    width: 180px;
+    padding: 14px 12px;
+  }
+
+  .wm-actions-stack {
+    width: 180px;
+  }
+}
+
 @media (max-width: 960px) {
-  .wm-adapt-card-grid {
+  .wm-product-body {
     grid-template-columns: 1fr;
-    gap: 48px;
   }
 
-  .wm-adapt-photo-box {
-    aspect-ratio: 16 / 10;
-    min-height: auto;
+  .wm-sidebar-col {
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 16px;
   }
 
-  .wm-title-br {
-    display: inline;
+  .wm-workflow-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .wm-workflow-item {
+    white-space: nowrap;
+    width: auto;
+  }
+
+  .wm-sidebar-cta-card {
+    display: none;
+  }
+
+  .wm-integrations-col {
+    border-left: none;
+    border-top: 1px solid #f1f5f9;
+    padding: 20px;
+  }
+
+  .wm-canvas-col {
+    padding: 20px 16px;
+  }
+
+  .wm-wire-connector,
+  .wm-wire-vertical-ai-slack {
+    display: none;
+  }
+
+  .wm-nodes-horizontal-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .wm-node-trigger,
+  .wm-node-ai,
+  .wm-actions-stack,
+  .wm-node-slack {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .wm-topbar-tabs {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
-  .wm-adapt-speed-section {
-    padding: 60px 0 80px;
+  .wm-section2-root {
+    padding: 60px 0 72px;
   }
 
-  .wm-dept-pill-btn {
-    padding: 6px 16px;
-    font-size: 13.5px;
+  .wm-main-heading {
+    font-size: 28px;
   }
 
-  .wm-node-bubble {
-    width: 36px;
-    height: 36px;
+  .wm-product-topbar {
+    padding: 12px 16px;
   }
 
-  .wm-adapt-dept-heading {
-    font-size: 26px;
+  .wm-canvas-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .wm-canvas-controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .wm-canvas-stats-bar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
   }
 }
