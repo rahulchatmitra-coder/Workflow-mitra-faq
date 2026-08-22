@@ -6,12 +6,12 @@
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #ffffff 70%, #f8fafc 100%);
-  padding: 96px 24px 120px;
+  padding: 96px 24px 70px;
   font-family: inherit;
   color: #0f172a;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Subtle Hero-Matching Ambient Glow */
@@ -61,7 +61,7 @@
   background: #eff6ff;
   border: 1px solid #dbeafe;
   border-radius: 9999px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.06);
 }
 
@@ -76,7 +76,7 @@
   line-height: 1.15;
   letter-spacing: -0.035em;
   color: #0f172a;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   text-wrap: balance;
 }
 
@@ -104,7 +104,7 @@
   flex-direction: column;
   position: relative;
   gap: 0;
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 }
 
 .wm-wf-card-row {
@@ -113,12 +113,14 @@
   align-items: center;
   gap: 36px;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 24px;
-  padding: 30px 34px;
-  margin-bottom: 65px;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.02), 0 20px 45px -12px rgba(15, 23, 42, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 26px;
+  padding: 34px 38px;
+  min-height: 426px;
+  margin-bottom: clamp(180px, 28vh, 260px);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04), 0 30px 70px -15px rgba(15, 23, 42, 0.2), 0 1px 3px rgba(0, 0, 0, 0.04);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
 }
 
 .wm-wf-card-row:last-child {
@@ -127,7 +129,7 @@
 
 .wm-wf-card-row:hover {
   border-color: #cbd5e1;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.02), 0 26px 55px -14px rgba(15, 23, 42, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 -4px 22px rgba(0, 0, 0, 0.05), 0 40px 90px -18px rgba(15, 23, 42, 0.24), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 /* Alternating Direction */
@@ -581,8 +583,13 @@
   .wm-wf-card-row.layout-standard,
   .wm-wf-card-row.layout-reverse {
     flex-direction: column !important;
-    gap: 28px;
-    padding: 24px;
+    gap: 24px;
+    padding: 26px 24px;
+    margin-bottom: 120px;
+  }
+
+  .wm-wf-card-row:last-child {
+    margin-bottom: 20px;
   }
 
   .wm-wf-info-col,
@@ -592,5 +599,32 @@
 
   .wm-wf-canvas-box {
     overflow-x: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-wf-section-header {
+    margin-bottom: 40px;
+  }
+
+  .wm-wf-card-row,
+  .wm-wf-card-row.layout-standard,
+  .wm-wf-card-row.layout-reverse {
+    padding: 20px 16px;
+    border-radius: 20px;
+    margin-bottom: 90px;
+  }
+
+  .wm-wf-card-heading {
+    font-size: 19px;
+  }
+
+  .wm-wf-card-desc {
+    font-size: 13.5px;
+  }
+
+  .wm-wf-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 }

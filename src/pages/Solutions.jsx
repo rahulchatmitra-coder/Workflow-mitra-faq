@@ -2,6 +2,7 @@ import { FaBullseye, FaLock, FaChartBar, FaCommentDots, FaPhoneAlt, FaBullhorn, 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageSeo from '../components/PageSeo'
+import RollButton from '../components/RollButton'
 import './Solutions.css'
 
 function Solutions() {
@@ -157,8 +158,8 @@ function Solutions() {
 WorkflowMitra helps businesses automate repetitive work, connect apps, integrate APIs, and build AI-powered workflows in minutes. Whether you're replacing manual tasks, creating business automations, or connecting hundreds of applications, WorkflowMitra makes automation simple, fast, and reliable. 
  </p>
           <div className="solutions-hero-actions">
-            <a href="https://app.workflowmitra.com/signup" className="btn-primary-large">Start Building Free</a>
-            <Link to="/contact" className="btn-secondary-large">Get Help Building My Workflow</Link>
+            <RollButton href="https://app.workflowmitra.com/signup" variant="dark" size="lg" showArrow>Start Building Free</RollButton>
+            <RollButton to="/contact" variant="secondary" size="lg">Get Help Building My Workflow</RollButton>
           </div>
         </div>
 
@@ -247,8 +248,8 @@ WorkflowMitra helps businesses automate repetitive work, connect apps, integrate
           <h2>Ready to automate your workflows?</h2>
           <p>Start building for free, or let our automation experts help.</p>
           <div className="cta-buttons">
-            <a href="https://app.workflowmitra.com/signup" className="btn-primary-large">Start Building Free</a>
-            <Link to="/contact" className="btn-secondary-large">Get Help Building My Workflow</Link>
+            <RollButton href="https://app.workflowmitra.com/signup" variant="dark" size="lg" showArrow>Start Building Free</RollButton>
+            <RollButton to="/contact" variant="secondary" size="lg">Get Help Building My Workflow</RollButton>
           </div>
         </div>
       </section>

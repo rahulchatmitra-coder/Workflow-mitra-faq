@@ -84,46 +84,10 @@
 .navbar .nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.navbar .nav-links li, .navbar .nav-links a, .nav-dropdown-btn {
-  font-size: 14.5px;
-  font-weight: 550;
-  color: #1a1615;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: none;
-  border: none;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.18s ease;
-}
-
-.navbar .nav-links li:hover > a,
-.navbar .nav-links li:hover > .nav-dropdown-btn,
-.navbar .nav-links a:hover {
-  color: #000000;
-  background: rgba(255, 255, 255, 0.4);
-}
-
-.navbar .nav-links svg {
-  width: 10px;
-  height: 10px;
-  opacity: 0.6;
-  transition: transform 0.2s ease;
-}
-
-.navbar .nav-links li:hover svg {
-  opacity: 1;
-  transform: translateY(1px);
 }
 
 /* Nav Right / CTA Buttons */
@@ -162,39 +126,85 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-/* 2. Signup Button */
+/* 2. Signup Button - Axvio-Style Staggered Character Wave & Specular Glass Glow */
 .wm-nav-signup-btn,
 .get-started {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 550;
   color: #ffffff !important;
   padding: 8.5px 22px;
-  border-radius: 100px;
-  background: #1a1615;
-  border: 1px solid #1a1615;
+  border-radius: 9999px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(26, 22, 21, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28), 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   white-space: nowrap;
-}
-
-.wm-nav-signup-btn svg {
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .wm-nav-signup-btn:hover,
 .get-started:hover {
-  background: #2b2624;
-  border-color: #2b2624;
+  background: #000000;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(26, 22, 21, 0.3);
+  box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.42), 0 8px 22px rgba(0, 0, 0, 0.35);
 }
 
+/* Staggered Wave Rolling Container (Exact Axvio Logic) */
+.wm-btn-roll-track {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  line-height: 18px;
+  overflow: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wm-char-col {
+  display: flex;
+  flex-direction: column;
+  height: 18px;
+  line-height: 18px;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.34s cubic-bezier(0.2, 0.9, 0.3, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.wm-char {
+  display: block;
+  height: 18px;
+  line-height: 18px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+/* On Hover: Trigger Character Wave Upwards */
+.wm-nav-signup-btn:hover .wm-char-col {
+  transform: translate3d(0, -100%, 0);
+}
+
+/* Arrow Slide on Hover */
+.wm-nav-signup-btn .wm-btn-roll-icon,
+.wm-nav-signup-btn svg {
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+  flex-shrink: 0;
+  display: block;
+}
+
+.wm-nav-signup-btn:hover .wm-btn-roll-icon,
 .wm-nav-signup-btn:hover svg {
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
 .badge-wrap {
@@ -255,80 +265,72 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: 6px;
   flex: 1;
   justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a,
+.nav-link-btn {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 8px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nav-links a:hover,
+.nav-link-btn:hover {
+  color: #000000;
+  background: rgba(15, 23, 42, 0.06);
 }
 
 .nav-dropdown {
   position: relative;
 }
 
-.nav-link {
-  font-family: inherit;
-  font-size: 14.5px;
-  font-weight: 550;
-  color: #1a1615;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 8px;
-  display: flex;
+.nav-link-btn.active,
+.nav-dropdown.is-active .nav-link-btn {
+  color: #000000;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.nav-chevron-wrap {
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: #0f172a;
+  flex-shrink: 0;
+  pointer-events: none;
   transition: all 0.18s ease;
 }
 
-.nav-link .chevron {
-  font-size: 10px;
-  opacity: 0.8;
-  color: currentColor;
-}
-
-.nav-link:hover {
+.nav-link-btn:hover .nav-chevron-wrap,
+.nav-link-btn.active .nav-chevron-wrap,
+.nav-dropdown.is-active .nav-chevron-wrap {
   color: #000000;
-  background: rgba(255, 255, 255, 0.4);
-}
-
-.simple-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 10px 24px -6px rgba(0,0,0,0.1);
-  padding: 8px;
-  min-width: 160px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nav-dropdown:hover .simple-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.simple-dropdown-item {
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.15s ease;
-}
-
-.simple-dropdown-item:hover {
-  background: var(--color-elevated);
 }
 
 /* CTA Buttons */
@@ -640,9 +642,9 @@
 }
 
 .mobile-nav-link {
-  font-size: 15.5px;
-  font-weight: 650;
-  color: #334155;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
   text-decoration: none;
   padding: 12px 14px;
   border-radius: 10px;
@@ -653,7 +655,7 @@
 
 .mobile-nav-link:hover {
   background: #f1f5f9;
-  color: #09090b;
+  color: #000000;
 }
 
 .mobile-menu-actions {

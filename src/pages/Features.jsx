@@ -13,6 +13,7 @@ import FlowMitraLogo from '../components/FlowMitraLogo'
 import { DocsNodeIcon, nodeDiscBg } from '../components/docs/icons/docsNodeIcons'
 import { MODELS, MODEL_PROVIDERS } from '../data/aiSectionData'
 import { useCanvasStep } from '../utils/useCanvasStep'
+import RollButton from '../components/RollButton'
 import '../styles/CanvasPanel.css'
 import './Features.css'
 
@@ -140,12 +141,12 @@ function Features() {
             Build visual workflows, connect your tools, and automate repetitive work — with conditions, APIs and AI when you need them.
           </p>
           <div className="ft-hero-cta">
-            <a href="https://app.workflowmitra.com/signup" className="btn btn-primary btn-large">
+            <RollButton href="https://app.workflowmitra.com/signup" variant="dark" size="lg" showArrow>
               Start Building Free
-            </a>
-            <Link to="/automation-help" className="btn btn-secondary btn-large">
+            </RollButton>
+            <RollButton to="/automation-help" variant="secondary" size="lg">
               Get Help Building My Workflow
-            </Link>
+            </RollButton>
           </div>
 
           <div className="ft-hero-visual">
@@ -519,12 +520,12 @@ function Features() {
             <h2>Start simple. Automate more.</h2>
             <p>Build your first workflow today, or let our automation experts help you get started.</p>
             <div className="ft-cta-actions">
-              <a href="https://app.workflowmitra.com/signup" className="btn btn-primary btn-large">
+              <RollButton href="https://app.workflowmitra.com/signup" variant="dark" size="lg" showArrow>
                 Start Building Free
-              </a>
-              <Link to="/automation-help" className="btn btn-secondary btn-large">
+              </RollButton>
+              <RollButton to="/automation-help" variant="secondary" size="lg">
                 Get Help Building My Workflow
-              </Link>
+              </RollButton>
             </div>
             <p className="ft-cta-links">
               See <Link to="/pricing">pricing</Link>, browse <Link to="/templates">templates</Link>, or explore <Link to="/integrations">integrations</Link>.

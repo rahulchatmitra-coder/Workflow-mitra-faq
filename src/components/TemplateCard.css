@@ -112,3 +112,9 @@
 .use-btn:hover {
   background: var(--btn-bg-hover, #000000);
 }
+
+.template-use-roll-btn {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 6px 14px !important;
+}

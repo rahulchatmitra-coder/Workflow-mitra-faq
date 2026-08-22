@@ -1,11 +1,11 @@
 /* ==========================================================================
-   Ultra-Modern Clean Light AI Automation Footer
+   Ultra-Modern Clean Black AI Automation Footer
    ========================================================================== */
 
 .wm-ai-footer {
-  background: #f8fafc;
-  color: #09090b;
-  border-top: 1px solid #e2e8f0;
+  background: #09090b;
+  color: #f8fafc;
+  border-top: 1px solid #27272a;
   padding: 72px 24px 36px;
   position: relative;
   overflow: hidden;
@@ -39,12 +39,22 @@
   display: inline-block;
   margin-bottom: 16px;
   text-decoration: none;
+  color: #ffffff;
+}
+
+.wm-footer-brand-logo .flowmitra-logo-full,
+.wm-footer-brand-logo .flowmitra-logo-icon {
+  color: #ffffff;
+}
+
+.wm-footer-brand-logo svg ellipse {
+  fill: #09090b;
 }
 
 .wm-footer-tagline {
-  font-size: 14px;
-  color: #475569;
-  line-height: 1.6;
+  font-size: 14.5px;
+  color: #94a3b8;
+  line-height: 1.65;
   margin: 0 0 24px;
   font-weight: 450;
 }
@@ -60,23 +70,23 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: #475569;
+  background: #18181b;
+  border: 1px solid #27272a;
+  color: #94a3b8;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .wm-social-btn:hover {
-  background: #09090b;
-  color: #ffffff;
-  border-color: #09090b;
+  background: #ffffff;
+  color: #09090b;
+  border-color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 /* ─── 4 LINK COLUMNS ─── */
@@ -93,11 +103,11 @@
 }
 
 .wm-col-title {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 800;
-  color: #09090b;
+  color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin: 0;
 }
 
@@ -111,10 +121,10 @@
 }
 
 .wm-col-list a {
-  font-size: 13.5px;
-  color: #475569;
+  font-size: 14px;
+  color: #94a3b8;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 450;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -122,32 +132,32 @@
 }
 
 .wm-col-list a:hover {
-  color: #09090b;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 550;
   transform: translateX(2px);
 }
 
 /* PILLS IN LINKS */
 .wm-link-pill {
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 800;
-  padding: 1.5px 6px;
+  padding: 2px 7px;
   border-radius: 9999px;
-  background: #f1f5f9;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
+  background: #27272a;
+  color: #e2e8f0;
+  border: 1px solid #3f3f46;
 }
 
 .wm-hiring-pill {
-  background: #fff7ed;
-  color: #ea580c;
-  border-color: #ffedd5;
+  background: rgba(234, 88, 12, 0.18);
+  color: #fb923c;
+  border-color: rgba(234, 88, 12, 0.35);
 }
 
 /* ─── DIVIDER ─── */
 .wm-footer-divider {
   height: 1px;
-  background: #e2e8f0;
+  background: #27272a;
   margin: 36px 0;
 }
 
@@ -169,8 +179,8 @@
 
 .wm-footer-legal-links a,
 .wm-cookie-settings-btn {
-  font-size: 12.5px;
-  color: #64748b;
+  font-size: 13px;
+  color: #71717a;
   text-decoration: none;
   background: none;
   border: none;
@@ -182,17 +192,18 @@
 
 .wm-footer-legal-links a:hover,
 .wm-cookie-settings-btn:hover {
-  color: #09090b;
+  color: #f8fafc;
 }
 
 .wm-legal-dot {
-  color: #cbd5e1;
+  color: #3f3f46;
   font-size: 12px;
 }
 
 .wm-footer-copyright {
-  font-size: 12.5px;
-  color: #64748b;
+  font-size: 13px;
+  color: #71717a;
+  font-weight: 450;
 }
 
 /* ─── RESPONSIVE ─── */

@@ -1,16 +1,31 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ChevronDown, ArrowRight, LayoutGrid, Layers, BookOpen, MessageSquare, Megaphone, Briefcase, Settings, MessageCircle, Code2, Shield } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { 
+  ChevronDown, 
+  ArrowRight, 
+  LayoutGrid, 
+  Layers, 
+  BookOpen, 
+  Megaphone, 
+  Briefcase, 
+  Settings, 
+  MessageCircle, 
+  Code2, 
+  Shield 
+} from 'lucide-react'
 import FlowMitraLogo from './FlowMitraLogo'
-import SolutionsMegaMenu from './SolutionsMegaMenu'
+import NavMegaDropdown from './NavMegaDropdown'
+import RollButton from './RollButton'
 import './Navigation.css'
 
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState(null) // 'solutions' | 'resources' | null
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null)
-  const solutionsTimeoutRef = useRef(null)
+  const dropdownTimeoutRef = useRef(null)
+  const navRef = useRef(null)
   const location = useLocation()
 
   useEffect(() => {
@@ -23,44 +38,53 @@ function Navigation() {
 
   // Close mega menu and mobile menu when route changes
   useEffect(() => {
-    setIsSolutionsOpen(false)
+    setActiveDropdown(null)
     setIsMobileMenuOpen(false)
     setOpenMobileDropdown(null)
   }, [location.pathname])
 
+  // Escape key & Click Outside listener
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setIsSolutionsOpen(false)
+        setActiveDropdown(null)
       }
     }
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
+
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setActiveDropdown(null)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('click', handleClickOutside)
+    }
   }, [])
 
-  const handleSolutionsEnter = () => {
-    clearTimeout(solutionsTimeoutRef.current)
-    setIsSolutionsOpen(true)
+  // Dropdown hover & click handlers
+  const handleDropdownEnter = (name) => {
+    clearTimeout(dropdownTimeoutRef.current)
+    setActiveDropdown(name)
   }
 
-  const handleSolutionsLeave = () => {
-    solutionsTimeoutRef.current = setTimeout(() => {
-      setIsSolutionsOpen(false)
+  const handleDropdownLeave = () => {
+    clearTimeout(dropdownTimeoutRef.current)
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
     }, 200)
   }
 
-  const handleMegaMenuEnter = () => {
-    clearTimeout(solutionsTimeoutRef.current)
-  }
-
-  const handleMegaMenuLeave = () => {
-    solutionsTimeoutRef.current = setTimeout(() => {
-      setIsSolutionsOpen(false)
-    }, 200)
-  }
-
-  const closeSolutions = () => {
-    setIsSolutionsOpen(false)
+  const handleDropdownToggle = (name, e) => {
+    if (e) e.preventDefault()
+    clearTimeout(dropdownTimeoutRef.current)
+    setActiveDropdown(prev => (prev === name ? null : name))
   }
 
   const toggleMobileDropdown = (name) => {
@@ -69,11 +93,21 @@ function Navigation() {
 
   return (
     <>
-      <div className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+      <div 
+        ref={navRef}
+        className={`nav-wrapper ${isScrolled ? 'scrolled' : ''} ${activeDropdown ? 'has-dropdown-open' : ''}`}
+        onMouseLeave={handleDropdownLeave}
+      >
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="navbar-container">
             {/* Logo */}
-            <Link to="/" className="logo" aria-label="WorkflowMitra Home">
+            <Link 
+              to="/" 
+              className="logo" 
+              aria-label="WorkflowMitra Home" 
+              onClick={() => setActiveDropdown(null)}
+              onMouseEnter={handleDropdownLeave}
+            >
               <span className="logo-mark">
                 <FlowMitraLogo size="sm" variant="icon" />
               </span>
@@ -81,45 +115,98 @@ function Navigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <ul className="nav-links desktop-only">
+            <ul className="nav-links desktop-only" onMouseLeave={handleDropdownLeave}>
+              {/* 1. Solutions Dropdown */}
               <li 
-                className="nav-dropdown"
-                onMouseEnter={handleSolutionsEnter}
-                onMouseLeave={handleSolutionsLeave}
+                className={`nav-dropdown ${activeDropdown === 'solutions' ? 'is-active' : ''}`}
+                onMouseEnter={() => handleDropdownEnter('solutions')}
+                onMouseLeave={handleDropdownLeave}
               >
-                <Link 
-                  to="/solutions"
-                  aria-expanded={isSolutionsOpen}
+                <button
+                  type="button"
+                  className={`nav-link-btn ${activeDropdown === 'solutions' ? 'active' : ''}`}
+                  onClick={(e) => handleDropdownToggle('solutions', e)}
+                  aria-expanded={activeDropdown === 'solutions'}
                   aria-haspopup="true"
                 >
-                  Solutions <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none"/></svg>
+                  <span>Solutions</span>
+                  <motion.span 
+                    className="nav-chevron-wrap"
+                    animate={{ rotate: activeDropdown === 'solutions' ? 180 : 0 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <ChevronDown size={14} />
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {activeDropdown === 'solutions' && (
+                    <NavMegaDropdown 
+                      activeMenu="solutions" 
+                      onClose={() => setActiveDropdown(null)}
+                    />
+                  )}
+                </AnimatePresence>
+              </li>
+
+              {/* 2. Resources Dropdown */}
+              <li 
+                className={`nav-dropdown ${activeDropdown === 'resources' ? 'is-active' : ''}`}
+                onMouseEnter={() => handleDropdownEnter('resources')}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <button 
+                  type="button"
+                  className={`nav-link-btn ${activeDropdown === 'resources' ? 'active' : ''}`}
+                  onClick={(e) => handleDropdownToggle('resources', e)}
+                  aria-expanded={activeDropdown === 'resources'}
+                  aria-haspopup="true"
+                  aria-label="Resources menu"
+                >
+                  <span>Resources</span>
+                  <motion.span 
+                    className="nav-chevron-wrap"
+                    animate={{ rotate: activeDropdown === 'resources' ? 180 : 0 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <ChevronDown size={14} />
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {activeDropdown === 'resources' && (
+                    <NavMegaDropdown 
+                      activeMenu="resources" 
+                      onClose={() => setActiveDropdown(null)}
+                    />
+                  )}
+                </AnimatePresence>
+              </li>
+
+              {/* 3. Direct Links */}
+              <li>
+                <Link to="/integrations" onClick={() => setActiveDropdown(null)} onMouseEnter={handleDropdownLeave}>
+                  Integrations
                 </Link>
               </li>
-              <li className="nav-dropdown">
-                <button className="nav-link nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Resources menu">
-                  Resources <svg aria-hidden="true" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none"/></svg>
-                </button>
-                <div className="simple-dropdown-menu">
-                  <Link to="/templates" className="simple-dropdown-item">Templates</Link>
-                  <Link to="/integrations" className="simple-dropdown-item">Integrations</Link>
-                  <Link to="/docs" className="simple-dropdown-item">Docs</Link>
-                </div>
+
+              <li>
+                <Link to="/pricing" onClick={() => setActiveDropdown(null)} onMouseEnter={handleDropdownLeave}>
+                  Pricing
+                </Link>
               </li>
-              <li><Link to="/integrations">Integrations</Link></li>
-              <li><Link to="/pricing">Pricing</Link></li>
             </ul>
 
             {/* CTA Buttons */}
-            <div className="nav-right desktop-only">
-              <a
+            <div className="nav-right desktop-only" onMouseEnter={handleDropdownLeave}>
+              <RollButton
                 href="https://app.workflowmitra.com/signup"
-                className="wm-nav-signup-btn"
+                variant="dark"
+                size="md"
+                showArrow={true}
               >
-                <span>Get started</span>
-                <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M2.5 6h7M6.5 2.5l3.5 3.5-3.5 3.5" />
-                </svg>
-              </a>
+                Get started
+              </RollButton>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -293,14 +380,6 @@ function Navigation() {
             </div>
           )}
         </nav>
-
-        {/* Solutions Mega Menu */}
-        <SolutionsMegaMenu 
-          isOpen={isSolutionsOpen} 
-          onClose={closeSolutions}
-          onMouseEnter={handleMegaMenuEnter}
-          onMouseLeave={handleMegaMenuLeave}
-        />
       </div>
     </>
   )

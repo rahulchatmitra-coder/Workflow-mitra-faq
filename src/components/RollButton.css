@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Axvio-Style Staggered Rolling Text System Button Styles
+   ========================================================================== */
+
+.roll-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: inherit;
+  border: 1px solid transparent;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.roll-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.roll-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   Variants
+   ========================================================================== */
+
+/* 1. Dark / Primary (Axvio Specular Glass) */
+.roll-btn-dark,
+.roll-btn-primary {
+  background: #0a0a0a;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28), 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.roll-btn-dark:hover,
+.roll-btn-primary:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.42), 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.roll-btn-dark .roll-char,
+.roll-btn-primary .roll-char {
+  color: #ffffff;
+}
+
+/* 2. Secondary / Frosted Glass */
+.roll-btn-secondary,
+.roll-btn-outline {
+  background: rgba(255, 255, 255, 0.75);
+  color: #0f172a !important;
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.roll-btn-secondary:hover,
+.roll-btn-outline:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.roll-btn-secondary .roll-char,
+.roll-btn-outline .roll-char {
+  color: #0f172a;
+}
+
+/* 3. Pure White */
+.roll-btn-white {
+  background: #ffffff;
+  color: #0f172a !important;
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.roll-btn-white:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.roll-btn-white .roll-char {
+  color: #0f172a;
+}
+
+/* 4. Vibrant Blue */
+.roll-btn-blue {
+  background: #2563eb;
+  color: #ffffff !important;
+  border-color: #1d4ed8;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3), 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.roll-btn-blue:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4), 0 8px 22px rgba(37, 99, 235, 0.42);
+}
+
+.roll-btn-blue .roll-char {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Sizes
+   ========================================================================== */
+
+/* Small (e.g. badges or compact cards) */
+.roll-btn-sm {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 550;
+  gap: 5px;
+}
+
+.roll-btn-sm .roll-track,
+.roll-btn-sm .roll-char-col,
+.roll-btn-sm .roll-char {
+  height: 16px;
+  line-height: 16px;
+}
+
+/* Medium (Standard navbar & section cards) */
+.roll-btn-md {
+  padding: 8.5px 22px;
+  font-size: 14px;
+  font-weight: 550;
+  gap: 7px;
+}
+
+.roll-btn-md .roll-track,
+.roll-btn-md .roll-char-col,
+.roll-btn-md .roll-char {
+  height: 18px;
+  line-height: 18px;
+}
+
+/* Large (Hero CTA & Primary Section Headers) */
+.roll-btn-lg {
+  padding: 12px 28px;
+  font-size: 15.5px;
+  font-weight: 600;
+  gap: 8px;
+}
+
+.roll-btn-lg .roll-track,
+.roll-btn-lg .roll-char-col,
+.roll-btn-lg .roll-char {
+  height: 22px;
+  line-height: 22px;
+}
+
+/* ==========================================================================
+   Staggered Wave Rolling Animation
+   ========================================================================== */
+
+.roll-track {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.roll-char-col {
+  display: flex;
+  flex-direction: column;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.34s cubic-bezier(0.2, 0.9, 0.3, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.roll-char {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Trigger Character Wave on Button Hover */
+.roll-btn:hover .roll-char-col {
+  transform: translate3d(0, -100%, 0);
+}
+
+/* Icon & Arrow Animation */
+.roll-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.roll-btn:hover .roll-icon {
+  transform: translateX(3px);
+}

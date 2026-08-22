@@ -53,6 +53,9 @@ const apps = [
   { name:'Notion',         tools:['Create document','Update content','Get document text','Share document','List recent docs'] }
 ];
 
+import RollButton from './RollButton';
+import { Sparkles } from 'lucide-react';
+
 const UnifiedSolutionTemplate = ({ config }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -99,15 +102,40 @@ const UnifiedSolutionTemplate = ({ config }) => {
         path={`/solutions/${config.department}`}
       />
 
-      {/* SECTION 1 — Hero */}
+      {/* SECTION 1 — Hero (Matched BG Color Theme with Home Hero) */}
       <section className="solution-hero">
-        <div className="container">
-          <div className="hero-badge">{config.badge}</div>
-          <h1 className="hero-headline">{config.headline}</h1>
-          <p className="hero-subheadline">{config.subheadline}</p>
-          <div className="hero-ctas">
-            <button className="btn-primary">{config.primaryCTA || 'Get Started'}</button>
-            <button className="btn-secondary">{config.secondaryCTA || 'Talk to Sales'}</button>
+        <div className="container solution-hero-container">
+          {/* Eyebrow Badge Pill */}
+          <div className="solution-hero-eyebrow">
+            <Sparkles size={13} className="solution-badge-sparkle" />
+            <span>{config.badge ? config.badge.toUpperCase() : 'MARKETING AUTOMATION'}</span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="solution-hero-headline">{config.headline}</h1>
+
+          {/* Subheadline */}
+          <p className="solution-hero-subheadline">{config.subheadline}</p>
+
+          {/* Action Button Group */}
+          <div className="solution-hero-ctas">
+            <RollButton
+              href="https://app.workflowmitra.com/signup"
+              variant="dark"
+              size="lg"
+              showArrow={true}
+              id="solution-hero-start-btn"
+            >
+              Start Building
+            </RollButton>
+            <RollButton
+              to="/templates"
+              variant="secondary"
+              size="lg"
+              id="solution-hero-templates-btn"
+            >
+              View Templates
+            </RollButton>
           </div>
         </div>
       </section>
@@ -115,41 +143,49 @@ const UnifiedSolutionTemplate = ({ config }) => {
       {/* SECTION 2 — Works With */}
       <section className="works-with-section">
         <div className="container">
-          <p className="section-label">Works with</p>
+          <p className="section-label">Works with your entire marketing stack</p>
           <div className="integration-icons">
-            <div className="integration-icon">
+            <div className="integration-icon" title="HubSpot">
               <SiHubspot size={22} color="#FF7A59" />
+              <span>HubSpot</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Mailchimp">
               <SiMailchimp size={22} color="#FFE01B" />
+              <span>Mailchimp</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Google Ads">
               <SiGoogle size={22} color="#4285F4" />
+              <span>Google</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Meta Ads">
               <SiMeta size={22} color="#0668E1" />
+              <span>Meta</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="LinkedIn">
               <FaLinkedin size={22} color="#0A66C2" />
+              <span>LinkedIn</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Airtable">
               <SiAirtable size={22} color="#18BFFF" />
+              <span>Airtable</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Slack">
               <FaSlack size={22} color="#4A154B" />
+              <span>Slack</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Notion">
               <SiNotion size={22} color="#000000" />
+              <span>Notion</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Webflow">
               <SiWebflow size={22} color="#4353FF" />
+              <span>Webflow</span>
             </div>
-            <div className="integration-icon">
+            <div className="integration-icon" title="Typeform">
               <SiTypeform size={22} color="#262627" />
+              <span>Typeform</span>
             </div>
           </div>
-          <p className="integration-footer">And +100 others…</p>
-
         </div>
       </section>
 

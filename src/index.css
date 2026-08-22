@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./components/RollButton.css";
 
 /* Design Tokens */
 :root {
@@ -105,6 +106,27 @@
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Lenis Smooth Scrolling Standard */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -116,6 +138,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -125,6 +149,24 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Crisp Text Rendering & Anti-Blur during transforms / sticky scrolling */
+.home-page,
+.wm-top-workflows-section,
+.wm-wf-card-row,
+.template-card,
+.faq-card,
+.roll-btn {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 #root {

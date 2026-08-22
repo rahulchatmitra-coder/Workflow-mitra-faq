@@ -1,5 +1,5 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import {
   GitBranch,
   Users,
@@ -13,7 +13,19 @@ import {
   ShieldCheck,
   TrendingUp,
   Headphones,
-  ShoppingBag
+  ShoppingBag,
+  CheckCircle2,
+  Bot,
+  Layers,
+  Settings,
+  ChevronRight,
+  Workflow,
+  Database,
+  Webhook,
+  Terminal,
+  Filter,
+  Cpu,
+  Boxes
 } from 'lucide-react'
 import {
   SiZendesk,
@@ -618,9 +630,9 @@ export default function AgentsShowcase() {
             return (
               <div
                 key={wf.id}
-                className={`wm-wf-card-row ${isReverse ? 'layout-reverse' : 'layout-standard'}`}
+                className={`wm-wf-card-row ${isReverse ? 'layout-reverse' : 'layout-standard'} wm-card-stack-${index + 1}`}
                 style={{
-                  top: `calc(82px + ${index * 22}px)`,
+                  top: '86px',
                   zIndex: index + 1
                 }}
               >
@@ -655,17 +667,6 @@ export default function AgentsShowcase() {
                     ))}
                   </div>
 
-                  {/* Interactive CTA Link Button */}
-                  <div className="wm-wf-cta-row">
-                    <a
-                      href="#demo"
-                      className="wm-wf-cta-btn"
-                      style={{ '--accent-color': wf.badgeColor }}
-                    >
-                      <span>Run this workflow blueprint</span>
-                      <ArrowRight size={14} className="wm-cta-arrow" />
-                    </a>
-                  </div>
                 </div>
 
                 {/* CANVAS COLUMN (66% Width - Clean Grid Canvas) */}

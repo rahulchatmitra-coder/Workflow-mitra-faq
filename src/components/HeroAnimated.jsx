@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import RollButton from './RollButton'
 import { 
   Sparkles, 
   Search, 
@@ -208,21 +209,24 @@ export default function HeroAnimated() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a
+            <RollButton
               href="https://app.workflowmitra.com/signup"
-              className="hero-cta-primary"
+              variant="dark"
+              size="lg"
+              showArrow={true}
               id="hero-start-free-btn"
             >
-              <span>Start Building Free</span>
-            </a>
+              Start Building Free
+            </RollButton>
 
-            <Link
+            <RollButton
               to="/contact"
-              className="hero-cta-secondary"
+              variant="secondary"
+              size="lg"
               id="hero-expert-help-btn"
             >
-              <span>Get 1-on-1 Help</span>
-            </Link>
+              Get 1-on-1 Help
+            </RollButton>
           </motion.div>
         </div>
 

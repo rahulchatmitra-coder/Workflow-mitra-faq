@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getBrandIcon } from '../utils/brandIcons';
+import RollButton from './RollButton';
 import './DarkAIIntegrationsSection.css';
 
 const ROW_1_APPS = [
@@ -90,10 +91,14 @@ export default function DarkAIIntegrationsSection() {
 
         {/* Black Pill CTA Button matching screenshot */}
         <div className="dark-ai-cta-wrap">
-          <Link to="/integrations" className="dark-ai-btn">
-            <span>Browse all integrations</span>
-            <span className="dark-ai-btn-arrow" aria-hidden="true">→</span>
-          </Link>
+          <RollButton
+            to="/integrations"
+            variant="dark"
+            size="md"
+            showArrow={true}
+          >
+            Browse all integrations
+          </RollButton>
         </div>
       </div>
     </section>

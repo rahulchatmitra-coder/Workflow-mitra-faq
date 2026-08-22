@@ -1,6 +1,7 @@
 import { FaBullseye, FaRocket, FaHandshake, FaGlobe } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import PageSeo from '../components/PageSeo'
+import RollButton from '../components/RollButton'
 import './About.css'
 
 function About() {
@@ -65,8 +66,8 @@ function About() {
           <h2>Ready to automate your workflows?</h2>
           <p>Start building for free, or talk to our team about your automation needs.</p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://app.workflowmitra.com/signup" className="btn btn-primary btn-large">Start Building Free</a>
-            <Link to="/contact" className="btn btn-secondary btn-large">Get in Touch</Link>
+            <RollButton href="https://app.workflowmitra.com/signup" variant="dark" size="lg" showArrow>Start Building Free</RollButton>
+            <RollButton to="/contact" variant="secondary" size="lg">Get in Touch</RollButton>
           </div>
         </div>
       </section>

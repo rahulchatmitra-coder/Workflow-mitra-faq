@@ -8,6 +8,7 @@ import {
 import PageSeo from '../components/PageSeo'
 import NodeChain from '../components/NodeChain'
 import DeferredHomeSection from '../components/DeferredHomeSection'
+import RollButton from '../components/RollButton'
 import './AutomationHelp.css'
 
 const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
@@ -128,12 +129,12 @@ function AutomationHelp() {
             Tell us what you want to automate. Our automation experts can help you turn the idea into a working WorkflowMitra workflow.
           </p>
           <div className="ah-hero-cta">
-            <Link to="/contact?from=automation-help" className="btn btn-primary btn-large">
+            <RollButton to="/contact?from=automation-help" variant="dark" size="lg">
               Tell Us What You Want to Automate
-            </Link>
-            <a href="https://app.workflowmitra.com/signup" className="btn btn-secondary btn-large">
+            </RollButton>
+            <RollButton href="https://app.workflowmitra.com/signup" variant="secondary" size="lg" showArrow>
               Start Building Free
-            </a>
+            </RollButton>
           </div>
           <p className="ah-hero-reassurance">Free to start &middot; No credit card required &middot; Expert help available</p>
 
@@ -376,12 +377,12 @@ function AutomationHelp() {
             <h2>You know what you want to automate. Let's build it.</h2>
             <p>You don't need to figure out every technical step yourself.</p>
             <div className="ah-cta-actions">
-              <Link to="/contact?from=automation-help" className="btn btn-primary btn-large">
+              <RollButton to="/contact?from=automation-help" variant="dark" size="lg">
                 Tell Us What You Want to Automate
-              </Link>
-              <a href="https://app.workflowmitra.com/signup" className="btn btn-secondary btn-large">
+              </RollButton>
+              <RollButton href="https://app.workflowmitra.com/signup" variant="secondary" size="lg" showArrow>
                 Start Building Free
-              </a>
+              </RollButton>
             </div>
             <p className="ah-cta-links">
               Or see <Link to="/pricing">pricing</Link>, browse <Link to="/templates">templates</Link>, or explore <Link to="/integrations">integrations</Link>.

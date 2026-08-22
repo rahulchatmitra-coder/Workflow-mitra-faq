@@ -5,13 +5,13 @@ import { ArrowRight, Sparkles, Zap, CheckCircle2 } from 'lucide-react'
 import {
   Slack,
   GmailLogo,
-  HubSpotLogo,
   Openai,
   WhatsappIcon,
   WorkflowMitraLogo,
   GoogleSheetsLogo,
 } from './ui/svgs'
-import { SiNotion } from 'react-icons/si'
+import { SiNotion, SiHubspot } from 'react-icons/si'
+import RollButton from './RollButton'
 import './IntegrationsShowcase.css'
 
 // Official Claude AI Brand Icon Component
@@ -48,7 +48,7 @@ const ORBITAL_APPS = [
     category: 'CRMs & Sales',
     action: 'Sync leads, update deals & trigger sales workflows',
     color: '#FF7A59',
-    renderIcon: () => <HubSpotLogo className="w-7 h-7" />,
+    renderIcon: () => <SiHubspot size={28} color="#FF7A59" />,
     badge: 'CRM Sync',
     positionClass: 'pos-2', // Top Right (45°)
   },
@@ -302,10 +302,14 @@ export default function IntegrationsShowcase() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Link to="/integrations" className="tg-browse-btn">
-            <span>Explore 200+ Pre-Built Integrations</span>
-            <ArrowRight size={16} />
-          </Link>
+          <RollButton
+            to="/integrations"
+            variant="secondary"
+            size="md"
+            showArrow={true}
+          >
+            Explore 200+ Pre-Built Integrations
+          </RollButton>
         </motion.div>
 
       </div>

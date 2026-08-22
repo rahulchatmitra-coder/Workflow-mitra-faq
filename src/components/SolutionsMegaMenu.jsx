@@ -1,82 +1,55 @@
 import { Link } from 'react-router-dom'
-import { Megaphone, Briefcase, Settings, Code2, MessageCircle, Shield, Target, Mail, Database, Headphones, FileSearch, TrendingUp } from 'lucide-react'
+import { Megaphone, Briefcase, Settings, Code2, MessageCircle, Shield, ArrowRight } from 'lucide-react'
 import './SolutionsMegaMenu.css'
 
 const roles = [
   {
-    id: 'marketing',
-    icon: Megaphone,
-    title: 'Marketing',
-    description: 'Automate campaigns, content workflows, lead research and reporting'
-  },
-  {
     id: 'sales',
     icon: Briefcase,
-    title: 'Sales',
-    description: 'Automate prospecting, enrichment, follow-ups and CRM workflows'
+    iconColor: '#2563eb',
+    iconBg: '#eff6ff',
+    title: 'Sales Automation',
+    description: 'CRM, lead routing, prospecting & follow-ups'
+  },
+  {
+    id: 'marketing',
+    icon: Megaphone,
+    iconColor: '#d97706',
+    iconBg: '#fffbeb',
+    title: 'Marketing & Growth',
+    description: 'Campaigns, ads, content & nurturing flows'
   },
   {
     id: 'operations',
     icon: Settings,
-    title: 'Operations',
-    description: 'Eliminate repetitive manual work across your business systems'
-  },
-  {
-    id: 'engineering',
-    icon: Code2,
-    title: 'Engineering',
-    description: 'Build reliable technical workflows, integrations and internal automations'
+    iconColor: '#059669',
+    iconBg: '#ecfdf5',
+    title: 'Operations & Sync',
+    description: 'Cross-app data sync, orders & spreadsheets'
   },
   {
     id: 'support',
     icon: MessageCircle,
-    title: 'Support',
-    description: 'Automate ticket workflows, customer requests, routing and notifications'
+    iconColor: '#7c3aed',
+    iconBg: '#f5f3ff',
+    title: 'Customer Support',
+    description: 'Ticket triage, auto-replies & escalation alerts'
+  },
+  {
+    id: 'engineering',
+    icon: Code2,
+    iconColor: '#0284c7',
+    iconBg: '#f0f9ff',
+    title: 'Engineering & DevOps',
+    description: 'Webhooks, API connectors & CI/CD automations'
   },
   {
     id: 'security',
     icon: Shield,
-    title: 'Security',
-    description: 'Build controlled, auditable automation workflows with secure access'
-  }
-]
-
-const useCases = [
-  {
-    id: 'lead-generation',
-    icon: Target,
-    title: 'Lead Generation',
-    description: 'Find and enrich leads automatically'
-  },
-  {
-    id: 'email-automation',
-    icon: Mail,
-    title: 'Email Automation',
-    description: 'Automated email sequences and responses'
-  },
-  {
-    id: 'crm-automation',
-    icon: Database,
-    title: 'CRM Automation',
-    description: 'Keep your CRM data synchronized'
-  },
-  {
-    id: 'customer-support',
-    icon: Headphones,
-    title: 'Customer Support',
-    description: 'Automate ticket routing and responses'
-  },
-  {
-    id: 'data-extraction',
-    icon: FileSearch,
-    title: 'Data Extraction',
-    description: 'Extract and process data from documents'
-  },
-  {
-    id: 'report-generation',
-    icon: TrendingUp,
-    title: 'Report Generation',
-    description: 'Automated reporting and analytics'
+    iconColor: '#dc2626',
+    iconBg: '#fef2f2',
+    title: 'Security & Audit',
+    description: 'Role-based access, audit logs & compliance'
   }
 ]
 
@@ -98,57 +71,42 @@ function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
         aria-label="Solutions menu"
       >
         <div className="mega-menu-content">
-          <div className="mega-menu-section">
-            <div className="mega-menu-header">ROLES</div>
-            <div className="mega-menu-items">
-              {roles.map((role) => {
-                const IconComponent = role.icon
-                return (
-                  <Link
-                    key={role.id}
-                    to={`/solutions/${role.id}`}
-                    className="mega-menu-item"
-                    onClick={handleLinkClick}
-                  >
-                    <div className="menu-item-icon-box">
-                      <IconComponent className="menu-item-icon" size={20} strokeWidth={1.5} />
-                    </div>
-                    <div className="menu-item-content">
-                      <div className="menu-item-title">{role.title}</div>
-                      <div className="menu-item-description">{role.description}</div>
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
+          <div className="mega-menu-header-row">
+            <span className="mega-menu-header">BY DEPARTMENT &amp; ROLE</span>
           </div>
 
-          <div className="mega-menu-divider"></div>
-
-          <div className="mega-menu-section">
-            <div className="mega-menu-header">USE CASES</div>
-            <div className="mega-menu-items">
-              {useCases.map((useCase) => {
-                const IconComponent = useCase.icon
-                return (
-                  <Link
-                    key={useCase.id}
-                    to={`/solutions/${useCase.id}`}
-                    className="mega-menu-item"
-                    onClick={handleLinkClick}
+          <div className="mega-menu-grid">
+            {roles.map((role) => {
+              const IconComponent = role.icon
+              return (
+                <Link
+                  key={role.id}
+                  to={`/solutions/${role.id}`}
+                  className="mega-menu-item"
+                  onClick={handleLinkClick}
+                >
+                  <div 
+                    className="menu-item-icon-box"
+                    style={{ backgroundColor: role.iconBg, color: role.iconColor }}
                   >
-                    <div className="menu-item-icon-box">
-                      <IconComponent className="menu-item-icon" size={20} strokeWidth={1.5} />
-                    </div>
-                    <div className="menu-item-content">
-                      <div className="menu-item-title">{useCase.title}</div>
-                      <div className="menu-item-description">{useCase.description}</div>
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
+                    <IconComponent className="menu-item-icon" size={17} strokeWidth={2} />
+                  </div>
+                  <div className="menu-item-content">
+                    <div className="menu-item-title">{role.title}</div>
+                    <div className="menu-item-description">{role.description}</div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
+        </div>
+
+        {/* Compact Footer Strip */}
+        <div className="mega-menu-footer">
+          <Link to="/solutions" className="mega-menu-footer-link" onClick={handleLinkClick}>
+            <span>Explore all solutions overview</span>
+            <ArrowRight size={13} />
+          </Link>
         </div>
       </div>
     </div>
@@ -156,3 +114,4 @@ function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
 }
 
 export default SolutionsMegaMenu
+

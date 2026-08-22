@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ChevronDown, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
+import { Check, CheckCircle2, ChevronDown, Sparkles, HelpCircle, ArrowRight, Zap, Bot, Users, Headphones, ShieldCheck, Layers } from 'lucide-react';
+import { SiZapier, SiMake, SiN8N } from 'react-icons/si';
 import PageSeo from '../components/PageSeo';
+import RollButton from '../components/RollButton';
 import './Pricing.css';
 
 function Pricing() {
@@ -92,49 +94,196 @@ function Pricing() {
     }
   ];
 
-  const comparisonRows = [
+  const COMPARE_CATEGORIES = [
     {
-      label: 'Credits included',
-      starter: '10,000 / mo',
-      pro: '20,000 / mo',
-      scale: '40,000 / mo'
+      category: 'Core Execution & Capacity',
+      icon: 'Zap',
+      rows: [
+        {
+          feature: 'Monthly Tasks / Credits',
+          sub: '1 credit = 1 complete workflow node execution',
+          starter: '10,000 / mo',
+          pro: '20,000 / mo',
+          scale: '40,000 / mo',
+        },
+        {
+          feature: 'Cost per 1,000 Credits',
+          sub: 'Effective price per execution block',
+          starter: '₹99.90',
+          pro: '₹74.95 (Save 25%)',
+          scale: '₹67.48 (Save 32%)',
+          badgePro: 'Best Value',
+        },
+        {
+          feature: 'Active Automated Workflows',
+          sub: 'Live simultaneous automations in your account',
+          starter: '10 Workflows',
+          pro: '20 Workflows',
+          scale: '50 Workflows',
+        },
+        {
+          feature: 'Execution Log & Audit History',
+          sub: 'Detailed step-by-step logs for debugging & replay',
+          starter: '7 Days History',
+          pro: '15 Days History',
+          scale: '30 Days History',
+        },
+        {
+          feature: 'Execution Speed & Latency',
+          sub: 'Average node trigger-to-execution latency',
+          starter: '< 0.2s Real-time',
+          pro: '< 0.2s Real-time',
+          scale: '< 0.1s Dedicated Priority',
+        },
+      ]
     },
     {
-      label: 'Cost per 1,000 credits',
-      starter: '₹99.90',
-      pro: '₹74.95 (25% off)',
-      scale: '₹67.48 (32% off)'
+      category: 'AI & Autonomous Intelligence',
+      icon: 'Bot',
+      rows: [
+        {
+          feature: 'Autonomous AI Reasoning Nodes',
+          sub: 'Native Claude 3.5 Sonnet, GPT-4o & DeepSeek access',
+          starter: 'Included',
+          pro: 'Included (Priority Quotas)',
+          scale: 'Unlimited / High Volume',
+          isCheck: true,
+        },
+        {
+          feature: 'Smart Error Fallback & Auto-Retry',
+          sub: 'Self-healing logic when third-party APIs fail',
+          starter: 'Standard Auto-Retry (1x)',
+          pro: 'Smart Self-Healing (3x)',
+          scale: 'Advanced Auto-Heal (5x) + Alert',
+        },
+        {
+          feature: 'Custom Webhooks & Instant Triggers',
+          sub: 'Trigger flows from any external app, webhook, or form',
+          starter: 'Unlimited Webhooks',
+          pro: 'Unlimited Webhooks',
+          scale: 'Unlimited + Dedicated Endpoints',
+          isCheck: true,
+        },
+      ]
     },
     {
-      label: 'Active workflows',
-      starter: '10 workflows',
-      pro: '20 workflows',
-      scale: '50 workflows'
+      category: 'Team Collaboration & Governance',
+      icon: 'Users',
+      rows: [
+        {
+          feature: 'Team Member Seats',
+          sub: 'Collaborate with teammates without per-seat fees',
+          starter: '2 Included Seats',
+          pro: '5 Included Seats',
+          scale: '10 Included Seats',
+        },
+        {
+          feature: 'Role-Based Permissions (RBAC)',
+          sub: 'Granular admin, editor, and viewer access roles',
+          starter: 'Standard Admin',
+          pro: 'Custom Roles & Viewers',
+          scale: 'Full Enterprise RBAC',
+        },
+        {
+          feature: 'Security & 256-Bit Data Encryption',
+          sub: 'End-to-end encryption at rest & in transit',
+          starter: 'SOC-2 & GDPR Grade',
+          pro: 'SOC-2 & GDPR Grade',
+          scale: 'Dedicated VPC / IP Whitelisting',
+          isCheck: true,
+        },
+      ]
     },
     {
-      label: 'Execution log history',
-      starter: '7 days',
-      pro: '15 days',
-      scale: '30 days'
-    },
-    {
-      label: 'Team seats',
-      starter: '2 seats',
-      pro: '5 seats',
-      scale: '10 seats'
-    },
-    {
-      label: 'All node types & integrations',
-      starter: '✓ Included',
-      pro: '✓ Included',
-      scale: '✓ Included'
-    },
-    {
-      label: 'Support tier',
-      starter: 'Community support',
-      pro: 'Email support',
-      scale: 'Priority support'
+      category: 'Support, Expert Setup & SLA',
+      icon: 'Headphones',
+      rows: [
+        {
+          feature: 'Customer Support Level',
+          sub: 'Guaranteed response time from our automation engineers',
+          starter: 'Community & Docs',
+          pro: 'Fast Email Support (< 4h)',
+          scale: 'Priority SLA & Dedicated Slack',
+        },
+        {
+          feature: '1-on-1 Automation Engineer Help',
+          sub: 'Direct assistance to map, build, and debug workflows',
+          starter: 'Pre-built Blueprints',
+          pro: '1 Onboarding Session Included',
+          scale: 'Dedicated Automation Engineer',
+        },
+        {
+          feature: 'Cloud Uptime Commitment',
+          sub: 'Guaranteed system availability and redundancy',
+          starter: '99.8% SLA',
+          pro: '99.9% Uptime SLA',
+          scale: '99.99% Enterprise SLA',
+        },
+      ]
     }
+  ];
+
+  const COMPARISON_MATRIX = [
+    {
+      feature: 'Starter Price & Monthly Tasks',
+      description: 'Entry-level pricing and monthly execution allowance',
+      wm: '₹999 / mo (10,000 tasks)',
+      wmBadge: 'Best Value',
+      zapier: '₹2,499 / mo (750 tasks)',
+      make: '₹750 / mo (1,000 ops)',
+      n8n: '₹1,660 / mo + Compute',
+    },
+    {
+      feature: 'Cost for 10,000 Executions',
+      description: 'What your business actually pays at standard scale',
+      wm: '₹999 / mo (Included)',
+      wmBadge: 'Save up to 80%',
+      zapier: '₹11,600+ / mo',
+      make: '₹3,300+ / mo',
+      n8n: '₹2,500+ / mo + Server',
+    },
+    {
+      feature: 'Autonomous AI (Claude & GPT-4o)',
+      description: 'Native AI reasoning, smart extraction & decision nodes',
+      wm: 'Built-in Native AI Nodes',
+      wmBadge: 'Zero Extra Cost',
+      zapier: '₹4,100+ / mo (Paid Add-on)',
+      make: 'Manual HTTP + Token Bills',
+      n8n: 'Manual LangChain Setup',
+    },
+    {
+      feature: '1-on-1 Human Automation Help',
+      description: 'Real engineers to map, build & debug workflows with you',
+      wm: 'Included with Experts (Free)',
+      wmBadge: 'Full Support',
+      zapier: 'Community forum only',
+      make: 'Hire expensive agency (₹25k+)',
+      n8n: 'Self-serve docs only',
+    },
+    {
+      feature: 'Setup & Learning Curve',
+      description: 'Time needed to go from zero to live automated workflow',
+      wm: '5 Mins (Visual & No-Code)',
+      zapier: 'Moderate (Tier limits)',
+      make: 'Steep router mazes',
+      n8n: 'High (DevOps & code required)',
+    },
+    {
+      feature: 'Cloud Hosting, Maintenance & SLA',
+      description: 'Server uptime, updates, auto-retries & guaranteed SLA',
+      wm: '100% Managed (99.8% SLA)',
+      zapier: 'Cloud Managed',
+      make: 'Cloud Managed',
+      n8n: 'Self-Hosted Server Overhead',
+    },
+    {
+      feature: 'Active Automated Workflows',
+      description: 'Number of active workflows you can run simultaneously',
+      wm: 'Unlimited Active Workflows',
+      zapier: 'Restricted on starter tiers',
+      make: 'Unlimited',
+      n8n: 'Unlimited',
+    },
   ];
 
   const faqs = [
@@ -182,54 +331,50 @@ function Pricing() {
         <div className="axvio-pricing-glow" aria-hidden="true" />
         <div className="axvio-pricing-glow-secondary" aria-hidden="true" />
 
-        {/* Header Block */}
+        {/* Header Block with Right-Aligned Toggle Button */}
         <motion.div 
           className="axvio-pricing-header"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="axvio-pricing-eyebrow">
-            <span className="axvio-eyebrow-dot" />
-            <span>Pricing</span>
+          <div className="axvio-header-left">
+            <div className="axvio-pricing-eyebrow">
+              <span className="axvio-eyebrow-dot" />
+              <span>Pricing</span>
+            </div>
+
+            <h1 className="axvio-pricing-title">
+              Simple Pricing, Serious Results.
+            </h1>
+
+            <p className="axvio-pricing-subhead">
+              No hidden fees. No surprises. Just pick a plan and start automating.
+            </p>
           </div>
 
-          <h1 className="axvio-pricing-title">
-            Simple Pricing, <span className="axvio-title-gradient">Serious Results.</span>
-          </h1>
+          {/* Right-Aligned User-Friendly Billing Switch */}
+          <div className="axvio-header-right">
+            <div className="axvio-billing-toggle-wrapper">
+              <button 
+                type="button"
+                className={`axvio-billing-tab ${!isYearly ? 'active' : ''}`}
+                onClick={() => setIsYearly(false)}
+                aria-pressed={!isYearly}
+              >
+                Monthly
+              </button>
 
-          <p className="axvio-pricing-subhead">
-            No hidden fees. No surprises. Just pick a plan and start automating.
-          </p>
-
-          {/* Centered Billing Switch */}
-          <div className="axvio-billing-toggle-wrapper">
-            <span 
-              className={`axvio-billing-label ${!isYearly ? 'active' : ''}`}
-              onClick={() => setIsYearly(false)}
-            >
-              Monthly
-            </span>
-
-            <button 
-              type="button"
-              className="axvio-switch-track"
-              onClick={() => setIsYearly(!isYearly)}
-              aria-label="Toggle annual billing"
-            >
-              <motion.span 
-                className="axvio-switch-thumb"
-                animate={{ x: isYearly ? 26 : 0 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            </button>
-
-            <span 
-              className={`axvio-billing-label ${isYearly ? 'active' : ''}`}
-              onClick={() => setIsYearly(true)}
-            >
-              Yearly <span className="axvio-save-tag">(Save 15%)</span>
-            </span>
+              <button 
+                type="button"
+                className={`axvio-billing-tab ${isYearly ? 'active' : ''}`}
+                onClick={() => setIsYearly(true)}
+                aria-pressed={isYearly}
+              >
+                <span>Yearly</span>
+                <span className="axvio-save-tag">Save 15%</span>
+              </button>
+            </div>
           </div>
         </motion.div>
 
@@ -300,16 +445,17 @@ function Pricing() {
                 </ul>
 
                 {/* Action CTA Button */}
-                <button
-                  type="button"
-                  className={`axvio-cta-btn ${plan.isPopular ? 'btn-popular' : 'btn-default'}`}
+                <RollButton
+                  variant={plan.isPopular ? 'dark' : 'secondary'}
+                  size="md"
+                  className="axvio-plan-roll-btn"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleCheckout(plan.name);
                   }}
                 >
                   {getCtaText(plan)}
-                </button>
+                </RollButton>
               </motion.div>
             );
           })}
@@ -317,12 +463,12 @@ function Pricing() {
       </section>
 
       {/* ─── 2. Compare Tiers Section ─── */}
-      <section className="pricing-compare-section">
+      <section className="pricing-compare-section" id="compare-plans">
         <div className="compare-container">
           <div className="compare-header">
-            <span className="compare-eyebrow">Tier Breakdown</span>
+            <span className="compare-eyebrow">Detailed Breakdown</span>
             <h2>Compare Plan Features</h2>
-            <p className="compare-sub">Everything you need to know about our credit allowances, seats, and capabilities.</p>
+            <p className="compare-sub">Everything you need to know about our task allowances, seats, AI reasoning nodes, and enterprise capabilities.</p>
           </div>
 
           <div className="compare-table-card">
@@ -330,33 +476,104 @@ function Pricing() {
               <table className="compare-table">
                 <thead>
                   <tr>
-                    <th className="th-feature">Feature</th>
-                    <th className="th-tier">
-                      <span className="tier-head-title">Starter</span>
-                      <span className="tier-head-credits">10,000 credits</span>
-                      <span className="tier-head-price">₹999/mo</span>
+                    <th className="th-feature">
+                      <div className="th-feature-main">
+                        <span className="th-feature-title">Plan Capabilities</span>
+                        <span className="th-feature-sub">Feature specifications</span>
+                      </div>
                     </th>
+                    
+                    {/* Starter */}
+                    <th className="th-tier th-tier-starter">
+                      <div className="th-tier-box">
+                        <span className="tier-head-title">Starter</span>
+                        <span className="tier-head-credits">10,000 tasks</span>
+                        <span className="tier-head-price">{isYearly ? '₹849' : '₹999'}<span className="tier-period">/mo</span></span>
+                      </div>
+                    </th>
+
+                    {/* Pro (Recommended) */}
                     <th className="th-tier th-tier-pro">
-                      <div className="pro-head-badge">Popular</div>
-                      <span className="tier-head-title">Pro</span>
-                      <span className="tier-head-credits">20,000 credits</span>
-                      <span className="tier-head-price">₹1,499/mo</span>
+                      <div className="th-tier-box pro-highlight-box">
+                        <span className="pro-head-badge">Most Popular</span>
+                        <span className="tier-head-title">Pro</span>
+                        <span className="tier-head-credits">20,000 tasks</span>
+                        <span className="tier-head-price">{isYearly ? '₹1,274' : '₹1,499'}<span className="tier-period">/mo</span></span>
+                      </div>
                     </th>
-                    <th className="th-tier">
-                      <span className="tier-head-title">Scale</span>
-                      <span className="tier-head-credits">40,000 credits</span>
-                      <span className="tier-head-price">₹2,699/mo</span>
+
+                    {/* Scale */}
+                    <th className="th-tier th-tier-scale">
+                      <div className="th-tier-box">
+                        <span className="tier-head-title">Scale</span>
+                        <span className="tier-head-credits">40,000 tasks</span>
+                        <span className="tier-head-price">{isYearly ? '₹2,294' : '₹2,699'}<span className="tier-period">/mo</span></span>
+                      </div>
                     </th>
                   </tr>
                 </thead>
+
                 <tbody>
-                  {comparisonRows.map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'row-even' : 'row-odd'}>
-                      <td className="td-feature-title">{row.label}</td>
-                      <td className="td-val">{row.starter}</td>
-                      <td className="td-val td-val-pro">{row.pro}</td>
-                      <td className="td-val">{row.scale}</td>
-                    </tr>
+                  {COMPARE_CATEGORIES.map((cat, catIdx) => (
+                    <Fragment key={`cat-group-${catIdx}`}>
+                      {/* Category Header Row */}
+                      <tr className="tr-category-header">
+                        <td colSpan={4} className="td-category-title">
+                          <div className="category-header-pill">
+                            {cat.icon === 'Zap' && <Zap size={14} className="cat-icon cat-zap" />}
+                            {cat.icon === 'Bot' && <Bot size={14} className="cat-icon cat-bot" />}
+                            {cat.icon === 'Users' && <Users size={14} className="cat-icon cat-users" />}
+                            {cat.icon === 'Headphones' && <Headphones size={14} className="cat-icon cat-headphone" />}
+                            <span>{cat.category}</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Category Rows */}
+                      {cat.rows.map((row, rowIdx) => (
+                        <tr key={`row-${catIdx}-${rowIdx}`} className={rowIdx % 2 === 0 ? 'row-even' : 'row-odd'}>
+                          <td className="td-feature-title">
+                            <div className="td-feature-name-wrap">
+                              <span className="td-feature-name">{row.feature}</span>
+                              {row.sub && <span className="td-feature-desc">{row.sub}</span>}
+                            </div>
+                          </td>
+
+                          {/* Starter Value */}
+                          <td className="td-val td-val-starter">
+                            <div className="td-val-inner">
+                              {row.isCheck && row.starter === 'Included' ? (
+                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
+                              ) : null}
+                              <span className="td-val-text">{row.starter}</span>
+                            </div>
+                          </td>
+
+                          {/* Pro Value */}
+                          <td className="td-val td-val-pro">
+                            <div className="td-val-inner">
+                              {row.isCheck ? (
+                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
+                              ) : null}
+                              <span className="td-val-text font-bold text-dark">{row.pro}</span>
+                              {row.badgePro && (
+                                <span className="td-pro-save-pill">{row.badgePro}</span>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* Scale Value */}
+                          <td className="td-val td-val-scale">
+                            <div className="td-val-inner">
+                              {row.isCheck ? (
+                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
+                              ) : null}
+                              <span className="td-val-text font-medium">{row.scale}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </Fragment>
                   ))}
                 </tbody>
               </table>
@@ -365,7 +582,148 @@ function Pricing() {
         </div>
       </section>
 
-      {/* ─── 3. FAQ Section ─── */}
+      {/* ─── 3. Platform Comparison Matrix (Competitor Benchmark) ─── */}
+      <section className="alt-section" id="alternatives">
+        <div className="compare-container">
+          <div className="section-header alt-header-centered">
+            <div className="alt-eyebrow-badge">
+              <span className="alt-eyebrow-dot" />
+              <span>Platform Comparison Matrix</span>
+            </div>
+            <h2 className="section-title">Looking for a simpler automation alternative?</h2>
+            <p className="section-subtitle">WorkflowMitra gives you the automation power you need — without the complexity, steep learning curve, or high cost of legacy tools.</p>
+          </div>
+
+          {/* Clean SaaS Comparison Table */}
+          <div className="wm-compare-table-card">
+            <div className="wm-compare-table-scroll">
+              <table className="wm-compare-table">
+                <thead>
+                  <tr>
+                    <th className="th-feature">Platform Capabilities</th>
+                    
+                    {/* WorkflowMitra Hero Column */}
+                    <th className="th-wm">
+                      <div className="th-wm-header">
+                        <span className="th-wm-badge">✦ Recommended</span>
+                        <div className="th-wm-brand">
+                          <div className="th-wm-logo">
+                            <Sparkles size={16} color="#059669" />
+                          </div>
+                          <span className="th-wm-name">WorkflowMitra</span>
+                        </div>
+                        <span className="th-wm-sub">All-in-one AI &amp; Automation</span>
+                      </div>
+                    </th>
+
+                    {/* Zapier */}
+                    <th className="th-comp">
+                      <div className="th-comp-header">
+                        <div className="th-comp-logo logo-zapier" style={{ background: '#fff5f0' }}>
+                          <SiZapier size={18} color="#FF4A00" />
+                        </div>
+                        <span className="th-comp-name">Zapier</span>
+                        <span className="th-comp-tag">Legacy No-Code</span>
+                      </div>
+                    </th>
+
+                    {/* Make */}
+                    <th className="th-comp">
+                      <div className="th-comp-header">
+                        <div className="th-comp-logo logo-make" style={{ background: '#f5f3ff' }}>
+                          <SiMake size={18} color="#6D28D9" />
+                        </div>
+                        <span className="th-comp-name">Make</span>
+                        <span className="th-comp-tag">Visual Routers</span>
+                      </div>
+                    </th>
+
+                    {/* n8n */}
+                    <th className="th-comp">
+                      <div className="th-comp-header">
+                        <div className="th-comp-logo logo-n8n" style={{ background: '#fff7ed' }}>
+                          <SiN8N size={20} color="#EA580C" />
+                        </div>
+                        <span className="th-comp-name">n8n</span>
+                        <span className="th-comp-tag">Self-Host / Dev</span>
+                      </div>
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON_MATRIX.map((row, idx) => (
+                    <tr key={idx} className="tr-compare-row">
+                      <td className="td-feature">
+                        <div className="td-feature-content">
+                          <span className="td-feature-title">{row.feature}</span>
+                          <span className="td-feature-sub">{row.description}</span>
+                        </div>
+                      </td>
+
+                      {/* WorkflowMitra Column */}
+                      <td className="td-wm">
+                        <div className="td-wm-content">
+                          <div className="td-val-box val-wm">
+                            <CheckCircle2 size={16} color="#059669" className="td-check-icon" />
+                            <span className="td-val-text font-bold text-dark">{row.wm}</span>
+                          </div>
+                          {row.wmBadge && (
+                            <span className="td-wm-pill">{row.wmBadge}</span>
+                          )}
+                        </div>
+                      </td>
+
+                      {/* Zapier */}
+                      <td className="td-comp">
+                        <div className="td-comp-content">
+                          <span className="td-val-text text-muted">{row.zapier}</span>
+                        </div>
+                      </td>
+
+                      {/* Make */}
+                      <td className="td-comp">
+                        <div className="td-comp-content">
+                          <span className="td-val-text text-muted">{row.make}</span>
+                        </div>
+                      </td>
+
+                      {/* n8n */}
+                      <td className="td-comp">
+                        <div className="td-comp-content">
+                          <span className="td-val-text text-muted">{row.n8n}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Bottom Quick Switch Banner */}
+            <div className="wm-compare-footer">
+              <div className="wm-compare-footer-text">
+                <span className="wm-compare-footer-title">Ready to switch to high-velocity automation?</span>
+                <span className="wm-compare-footer-sub">Get 10,000 monthly executions, AI agents, and dedicated engineer support starting at ₹999/mo.</span>
+              </div>
+              <div className="wm-compare-footer-actions">
+                <RollButton
+                  href="https://app.workflowmitra.com/signup"
+                  variant="white"
+                  size="md"
+                  showArrow={true}
+                  className="wm-compare-cta-btn"
+                >
+                  Start Free 14-Day Trial
+                </RollButton>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. FAQ Section ─── */}
       <section className="pricing-faq">
         <div className="faq-container">
           <div className="faq-header">

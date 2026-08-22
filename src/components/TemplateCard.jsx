@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import RollButton from './RollButton';
 import './TemplateCard.css';
 
 // Map specific categories to color themes
@@ -52,11 +53,19 @@ const TemplateCard = ({ template, index }) => {
       <p>{template.description}</p>
       <div className="card-footer">
         <span className="meta">{template.steps}</span>
-        <button
-          className="use-btn"
-          onClick={() => navigate(`/template/${template.id}`)}
+        <RollButton
+          to={`/template/${template.id}`}
+          variant="dark"
+          size="sm"
+          showArrow={true}
+          className="template-use-roll-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           aria-label={`Use template: ${template.title}`}
-        >Use</button>
+        >
+          Use Template
+        </RollButton>
       </div>
     </div>
   );

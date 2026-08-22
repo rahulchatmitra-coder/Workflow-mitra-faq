@@ -8,6 +8,7 @@ import DeferredHomeSection from '../components/DeferredHomeSection'
 import PageSeo from '../components/PageSeo'
 import { Sparkles, ArrowRight, CheckCircle2, Zap, Users, CreditCard, Layers, Bot, Play, XCircle, Clock, AlertCircle, ChevronRight, ChevronDown, TrendingUp, Headphones, ShoppingBag, MousePointerClick, Coins, Cpu, Network, HelpCircle, MessageCircle, Sliders, ShieldCheck } from 'lucide-react'
 import { SiZapier, SiMake, SiN8N } from 'react-icons/si'
+import RollButton from '../components/RollButton'
 import './Home.css'
 
 import AgentsShowcase from '../components/AgentsShowcase'
@@ -96,69 +97,6 @@ const AFTER_STEPS = [
 ]
 
 const CATEGORIES = ['All', 'Lead capture', 'E-commerce', 'AI', 'Customer support']
-
-const COMPARISON_MATRIX = [
-  {
-    feature: 'Starter Price & Monthly Tasks',
-    description: 'Entry-level pricing and monthly execution allowance',
-    wm: '₹999 / mo (10,000 tasks)',
-    wmBadge: 'Best Value',
-    zapier: '₹2,499 / mo (750 tasks)',
-    make: '₹750 / mo (1,000 ops)',
-    n8n: '₹1,660 / mo + Compute',
-  },
-  {
-    feature: 'Cost for 10,000 Executions',
-    description: 'What your business actually pays at standard scale',
-    wm: '₹999 / mo (Included)',
-    wmBadge: 'Save up to 80%',
-    zapier: '₹11,600+ / mo',
-    make: '₹3,300+ / mo',
-    n8n: '₹2,500+ / mo + Server',
-  },
-  {
-    feature: 'Autonomous AI (Claude & GPT-4o)',
-    description: 'Native AI reasoning, smart extraction & decision nodes',
-    wm: 'Built-in Native AI Nodes',
-    wmBadge: 'Zero Extra Cost',
-    zapier: '₹4,100+ / mo (Paid Add-on)',
-    make: 'Manual HTTP + Token Bills',
-    n8n: 'Manual LangChain Setup',
-  },
-  {
-    feature: '1-on-1 Human Automation Help',
-    description: 'Real engineers to map, build & debug workflows with you',
-    wm: 'Included with Experts (Free)',
-    wmBadge: 'Full Support',
-    zapier: 'Community forum only',
-    make: 'Hire expensive agency (₹25k+)',
-    n8n: 'Self-serve docs only',
-  },
-  {
-    feature: 'Setup & Learning Curve',
-    description: 'Time needed to go from zero to live automated workflow',
-    wm: '5 Mins (Visual & No-Code)',
-    zapier: 'Moderate (Tier limits)',
-    make: 'Steep router mazes',
-    n8n: 'High (DevOps & code required)',
-  },
-  {
-    feature: 'Cloud Hosting, Maintenance & SLA',
-    description: 'Server uptime, updates, auto-retries & guaranteed SLA',
-    wm: '100% Managed (99.8% SLA)',
-    zapier: 'Cloud Managed',
-    make: 'Cloud Managed',
-    n8n: 'Self-Hosted Server Overhead',
-  },
-  {
-    feature: 'Active Automated Workflows',
-    description: 'Number of active workflows you can run simultaneously',
-    wm: 'Unlimited Active Workflows',
-    zapier: 'Restricted on starter tiers',
-    make: 'Unlimited',
-    n8n: 'Unlimited',
-  },
-]
 
 const WHY_ITEMS = [
   {
@@ -417,10 +355,15 @@ function Home() {
                     </div>
                   </div>
 
-                  <a href="https://app.workflowmitra.com/signup" className="wm-afford-start-btn">
-                    <span>Start Free 14-Day Trial</span>
-                    <ArrowRight size={16} className="wm-btn-arrow" />
-                  </a>
+                  <RollButton
+                    href="https://app.workflowmitra.com/signup"
+                    variant="dark"
+                    size="md"
+                    showArrow={true}
+                    className="wm-afford-roll-btn"
+                  >
+                    Start Free 14-Day Trial
+                  </RollButton>
 
                   <div className="wm-afford-card-footer-notes">
                     <span>Instant activation</span>
@@ -441,11 +384,14 @@ function Home() {
       <DeferredHomeSection minHeight={540}>
         <section className="templates-section">
           <div className="container">
-            <div className="section-header">
-              <div className="section-heading-group">
-                <h2 className="section-title">Start from a workflow that already works</h2>
-                <p className="section-subtitle">Open a template, connect your accounts, and run it — no coding required.</p>
+            <div className="section-header templates-header-centered">
+              <div className="wm-templates-eyebrow-badge">
+                <Sparkles size={13} className="wm-templates-badge-sparkle" />
+                <span>PRE-BUILT BLUEPRINTS</span>
               </div>
+              <h2 className="section-title">Start from a workflow that already works</h2>
+              <p className="section-subtitle">Open a production-tested template, connect your apps, and run it on 24/7 autopilot.</p>
+              
               <div className="template-tabs" role="tablist" aria-label="Template categories">
                 {CATEGORIES.map(cat => (
                   <button
@@ -495,150 +441,15 @@ function Home() {
             </div>
 
             <div className="templates-more">
-              <Link to="/templates" className="wm-templates-all-btn">
-                <span>Explore All Templates</span>
-                <ArrowRight size={15} />
-              </Link>
+              <RollButton
+                to="/templates"
+                variant="dark"
+                size="md"
+                showArrow={true}
+              >
+                Explore All Templates
+              </RollButton>
             </div>
-          </div>
-        </section>
-      </DeferredHomeSection>
-
-      {/* 12 — Competitor Alternative (Modern Comparison Table) */}
-      <DeferredHomeSection minHeight={580}>
-        <section className="alt-section" id="alternatives">
-          <div className="container">
-            <div className="section-header alt-header-centered">
-              <div className="alt-eyebrow-badge">
-                <span className="alt-eyebrow-dot" />
-                <span>Platform Comparison Matrix</span>
-              </div>
-              <h2 className="section-title">Looking for a simpler automation alternative?</h2>
-              <p className="section-subtitle">WorkflowMitra gives you the automation power you need — without the complexity, steep learning curve, or high cost of legacy tools.</p>
-            </div>
-
-            {/* Clean SaaS Comparison Table */}
-            <div className="wm-compare-table-card">
-              <div className="wm-compare-table-scroll">
-                <table className="wm-compare-table">
-                  <thead>
-                    <tr>
-                      <th className="th-feature">Platform Capabilities</th>
-                      
-                      {/* WorkflowMitra Hero Column */}
-                      <th className="th-wm">
-                        <div className="th-wm-header">
-                          <span className="th-wm-badge">✦ Recommended</span>
-                          <div className="th-wm-brand">
-                            <div className="th-wm-logo">
-                              <Sparkles size={16} color="#059669" />
-                            </div>
-                            <span className="th-wm-name">WorkflowMitra</span>
-                          </div>
-                          <span className="th-wm-sub">All-in-one AI &amp; Automation</span>
-                        </div>
-                      </th>
-
-                      {/* Zapier */}
-                      <th className="th-comp">
-                        <div className="th-comp-header">
-                          <div className="th-comp-logo logo-zapier" style={{ background: '#fff5f0' }}>
-                            <SiZapier size={18} color="#FF4A00" />
-                          </div>
-                          <span className="th-comp-name">Zapier</span>
-                          <span className="th-comp-tag">Legacy No-Code</span>
-                        </div>
-                      </th>
-
-                      {/* Make */}
-                      <th className="th-comp">
-                        <div className="th-comp-header">
-                          <div className="th-comp-logo logo-make" style={{ background: '#f5f3ff' }}>
-                            <SiMake size={18} color="#6D28D9" />
-                          </div>
-                          <span className="th-comp-name">Make</span>
-                          <span className="th-comp-tag">Visual Routers</span>
-                        </div>
-                      </th>
-
-                      {/* n8n */}
-                      <th className="th-comp">
-                        <div className="th-comp-header">
-                          <div className="th-comp-logo logo-n8n" style={{ background: '#fff7ed' }}>
-                            <SiN8N size={20} color="#EA580C" />
-                          </div>
-                          <span className="th-comp-name">n8n</span>
-                          <span className="th-comp-tag">Self-Host / Dev</span>
-                        </div>
-                      </th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {COMPARISON_MATRIX.map((row, idx) => (
-                      <tr key={idx} className="tr-compare-row">
-                        <td className="td-feature">
-                          <div className="td-feature-content">
-                            <span className="td-feature-title">{row.feature}</span>
-                            <span className="td-feature-sub">{row.description}</span>
-                          </div>
-                        </td>
-
-                        {/* WorkflowMitra Column */}
-                        <td className="td-wm">
-                          <div className="td-wm-content">
-                            <div className="td-val-box val-wm">
-                              <CheckCircle2 size={16} color="#059669" className="td-check-icon" />
-                              <span className="td-val-text font-bold text-dark">{row.wm}</span>
-                            </div>
-                            {row.wmBadge && (
-                              <span className="td-wm-pill">{row.wmBadge}</span>
-                            )}
-                          </div>
-                        </td>
-
-                        {/* Zapier */}
-                        <td className="td-comp">
-                          <div className="td-comp-content">
-                            <span className="td-val-text text-muted">{row.zapier}</span>
-                          </div>
-                        </td>
-
-                        {/* Make */}
-                        <td className="td-comp">
-                          <div className="td-comp-content">
-                            <span className="td-val-text text-muted">{row.make}</span>
-                          </div>
-                        </td>
-
-                        {/* n8n */}
-                        <td className="td-comp">
-                          <div className="td-comp-content">
-                            <span className="td-val-text text-muted">{row.n8n}</span>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Bottom Quick Switch Banner */}
-              <div className="wm-compare-footer">
-                <div className="wm-compare-footer-text">
-                  <span className="wm-compare-footer-title">Ready to switch to high-velocity automation?</span>
-                  <span className="wm-compare-footer-sub">Get 10,000 monthly executions, AI agents, and dedicated engineer support starting at ₹999/mo.</span>
-                </div>
-                <div className="wm-compare-footer-actions">
-                  <a href="https://app.workflowmitra.com/signup" className="wm-compare-cta-btn">
-                    <span>Start Free 14-Day Trial</span>
-                    <ArrowRight size={15} />
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
           </div>
         </section>
       </DeferredHomeSection>
@@ -735,20 +546,22 @@ function Home() {
 
             {/* Action Buttons */}
             <div className="wm-final-cta-btns">
-              <a
+              <RollButton
                 href="https://app.workflowmitra.com/signup"
-                className="wm-final-btn-primary"
+                variant="dark"
+                size="lg"
+                showArrow={true}
               >
-                <span>Start Building Free</span>
-                <ArrowRight size={16} />
-              </a>
+                Start Building Free
+              </RollButton>
 
-              <Link
+              <RollButton
                 to="/contact"
-                className="wm-final-btn-secondary"
+                variant="secondary"
+                size="lg"
               >
-                <span>Get Help Building My Workflow</span>
-              </Link>
+                Get Help Building My Workflow
+              </RollButton>
             </div>
 
             {/* Trust Reassurance Row */}
