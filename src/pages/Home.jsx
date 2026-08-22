@@ -7,13 +7,12 @@ import ConicornHowWeWorkSection from '../components/ConicornHowWeWorkSection'
 import NodeChain from '../components/NodeChain'
 import DeferredHomeSection from '../components/DeferredHomeSection'
 import PageSeo from '../components/PageSeo'
-import { Sparkles, ArrowRight, CheckCircle2, Zap, Users, CreditCard, Layers, Bot, Play, XCircle, Clock, AlertCircle, ChevronRight, ChevronDown, TrendingUp, Headphones, ShoppingBag, MousePointerClick, Coins, Cpu, Network, HelpCircle, MessageCircle, Sliders } from 'lucide-react'
+import { Sparkles, ArrowRight, CheckCircle2, Zap, Users, CreditCard, Layers, Bot, Play, XCircle, Clock, AlertCircle, ChevronRight, ChevronDown, TrendingUp, Headphones, ShoppingBag, MousePointerClick, Coins, Cpu, Network, HelpCircle, MessageCircle, Sliders, ShieldCheck } from 'lucide-react'
 import { SiZapier, SiMake, SiN8N } from 'react-icons/si'
 import './Home.css'
 
-const AgentsShowcase = lazy(() => import('../components/AgentsShowcase'))
+import AgentsShowcase from '../components/AgentsShowcase'
 const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
-const ManualChaosVsAIClarity = lazy(() => import('../components/ManualChaosVsAIClarity'))
 const OnboardingSection = lazy(() => import('../credentials-portal/OnboardingSection'))
 const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
 
@@ -362,76 +361,92 @@ function Home() {
       {/* 3 — Effortless Tool Integrations (Orbital Interactive Showcase) */}
       <IntegrationsShowcase />
 
-      {/* 4 — Interactive Workflow Showcase (Left Canvas + Right Selection) */}
-      <DeferredHomeSection minHeight={580}>
-        <Suspense fallback={<div className="section-placeholder" style={{ minHeight: 580 }} />}>
-          <AgentsShowcase />
-        </Suspense>
-      </DeferredHomeSection>
+      {/* 4 — N8N-Inspired Interactive Workflow Showcase */}
+      <AgentsShowcase />
 
-      {/* 5 — Manual Chaos → AI Clarity (Side-by-Side Comparison & Interactive Mock UI) */}
-      <DeferredHomeSection minHeight={580}>
-        <Suspense fallback={<div className="section-placeholder" style={{ minHeight: 580 }} />}>
-          <ManualChaosVsAIClarity />
-        </Suspense>
-      </DeferredHomeSection>
-
-      {/* 6 — AI-powered Automation */}
+      {/* 5 — AI-powered Automation */}
       <DeferredHomeSection minHeight={600}>
         <Suspense fallback={null}>
           <AIAgentsFeatureSection />
         </Suspense>
       </DeferredHomeSection>
 
-      {/* 7 — Affordability (Ultra-Modern AI Automation Pricing & Value Showcase) */}
-      <DeferredHomeSection minHeight={460}>
+      {/* 6 — Affordability (Ultra-Modern AI Automation Pricing & Value Showcase) */}
+      <DeferredHomeSection minHeight={520}>
         <section className="afford-section" id="pricing-overview">
+          {/* Subtle Ambient Background Glow */}
+          <div className="wm-afford-ambient-glow" />
+
           <div className="container">
             <div className="wm-afford-card-wrapper">
               
-              {/* Left Value & Feature Deck */}
+              {/* Left Value & Feature Matrix Column */}
               <div className="wm-afford-text-col">
+                <div className="wm-afford-pill-badge">
+                  <Sparkles size={13} className="wm-afford-badge-sparkle" />
+                  <span>TRANSPARENT &amp; PREDICTABLE PRICING</span>
+                </div>
+
                 <h2 className="wm-afford-title">
-                  Powerful automation without unnecessary cost
+                  Powerful automation <br />
+                  <span className="wm-afford-title-gradient">without unnecessary cost</span>
                 </h2>
+                
                 <p className="wm-afford-subtitle">
-                  WorkflowMitra is designed to give small businesses, startups, agencies, and growing teams access to serious workflow automation — without enterprise pricing. Start free, upgrade when you need more capacity.
+                  Built specifically for startups, agencies, and high-growth teams. Experience enterprise-grade AI automation with unlimited workflows, collaborative team access, and zero hidden per-seat fees.
                 </p>
 
-                <div className="wm-afford-perks-list">
-                  <div className="wm-afford-perk-item">
-                    <div className="wm-afford-check-disc">
-                      <CheckCircle2 size={16} color="#059669" />
+                {/* 2x2 Sleek Feature Grid */}
+                <div className="wm-afford-feature-grid">
+                  <div className="wm-afford-feature-card">
+                    <div className="wm-afford-icon-box icon-amber">
+                      <Zap size={18} />
                     </div>
-                    <span><strong>10,000 monthly credits</strong> &middot; Multi-step execution included</span>
+                    <div className="wm-afford-feature-info">
+                      <h4>10,000 Monthly Credits</h4>
+                      <p>Multi-step executions and high-volume triggers included.</p>
+                    </div>
                   </div>
-                  <div className="wm-afford-perk-item">
-                    <div className="wm-afford-check-disc">
-                      <CheckCircle2 size={16} color="#059669" />
+
+                  <div className="wm-afford-feature-card">
+                    <div className="wm-afford-icon-box icon-blue">
+                      <Layers size={18} />
                     </div>
-                    <span><strong>Unlimited active workflows</strong> &middot; No artificial limits</span>
+                    <div className="wm-afford-feature-info">
+                      <h4>Unlimited Workflows</h4>
+                      <p>Build and run as many active flows as your business needs.</p>
+                    </div>
                   </div>
-                  <div className="wm-afford-perk-item">
-                    <div className="wm-afford-check-disc">
-                      <CheckCircle2 size={16} color="#059669" />
+
+                  <div className="wm-afford-feature-card">
+                    <div className="wm-afford-icon-box icon-purple">
+                      <Users size={18} />
                     </div>
-                    <span><strong>Up to 5 team seats</strong> &middot; Collaborate without per-seat fees</span>
+                    <div className="wm-afford-feature-info">
+                      <h4>5 Team Seats Included</h4>
+                      <p>Full team collaboration with zero per-seat upgrade fees.</p>
+                    </div>
                   </div>
-                  <div className="wm-afford-perk-item">
-                    <div className="wm-afford-check-disc">
-                      <CheckCircle2 size={16} color="#059669" />
+
+                  <div className="wm-afford-feature-card">
+                    <div className="wm-afford-icon-box icon-emerald">
+                      <Headphones size={18} />
                     </div>
-                    <span><strong>Real human expert help</strong> &middot; 1-on-1 assistance when you need it</span>
+                    <div className="wm-afford-feature-info">
+                      <h4>Human Expert Help</h4>
+                      <p>1-on-1 workflow setup assistance whenever you need it.</p>
+                    </div>
                   </div>
                 </div>
 
+                {/* Left CTA Row */}
                 <div className="wm-afford-cta-row">
                   <Link to="/pricing" className="wm-afford-see-pricing-btn">
-                    <span>See All Plans &amp; Pricing</span>
-                    <ArrowRight size={16} />
+                    <span>Compare All Plans &amp; Pricing</span>
+                    <ArrowRight size={15} className="wm-afford-arrow" />
                   </Link>
                   <span className="wm-afford-guarantee">
-                    <Sparkles size={14} color="#09090b" />
+                    <ShieldCheck size={16} color="#059669" />
                     <span>Free 14-day trial &middot; No credit card required</span>
                   </span>
                 </div>
@@ -440,12 +455,15 @@ function Home() {
               {/* Right Interactive AI Automation Tier Card */}
               <div className="wm-afford-card-col">
                 <div className="wm-afford-pricing-card">
+                  {/* Popular Accent Glow */}
+                  <div className="wm-afford-card-glow" />
+
                   <div className="wm-afford-badge-row">
-                    <span className="wm-afford-popular-pill">
-                      <Sparkles size={13} />
-                      <span>Starter Plan</span>
-                    </span>
-                    <span className="wm-afford-save-chip">Best Value</span>
+                    <div className="wm-afford-plan-identity">
+                      <span className="wm-afford-plan-dot" />
+                      <span className="wm-afford-plan-name">Starter Blueprint Plan</span>
+                    </div>
+                    <span className="wm-afford-save-chip">⚡ MOST POPULAR</span>
                   </div>
 
                   <div className="wm-afford-price-block">
@@ -453,20 +471,28 @@ function Home() {
                       <span className="wm-afford-currency">₹</span>
                       <span className="wm-afford-price-num">999</span>
                     </div>
-                    <span className="wm-afford-frequency">/month</span>
+                    <div className="wm-afford-price-meta">
+                      <span className="wm-afford-frequency">/month</span>
+                      <span className="wm-afford-cancel-anytime">Billed monthly &middot; Cancel anytime</span>
+                    </div>
+                  </div>
+
+                  <div className="wm-afford-savings-pill">
+                    <CheckCircle2 size={13} color="#059669" />
+                    <span>Save up to 75% compared to Zapier / Make tiers</span>
                   </div>
 
                   <p className="wm-afford-tier-desc">
-                    Everything you need to automate core sales, CRM, and ops workflows on autopilot.
+                    Everything you need to automate core sales, CRM enrichment, customer support, and operational workflows on autopilot.
                   </p>
 
                   <div className="wm-afford-specs-box">
                     <div className="wm-afford-spec-row">
-                      <span className="wm-spec-label">Monthly Credits</span>
-                      <span className="wm-spec-val font-bold">10,000 tasks</span>
+                      <span className="wm-spec-label">Monthly Tasks / Credits</span>
+                      <span className="wm-spec-val font-bold">10,000 executions</span>
                     </div>
                     <div className="wm-afford-spec-row">
-                      <span className="wm-spec-label">Workflows</span>
+                      <span className="wm-spec-label">Active Workflows</span>
                       <span className="wm-spec-val val-green">Unlimited</span>
                     </div>
                     <div className="wm-afford-spec-row">
@@ -474,17 +500,27 @@ function Home() {
                       <span className="wm-spec-val">5 Included</span>
                     </div>
                     <div className="wm-afford-spec-row">
-                      <span className="wm-spec-label">Execution Speed</span>
+                      <span className="wm-spec-label">Execution Latency</span>
                       <span className="wm-spec-val val-green">&lt; 0.2s Real-time</span>
+                    </div>
+                    <div className="wm-afford-spec-row">
+                      <span className="wm-spec-label">Reliability &amp; SLA</span>
+                      <span className="wm-spec-val">99.99% Uptime</span>
                     </div>
                   </div>
 
                   <a href="https://app.workflowmitra.com/signup" className="wm-afford-start-btn">
                     <span>Start Free 14-Day Trial</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="wm-btn-arrow" />
                   </a>
 
-                  <span className="wm-afford-card-subnote">Instant access &middot; No credit card needed</span>
+                  <div className="wm-afford-card-footer-notes">
+                    <span>Instant activation</span>
+                    <span>&middot;</span>
+                    <span>No card needed</span>
+                    <span>&middot;</span>
+                    <span>14-day guarantee</span>
+                  </div>
                 </div>
               </div>
 

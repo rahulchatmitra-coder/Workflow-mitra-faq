@@ -383,11 +383,7 @@
   border: 2.5px solid #ffffff;
   box-shadow: 0 4px 14px rgba(16, 24, 40, 0.12);
   z-index: 5;
-  transition: transform 0.2s;
-}
-
-.orbit-avatar:hover {
-  transform: scale(1.15);
+  cursor: pointer;
 }
 
 .orbit-avatar img {
@@ -491,11 +487,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
-}
-
-.app-badge:hover {
-  transform: scale(1.15);
+  cursor: pointer;
 }
 
 /* ==========================================================================

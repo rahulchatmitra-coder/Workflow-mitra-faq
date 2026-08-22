@@ -231,45 +231,51 @@ export default function EnterpriseScaleSection() {
               {/* 6 Avatars positioned exactly at the connector endpoints with smooth floating bobbing */}
               <motion.div 
                 className="orbit-avatar avatar-top-left"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
+                animate={{ y: [0, -5, 0], rotate: 0 }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-top-right"
-                animate={{ y: [0, 6, 0] }}
+                animate={{ y: [0, 6, 0], rotate: 0 }}
                 transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-mid-left"
-                animate={{ y: [0, -4, 0] }}
+                animate={{ y: [0, -4, 0], rotate: 0 }}
                 transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1.4 }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-mid-right"
-                animate={{ y: [0, 5, 0] }}
+                animate={{ y: [0, 5, 0], rotate: 0 }}
                 transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-bot-left"
-                animate={{ y: [0, 6, 0] }}
+                animate={{ y: [0, 6, 0], rotate: 0 }}
                 transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-bot-right"
-                animate={{ y: [0, -5, 0] }}
+                animate={{ y: [0, -5, 0], rotate: 0 }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
+                whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" alt="User" />
               </motion.div>
             </div>
 
@@ -313,26 +319,38 @@ export default function EnterpriseScaleSection() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
               >
-                <div className="app-badge orbit-node node-top">
-                  <motion.div animate={{ rotate: -360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <SiHubspot color="#FF7A59" size={15} />
-                  </motion.div>
-                </div>
-                <div className="app-badge orbit-node node-right">
-                  <motion.div animate={{ rotate: -360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <SiNotion color="#000000" size={15} />
-                  </motion.div>
-                </div>
-                <div className="app-badge orbit-node node-bottom">
-                  <motion.div animate={{ rotate: -360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <Sparkles color="#10A37F" size={15} />
-                  </motion.div>
-                </div>
-                <div className="app-badge orbit-node node-left">
-                  <motion.div animate={{ rotate: -360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <SiWhatsapp color="#25D366" size={15} />
-                  </motion.div>
-                </div>
+                <motion.div 
+                  className="app-badge orbit-node node-top"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <SiHubspot color="#FF7A59" size={15} />
+                </motion.div>
+                <motion.div 
+                  className="app-badge orbit-node node-right"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <SiNotion color="#000000" size={15} />
+                </motion.div>
+                <motion.div 
+                  className="app-badge orbit-node node-bottom"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <Sparkles color="#10A37F" size={15} />
+                </motion.div>
+                <motion.div 
+                  className="app-badge orbit-node node-left"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <SiWhatsapp color="#25D366" size={15} />
+                </motion.div>
               </motion.div>
 
               {/* Rotating Orbit Layer 2 (Inner Ring) */}
@@ -341,16 +359,22 @@ export default function EnterpriseScaleSection() {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
               >
-                <div className="app-badge orbit-node node-tr">
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 22, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <SiGooglesheets color="#0F9D58" size={15} />
-                  </motion.div>
-                </div>
-                <div className="app-badge orbit-node node-bl">
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 22, repeat: Infinity, ease: 'linear' }} className="node-icon-wrap">
-                    <FaSlack color="#4A154B" size={15} />
-                  </motion.div>
-                </div>
+                <motion.div 
+                  className="app-badge orbit-node node-tr"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <SiGooglesheets color="#0F9D58" size={15} />
+                </motion.div>
+                <motion.div 
+                  className="app-badge orbit-node node-bl"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+                  whileHover={{ scale: 1.15 }}
+                >
+                  <FaSlack color="#4A154B" size={15} />
+                </motion.div>
               </motion.div>
             </div>
 
