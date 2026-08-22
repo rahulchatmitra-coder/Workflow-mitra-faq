@@ -1,19 +1,19 @@
 /* ==========================================================================
-   Vintar Success Stories (Testimonials) — 100% Exact Match
+   Customer Success Stories (Testimonials) — Theme Matching & Premium UI
    ========================================================================== */
 
 .vintar-testimonial-section {
-  padding: 100px 0 110px;
-  background-color: #f8fafc;
+  padding: 96px 0 108px;
+  background-color: #fafbfc;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid #e4e4e7;
-  border-bottom: 1px solid #e4e4e7;
+  border-top: 1px solid #e8ecf4;
+  border-bottom: 1px solid #e8ecf4;
   font-family: inherit;
 }
 
 .vintar-container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -24,33 +24,57 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 14px;
-  margin-bottom: 56px;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.vintar-eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  font-size: 11.5px;
+  font-weight: 800;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.vintar-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 8px #2563eb;
 }
 
 .vintar-testimonial-title {
-  font-size: clamp(34px, 4vw, 52px);
-  font-weight: 900;
-  color: #09090b;
-  line-height: 1.15;
-  letter-spacing: -0.035em;
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 850;
+  color: #0f172a;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   margin: 0;
   text-wrap: balance;
 }
 
 .vintar-highlight-word {
-  color: #09090b;
+  color: #0f172a;
   position: relative;
   display: inline-block;
 }
 
 .vintar-testimonial-subtitle {
-  font-size: clamp(15.5px, 1.3vw, 17px);
-  color: #52525b;
+  font-size: clamp(15px, 1.2vw, 16.5px);
+  color: #64748b;
   line-height: 1.6;
   font-weight: 450;
   margin: 0 auto;
-  max-width: 620px;
+  max-width: 640px;
   text-wrap: balance;
 }
 
@@ -58,11 +82,30 @@
 .vintar-testimonial-marquee-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  padding: 12px 0;
+}
+
+.vintar-marquee-fade-left,
+.vintar-marquee-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 160px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.vintar-marquee-fade-left {
+  left: 0;
+  background: linear-gradient(90deg, #fafbfc 0%, rgba(250, 251, 252, 0) 100%);
+}
+
+.vintar-marquee-fade-right {
+  right: 0;
+  background: linear-gradient(270deg, #fafbfc 0%, rgba(250, 251, 252, 0) 100%);
 }
 
 .vintar-marquee-row {
@@ -74,14 +117,14 @@
 
 .vintar-marquee-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   flex-shrink: 0;
-  animation: vintarScrollLeft 48s linear infinite;
+  animation: vintarScrollLeft 44s linear infinite;
   will-change: transform;
 }
 
 .vintar-marquee-track.reverse {
-  animation: vintarScrollRight 48s linear infinite;
+  animation: vintarScrollRight 44s linear infinite;
 }
 
 /* Pause on Hover */
@@ -89,47 +132,127 @@
   animation-play-state: paused;
 }
 
-/* ─── Testimonial Card (Exact Vintar Proportion) ─── */
+/* ─── Testimonial Card ─── */
 .vintar-testimonial-card {
   width: 380px;
   min-width: 380px;
   background-color: #ffffff;
-  border-radius: 22px;
-  padding: 36px 28px 30px;
-  border: 1px solid #e4e4e7;
+  border-radius: 20px;
+  padding: 22px 22px 18px;
+  border: 1.5px solid #e8ecf4;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  justify-content: space-between;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(15, 23, 42, 0.02);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   cursor: default;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.vintar-testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .vintar-testimonial-card:hover {
-  transform: translateY(-6px);
-  border-color: #09090b;
-  box-shadow: 0 18px 36px -6px rgba(9, 9, 11, 0.1);
+  transform: translateY(-5px);
+  border-color: #cbd5e1;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09), 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
-/* ─── Tester Info (Avatar, Name, Subtitle) ─── */
-.vintar-tester-info {
+.vintar-testimonial-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── Card Top (Stars & Metric) ─── */
+.vintar-card-top {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.vintar-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.vintar-metric-pill {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.pill-emerald {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.pill-blue {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.pill-purple {
+  background: #f5f3ff;
+  color: #7c3aed;
+  border: 1px solid #ddd6fe;
+}
+
+.pill-amber {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+/* ─── Tester Quote ─── */
+.vintar-tester-quote {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #334155;
+  font-weight: 450;
+  margin: 14px 0 16px;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Card Bottom (Avatar & Author) ─── */
+.vintar-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
 }
 
 .vintar-tester-image {
-  width: 68px;
-  height: 68px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #e4e4e7;
-  background-color: #f4f4f5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 2px solid #ffffff;
+  background-color: #f1f5f9;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  flex-shrink: 0;
 }
 
 .vintar-avatar-img {
@@ -139,34 +262,42 @@
   display: block;
 }
 
+.vintar-tester-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+
+.vintar-tester-name-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .vintar-tester-name {
-  font-size: 17.5px;
+  font-size: 14.5px;
   font-weight: 800;
-  color: #09090b;
+  color: #0f172a;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+
+.vintar-verified-icon {
+  color: #059669;
+  flex-shrink: 0;
 }
 
 .vintar-tester-subtitle {
-  font-size: 12.5px;
-  font-weight: 650;
-  color: #71717a;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
 }
 
-/* ─── Tester Quote ─── */
-.vintar-tester-quote {
-  font-size: 14.5px;
-  line-height: 1.62;
-  color: #52525b;
-  font-weight: 450;
-  margin: 0;
-  text-align: center;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.vintar-company {
+  font-weight: 700;
+  color: #334155;
 }
 
 /* ─── Keyframe Animations ─── */
@@ -195,21 +326,26 @@
   }
 
   .vintar-testimonial-header {
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   .vintar-testimonial-card {
     width: 320px;
     min-width: 320px;
-    padding: 28px 22px 24px;
+    padding: 18px 18px 16px;
+  }
+
+  .vintar-marquee-fade-left,
+  .vintar-marquee-fade-right {
+    width: 60px;
   }
 
   .vintar-tester-image {
-    width: 58px;
-    height: 58px;
+    width: 40px;
+    height: 40px;
   }
 
   .vintar-tester-quote {
-    font-size: 13.5px;
+    font-size: 13px;
   }
 }

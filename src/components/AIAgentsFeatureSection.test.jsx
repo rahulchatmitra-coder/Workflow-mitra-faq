@@ -38,7 +38,7 @@ describe('AIAgentsFeatureSection — card 2, integrations', () => {
   it('draws a real mark inside every non-ghost tile', () => {
     const { container } = render(<AIAgentsFeatureSection />)
     const real = container.querySelectorAll('.tile:not(.ghost)')
-    expect(real).toHaveLength(22)
+    expect(real).toHaveLength(32)
     real.forEach((tile) => expect(tile.querySelector('svg')).toBeInTheDocument())
   })
 

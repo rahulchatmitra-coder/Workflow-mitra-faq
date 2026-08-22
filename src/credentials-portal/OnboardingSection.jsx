@@ -20,6 +20,10 @@ export default function OnboardingSection() {
         
         {/* SECTION HEADER */}
         <div className="wm-doc-hub-header">
+          <div className="wm-doc-eyebrow-badge">
+            <span className="wm-doc-eyebrow-dot" />
+            <span>Interactive Learning Hub</span>
+          </div>
           <h2 className="wm-doc-hub-title">
             Learn WorkflowMitra in <span className="wm-doc-title-highlight">Minutes</span>
           </h2>

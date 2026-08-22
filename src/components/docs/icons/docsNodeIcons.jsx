@@ -15,19 +15,15 @@
 import {
   SiWhatsapp, SiTelegram, SiDiscord, SiGmail, SiGooglesheets, SiShopify,
   SiHubspot, SiZoho, SiZendesk, SiCalendly, SiGooglemeet, SiPostgresql,
+  SiFacebook, SiAirtable, SiNotion, SiGithub, SiAsana
 } from 'react-icons/si'
 import {
   Globe, Sparkles, Blocks, MousePointerClick, Zap, GitBranch, UserCheck,
-  Users, PhoneCall, Clock,
+  Users, PhoneCall, Clock, MessageSquare, Mail, Database
 } from 'lucide-react'
 
 /**
  * Lucide's Slack glyph, inlined.
- *
- * The product renders `<Slack />` from lucide-react, but this site is pinned to
- * a different lucide major that doesn't export it. The geometry below is copied
- * verbatim from the version the product ships, so the docs keep drawing the
- * exact mark the editor draws even as the two packages drift.
  */
 function SlackGlyph({ size = 26, color = 'currentColor' }) {
   return (
@@ -55,6 +51,7 @@ const BRAND = {
   discord: { Icon: SiDiscord, hex: '#5865F2' },
   gmail: { Icon: SiGmail, hex: '#EA4335' },
   'google-sheets': { Icon: SiGooglesheets, hex: '#34A853' },
+  googlesheets: { Icon: SiGooglesheets, hex: '#34A853' },
   shopify: { Icon: SiShopify, hex: '#7AB55C' },
   hubspot: { Icon: SiHubspot, hex: '#FF7A59' },
   zoho: { Icon: SiZoho, hex: '#E42527' },
@@ -62,23 +59,29 @@ const BRAND = {
   calendly: { Icon: SiCalendly, hex: '#006BFF' },
   googlemeet: { Icon: SiGooglemeet, hex: '#00897B' },
   postgresql: { Icon: SiPostgresql, hex: '#4169E1' },
+  database: { Icon: Database, hex: '#4169E1' },
+  facebook: { Icon: SiFacebook, hex: '#0866FF' },
+  airtable: { Icon: SiAirtable, hex: '#18BFFF' },
+  notion: { Icon: SiNotion, hex: '#000000' },
+  github: { Icon: SiGithub, hex: '#181717' },
+  asana: { Icon: SiAsana, hex: '#F06A6A' },
 }
 
 // Lucide glyphs + the product's LOGIC_ACCENT colours.
 const LUCIDE = {
   slack: { Icon: SlackGlyph, hex: '#4A154B' },
   'http-request': { Icon: Globe, hex: '#0A0A0A' },
-  ai: { Icon: Sparkles, hex: '#0A0A0A' },
+  ai: { Icon: Sparkles, hex: '#8B5CF6' },
   'ai-agent': { Icon: Sparkles, hex: '#ff9e43' },
   'app-request': { Icon: Blocks, hex: '#0A0A0A' },
   'manual-trigger': { Icon: MousePointerClick, hex: '#0A0A0A' },
   'webhook-trigger': { Icon: Zap, hex: '#0A0A0A' },
-  // Flow-control nodes wear the product's LOGIC_ACCENT amber, the same colour
-  // ai-agent uses — the editor colours logic by role, not by brand.
+  email: { Icon: Mail, hex: '#EA4335' },
+  sms: { Icon: MessageSquare, hex: '#2563EB' },
+  condition: { Icon: GitBranch, hex: '#ff9e43' },
   if: { Icon: GitBranch, hex: '#ff9e43' },
   approval: { Icon: UserCheck, hex: '#ff9e43' },
   assign: { Icon: Users, hex: '#ff9e43' },
-  // Triggers wear brand black; the amber bolt badge is what says "starts here".
   call: { Icon: PhoneCall, hex: '#0A0A0A' },
   schedule: { Icon: Clock, hex: '#0A0A0A' },
 }

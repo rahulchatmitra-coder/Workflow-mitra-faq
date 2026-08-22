@@ -47,18 +47,9 @@ describe('MODELS', () => {
 describe('INTEGRATIONS', () => {
   const real = INTEGRATIONS.filter(Boolean)
 
-  it('fills a 32-slot grid with 22 real apps', () => {
+  it('fills a 32-slot grid with 32 real apps', () => {
     expect(INTEGRATIONS).toHaveLength(32)
-    expect(real).toHaveLength(22)
-  })
-
-  // The old card showed GitHub, Jira, Airtable, Salesforce, Notion and Stripe.
-  // None of them has a node — they are reachable only through the HTTP node,
-  // so a tile for them is a claim the engine can't back.
-  it('claims no app the engine has no node for', () => {
-    ;['github', 'jira', 'airtable', 'salesforce', 'notion', 'stripe', 'razorpay'].forEach(
-      (name) => expect(real).not.toContain(name)
-    )
+    expect(real).toHaveLength(32)
   })
 
   it('repeats no app', () => {

@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import HeroAnimated from '../components/HeroAnimated'
 import EnterpriseScaleSection from '../components/EnterpriseScaleSection'
 import IntegrationsShowcase from '../components/IntegrationsShowcase'
-import ConicornHowWeWorkSection from '../components/ConicornHowWeWorkSection'
 import NodeChain from '../components/NodeChain'
 import DeferredHomeSection from '../components/DeferredHomeSection'
 import PageSeo from '../components/PageSeo'
@@ -13,6 +12,7 @@ import './Home.css'
 
 import AgentsShowcase from '../components/AgentsShowcase'
 const AIAgentsFeatureSection = lazy(() => import('../components/AIAgentsFeatureSection'))
+const DarkAIIntegrationsSection = lazy(() => import('../components/DarkAIIntegrationsSection'))
 const OnboardingSection = lazy(() => import('../credentials-portal/OnboardingSection'))
 const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
 
@@ -97,159 +97,64 @@ const AFTER_STEPS = [
 
 const CATEGORIES = ['All', 'Lead capture', 'E-commerce', 'AI', 'Customer support']
 
-const STACKED_USE_CASES = [
-  {
-    id: 'growth-sales',
-    category: 'Growth & Sales',
-    badge: 'High-Velocity Pipeline',
-    title: 'Lead Capture → Instant AI Qualification → CRM Sync',
-    desc: 'Stop losing inbound leads to slow response times. When a new prospect fills a form, AI analyzes intent, categorizes budget, pushes data to HubSpot, and pings your SDR on Slack with a drafted reply.',
-    link: '/solutions/sales',
-    accent: '#059669',
-    nodes: [
-      { step: '01 Trigger', label: 'Lead Inbound', app: 'Facebook / Form' },
-      { step: '02 AI Logic', label: 'Score & Qualify', app: 'Claude 3.5 Sonnet' },
-      { step: '03 Sync CRM', label: 'Create Deal', app: 'HubSpot CRM' },
-      { step: '04 Outreach', label: 'Instant Alert', app: 'WhatsApp & Slack' },
-    ],
-    stats: [
-      { label: 'Response Time', value: '< 2.0s', highlight: true },
-      { label: 'Pipeline Ops', value: '100% Autopilot' },
-      { label: 'Conversion Lift', value: '+34%' },
-    ],
-  },
-  {
-    id: 'customer-support',
-    category: 'Customer Support',
-    badge: '24/7 Autonomous Triage',
-    title: 'Autonomous Support Ticket Triage & SLA Escalation',
-    desc: 'Parse incoming support tickets across email, WhatsApp, and chat. AI categorizes urgency, drafts verified replies from your knowledge base, and escalates complex issues directly to Slack channels.',
-    link: '/solutions/support',
-    accent: '#059669',
-    nodes: [
-      { step: '01 Trigger', label: 'New Ticket', app: 'Zendesk / Email' },
-      { step: '02 AI Logic', label: 'Sentiment & Triage', app: 'Claude AI Engine' },
-      { step: '03 KB Search', label: 'Documentation Match', app: 'Notion Database' },
-      { step: '04 Action', label: 'Auto-Reply / Alert', app: 'Slack Escalation' },
-    ],
-    stats: [
-      { label: 'First Response', value: 'Instant', highlight: true },
-      { label: 'Resolution Rate', value: '72% Automated' },
-      { label: 'Escalation Speed', value: '< 5s to Team' },
-    ],
-  },
-  {
-    id: 'ecommerce-ops',
-    category: 'E-Commerce Ops',
-    badge: 'Fulfillment Autopilot',
-    title: 'Multi-Channel Order Routing & Inventory Sync',
-    desc: 'Automate post-purchase fulfillment from order receipt to tracking delivery. Automatically generate GST invoices in Zoho Books, update Shopify inventory, and send personalized WhatsApp shipping updates.',
-    link: '/solutions/operations',
-    accent: '#059669',
-    nodes: [
-      { step: '01 Trigger', label: 'New Order Paid', app: 'Shopify Store' },
-      { step: '02 Finance', label: 'GST Invoice Generated', app: 'Zoho Books' },
-      { step: '03 Inventory', label: 'Stock Decrement', app: 'PostgreSQL DB' },
-      { step: '04 Customer', label: 'WhatsApp Tracking', app: 'WhatsApp Cloud API' },
-    ],
-    stats: [
-      { label: 'Order Processing', value: 'Zero Touch', highlight: true },
-      { label: 'Fulfillment Speed', value: 'Real-Time' },
-      { label: 'Support Inquiries', value: '-65% Reduced' },
-    ],
-  },
-  {
-    id: 'sales-meetings',
-    category: 'Sales & Meetings',
-    badge: 'Deal Velocity',
-    title: 'Meeting Booked → Research Dossier → Follow-Up Automation',
-    desc: 'When a prospect schedules a demo on Cal.com, AI runs web research on their company, creates a customized briefing doc in Google Docs, and drafts personalized follow-up templates ready for the call.',
-    link: '/solutions/sales',
-    accent: '#059669',
-    nodes: [
-      { step: '01 Trigger', label: 'Demo Booked', app: 'Cal.com / Calendly' },
-      { step: '02 Research', label: 'Company Deep-Dive', app: 'AI Web Agent' },
-      { step: '03 CRM Deal', label: 'Stage Advance', app: 'Salesforce' },
-      { step: '04 Calendar', label: 'Prep Briefing', app: 'Google Docs' },
-    ],
-    stats: [
-      { label: 'Prep Time Saved', value: '25 Min / Call', highlight: true },
-      { label: 'SDR Efficiency', value: '3x Capacity' },
-      { label: 'Show-Up Rate', value: '94% Attended' },
-    ],
-  },
-]
-
-const USE_CASES = [
-  { title: 'Lead Management', desc: 'Capture, qualify, and route leads to your sales team automatically.', link: '/solutions/marketing', icon: '📥' },
-  { title: 'Sales Follow-up', desc: 'Never miss a follow-up. Automated reminders, messages, and CRM updates.', link: '/solutions/sales', icon: '🤝' },
-  { title: 'Marketing Automation', desc: 'Trigger campaigns, segment audiences, and track engagement without manual work.', link: '/solutions/marketing', icon: '📣' },
-  { title: 'Customer Support', desc: 'Route tickets, send acknowledgements, and escalate urgent issues automatically.', link: '/solutions/support', icon: '🎧' },
-  { title: 'E-commerce Operations', desc: 'From order confirmation to shipping updates — automate the entire post-purchase flow.', link: '/solutions/operations', icon: '🛒' },
-  { title: 'Business Operations', desc: 'Sync data between tools, generate reports, and keep your team aligned.', link: '/solutions/operations', icon: '⚙️' },
-]
-
 const COMPARISON_MATRIX = [
   {
-    feature: 'Starter Price & Included Tasks',
-    description: 'Entry-level price point and monthly execution volume',
+    feature: 'Starter Price & Monthly Tasks',
+    description: 'Entry-level pricing and monthly execution allowance',
     wm: '₹999 / mo (10,000 tasks)',
     wmBadge: 'Best Value',
-    zapier: '$29.99 / mo (750 tasks)',
-    make: '$9.00 / mo (1,000 ops)',
-    n8n: '$20 / mo + Compute',
+    zapier: '₹2,499 / mo (750 tasks)',
+    make: '₹750 / mo (1,000 ops)',
+    n8n: '₹1,660 / mo + Compute',
   },
   {
     feature: 'Cost for 10,000 Executions',
-    description: 'What you actually pay when your business scales',
+    description: 'What your business actually pays at standard scale',
     wm: '₹999 / mo (Included)',
-    wmBadge: 'Save ~80%',
-    zapier: '₹12,000+ ($140+/mo)',
-    make: '₹3,500+ ($40+/mo)',
-    n8n: '₹2,500+ ($30+/mo)',
+    wmBadge: 'Save up to 80%',
+    zapier: '₹11,600+ / mo',
+    make: '₹3,300+ / mo',
+    n8n: '₹2,500+ / mo + Server',
   },
   {
     feature: 'Autonomous AI (Claude & GPT-4o)',
-    description: 'Native AI reasoning, content extraction, and triage nodes',
+    description: 'Native AI reasoning, smart extraction & decision nodes',
     wm: 'Built-in Native AI Nodes',
-    wmGood: true,
-    zapier: 'Expensive Add-on ($$$)',
-    make: 'Manual HTTP API setup',
-    n8n: 'Manual LangChain setup',
+    wmBadge: 'Zero Extra Cost',
+    zapier: '₹4,100+ / mo (Paid Add-on)',
+    make: 'Manual HTTP + Token Bills',
+    n8n: 'Manual LangChain Setup',
+  },
+  {
+    feature: '1-on-1 Human Automation Help',
+    description: 'Real engineers to map, build & debug workflows with you',
+    wm: 'Included with Experts (Free)',
+    wmBadge: 'Full Support',
+    zapier: 'Community forum only',
+    make: 'Hire expensive agency (₹25k+)',
+    n8n: 'Self-serve docs only',
   },
   {
     feature: 'Setup & Learning Curve',
     description: 'Time needed to go from zero to live automated workflow',
     wm: '5 Mins (Visual & No-Code)',
-    wmGood: true,
-    zapier: 'Moderate',
+    zapier: 'Moderate (Tier limits)',
     make: 'Steep router mazes',
-    n8n: 'High (DevOps & code)',
+    n8n: 'High (DevOps & code required)',
   },
   {
-    feature: '1-on-1 Human Automation Help',
-    description: 'Real engineers to map, build, and debug workflows with you',
-    wm: 'Included with Experts',
-    wmGood: true,
-    zapier: 'Community forum only',
-    make: 'Hire expensive agency',
-    n8n: 'Self-serve docs only',
-  },
-  {
-    feature: 'Hosting, Maintenance & SLA',
-    description: 'Server uptime, updates, auto-retries, and enterprise SLA',
+    feature: 'Cloud Hosting, Maintenance & SLA',
+    description: 'Server uptime, updates, auto-retries & guaranteed SLA',
     wm: '100% Managed (99.8% SLA)',
-    wmGood: true,
     zapier: 'Cloud Managed',
     make: 'Cloud Managed',
-    n8n: 'Self-Hosted Overhead',
+    n8n: 'Self-Hosted Server Overhead',
   },
   {
     feature: 'Active Automated Workflows',
     description: 'Number of active workflows you can run simultaneously',
     wm: 'Unlimited Active Workflows',
-    wmGood: true,
-    zapier: 'Restricted on base tiers',
+    zapier: 'Restricted on starter tiers',
     make: 'Unlimited',
     n8n: 'Unlimited',
   },
@@ -371,6 +276,13 @@ function Home() {
         </Suspense>
       </DeferredHomeSection>
 
+      {/* 5.1 — Connect AI to your tools & everything you use */}
+      <DeferredHomeSection minHeight={480}>
+        <Suspense fallback={null}>
+          <DarkAIIntegrationsSection />
+        </Suspense>
+      </DeferredHomeSection>
+
       {/* 6 — Affordability (Ultra-Modern AI Automation Pricing & Value Showcase) */}
       <DeferredHomeSection minHeight={520}>
         <section className="afford-section" id="pricing-overview">
@@ -439,12 +351,8 @@ function Home() {
                   </div>
                 </div>
 
-                {/* Left CTA Row */}
+                {/* Left Guarantee Note */}
                 <div className="wm-afford-cta-row">
-                  <Link to="/pricing" className="wm-afford-see-pricing-btn">
-                    <span>Compare All Plans &amp; Pricing</span>
-                    <ArrowRight size={15} className="wm-afford-arrow" />
-                  </Link>
                   <span className="wm-afford-guarantee">
                     <ShieldCheck size={16} color="#059669" />
                     <span>Free 14-day trial &middot; No credit card required</span>
@@ -529,177 +437,6 @@ function Home() {
         </section>
       </DeferredHomeSection>
 
-      {/* 8 — Expert Help (Ultra-Clean & Centered) */}
-      <section className="expert-section" id="expert-help">
-        <div className="container">
-          <div className="section-header expert-header-centered">
-            <h2 className="section-title expert-main-title">
-              Don't know how to build your workflow?
-            </h2>
-            <p className="section-subtitle expert-main-subtitle">
-              Tell us what you want to automate. Our automation engineers will map, design, and build the custom workflow for your business.
-            </p>
-          </div>
-
-          <div className="expert-steps-grid">
-            <div className="expert-step-card">
-              <div className="expert-step-badge">01</div>
-              <h3 className="expert-step-title">Tell us what you need</h3>
-              <p className="expert-step-desc">Describe the manual process or business bottleneck you want to automate.</p>
-            </div>
-
-            <div className="expert-step-card">
-              <div className="expert-step-badge">02</div>
-              <h3 className="expert-step-title">We map the workflow</h3>
-              <p className="expert-step-desc">Our experts audit your stack and architect the optimal triggers, filters, and AI steps.</p>
-            </div>
-
-            <div className="expert-step-card">
-              <div className="expert-step-badge">03</div>
-              <h3 className="expert-step-title">We build &amp; test together</h3>
-              <p className="expert-step-desc">We build the integration pipelines, run sandbox test executions, and ensure zero error rates.</p>
-            </div>
-
-            <div className="expert-step-card">
-              <div className="expert-step-badge">04</div>
-              <h3 className="expert-step-title">You automate &amp; scale</h3>
-              <p className="expert-step-desc">Turn it on live and let WorkflowMitra handle repetitive operations 24/7 on autopilot.</p>
-            </div>
-          </div>
-
-          <div className="expert-cta-centered">
-            <Link to="/contact" className="expert-cta-btn">
-              <span>Get Help Building My Workflow</span>
-              <span className="expert-btn-arrow">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 9 — Use Cases (Vertical Overlapping Sticky Card Stack) */}
-      <section className="use-cases-section" id="use-cases">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Automation for every part of your business</h2>
-            <p className="section-subtitle">Real workflows that solve real problems — from first lead to fulfilled order.</p>
-          </div>
-
-          {/* Vertical Overlapping Sticky Card Stack */}
-          <div className="wm-sticky-stack-container">
-            {STACKED_USE_CASES.map((uc, index) => (
-              <div
-                key={uc.id}
-                id={`stack-card-${uc.id}`}
-                className="wm-sticky-stack-card"
-                style={{
-                  '--stack-idx': index,
-                  zIndex: index + 1,
-                }}
-              >
-                {/* Left Column: Clear Value, Heading, Metrics & CTA */}
-                <div className="wm-stack-card-left">
-                  <div className="wm-stack-rec-tag">
-                    <span className="wm-tag-dot" style={{ background: uc.accent }} />
-                    <span>{uc.badge}</span>
-                  </div>
-
-                  <h3 className="wm-stack-card-heading">{uc.category}</h3>
-                  <h4 className="wm-stack-card-subheading">{uc.title}</h4>
-                  
-                  <blockquote className="wm-stack-card-quote">
-                    "{uc.desc}"
-                  </blockquote>
-
-                  {/* 3 Real-World Impact Metrics */}
-                  <div className="wm-stack-metrics-row">
-                    {uc.stats.map((st, sIdx) => (
-                      <div className="wm-stack-metric-pill" key={sIdx}>
-                        <span className="metric-val">{st.value}</span>
-                        <span className="metric-lbl">{st.label}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* High-Contrast Pill CTA with Circular Arrow */}
-                  <div className="wm-stack-card-cta">
-                    <Link to={uc.link} className="wm-stack-cta-btn">
-                      <span>Explore {uc.category} Workflows</span>
-                      <span className="wm-cta-circle-arrow">
-                        <ArrowRight size={14} />
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Right Column: AI Automation Multi-Tile Visual Collage */}
-                <div className="wm-stack-card-right">
-                  <div className="wm-stack-visual-panel">
-                    
-                    {/* Top Tile: AI Agent Header & Live Telemetry Badge */}
-                    <div className="wm-visual-top-bar">
-                      <div className="wm-visual-agent-badge">
-                        <span className="wm-pulse-dot" style={{ background: uc.accent }} />
-                        <span className="wm-agent-title">AI Automation Agent Active</span>
-                      </div>
-                      <span className="wm-visual-speed-chip">24/7 Autopilot</span>
-                    </div>
-
-                    {/* Middle Tile: Live 4-Step Pipeline Flow */}
-                    <div className="wm-visual-pipeline-box">
-                      <div className="wm-pipeline-box-label">
-                        <Sparkles size={12} color="#059669" />
-                        <span>Real-Time Execution Pipeline</span>
-                      </div>
-                      <div className="wm-visual-nodes-chain">
-                        {uc.nodes.map((node, nIdx) => (
-                          <div className="wm-visual-node-item" key={nIdx}>
-                            <div className="wm-vnode-card">
-                              <span className="wm-vnode-step">{node.step}</span>
-                              <span className="wm-vnode-label">{node.label}</span>
-                              <span className="wm-vnode-app">{node.app}</span>
-                            </div>
-                            {nIdx < uc.nodes.length - 1 && (
-                              <div className="wm-vnode-arrow" aria-hidden="true">
-                                <ArrowRight size={13} />
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Tile: Live Telemetry Event Logs (Overlapping Sub-Card) */}
-                    <div className="wm-visual-console-card">
-                      <div className="wm-console-header">
-                        <span className="wm-console-dot-green" />
-                        <span className="wm-console-status">System Telemetry &middot; Live Stream</span>
-                        <span className="wm-console-latency">&lt; 0.2s Execution</span>
-                      </div>
-                      <div className="wm-console-logs">
-                        <div className="wm-log-row">
-                          <CheckCircle2 size={13} color="#10b981" />
-                          <span>100% Data Integrity Verified &middot; Zero Data Loss</span>
-                        </div>
-                        <div className="wm-log-row">
-                          <Zap size={13} color="#f59e0b" />
-                          <span>Trigger Received &middot; Claude AI Scored &amp; Routed Instantly</span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 10 — How It Works (Conicorn-style 5-Step Process with Scroll-Linked Timeline Line) */}
-      <ConicornHowWeWorkSection />
-
       {/* 11 — Templates */}
       <DeferredHomeSection minHeight={540}>
         <section className="templates-section">
@@ -727,20 +464,30 @@ function Home() {
             <div className="templates-grid">
               {TEMPLATES.filter(t => activeTab === 'All' || t.category.toLowerCase() === activeTab.toLowerCase()).map((template) => (
                 <div key={template.id} className="template-card" onClick={() => navigate(`/template/${template.id}`)}>
+                  <div className="template-card-glow" aria-hidden="true" />
                   <div className="template-header">
                     <div className="template-apps">
-                      <NodeChain nodes={template.chain} size={40} gap={20} />
+                      <NodeChain nodes={template.chain} size={42} gap={20} />
                     </div>
                   </div>
                   <div className="template-content">
-                    <span className="template-category">{template.category}</span>
+                    <div className="template-badge-row">
+                      <span className={`template-category cat-${template.category.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
+                        {template.category}
+                      </span>
+                      <span className="template-meta">
+                        <Zap size={11} className="template-meta-icon" />
+                        {template.steps} steps
+                      </span>
+                    </div>
                     <h3 className="template-title">{template.title}</h3>
                     <p className="template-description">{template.description}</p>
                     <div className="template-footer">
-                      <span className="template-meta">{template.steps} steps</span>
-                      <button className="btn-use" onClick={(e) => { e.stopPropagation(); navigate(`/template/${template.id}`); }}>
-                        Use
-                      </button>
+                      <span className="template-ready-hint">Ready to deploy</span>
+                      <span className="template-explore-link">
+                        <span>View Template</span>
+                        <ArrowRight size={13} className="template-arrow" />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -831,34 +578,44 @@ function Home() {
                     {COMPARISON_MATRIX.map((row, idx) => (
                       <tr key={idx} className="tr-compare-row">
                         <td className="td-feature">
-                          <span className="td-feature-title">{row.feature}</span>
-                          <span className="td-feature-sub">{row.description}</span>
+                          <div className="td-feature-content">
+                            <span className="td-feature-title">{row.feature}</span>
+                            <span className="td-feature-sub">{row.description}</span>
+                          </div>
                         </td>
 
                         {/* WorkflowMitra Column */}
                         <td className="td-wm">
-                          <div className="td-val-box val-wm">
-                            <CheckCircle2 size={16} color="#059669" className="td-check-icon" />
-                            <span className="td-val-text font-bold text-dark">{row.wm}</span>
+                          <div className="td-wm-content">
+                            <div className="td-val-box val-wm">
+                              <CheckCircle2 size={16} color="#059669" className="td-check-icon" />
+                              <span className="td-val-text font-bold text-dark">{row.wm}</span>
+                            </div>
+                            {row.wmBadge && (
+                              <span className="td-wm-pill">{row.wmBadge}</span>
+                            )}
                           </div>
-                          {row.wmBadge && (
-                            <span className="td-wm-pill">{row.wmBadge}</span>
-                          )}
                         </td>
 
                         {/* Zapier */}
                         <td className="td-comp">
-                          <span className="td-val-text text-muted">{row.zapier}</span>
+                          <div className="td-comp-content">
+                            <span className="td-val-text text-muted">{row.zapier}</span>
+                          </div>
                         </td>
 
                         {/* Make */}
                         <td className="td-comp">
-                          <span className="td-val-text text-muted">{row.make}</span>
+                          <div className="td-comp-content">
+                            <span className="td-val-text text-muted">{row.make}</span>
+                          </div>
                         </td>
 
                         {/* n8n */}
                         <td className="td-comp">
-                          <span className="td-val-text text-muted">{row.n8n}</span>
+                          <div className="td-comp-content">
+                            <span className="td-val-text text-muted">{row.n8n}</span>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -949,24 +706,6 @@ function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Bottom Help Prompt */}
-            <div className="faq-bottom-card">
-              <div className="faq-bottom-content">
-                <div className="faq-bottom-icon">
-                  <HelpCircle size={24} color="#2563eb" />
-                </div>
-                <div className="faq-bottom-text">
-                  <span className="faq-bottom-title">Have a specific question not listed here?</span>
-                  <span className="faq-bottom-sub">Our automation engineers are online and ready to audit your workflow setup for free.</span>
-                </div>
-              </div>
-              <Link to="/contact" className="faq-bottom-btn">
-                <MessageCircle size={16} />
-                <span>Talk to an Expert</span>
-              </Link>
-            </div>
-
           </div>
         </section>
       </DeferredHomeSection>
@@ -975,15 +714,18 @@ function Home() {
       <DeferredHomeSection minHeight={320}>
         <section className="wm-final-cta-section" id="start-automating">
           <div className="wm-final-cta-card">
+            {/* Atmospheric Background Glow */}
+            <div className="wm-final-card-glow" aria-hidden="true" />
+
             {/* Eyebrow Badge */}
             <div className="wm-final-cta-badge">
-              <Sparkles size={13} color="#f97316" />
-              <span>Instant Setup · No Credit Card Required</span>
+              <Sparkles size={13} className="wm-final-badge-sparkle" />
+              <span>Ready To Automate Your Business?</span>
             </div>
 
             {/* Main Headline */}
             <h2 className="wm-final-cta-title">
-              Start automating yourself — or let our experts help you
+              Start automating yourself — or let our <span className="wm-final-highlight">experts help you</span>
             </h2>
 
             {/* Subtitle */}
@@ -1012,16 +754,20 @@ function Home() {
             {/* Trust Reassurance Row */}
             <div className="wm-final-trust-row">
               <span className="wm-final-trust-item">
-                <CheckCircle2 size={16} color="#10b981" />
+                <CheckCircle2 size={15} color="#059669" />
                 <span>10,000 Free Credits</span>
               </span>
               <span className="wm-final-trust-item">
-                <CheckCircle2 size={16} color="#10b981" />
+                <CheckCircle2 size={15} color="#059669" />
                 <span>37+ Pre-Built Apps</span>
               </span>
               <span className="wm-final-trust-item">
-                <CheckCircle2 size={16} color="#10b981" />
+                <CheckCircle2 size={15} color="#059669" />
                 <span>Live Expert Support</span>
+              </span>
+              <span className="wm-final-trust-item">
+                <CheckCircle2 size={15} color="#059669" />
+                <span>99.8% Uptime SLA</span>
               </span>
             </div>
           </div>

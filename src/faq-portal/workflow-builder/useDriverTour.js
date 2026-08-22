@@ -1,11 +1,11 @@
 import { useRef, useCallback } from 'react'
+import { driver } from 'driver.js'
+import 'driver.js/dist/driver.css'
 
 export function useDriverTour(stepsData, title, onComplete) {
   const driverObjRef = useRef(null)
 
   const startTour = useCallback(async () => {
-    const { driver } = await import('driver.js')
-    await import('driver.js/dist/driver.css')
 
     const defaultSteps = [
       {

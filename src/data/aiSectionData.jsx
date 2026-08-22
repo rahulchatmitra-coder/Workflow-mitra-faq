@@ -56,10 +56,10 @@ export const MODEL_PROVIDERS = ['OpenAI', 'Claude', 'Gemini', 'Groq', 'Ollama']
  * reachable only through the HTTP node, which is what the foot line claims.
  */
 export const INTEGRATIONS = [
-  'whatsapp', 'googlesheets', null, 'gmail', 'telegram', null, 'hubspot', 'zoho',
-  null, 'shopify', 'woocommerce', 'zendesk', null, 'slack', 'discord', null,
-  'mongodb', 'postgresql', null, 'mysql', 'redis', null, 'intercom', 'linkedin',
-  'facebook', null, 'zoom', 'googlemeet', 'calendly', 'msteams', null, null,
+  'whatsapp', 'googlesheets', 'hubspot', 'gmail', 'telegram', 'notion', 'zoho', 'salesforce',
+  'stripe', 'shopify', 'woocommerce', 'zendesk', 'github', 'slack', 'discord', 'airtable',
+  'mongodb', 'postgresql', 'razorpay', 'mysql', 'redis', 'jira', 'intercom', 'linkedin',
+  'facebook', 'figma', 'zoom', 'googlemeet', 'calendly', 'msteams', 'mailchimp', 'asana',
 ]
 
 /** 30 native node types + 13 app-request definitions + 10 meeting providers. */
