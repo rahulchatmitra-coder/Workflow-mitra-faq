@@ -47,14 +47,36 @@
     }
     </script>
     
-    <!-- Fonts & Media Preconnect & Hero Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preload" as="image" href="/images/hero-cloud-left.webp" type="image/webp" fetchpriority="high">
-    <link rel="preload" as="image" href="/images/hero-cloud-right.webp" type="image/webp" fetchpriority="high">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <!-- Route-Aware LCP Image Preloader -->
+    <script>
+      (function() {
+        try {
+          var p = (window.location.pathname || '/').replace(/\/$/, '') || '/';
+          var imgMap = {
+            '/how-to-create-account-workflowmitra': '/onboarding/step1.webp',
+            '/credentials/google': '/credentials/Google_Auth/step1.webp',
+            '/credentials/googleoauth': '/credentials/Google_Auth/step1.webp',
+            '/credentials/googleserviceaccount': '/credentials/Google_Sheets/step1.webp',
+            '/credentials/openai': '/credentials/OpenAI/step1.webp',
+            '/credentials/claude': '/credentials/Claude/step1.webp',
+            '/credentials/slack': '/credentials/Slack/step1.webp',
+            '/credentials/whatsapp': '/credentials/WhatsApp/step1.webp',
+            '/credentials/groq': '/credentials/grok/step1.webp',
+            '/credentials/smtp': '/credentials/smtp/step1.webp',
+            '/credentials/gemini': '/credentials/gemini/step1.webp'
+          };
+          var href = imgMap[p.toLowerCase()];
+          if (href) {
+            var l = document.createElement('link');
+            l.rel = 'preload';
+            l.as = 'image';
+            l.href = href;
+            l.fetchPriority = 'high';
+            document.head.appendChild(l);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

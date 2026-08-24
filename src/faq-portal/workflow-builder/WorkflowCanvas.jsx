@@ -406,7 +406,7 @@ export function WorkflowCanvas() {
                     style={{ left: '228px', top: '148px', position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', zIndex: 10 }}
                   >
                     <div style={{ position: 'absolute', top: '-26px', fontSize: '10px', fontWeight: 800, background: '#fff', border: '1px solid #e4e4e7', padding: '2px 8px', borderRadius: '9999px', color: '#3f3f46', whiteSpace: 'nowrap' }}>1st Has an email</div>
-                    <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#FF6B00', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', position: 'relative', boxShadow: activeStep === 2 ? '0 0 0 6px rgba(255, 107, 0, 0.4), 0 12px 28px rgba(255, 107, 0, 0.5)' : '0 8px 24px rgba(255, 107, 0, 0.35)', transition: 'all 0.2s ease' }}>
+                    <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#c2410c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', position: 'relative', boxShadow: activeStep === 2 ? '0 0 0 6px rgba(194, 65, 12, 0.4), 0 12px 28px rgba(194, 65, 12, 0.5)' : '0 8px 24px rgba(194, 65, 12, 0.35)', transition: 'all 0.2s ease' }}>
                       IF
                       <span style={{ position: 'absolute', top: '-4px', right: '-4px', width: '22px', height: '22px', borderRadius: '50%', background: '#09090b', color: '#fff', fontSize: '11px', fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff' }}>2</span>
                     </div>

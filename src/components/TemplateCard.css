@@ -96,7 +96,7 @@
 
 .card-footer .meta {
   font-size: 12px;
-  color: var(--color-text-tertiary, #9aa0ab);
+  color: var(--color-text-secondary, #475569);
 }
 
 .use-btn {

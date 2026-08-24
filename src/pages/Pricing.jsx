@@ -334,9 +334,9 @@ function Pricing() {
         {/* Header Block with Right-Aligned Toggle Button */}
         <motion.div 
           className="axvio-pricing-header"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 1, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="axvio-header-left">
             <div className="axvio-pricing-eyebrow">
@@ -389,9 +389,9 @@ function Pricing() {
                 key={plan.order}
                 className={`axvio-card ${plan.isPopular ? 'popular' : ''} ${isSelected ? 'selected' : ''}`}
                 onClick={() => setActivePlanOrder(plan.order)}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 1, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Plan Header */}
                 <div className="axvio-card-top">

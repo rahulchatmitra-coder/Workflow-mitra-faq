@@ -241,7 +241,7 @@ export function WorkflowCanvas() {
               {/* Node 2: IF */}
               <div id="tour-node-if" style={{ left: '228px', top: '148px', position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', zIndex: 10 }}>
                 <div style={{ position: 'absolute', top: '-26px', fontSize: '10px', fontWeight: 800, background: '#fff', border: '1px solid #e2e8f0', padding: '2px 8px', borderRadius: '9999px', color: '#334155', whiteSpace: 'nowrap' }}>1st Has an email</div>
-                <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#FF6B00', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', position: 'relative', boxShadow: '0 8px 24px rgba(255, 107, 0, 0.35)' }}>
+                <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#c2410c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '18px', position: 'relative', boxShadow: '0 8px 24px rgba(194, 65, 12, 0.35)' }}>
                   IF
                   <span style={{ position: 'absolute', top: '-4px', right: '-4px', width: '22px', height: '22px', borderRadius: '50%', background: '#0f172a', color: '#fff', fontSize: '11px', fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff' }}>2</span>
                 </div>

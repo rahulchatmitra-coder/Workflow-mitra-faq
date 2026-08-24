@@ -27,7 +27,9 @@ const ROUTES = [
   { name: 'Doc: Slack', path: '/docs/integrations/slack' },
   { name: 'Create Account', path: '/how-to-create-account-workflowmitra' },
   { name: 'Credentials', path: '/credentials' },
-  { name: 'Credential: Google', path: '/credentials/google' },
+  { name: 'Credential: OpenAI', path: '/credentials/openai' },
+  { name: 'Credential: Claude', path: '/credentials/claude' },
+  { name: 'Credential: SMTP', path: '/credentials/smtp' },
   { name: '404 Page', path: '/404-page-not-found' }
 ]
 
@@ -115,6 +117,7 @@ async function runAudit() {
 
       const routeSafeName = route.name.toLowerCase().replace(/[^a-z0-9]/g, '-')
       fs.writeFileSync(path.join(resultsDir, `${routeSafeName}.json`), JSON.stringify(lhr, null, 2))
+      await new Promise(r => setTimeout(r, 600))
     } catch (err) {
       console.error(`  Failed to audit ${route.name}:`, err.message)
     }

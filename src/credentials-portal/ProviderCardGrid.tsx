@@ -241,10 +241,10 @@ export default function ProviderCardGrid({
                 gap: '5px',
                 fontSize: '12px',
                 fontWeight: 700,
-                color: '#059669',
+                color: '#047857',
               }}
             >
-              <ShieldCheck size={14} color="#059669" />
+              <ShieldCheck size={14} color="#047857" />
               <span>AES-256 Encrypted</span>
             </span>
           </div>

@@ -1156,7 +1156,7 @@
   padding: 12px 20px 0;
   font-size: 13.5px;
   font-weight: 500;
-  color: #9297a1;
+  color: #475569;
 }
 
 .chat-hero-section .chat-subtabs .active {
@@ -1216,7 +1216,7 @@
 }
 
 .chat-hero-section .msg-meta .time {
-  color: #9297a1;
+  color: #475569;
   font-weight: 400;
   margin-left: 6px;
 }
@@ -1239,7 +1239,7 @@
   gap: 12px;
   margin-top: 6px;
   font-size: 12px;
-  color: #9297a1;
+  color: #475569;
 }
 
 .chat-hero-section .msg-reactions .pill {
@@ -1267,7 +1267,7 @@
 }
 
 .chat-hero-section .msg-replies .time {
-  color: #9297a1;
+  color: #475569;
   font-weight: 400;
 }
 
@@ -1365,7 +1365,7 @@
 }
 .bg-timeline-icon svg { width: 12px; height: 12px; }
 .bg-timeline-row-title { font-size: 14px; font-weight: 600; color: #191c27; margin-bottom: 3px; }
-.bg-timeline-row-sub { font-size: 12px; color: #a3a8b8; }
+.bg-timeline-row-sub { font-size: 12px; color: #475569; }
 
 .bg-timeline-col { flex: 1; min-width: 0; }
 .bg-timeline-track { position: relative; height: 14px; }
@@ -1389,11 +1389,11 @@
   padding: 4px 10px; border-radius: 20px;
   white-space: nowrap;
 }
-.bg-timeline-badge.purple { background: #efeafc; color: #7d6ce9; }
-.bg-timeline-badge.red    { background: #fdedef; color: #f14b63; }
+.bg-timeline-badge.purple { background: #ede9fe; color: #5b21b6; }
+.bg-timeline-badge.red    { background: #fee2e2; color: #991b1b; }
 
 .bg-timeline-axis { display: flex; justify-content: space-between; margin-top: 9px; }
-.bg-timeline-axis span { font-size: 10px; color: #cdd0da; letter-spacing: 0.03em; font-weight: 500; }
+.bg-timeline-axis span { font-size: 10px; color: #64748b; letter-spacing: 0.03em; font-weight: 500; }
 
 @media (max-width: 760px) {
   .bg-timeline-section { padding: 60px 0; }
@@ -1539,18 +1539,18 @@
 
 .hiw-node-badge.logic {
   background: #fef3c7;
-  color: #d97706;
+  color: #92400e;
 }
 
 .hiw-node-badge.action {
   background: #e0f2fe;
-  color: #0284c7;
+  color: #0369a1;
 }
 
 .hiw-node-status {
   font-size: 10px;
   font-weight: 500;
-  color: #94a3b8;
+  color: #475569;
 }
 
 .hiw-node-body {
@@ -1580,7 +1580,7 @@
 }
 
 .hiw-node-arrow {
-  color: #94a3b8;
+  color: #475569;
   font-size: 11px;
   font-weight: 600;
 }
@@ -1594,7 +1594,7 @@
 .hiw-step-num {
   font-size: 11.5px;
   font-weight: 650;
-  color: #a686f1;
+  color: #6d28d9;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

@@ -14,7 +14,7 @@
   letter-spacing: 0.08em;
   font-weight: 800;
   margin: 0 0 0.8rem 0.9rem;
-  color: var(--docs-muted);
+  color: var(--docs-ink-soft, #475569);
 }
 .section-nav a {
   display: block;

@@ -25,7 +25,24 @@ function setCanonical(href) {
   canonical.setAttribute('href', href)
 }
 
-export default function PageSeo({ title, description, path = '/', ogImage }) {
+function setPreloadImage(href) {
+  let el = document.head.querySelector('link[data-page-seo-preload="true"]') || document.head.querySelector(`link[rel="preload"][as="image"][href="${href}"]`)
+  if (href) {
+    if (!el) {
+      el = document.createElement('link')
+      el.setAttribute('rel', 'preload')
+      el.setAttribute('as', 'image')
+      el.setAttribute('data-page-seo-preload', 'true')
+      el.setAttribute('fetchpriority', 'high')
+      document.head.appendChild(el)
+    }
+    el.setAttribute('href', href)
+  } else if (el && el.getAttribute('data-page-seo-preload') === 'true') {
+    el.remove()
+  }
+}
+
+export default function PageSeo({ title, description, path = '/', ogImage, preloadImage }) {
   useEffect(() => {
     if (title) document.title = title
 
@@ -46,7 +63,12 @@ export default function PageSeo({ title, description, path = '/', ogImage }) {
     setMeta('name', 'twitter:image', `${SITE_ORIGIN}${ogImage || DEFAULT_OG_IMAGE}`)
 
     setCanonical(`${SITE_ORIGIN}${path}`)
-  }, [title, description, path, ogImage])
+    setPreloadImage(preloadImage)
+
+    return () => {
+      setPreloadImage(null)
+    }
+  }, [title, description, path, ogImage, preloadImage])
 
   return null
 }

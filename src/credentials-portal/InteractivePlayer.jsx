@@ -485,8 +485,7 @@ export default function InteractivePlayer({
               style={{
                 position: 'relative',
                 width: '100%',
-                flex: 1,
-                minHeight: '440px',
+                aspectRatio: '16/9',
                 background: '#09090b',
                 display: 'flex',
                 alignItems: 'center',
@@ -494,11 +493,11 @@ export default function InteractivePlayer({
                 overflow: 'hidden',
               }}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence initial={false} mode="wait">
                 {!showCompletionOverlay ? (
                   <motion.div
                     key={`${currentStepIndex}-${currentStep.image}`}
-                    initial={{ opacity: 0 }}
+                    initial={false}
                     animate={{ opacity: 1, scale: zoomLevel / 100 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
@@ -507,6 +506,11 @@ export default function InteractivePlayer({
                     <img
                       src={currentStep.image}
                       alt={currentStep.title}
+                      loading={currentStepIndex === 0 ? "eager" : "lazy"}
+                      fetchpriority={currentStepIndex === 0 ? "high" : undefined}
+                      decoding="async"
+                      width="1280"
+                      height="720"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
                     />
                   </motion.div>
@@ -735,7 +739,7 @@ export default function InteractivePlayer({
                     whileTap={{ scale: 0.85 }}
                   >
                     {/* 1. SOFT AMBIENT GLOW AURA (Concentric) */}
-                    <motion.span
+                    <span
                       style={{
                         position: 'absolute',
                         inset: '-10px',
@@ -744,12 +748,11 @@ export default function InteractivePlayer({
                         filter: 'blur(6px)',
                         pointerEvents: 'none',
                       }}
-                      animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0.2, 0.6] }}
-                      transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+                      className="wm-hotspot-glow"
                     />
 
                     {/* 2. SILKY EXPANDING RIPPLE WAVE (Concentric) */}
-                    <motion.span
+                    <span
                       style={{
                         position: 'absolute',
                         inset: '-12px',
@@ -758,12 +761,11 @@ export default function InteractivePlayer({
                         boxShadow: '0 0 10px rgba(99, 102, 241, 0.4)',
                         pointerEvents: 'none',
                       }}
-                      animate={{ scale: [1, 1.65, 1], opacity: [0.8, 0, 0.8] }}
-                      transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+                      className="wm-hotspot-ripple"
                     />
 
                     {/* 3. ROTATING ORBIT RING WITH SATELLITE PARTICLE (Concentric) */}
-                    <motion.div
+                    <div
                       style={{
                         position: 'absolute',
                         inset: '-8px',
@@ -771,8 +773,7 @@ export default function InteractivePlayer({
                         border: '1px solid rgba(199, 210, 254, 0.5)',
                         pointerEvents: 'none',
                       }}
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 3.5, ease: 'linear' }}
+                      className="wm-hotspot-spin"
                     >
                       <span
                         style={{
@@ -787,12 +788,11 @@ export default function InteractivePlayer({
                           boxShadow: '0 0 6px #ffffff',
                         }}
                       />
-                    </motion.div>
+                    </div>
 
                     {/* 4. LUMINOUS GLASS PEARL PIN & NUCLEUS (Concentric) */}
-                    <motion.span
-                      animate={{ scale: [1, 1.08, 1] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+                    <span
+                      className="wm-hotspot-pulse"
                       style={{
                         position: 'relative',
                         display: 'flex',
@@ -816,7 +816,7 @@ export default function InteractivePlayer({
                           display: 'block',
                         }}
                       />
-                    </motion.span>
+                    </span>
                   </motion.div>
                 </div>
               )}

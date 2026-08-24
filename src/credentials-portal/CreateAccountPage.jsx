@@ -95,6 +95,12 @@ export default function CreateAccountPage() {
   const [isFullscreenModal, setIsFullscreenModal] = useState(false)
   const [activeSpeakingIndex, setActiveSpeakingIndex] = useState(null)
   const [feedbackGiven, setFeedbackGiven] = useState(false)
+  const [renderAllSteps, setRenderAllSteps] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setRenderAllSteps(true), 50)
+    return () => clearTimeout(t)
+  }, [])
 
   // Scroll to top on mount
   useEffect(() => {
@@ -240,6 +246,7 @@ export default function CreateAccountPage() {
         title="How to Create an Account in WorkflowMitra | Setup Guide"
         description="Follow this 5-step visual guide to register, verify your email, and access your WorkflowMitra automation dashboard."
         path="/how-to-create-account-workflowmitra"
+        preloadImage="/onboarding/step1.webp"
       />
       
       {/* TOP NAVIGATION BACK BAR */}
@@ -326,9 +333,10 @@ export default function CreateAccountPage() {
 
           {/* 5 STEP CARDS */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-            {onboardingGuide.map((s, idx) => (
+            {(renderAllSteps ? onboardingGuide : onboardingGuide.slice(0, 2)).map((s, idx) => (
               <div
                 key={idx}
+                className="wm-step-card-opt"
                 style={{
                   borderRadius: '28px',
                   border: '1.5px solid #e4e4e7',
@@ -367,6 +375,7 @@ export default function CreateAccountPage() {
                         src={s.image}
                         alt={`Step ${idx + 1}: ${s.title}`}
                         loading="lazy"
+                        decoding="async"
                         style={{
                           position: 'absolute',
                           inset: 0,

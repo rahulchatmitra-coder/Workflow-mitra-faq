@@ -19,8 +19,8 @@
   --docs-pink: var(--color-brand-pink, #E8388A);
   --docs-pink-ink: #9c1f60;
   --docs-pink-bg: #fdeaf3;
-  --docs-purple: var(--color-brand-purple, #8B5CF6);
-  --docs-purple-bg: #f1ecfe;
+  --docs-purple: #6d28d9;
+  --docs-purple-bg: #f5f3ff;
   --docs-teal: var(--color-brand-teal, #0f766e);
   --docs-teal-bg: #e6f5f3;
   --docs-warm: var(--bg-a, #fff7f3);
@@ -34,15 +34,15 @@
    tailwind.css so the recreation matches the product pixel for pixel. */
 .wm-shot {
   --wm-primary: #0A0A0A;
-  --wm-primary-light: #6B6B6B;
-  --wm-secondary: #ff9e43;
-  --wm-error: #FF3D57;
-  --wm-warning: #ff9800;
+  --wm-primary-light: #4b5563;
+  --wm-secondary: #d97706;
+  --wm-error: #dc2626;
+  --wm-warning: #b45309;
   --wm-bg-default: #f8fafc;
   --wm-surface: #ffffff;
   --wm-text-primary: #0A0A0A;
-  --wm-text-secondary: rgba(10, 10, 10, 0.58);
-  --wm-text-disabled: rgba(10, 10, 10, 0.40);
+  --wm-text-secondary: #475569;
+  --wm-text-disabled: #475569;
   --wm-gray-200: #e5e7eb;
   --wm-gray-100: #f3f4f6;
   --wm-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.07);

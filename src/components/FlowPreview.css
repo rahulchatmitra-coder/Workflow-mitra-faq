@@ -101,7 +101,7 @@
   gap: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--color-text-tertiary, #9aa0ab);
+  color: var(--color-text-secondary, #475569);
 }
 .fp-fact svg { flex-shrink: 0; }
 
@@ -267,7 +267,7 @@
 .fp-step-sub {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 11px;
-  color: var(--color-text-tertiary, #9aa0ab);
+  color: var(--color-text-secondary, #475569);
   background: #f1f5f9;
   padding: 1px 6px;
   border-radius: 4px;

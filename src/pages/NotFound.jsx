@@ -95,7 +95,7 @@ export default function NotFound() {
                 <Zap size={18} />
               </div>
               <span className="wm-404-step-name">HTTP Trigger</span>
-              <span className="wm-404-step-status" style={{ color: '#059669' }}>✓ Received</span>
+              <span className="wm-404-step-status" style={{ color: '#047857' }}>✓ Received</span>
             </div>
 
             {/* Wire 1 */}
@@ -132,9 +132,9 @@ export default function NotFound() {
         {/* Page Main Headline & Description */}
         <motion.h1 
           className="wm-404-title"
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 1, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           This Workflow Path Doesn't Exist
         </motion.h1>

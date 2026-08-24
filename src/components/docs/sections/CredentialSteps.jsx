@@ -47,7 +47,7 @@ export function CredentialSteps({ steps }) {
         <li key={s.title}>
           <span className="ds-cred__num">{i + 1}</span>
           <div className="ds-cred__body">
-            <h4>{s.title}</h4>
+            <h3>{s.title}</h3>
             <p>{s.body}</p>
 
             {s.link && (

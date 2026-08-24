@@ -599,7 +599,7 @@ const UnifiedSolutionTemplate = ({ config }) => {
 
               <div className="messages">
                 {safeConfig.chat.messages.map((msg, idx) => {
-                  const colors = ['#F59E0B', '#EC4899', '#14B8A6'];
+                  const colors = ['#b45309', '#be185d', '#0f766e'];
                   const bgColor = colors[idx % colors.length];
                   const initials = msg.user.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
                   

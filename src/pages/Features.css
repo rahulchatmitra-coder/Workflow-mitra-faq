@@ -405,7 +405,7 @@
 .ft-ai-providers-caption {
   text-align: center;
   font-size: 12px;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-12);
 }
 
@@ -539,7 +539,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
 }
 
 /* ─── 12 · Execution & Monitoring ─── */
@@ -584,7 +584,7 @@
 .ft-execution-status {
   margin-left: auto;
   font-size: 12px;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
 }
 
 .ft-execution-footer {
@@ -592,7 +592,7 @@
   padding-top: var(--space-4);
   border-top: 1px solid #f1f5f9;
   font-size: 12px;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
 }
 
 /* ─── 13 · Reliability ─── */

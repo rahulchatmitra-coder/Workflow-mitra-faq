@@ -223,3 +223,44 @@ h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea,
 
 /* Import Global FAQ & Documentation Hub Portal Design System */
 @import "./faq-portal/faq-portal.css";
+
+/* High-Performance GPU Hotspot Animations */
+@keyframes wm-hotspot-glow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.4); opacity: 0.2; }
+}
+@keyframes wm-hotspot-ripple {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.65); opacity: 0; }
+}
+@keyframes wm-hotspot-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes wm-hotspot-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.wm-hotspot-glow {
+  animation: wm-hotspot-glow 2.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.wm-hotspot-ripple {
+  animation: wm-hotspot-ripple 2.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.wm-hotspot-spin {
+  animation: wm-hotspot-spin 3.5s linear infinite;
+  will-change: transform;
+}
+.wm-hotspot-pulse {
+  animation: wm-hotspot-pulse 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wm-step-card-opt {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
+}
+
+

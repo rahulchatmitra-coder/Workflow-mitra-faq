@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import PageSeo from "../components/PageSeo";
-import { CredentialProvider, PROVIDER_LIST } from "./credentials-data";
+import type { CredentialProvider } from "./credentials-data";
 import {
   Openai,
   Slack,
@@ -155,6 +155,12 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
   const [selectedImageModal, setSelectedImageModal] = useState<string>("");
   const [feedbackGiven, setFeedbackGiven] = useState<boolean>(false);
   const [activeSpeakingIndex, setActiveSpeakingIndex] = useState<number | null>(null);
+  const [renderAllSteps, setRenderAllSteps] = useState<boolean>(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setRenderAllSteps(true), 50);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -203,6 +209,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
         title={`How to Connect ${provider.name} Credentials | WorkflowMitra`}
         description={`Step-by-step interactive guide to creating API keys and connecting ${provider.name} in WorkflowMitra.`}
         path={`/credentials/${provider.id.toLowerCase()}`}
+        preloadImage={steps?.[0]?.image}
       />
       {/* TOP NAVIGATION BACK BAR */}
       <div style={{ borderBottom: "1px solid #e4e4e7", background: "#fafafa", position: "sticky", top: 0, zIndex: 30 }}>
@@ -369,9 +376,10 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-            {steps.map((s, idx) => (
+            {(renderAllSteps ? steps : steps.slice(0, 5)).map((s, idx) => (
               <div
                 key={idx}
+                className="wm-step-card-opt"
                 style={{
                   borderRadius: "28px",
                   border: "1.5px solid #e4e4e7",
@@ -410,6 +418,7 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
                         src={s.image}
                         alt={`Step ${idx + 1}: ${s.title}`}
                         loading="lazy"
+                        decoding="async"
                         style={{
                           position: "absolute",
                           inset: 0,
