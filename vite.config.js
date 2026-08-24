@@ -22,7 +22,7 @@ export default defineConfig({
     open: true
   },
   optimizeDeps: {
-    include: ['lenis', 'gsap', 'framer-motion']
+    include: ['framer-motion']
   },
   build: {
     target: 'esnext',

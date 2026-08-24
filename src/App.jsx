@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Lenis from 'lenis'
 import { TextColorProvider } from './credentials-portal/TextColorContext'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
@@ -42,26 +41,31 @@ function App() {
 
     let lenis
     let rafId
-    const initTimer = setTimeout(() => {
-      lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 0.98,
-        touchMultiplier: 1,
-        infinite: false,
-      })
+    const initTimer = setTimeout(async () => {
+      try {
+        const { default: Lenis } = await import('lenis')
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 0.98,
+          touchMultiplier: 1,
+          infinite: false,
+        })
 
-      window.lenis = lenis
+        window.lenis = lenis
 
-      function raf(time) {
-        lenis.raf(time)
+        function raf(time) {
+          lenis.raf(time)
+          rafId = requestAnimationFrame(raf)
+        }
+
         rafId = requestAnimationFrame(raf)
+      } catch {
+        // Optional smooth scroll gracefully skipped if lenis module is not bundled
       }
-
-      rafId = requestAnimationFrame(raf)
     }, 50)
 
     return () => {
