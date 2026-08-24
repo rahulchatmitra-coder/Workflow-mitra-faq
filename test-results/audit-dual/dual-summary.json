@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Home",
+    "path": "/",
+    "desktop": {
+      "perf": 94,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.04",
+      "lcp": "1.6 s"
+    },
+    "mobile": {
+      "perf": 89,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0",
+      "lcp": "3.2 s"
+    }
+  },
+  {
+    "name": "Solutions",
+    "path": "/solutions",
+    "desktop": {
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.01",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 89,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.141",
+      "lcp": "2.5 s"
+    }
+  },
+  {
+    "name": "Pricing",
+    "path": "/pricing",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.013",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 92,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.031",
+      "lcp": "2.5 s"
+    }
+  },
+  {
+    "name": "Features",
+    "path": "/features",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.013",
+      "lcp": "0.7 s"
+    },
+    "mobile": {
+      "perf": 90,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.055",
+      "lcp": "2.9 s"
+    }
+  },
+  {
+    "name": "Templates",
+    "path": "/templates",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.009",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 95,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.03",
+      "lcp": "2.5 s"
+    }
+  },
+  {
+    "name": "Integrations",
+    "path": "/integrations",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.043",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 95,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.069",
+      "lcp": "2.3 s"
+    }
+  },
+  {
+    "name": "Docs Hub",
+    "path": "/docs",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.014",
+      "lcp": "0.7 s"
+    },
+    "mobile": {
+      "perf": 90,
+      "a11y": 92,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.034",
+      "lcp": "2.8 s"
+    }
+  },
+  {
+    "name": "About",
+    "path": "/about",
+    "desktop": {
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.007",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 96,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.043",
+      "lcp": "2.3 s"
+    }
+  },
+  {
+    "name": "Contact",
+    "path": "/contact",
+    "desktop": {
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.003",
+      "lcp": "0.5 s"
+    },
+    "mobile": {
+      "perf": 95,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.03",
+      "lcp": "2.5 s"
+    }
+  },
+  {
+    "name": "Automation Help",
+    "path": "/automation-help",
+    "desktop": {
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.014",
+      "lcp": "0.6 s"
+    },
+    "mobile": {
+      "perf": 94,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.036",
+      "lcp": "2.4 s"
+    }
+  },
+  {
+    "name": "Create Account",
+    "path": "/how-to-create-account-workflowmitra",
+    "desktop": {
+      "perf": 100,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.014",
+      "lcp": "0.7 s"
+    },
+    "mobile": {
+      "perf": 83,
+      "a11y": 100,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.157",
+      "lcp": "3.3 s"
+    }
+  },
+  {
+    "name": "Credentials",
+    "path": "/credentials",
+    "desktop": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.018",
+      "lcp": "0.8 s"
+    },
+    "mobile": {
+      "perf": 86,
+      "a11y": 96,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.085",
+      "lcp": "3.5 s"
+    }
+  },
+  {
+    "name": "Doc: Gmail",
+    "path": "/docs/integrations/gmail",
+    "desktop": {
+      "perf": 100,
+      "a11y": 95,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.013",
+      "lcp": "0.7 s"
+    },
+    "mobile": {
+      "perf": 87,
+      "a11y": 95,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.11",
+      "lcp": "2.9 s"
+    }
+  },
+  {
+    "name": "Doc: Slack",
+    "path": "/docs/integrations/slack",
+    "desktop": {
+      "perf": 100,
+      "a11y": 94,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.02",
+      "lcp": "0.7 s"
+    },
+    "mobile": {
+      "perf": 89,
+      "a11y": 94,
+      "bp": 100,
+      "seo": 100,
+      "cls": "0.031",
+      "lcp": "2.9 s"
+    }
+  }
+]

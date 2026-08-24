@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getBrandIcon } from '../utils/brandIcons';
 import RollButton from './RollButton';
 import './DarkAIIntegrationsSection.css';
@@ -46,17 +47,29 @@ export default function DarkAIIntegrationsSection() {
     <section className="dark-ai-integrations-section" id="ai-integrations">
       <div className="dark-ai-container">
         {/* Heading & Subtitle matching the reference screenshot */}
-        <div className="dark-ai-header">
+        <motion.div 
+          className="dark-ai-header"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="dark-ai-heading">
             Plug AI into your own data &amp; connect your favourite apps
           </h2>
           <p className="dark-ai-desc">
             Use pre-built nodes for common apps. Custom API connections for everything else.
           </p>
-        </div>
+        </motion.div>
 
         {/* Infinite Automated Scrolling Marquee with Left & Right Gradient Fades */}
-        <div className="dark-ai-marquee-wrapper">
+        <motion.div 
+          className="dark-ai-marquee-wrapper"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="dark-ai-marquee-fade-left" aria-hidden="true" />
           <div className="dark-ai-marquee-fade-right" aria-hidden="true" />
 
@@ -87,19 +100,26 @@ export default function DarkAIIntegrationsSection() {
               })}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Black Pill CTA Button matching screenshot */}
-        <div className="dark-ai-cta-wrap">
+        <motion.div 
+          className="dark-ai-cta-wrap"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <RollButton
             to="/integrations"
             variant="dark"
             size="md"
             showArrow={true}
+            className="dark-ai-btn"
           >
             Browse all integrations
           </RollButton>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

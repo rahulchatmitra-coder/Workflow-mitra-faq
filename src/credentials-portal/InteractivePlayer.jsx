@@ -460,18 +460,22 @@ export default function InteractivePlayer({
               {/* ZOOM CONTROLS */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: '#27272a', padding: '2px 6px', borderRadius: '6px' }}>
                 <button
+                  type="button"
                   onClick={handleZoomOut}
-                  style={{ background: 'transparent', border: 'none', color: '#e4e4e7', cursor: 'pointer', padding: '2px' }}
+                  style={{ background: 'transparent', border: 'none', color: '#e4e4e7', cursor: 'pointer', padding: '4px', minWidth: '24px', minHeight: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                   title="Zoom Out"
+                  aria-label="Zoom Out"
                 >
-                  <ZoomOut size={12} />
+                  <ZoomOut size={13} />
                 </button>
                 <button
+                  type="button"
                   onClick={handleZoomIn}
-                  style={{ background: 'transparent', border: 'none', color: '#e4e4e7', cursor: 'pointer', padding: '2px' }}
+                  style={{ background: 'transparent', border: 'none', color: '#e4e4e7', cursor: 'pointer', padding: '4px', minWidth: '24px', minHeight: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                   title="Zoom In"
+                  aria-label="Zoom In"
                 >
-                  <ZoomIn size={12} />
+                  <ZoomIn size={13} />
                 </button>
               </div>
             </div>

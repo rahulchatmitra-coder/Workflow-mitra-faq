@@ -5,6 +5,7 @@ import { TextColorProvider } from './credentials-portal/TextColorContext'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
+import ScrollProgress from './components/ScrollProgress'
 import Home from './pages/Home'
 import './App.css'
 
@@ -31,19 +32,22 @@ const IntegrationDocPage = lazy(() => import('./pages/docs/IntegrationDocPage'))
 const CreateAccountPage = lazy(() => import('./credentials-portal/CreateAccountPage'))
 const CredentialsPage = lazy(() => import('./credentials-portal/CredentialsPage'))
 const CredentialProviderPage = lazy(() => import('./credentials-portal/CredentialProviderPage'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.3,
+      duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 0.98,
       touchMultiplier: 1.5,
       infinite: false,
     })
+
+    window.lenis = lenis
 
     let rafId
     function raf(time) {
@@ -56,12 +60,15 @@ function App() {
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
       lenis.destroy()
+      delete window.lenis
     }
   }, [])
+
   return (
     <TextColorProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="app">
+          <ScrollProgress />
           <Navigation />
           <main>
             <Suspense fallback={<div className="route-loading" aria-hidden="true" />}>
@@ -90,6 +97,7 @@ function App() {
                 <Route path="/create-account" element={<Navigate to="/how-to-create-account-workflowmitra" replace />} />
                 <Route path="/credentials" element={<CredentialsPage />} />
                 <Route path="/credentials/:providerId" element={<CredentialProviderPage />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </main>

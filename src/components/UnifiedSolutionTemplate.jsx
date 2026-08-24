@@ -16,9 +16,11 @@ import {
 } from 'react-icons/si';
 import { FaLinkedin, FaSlack, FaGithub, FaAws, FaSalesforce, FaUserCircle, FaCube, FaMicrosoft } from 'react-icons/fa';
 import { OpenAI, Anthropic, Google, Meta, DeepSeek } from '@lobehub/icons';
+import { Zap, Cpu, Sparkles } from 'lucide-react';
 import './UnifiedSolutionTemplate.css';
 import { getBrandIcon } from '../utils/brandIcons';
 import PageSeo from './PageSeo';
+import RollButton from './RollButton';
 
 const getAppIcon = (name) => {
   const brandData = getBrandIcon(name, { size: 18 });
@@ -52,9 +54,6 @@ const apps = [
   { name:'Airtable',       tools:['Run query','Get table schema','Insert row','Update record','Get row count'] },
   { name:'Notion',         tools:['Create document','Update content','Get document text','Share document','List recent docs'] }
 ];
-
-import RollButton from './RollButton';
-import { Sparkles } from 'lucide-react';
 
 const UnifiedSolutionTemplate = ({ config }) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -105,12 +104,6 @@ const UnifiedSolutionTemplate = ({ config }) => {
       {/* SECTION 1 — Hero (Matched BG Color Theme with Home Hero) */}
       <section className="solution-hero">
         <div className="container solution-hero-container">
-          {/* Eyebrow Badge Pill */}
-          <div className="solution-hero-eyebrow">
-            <Sparkles size={13} className="solution-badge-sparkle" />
-            <span>{config.badge ? config.badge.toUpperCase() : 'MARKETING AUTOMATION'}</span>
-          </div>
-
           {/* Main Headline */}
           <h1 className="solution-hero-headline">{config.headline}</h1>
 
@@ -146,44 +139,52 @@ const UnifiedSolutionTemplate = ({ config }) => {
           <p className="section-label">Works with your entire marketing stack</p>
           <div className="integration-icons">
             <div className="integration-icon" title="HubSpot">
-              <SiHubspot size={22} color="#FF7A59" />
+              <img src="/svg/hubspot-icon.svg" width="20" height="20" alt="HubSpot" />
               <span>HubSpot</span>
             </div>
-            <div className="integration-icon" title="Mailchimp">
-              <SiMailchimp size={22} color="#FFE01B" />
-              <span>Mailchimp</span>
+            <div className="integration-icon" title="Google Sheets">
+              <img src="/svg/icons8-google-sheets.svg" width="20" height="20" alt="Google Sheets" />
+              <span>Google Sheets</span>
             </div>
-            <div className="integration-icon" title="Google Ads">
-              <SiGoogle size={22} color="#4285F4" />
+            <div className="integration-icon" title="Google Workspace">
+              <img src="/svg/gmail.svg" width="20" height="20" alt="Google" />
               <span>Google</span>
             </div>
-            <div className="integration-icon" title="Meta Ads">
-              <SiMeta size={22} color="#0668E1" />
-              <span>Meta</span>
+            <div className="integration-icon" title="Microsoft Teams">
+              <img src="/svg/microsoft-teams-icon.svg" width="20" height="20" alt="Microsoft Teams" />
+              <span>Microsoft</span>
             </div>
-            <div className="integration-icon" title="LinkedIn">
-              <FaLinkedin size={22} color="#0A66C2" />
-              <span>LinkedIn</span>
+            <div className="integration-icon" title="Claude AI">
+              <img src="/svg/claude-ai-icon.svg" width="20" height="20" alt="Claude AI" />
+              <span>Claude AI</span>
             </div>
-            <div className="integration-icon" title="Airtable">
-              <SiAirtable size={22} color="#18BFFF" />
-              <span>Airtable</span>
+            <div className="integration-icon" title="Intercom">
+              <img src="/svg/intercom-icon-svgrepo-com.svg" width="20" height="20" alt="Intercom" />
+              <span>Intercom</span>
+            </div>
+            <div className="integration-icon" title="Shopify">
+              <img src="/svg/shopify.svg" width="20" height="20" alt="Shopify" />
+              <span>Shopify</span>
+            </div>
+            <div className="integration-icon" title="Zoho">
+              <img src="/svg/zoho.svg" width="20" height="20" alt="Zoho" />
+              <span>Zoho</span>
+            </div>
+            <div className="integration-icon" title="Calendly">
+              <img src="/svg/calendly-icon.svg" width="20" height="20" alt="Calendly" />
+              <span>Calendly</span>
             </div>
             <div className="integration-icon" title="Slack">
-              <FaSlack size={22} color="#4A154B" />
+              <FaSlack size={20} color="#4A154B" />
               <span>Slack</span>
             </div>
             <div className="integration-icon" title="Notion">
-              <SiNotion size={22} color="#000000" />
+              <SiNotion size={20} color="#000000" />
               <span>Notion</span>
             </div>
-            <div className="integration-icon" title="Webflow">
-              <SiWebflow size={22} color="#4353FF" />
-              <span>Webflow</span>
-            </div>
-            <div className="integration-icon" title="Typeform">
-              <SiTypeform size={22} color="#262627" />
-              <span>Typeform</span>
+            <div className="integration-icon" title="Airtable">
+              <SiAirtable size={20} color="#18BFFF" />
+              <span>Airtable</span>
             </div>
           </div>
         </div>
@@ -316,56 +317,250 @@ const UnifiedSolutionTemplate = ({ config }) => {
         </div>
       </section>
 
-      {/* SECTION 4 — Add Custom Skills */}
-      <section className="custom-skills-section">
-        <div className="wrap">
-          <div className="content">
-            <div className="copy">
-              <h2>Add custom skills</h2>
-              <p>{safeConfig.skills.description}</p>
+      {/* SECTION 4 — Everything you need to launch an AI product (100% Exact Match Axvio Bento Grid) */}
+      <section className="wm-launch-bento-section">
+        <div className="container">
+          <div className="wm-launch-header">
+            <div className="wm-launch-eyebrow">
+              <span className="wm-launch-eyebrow-dot" />
+              <span>Features</span>
             </div>
+            <h2 className="wm-launch-title">
+              Everything you need to launch an AI product.
+            </h2>
+            <p className="wm-launch-desc">
+              Designed for fast teams shipping real products, not marketing fluff.
+            </p>
+          </div>
+
+          {/* Asymmetrical 2-Row Bento Grid (1fr+1.6fr / 1.6fr+1fr) */}
+          <div className="wm-launch-bento-grid">
             
-            <div className="cards-region">
-              <div className="cursor max">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3L13 21L11 13L3 11Z" fill="currentColor"/></svg>
-                <span className="cursor-label">Max</span>
-              </div>
-              
-              <div className="cursor kat">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11L21 3L13 21L11 13L3 11Z" fill="currentColor"/></svg>
-                <span className="cursor-label">Kat</span>
+            {/* Row 1 — Left: Automate With Precision (Compact) */}
+            <div className="wm-bento-card wm-bento-card-compact">
+              <div className="wm-bento-visual wm-visual-pills">
+                <div className="wm-axvio-pills-col">
+                  <div className="wm-axvio-pill trigger">Trigger</div>
+                  <div className="wm-axvio-line" />
+                  <div className="wm-axvio-pill logic">Logic</div>
+                  <div className="wm-axvio-line" />
+                  <div className="wm-axvio-pill action">Action</div>
+                </div>
               </div>
 
-              <div className="cards-col">
-                {safeConfig.skills.items.map((skill, idx) => {
-                  const icons = [
-                    <svg className="card-icon" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 20L4.6 16.9C4.7 16.4 4.95 15.95 5.3 15.6L15.4 5.5C16.2 4.7 17.5 4.7 18.3 5.5L18.5 5.7C19.3 6.5 19.3 7.8 18.5 8.6L8.4 18.7C8.05 19.05 7.6 19.3 7.1 19.4L4 20Z" fill="var(--icon-pink)"/>
-                      <path d="M13.5 7.4L16.6 10.5" stroke="#ffffff" strokeWidth="1.3" strokeLinecap="round"/>
-                    </svg>,
-                    <svg className="card-icon" viewBox="0 0 24 24" fill="none">
-                      <rect x="4" y="13" width="4" height="7" rx="1" fill="var(--icon-purple)"/>
-                      <rect x="10" y="8" width="4" height="12" rx="1" fill="var(--icon-purple)"/>
-                      <rect x="16" y="4" width="4" height="16" rx="1" fill="var(--icon-purple)"/>
-                    </svg>,
-                    <svg className="card-icon" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 3.5C6 2.67 6.67 2 7.5 2H14L18 6V20.5C18 21.33 17.33 22 16.5 22H7.5C6.67 22 6 21.33 6 20.5V3.5Z" fill="var(--icon-green)"/>
-                      <path d="M14 2V6H18" fill="#ffffff" opacity="0.35"/>
-                    </svg>
-                  ];
-                  
-                  return (
-                    <div key={idx} className="card">
-                      <div className="card-head">
-                        {icons[idx % 3]}
-                        <span className="card-title">{skill.title}</span>
-                      </div>
-                      <p>{skill.description}</p>
-                    </div>
-                  );
-                })}
+              <div className="wm-bento-content">
+                <h3 className="wm-bento-title">Automate With Precision</h3>
+                <p className="wm-bento-text">
+                  Processes every action in real-time across your connected systems. No delays, no manual steps.
+                </p>
               </div>
             </div>
+
+            {/* Row 1 — Right: Decisions Made Smarter (Wide) */}
+            <div className="wm-bento-card wm-bento-card-wide">
+              <div className="wm-bento-visual wm-visual-scanner">
+                <div className="wm-axvio-skel-container">
+                  <div className="wm-axvio-skel-bar" />
+                  <div className="wm-axvio-skel-bar" />
+                  <div className="wm-axvio-skel-bar" />
+                  <div className="wm-axvio-skel-bar" />
+                  
+                  {/* Glowing Laser Scanner Beam */}
+                  <div className="wm-axvio-laser-beam">
+                    <div className="wm-axvio-laser-glow" />
+                    <div className="wm-axvio-laser-core" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="wm-bento-content">
+                <h3 className="wm-bento-title">Decisions Made Smarter</h3>
+                <p className="wm-bento-text">
+                  Analyzes patterns and refines decisions automatically. Your AI gets sharper with every workflow.
+                </p>
+              </div>
+            </div>
+
+            {/* Row 2 — Left: Connect Everything Instantly (Seamless Marquee + Centered 3-Layer Gradient Hero) */}
+            <div className="wm-bento-card wm-bento-card-wide">
+              <div className="wm-bento-visual wm-visual-strip">
+                {/* Seamless Endless Marquee Track (z-index 1) */}
+                <div className="wm-axvio-marquee-viewport">
+                  <div className="wm-axvio-marquee-track">
+                    {[0, 1].map((setIdx) => (
+                      <div key={setIdx} className="wm-marquee-group" aria-hidden={setIdx === 1}>
+                        {/* 1. HubSpot */}
+                        <div className="wm-app-icon-circle" title="HubSpot">
+                          <img src="/svg/hubspot-icon.svg" width="24" height="24" alt="HubSpot" />
+                        </div>
+
+                        {/* 2. Google Workspace */}
+                        <div className="wm-app-icon-circle" title="Google Workspace">
+                          <img src="/svg/gmail.svg" width="24" height="24" alt="Google Workspace" />
+                        </div>
+
+                        {/* 3. Microsoft Teams */}
+                        <div className="wm-app-icon-circle" title="Microsoft Teams">
+                          <img src="/svg/microsoft-teams-icon.svg" width="24" height="24" alt="Microsoft Teams" />
+                        </div>
+
+                        {/* 4. Claude AI */}
+                        <div className="wm-app-icon-circle" title="Claude AI">
+                          <img src="/svg/claude-ai-icon.svg" width="24" height="24" alt="Claude AI" />
+                        </div>
+
+                        {/* 5. Intercom */}
+                        <div className="wm-app-icon-circle" title="Intercom">
+                          <img src="/svg/intercom-icon-svgrepo-com.svg" width="24" height="24" alt="Intercom" />
+                        </div>
+
+                        {/* 6. Shopify */}
+                        <div className="wm-app-icon-circle" title="Shopify">
+                          <img src="/svg/shopify.svg" width="24" height="24" alt="Shopify" />
+                        </div>
+
+                        {/* 7. Zoho */}
+                        <div className="wm-app-icon-circle" title="Zoho">
+                          <img src="/svg/zoho.svg" width="24" height="24" alt="Zoho" />
+                        </div>
+
+                        {/* 8. Calendly */}
+                        <div className="wm-app-icon-circle" title="Calendly">
+                          <img src="/svg/calendly-icon.svg" width="24" height="24" alt="Calendly" />
+                        </div>
+
+                        {/* 9. Google Sheets */}
+                        <div className="wm-app-icon-circle" title="Google Sheets">
+                          <img src="/svg/icons8-google-sheets.svg" width="24" height="24" alt="Google Sheets" />
+                        </div>
+
+                        {/* 10. Slack */}
+                        <div className="wm-app-icon-circle" title="Slack">
+                          <FaSlack size={24} color="#4A154B" />
+                        </div>
+
+                        {/* 11. Notion */}
+                        <div className="wm-app-icon-circle" title="Notion">
+                          <SiNotion size={24} color="#000000" />
+                        </div>
+
+                        {/* 12. GitHub */}
+                        <div className="wm-app-icon-circle" title="GitHub">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="#181717"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fixed Center Hero Badge with 3-Layer Gradient Diamond Icon & Radiant Aura */}
+                <div className="wm-fixed-center-hero" title="WorkflowMitra AI Engine">
+                  <div className="wm-fixed-hero-aura" />
+                  <div className="wm-fixed-hero-box">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+                      <defs>
+                        <linearGradient id="heroLayerGrad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#f7c38a" />
+                          <stop offset="0.5" stopColor="#a686f1" />
+                          <stop offset="1" stopColor="#38bdf8" />
+                        </linearGradient>
+                      </defs>
+                      {/* Top Isometric Diamond Layer */}
+                      <path d="M16 5L27 10.5L16 16L5 10.5L16 5Z" stroke="url(#heroLayerGrad)" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+                      {/* Middle Isometric Layer */}
+                      <path d="M7 15L16 19.5L25 15" stroke="url(#heroLayerGrad)" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+                      {/* Bottom Isometric Layer */}
+                      <path d="M7 20.5L16 25L25 20.5" stroke="url(#heroLayerGrad)" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="wm-bento-content">
+                <h3 className="wm-bento-title">Connect Everything Instantly</h3>
+                <p className="wm-bento-text">
+                  Links your tools, APIs, and data in one place. Zero complexity, maximum compatibility.
+                </p>
+              </div>
+            </div>
+
+            {/* Row 2 — Right: Scale Without Limits (Compact with Smooth Animated Needle) */}
+            <div className="wm-bento-card wm-bento-card-compact">
+              <div className="wm-bento-visual wm-visual-speedometer">
+                {/* Speedometer Gauge Dial with gradient ring and tick marks */}
+                <div className="wm-speedo-dial-box">
+                  <svg width="126" height="126" viewBox="0 0 126 126" className="wm-speedo-svg">
+                    <defs>
+                      <linearGradient id="speedoGradRing" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#a686f1" />
+                        <stop offset="50%" stopColor="#c084fc" />
+                        <stop offset="100%" stopColor="#f7c38a" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Outer Gradient Ring Circle */}
+                    <circle cx="63" cy="63" r="54" fill="none" stroke="url(#speedoGradRing)" strokeWidth="6" opacity="0.9" />
+                    
+                    {/* Inner White Plate */}
+                    <circle cx="63" cy="63" r="47" fill="#ffffff" />
+
+                    {/* 60 Precision Radial Tick Marks */}
+                    {Array.from({ length: 60 }).map((_, i) => {
+                      const angle = i * 6;
+                      const isLong = i % 5 === 0;
+                      return (
+                        <line
+                          key={i}
+                          x1="63"
+                          y1={isLong ? "13" : "15"}
+                          x2="63"
+                          y2="21"
+                          stroke={isLong ? "#475569" : "#94a3b8"}
+                          strokeWidth={isLong ? "1.5" : "0.85"}
+                          strokeLinecap="round"
+                          transform={`rotate(${angle} 63 63)`}
+                        />
+                      );
+                    })}
+
+                    {/* Center Needle & Pivot Ring with Continuous Live Sweep Animation */}
+                    <g className="wm-speedo-needle-sweep">
+                      <line x1="63" y1="63" x2="63" y2="24" stroke="#181818" strokeWidth="1.9" strokeLinecap="round" />
+                      <circle cx="63" cy="63" r="5" fill="#ffffff" stroke="#94a3b8" strokeWidth="2" />
+                      <circle cx="63" cy="63" r="2" fill="#181818" />
+                    </g>
+                  </svg>
+                </div>
+
+                {/* 4 Stats in a compact horizontal row */}
+                <div className="wm-speedo-stats-row">
+                  <div className="wm-speedo-stat">
+                    <span className="val">11 ms</span>
+                    <span className="lbl">Latency</span>
+                  </div>
+                  <div className="wm-speedo-stat">
+                    <span className="val">99.99%</span>
+                    <span className="lbl">Uptime</span>
+                  </div>
+                  <div className="wm-speedo-stat">
+                    <span className="val">3×</span>
+                    <span className="lbl">Replicas</span>
+                  </div>
+                  <div className="wm-speedo-stat">
+                    <span className="val">SOC 2</span>
+                    <span className="lbl">Certified</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="wm-bento-content">
+                <h3 className="wm-bento-title">Scale Without Limits</h3>
+                <p className="wm-bento-text">
+                  SOC 2 certified and 99.9% uptime guaranteed. Ready for high-volume operations from day one.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -547,79 +742,102 @@ const UnifiedSolutionTemplate = ({ config }) => {
         </div>
       </section>
 
-      {/* SECTION 7 — How it works */}
+      {/* SECTION 7 — How it works (Connect. Customize. Conquer.) */}
       <section className="hiw-section">
         <div className="hiw-container">
           <div className="hiw-header">
-            <span className="hiw-eyebrow">How it works</span>
+            <div className="hiw-eyebrow">
+              <span className="hiw-eyebrow-dot" />
+              <span>How It Works</span>
+            </div>
             <h2>Connect. Customize. Conquer.</h2>
             <p className="hiw-subhead">
-              You can choose how to use <span className="brand">WorkflowMitra</span>. Either sign up for the hosted WorkflowMitra Cloud or self-host via Docker.
+              From lead capture to multichannel orchestration—launch automated AI workflows in minutes without writing code.
             </p>
           </div>
 
           <div className="hiw-cards">
-            {/* Card 1: Pull in data */}
+            {/* Card 1: Ingest & Trigger */}
             <div className="hiw-card">
               <div className="hiw-icon-panel">
-                <span className="hiw-dot" style={{ width: 6, height: 6, top: 22, left: 28 }}></span>
-                <span className="hiw-dot" style={{ width: 4, height: 4, top: 40, right: 34, background: 'var(--accent-orange-soft)' }}></span>
-                <span className="hiw-dot" style={{ width: 5, height: 5, bottom: 26, left: 40 }}></span>
-                <span className="hiw-dot" style={{ width: 3, height: 3, bottom: 44, right: 26 }}></span>
-                <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="21" y="46" width="50" height="14" rx="4" fill="#ffffff" stroke="#6c5ce7" strokeWidth="2"/>
-                  <rect x="21" y="64" width="50" height="14" rx="4" fill="#ffffff" stroke="#6c5ce7" strokeWidth="2"/>
-                  <circle cx="29" cy="53" r="1.6" fill="#e8622c"/>
-                  <circle cx="29" cy="71" r="1.6" fill="#e8622c"/>
-                  <path d="M46 14V42" stroke="#6c5ce7" strokeWidth="2.5" strokeLinecap="round"/>
-                  <path d="M34 30L46 42L58 30" stroke="#e8622c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <div className="hiw-visual-node-box">
+                  <div className="hiw-node-header">
+                    <span className="hiw-node-badge trigger">Trigger</span>
+                    <span className="hiw-node-status">Live Stream</span>
+                  </div>
+                  <div className="hiw-node-body">
+                    <div className="hiw-node-app">
+                      <img src="/svg/gmail.svg" width="16" height="16" alt="Gmail" />
+                      <span>Form Ingest</span>
+                    </div>
+                    <span className="hiw-node-arrow">→</span>
+                    <div className="hiw-node-app">
+                      <img src="/svg/hubspot-icon.svg" width="16" height="16" alt="HubSpot" />
+                      <span>Webhook</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3>Pull in data</h3>
-              <p>Set up triggers for app events or specific times to fetch data across your app stack</p>
+              <div className="hiw-card-content">
+                <span className="hiw-step-num">Step 01</span>
+                <h3>Ingest & Trigger</h3>
+                <p>Connect all your incoming lead channels—webhooks, CRM forms, ads, and spreadsheets—with instant real-time event triggers.</p>
+              </div>
             </div>
 
-            {/* Card 2: Set up steps */}
+            {/* Card 2: AI Logic & Enrichment */}
             <div className="hiw-card">
               <div className="hiw-icon-panel">
-                <span className="hiw-dot" style={{ width: 5, height: 5, top: 24, right: 30 }}></span>
-                <span className="hiw-dot" style={{ width: 4, height: 4, bottom: 22, left: 30, background: 'var(--accent-orange-soft)' }}></span>
-                <span className="hiw-dot" style={{ width: 3, height: 3, top: 36, left: 24 }}></span>
-                <svg width="100" height="92" viewBox="0 0 100 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 26L27 46" stroke="#c9bdf4" strokeWidth="2"/>
-                  <path d="M50 26L73 46" stroke="#c9bdf4" strokeWidth="2"/>
-                  <path d="M27 46L50 66" stroke="#c9bdf4" strokeWidth="2"/>
-                  <path d="M73 46L50 66" stroke="#c9bdf4" strokeWidth="2"/>
-                  <path d="M27 46H73" stroke="#c9bdf4" strokeWidth="2"/>
-                  <circle cx="50" cy="26" r="8" fill="#6c5ce7"/>
-                  <rect x="19" y="38" width="16" height="16" rx="4" fill="#ffffff" stroke="#e8622c" strokeWidth="2"/>
-                  <rect x="65" y="38" width="16" height="16" rx="4" fill="#ffffff" stroke="#e8622c" strokeWidth="2"/>
-                  <circle cx="50" cy="66" r="8" fill="#ffffff" stroke="#6c5ce7" strokeWidth="2.5"/>
-                </svg>
+                <div className="hiw-visual-node-box">
+                  <div className="hiw-node-header">
+                    <span className="hiw-node-badge logic">AI Agent</span>
+                    <span className="hiw-node-status">ICP Scored 98%</span>
+                  </div>
+                  <div className="hiw-node-body">
+                    <div className="hiw-node-app">
+                      <img src="/svg/claude-ai-icon.svg" width="16" height="16" alt="Claude" />
+                      <span>Enrich Data</span>
+                    </div>
+                    <span className="hiw-node-arrow">→</span>
+                    <div className="hiw-node-app highlight">
+                      <span>GPT-4o Draft</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3>Set up steps</h3>
-              <p>Use 220+ app nodes to create, read, and update the valuable data across your apps</p>
+              <div className="hiw-card-content">
+                <span className="hiw-step-num">Step 02</span>
+                <h3>AI Logic & Enrichment</h3>
+                <p>Score leads against custom ICP criteria, enrich company profiles with AI agents, and draft personalized multi-step sequences.</p>
+              </div>
             </div>
 
-            {/* Card 3: Save time - every day */}
+            {/* Card 3: Multi-Stack Sync & Scale */}
             <div className="hiw-card">
               <div className="hiw-icon-panel">
-                <span className="hiw-dot" style={{ width: 5, height: 5, top: 28, left: 26 }}></span>
-                <span className="hiw-dot" style={{ width: 4, height: 4, bottom: 30, right: 28, background: 'var(--accent-orange-soft)' }}></span>
-                <span className="hiw-dot" style={{ width: 3, height: 3, top: 30, right: 34 }}></span>
-                <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="46" cy="46" r="30" fill="#ffffff" stroke="#6c5ce7" strokeWidth="2.5"/>
-                  <circle cx="46" cy="46" r="2.4" fill="#e8622c"/>
-                  <path d="M46 46L46 27" stroke="#6c5ce7" strokeWidth="2.5" strokeLinecap="round"/>
-                  <path d="M46 46L59 53" stroke="#e8622c" strokeWidth="2.5" strokeLinecap="round"/>
-                  <path d="M46 18V22" stroke="#c9bdf4" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M46 70V74" stroke="#c9bdf4" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M74 46H70" stroke="#c9bdf4" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M22 46H18" stroke="#c9bdf4" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+                <div className="hiw-visual-node-box">
+                  <div className="hiw-node-header">
+                    <span className="hiw-node-badge action">Sync & Scale</span>
+                    <span className="hiw-node-status">100% Automated</span>
+                  </div>
+                  <div className="hiw-node-body">
+                    <div className="hiw-node-app">
+                      <FaSlack size={15} color="#4A154B" />
+                      <span>Slack Alert</span>
+                    </div>
+                    <span className="hiw-node-arrow">→</span>
+                    <div className="hiw-node-app">
+                      <img src="/svg/icons8-google-sheets.svg" width="16" height="16" alt="Sheets" />
+                      <span>Sync Stack</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3>Save time - every day</h3>
-              <p>From monthly syncs to millions of executions, sit back as your workflow does the heavy lifting</p>
+              <div className="hiw-card-content">
+                <span className="hiw-step-num">Step 03</span>
+                <h3>Multi-Stack Sync & Scale</h3>
+                <p>Route qualified prospects to sales in real-time, notify your team across Slack, and sync updated analytics across your entire stack.</p>
+              </div>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import {
   ThumbsDown,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import PageSeo from "../components/PageSeo";
 import InteractivePlayer from "./InteractivePlayer";
 import ProviderCardGrid from "./ProviderCardGrid";
 import { OnboardingStep, PROVIDER_LIST } from "./credentials-data";
@@ -66,6 +67,11 @@ export default function CredentialsOverviewClient() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", color: "#09090b", fontFamily: "'Geist Sans', 'Inter', sans-serif" }}>
+      <PageSeo
+        title="API Credentials Configuration Guides | WorkflowMitra"
+        description="Learn how to configure API keys, OAuth tokens, and secrets for 30+ services in WorkflowMitra."
+        path="/credentials"
+      />
       {/* BACK NAVIGATION BAR */}
       <div style={{ borderBottom: "1px solid #e4e4e7", background: "#fafafa", position: "sticky", top: 0, zIndex: 30 }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "12px 24px" }}>

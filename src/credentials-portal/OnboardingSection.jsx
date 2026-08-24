@@ -19,7 +19,13 @@ export default function OnboardingSection() {
       <div className="wm-doc-hub-container">
         
         {/* SECTION HEADER */}
-        <div className="wm-doc-hub-header">
+        <motion.div 
+          className="wm-doc-hub-header"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="wm-doc-eyebrow-badge">
             <span className="wm-doc-eyebrow-dot" />
             <span>Interactive Learning Hub</span>
@@ -30,17 +36,18 @@ export default function OnboardingSection() {
           <p className="wm-doc-hub-subtitle">
             Explore step-by-step interactive visual guides to create your account, connect {providerCount}+ API credentials, and automate workflows effortlessly.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3-COLUMN UNIFIED THEME CARDS GRID */}
         <div className="wm-doc-hub-grid">
           
           {/* CARD 1: ACCOUNT REGISTRATION */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="wm-doc-hub-card"
           >
             <div>
@@ -104,10 +111,11 @@ export default function OnboardingSection() {
 
           {/* CARD 2: INTEGRATIONS & CREDENTIALS */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.1 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="wm-doc-hub-card"
           >
             <div>
@@ -171,10 +179,11 @@ export default function OnboardingSection() {
 
           {/* CARD 3: WORKFLOW MITRA SUPPORT */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.2 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="wm-doc-hub-card"
           >
             <div>

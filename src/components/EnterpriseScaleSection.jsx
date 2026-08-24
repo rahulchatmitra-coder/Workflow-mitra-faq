@@ -235,7 +235,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-top-right"
@@ -243,7 +243,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-mid-left"
@@ -251,7 +251,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1.4 }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-mid-right"
@@ -259,7 +259,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-bot-left"
@@ -267,7 +267,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
               <motion.div 
                 className="orbit-avatar avatar-bot-right"
@@ -275,7 +275,7 @@ export default function EnterpriseScaleSection() {
                 transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
                 whileHover={{ scale: 1.15 }}
               >
-                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" alt="User" />
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" alt="Team member" width="40" height="40" loading="lazy" decoding="async" />
               </motion.div>
             </div>
 

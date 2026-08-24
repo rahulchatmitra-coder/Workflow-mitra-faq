@@ -158,8 +158,12 @@ export default function HeroAnimated() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <img 
-            src="https://framerusercontent.com/images/iR8Ma0AjH7EaIAPThF3xcp9l3bM.png?width=2048&height=1117"
+            src="/images/hero-cloud-left.webp"
             alt=""
+            width="900"
+            height="490"
+            loading="eager"
+            fetchpriority="high"
             className="hero-cloud-img"
           />
         </motion.div>
@@ -171,8 +175,12 @@ export default function HeroAnimated() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <img 
-            src="https://framerusercontent.com/images/qazH0744I2w9AnpfmUJIze7g.png?width=2531&height=1380"
+            src="/images/hero-cloud-right.webp"
             alt=""
+            width="900"
+            height="490"
+            loading="eager"
+            fetchpriority="high"
             className="hero-cloud-img"
           />
         </motion.div>
@@ -377,7 +385,7 @@ export default function HeroAnimated() {
 
                     {/* Middle: Title & Meta Info */}
                     <div className="workflow-details-col">
-                      <h3 className="workflow-item-title">{item.title}</h3>
+                      <div className="workflow-item-title">{item.title}</div>
                       <div className="workflow-meta-row">
                         <span className="meta-text">{item.steps}</span>
                         <span className="meta-dot">·</span>

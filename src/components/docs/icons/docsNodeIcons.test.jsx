@@ -14,7 +14,7 @@ describe('docsNodeIcons — types the template chains need', () => {
     ['slack', '#4A154B'],
     ['shopify', '#7AB55C'],
     ['google-sheets', '#34A853'],
-    ['ai', '#0A0A0A'],
+    ['ai', '#8B5CF6'],
     ['webhook-trigger', '#0A0A0A'],
     ['calendly', '#006BFF'],
     ['googlemeet', '#00897B'],

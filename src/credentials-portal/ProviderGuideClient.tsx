@@ -28,6 +28,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import PageSeo from "../components/PageSeo";
 import { CredentialProvider, PROVIDER_LIST } from "./credentials-data";
 import {
   Openai,
@@ -198,7 +199,11 @@ export default function ProviderGuideClient({ provider }: ProviderGuideClientPro
 
   return (
     <div style={{ minHeight: "100vh", background: "#ffffff", color: "#09090b", fontFamily: "'Geist Sans', 'Inter', sans-serif" }}>
-      
+      <PageSeo
+        title={`How to Connect ${provider.name} Credentials | WorkflowMitra`}
+        description={`Step-by-step interactive guide to creating API keys and connecting ${provider.name} in WorkflowMitra.`}
+        path={`/credentials/${provider.id.toLowerCase()}`}
+      />
       {/* TOP NAVIGATION BACK BAR */}
       <div style={{ borderBottom: "1px solid #e4e4e7", background: "#fafafa", position: "sticky", top: 0, zIndex: 30 }}>
         <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "12px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

@@ -204,10 +204,11 @@ function Integrations() {
 
         <div className="int-search-row">
           <div className="int-search-box">
-            <svg><use href="#ic-search"></use></svg>
+            <svg aria-hidden="true"><use href="#ic-search"></use></svg>
             <input 
               type="text" 
               placeholder="Search for apps, nodes, workflows…"
+              aria-label="Search for apps, nodes, workflows"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -228,7 +229,7 @@ function Integrations() {
         <div className="int-browse-body">
           <aside className="int-sidebar">
             <div className="int-sidebar-title">Categories</div>
-            <label className="int-check-row">Partner built <input type="checkbox" /></label>
+            <label className="int-check-row">Partner built <input type="checkbox" aria-label="Partner built integrations" /></label>
             <div className="int-radio-list">
               {[
                 { id: 'all', label: 'All categories' },
@@ -242,7 +243,7 @@ function Integrations() {
                 <label className="int-radio-row" key={cat.id}>
                   <span>
                     {cat.label} 
-                    {cat.hasChev && <svg className="int-chev"><use href="#ic-chev"></use></svg>}
+                    {cat.hasChev && <svg className="int-chev" aria-hidden="true"><use href="#ic-chev"></use></svg>}
                   </span>
                   <input 
                     type="radio" 
@@ -262,8 +263,8 @@ function Integrations() {
                 {filteredIntegrations.length} integration{filteredIntegrations.length !== 1 ? 's' : ''}
               </span>
               <div className="int-sort">
-                Sort:
-                <select defaultValue="Popularity">
+                <label htmlFor="int-sort-select">Sort:</label>
+                <select id="int-sort-select" aria-label="Sort integrations" defaultValue="Popularity">
                   <option>Popularity</option>
                   <option>A–Z</option>
                   <option>Newest</option>
@@ -279,9 +280,9 @@ function Integrations() {
                       className="int-tile" 
                       style={{ background: item.color, border: item.border !== 'none' ? item.border : undefined }}
                     >
-                      <svg style={{ color: item.iconColor }}><use href={`#${item.icon}`}></use></svg>
+                      <svg style={{ color: item.iconColor }} aria-hidden="true"><use href={`#${item.icon}`}></use></svg>
                     </span>
-                    <p className="int-name">{item.name}</p>
+                    <h3 className="int-name">{item.name}</h3>
                     <p className="int-desc">{item.desc}</p>
                   </article>
                 ))}

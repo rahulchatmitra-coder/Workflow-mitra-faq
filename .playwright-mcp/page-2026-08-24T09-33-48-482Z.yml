@@ -1,0 +1,779 @@
+- generic [ref=e3]:
+  - navigation [ref=e5]:
+    - generic [ref=e6]:
+      - link "WorkflowMitra Home" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - text: WorkflowMitra
+      - list [ref=e14]:
+        - listitem [ref=e15]:
+          - button "Solutions" [ref=e16] [cursor=pointer]
+        - listitem [ref=e18]:
+          - button "Resources menu" [ref=e19] [cursor=pointer]:
+            - generic [ref=e20]: Resources
+        - listitem [ref=e21]:
+          - link "Integrations" [ref=e22] [cursor=pointer]:
+            - /url: /integrations
+        - listitem [ref=e23]:
+          - link "Pricing" [ref=e24] [cursor=pointer]:
+            - /url: /pricing
+      - link "Get started" [ref=e26] [cursor=pointer]:
+        - /url: https://app.workflowmitra.com/signup
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: G
+            - generic [ref=e31]: G
+          - generic [ref=e32]:
+            - generic [ref=e33]: e
+            - generic [ref=e34]: e
+          - generic [ref=e35]:
+            - generic [ref=e36]: t
+            - generic [ref=e37]: t
+          - generic [ref=e41]:
+            - generic [ref=e42]: s
+            - generic [ref=e43]: s
+          - generic [ref=e44]:
+            - generic [ref=e45]: t
+            - generic [ref=e46]: t
+          - generic [ref=e47]:
+            - generic [ref=e48]: a
+            - generic [ref=e49]: a
+          - generic [ref=e50]:
+            - generic [ref=e51]: r
+            - generic [ref=e52]: r
+          - generic [ref=e53]:
+            - generic [ref=e54]: t
+            - generic [ref=e55]: t
+          - generic [ref=e56]:
+            - generic [ref=e57]: e
+            - generic [ref=e58]: e
+          - generic [ref=e59]:
+            - generic [ref=e60]: d
+            - generic [ref=e61]: d
+  - main [ref=e64]:
+    - generic [ref=e65]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - heading "Run your business on AI workflows like a pro" [level=1] [ref=e69]
+          - paragraph [ref=e70]: All-in-one AI automation platform to connect your apps, orchestrate intelligent agents, and eliminate repetitive tasks without the complexity.
+          - generic [ref=e71]:
+            - link "Start Building Free" [ref=e72] [cursor=pointer]:
+              - /url: https://app.workflowmitra.com/signup
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - generic [ref=e76]: S
+                  - generic [ref=e77]: S
+                - generic [ref=e78]:
+                  - generic [ref=e79]: t
+                  - generic [ref=e80]: t
+                - generic [ref=e81]:
+                  - generic [ref=e82]: a
+                  - generic [ref=e83]: a
+                - generic [ref=e84]:
+                  - generic [ref=e85]: r
+                  - generic [ref=e86]: r
+                - generic [ref=e87]:
+                  - generic [ref=e88]: t
+                  - generic [ref=e89]: t
+                - generic [ref=e93]:
+                  - generic [ref=e94]: B
+                  - generic [ref=e95]: B
+                - generic [ref=e96]:
+                  - generic [ref=e97]: u
+                  - generic [ref=e98]: u
+                - generic [ref=e99]:
+                  - generic [ref=e100]: i
+                  - generic [ref=e101]: i
+                - generic [ref=e102]:
+                  - generic [ref=e103]: l
+                  - generic [ref=e104]: l
+                - generic [ref=e105]:
+                  - generic [ref=e106]: d
+                  - generic [ref=e107]: d
+                - generic [ref=e108]:
+                  - generic [ref=e109]: i
+                  - generic [ref=e110]: i
+                - generic [ref=e111]:
+                  - generic [ref=e112]: "n"
+                  - generic [ref=e113]: "n"
+                - generic [ref=e114]:
+                  - generic [ref=e115]: g
+                  - generic [ref=e116]: g
+                - generic [ref=e120]:
+                  - generic [ref=e121]: F
+                  - generic [ref=e122]: F
+                - generic [ref=e123]:
+                  - generic [ref=e124]: r
+                  - generic [ref=e125]: r
+                - generic [ref=e126]:
+                  - generic [ref=e127]: e
+                  - generic [ref=e128]: e
+                - generic [ref=e129]:
+                  - generic [ref=e130]: e
+                  - generic [ref=e131]: e
+            - link "Get 1-on-1 Help" [ref=e134] [cursor=pointer]:
+              - /url: /contact
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]: G
+                  - generic [ref=e139]: G
+                - generic [ref=e140]:
+                  - generic [ref=e141]: e
+                  - generic [ref=e142]: e
+                - generic [ref=e143]:
+                  - generic [ref=e144]: t
+                  - generic [ref=e145]: t
+                - generic [ref=e149]:
+                  - generic [ref=e150]: "1"
+                  - generic [ref=e151]: "1"
+                - generic [ref=e152]:
+                  - generic [ref=e153]: "-"
+                  - generic [ref=e154]: "-"
+                - generic [ref=e155]:
+                  - generic [ref=e156]: o
+                  - generic [ref=e157]: o
+                - generic [ref=e158]:
+                  - generic [ref=e159]: "n"
+                  - generic [ref=e160]: "n"
+                - generic [ref=e161]:
+                  - generic [ref=e162]: "-"
+                  - generic [ref=e163]: "-"
+                - generic [ref=e164]:
+                  - generic [ref=e165]: "1"
+                  - generic [ref=e166]: "1"
+                - generic [ref=e170]:
+                  - generic [ref=e171]: H
+                  - generic [ref=e172]: H
+                - generic [ref=e173]:
+                  - generic [ref=e174]: e
+                  - generic [ref=e175]: e
+                - generic [ref=e176]:
+                  - generic [ref=e177]: l
+                  - generic [ref=e178]: l
+                - generic [ref=e179]:
+                  - generic [ref=e180]: p
+                  - generic [ref=e181]: p
+        - generic [ref=e183]:
+          - complementary [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]:
+                - generic [ref=e187]: cm
+                - generic [ref=e188]:
+                  - generic [ref=e189]: ChatMitra
+                  - generic [ref=e190]: Automation
+              - img [ref=e191] [cursor=pointer]
+            - navigation [ref=e194]:
+              - generic [ref=e195]: Dashboard
+              - generic [ref=e202]: Workflows
+              - generic [ref=e210]: Templates
+              - generic [ref=e214]: Executions
+              - generic [ref=e218]: Approvals
+              - generic [ref=e223]: Credentials
+              - generic [ref=e229]: Data Stores
+              - generic [ref=e235]: Webhooks
+              - generic [ref=e242]: Team
+              - generic [ref=e249]: Billing
+              - generic [ref=e253]: Settings
+            - generic [ref=e258]:
+              - generic [ref=e259]: R
+              - generic [ref=e260]:
+                - generic [ref=e261]: Rahul
+                - generic [ref=e262]: Rahul
+          - main [ref=e266]:
+            - generic [ref=e267]: 7 automations
+            - generic [ref=e268]:
+              - textbox "Search workflows" [ref=e270]:
+                - /placeholder: Search workflows...
+              - generic [ref=e271]: Recently updated
+            - generic [ref=e275]:
+              - generic [ref=e276]:
+                - generic [ref=e282]:
+                  - generic [ref=e283]: When a sheet row changes
+                  - generic [ref=e284]:
+                    - generic [ref=e285]: 1 step
+                    - generic [ref=e286]: ·
+                    - generic [ref=e287]: 0 runs
+                    - generic [ref=e288]: ·
+                    - generic [ref=e289]: updated 3h ago
+                - generic [ref=e290]: Run
+              - generic [ref=e304]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: New order → Email + Sheet
+                  - generic [ref=e319]:
+                    - generic [ref=e320]: 3 steps
+                    - generic [ref=e321]: ·
+                    - generic [ref=e322]: 0 runs
+                    - generic [ref=e323]: ·
+                    - generic [ref=e324]: updated 7h ago
+                - generic [ref=e325]: Run
+              - generic [ref=e336]:
+                - generic [ref=e353]:
+                  - generic [ref=e354]: AI email assistant → draft → approve → send
+                  - generic [ref=e355]:
+                    - generic [ref=e356]: 10 steps
+                    - generic [ref=e357]: ·
+                    - generic [ref=e358]: 0 runs
+                    - generic [ref=e359]: ·
+                    - generic [ref=e360]: updated 7h ago
+                - generic [ref=e361]: Run
+              - generic [ref=e372]:
+                - generic [ref=e382]:
+                  - generic [ref=e383]: Trigger manually
+                  - generic [ref=e384]:
+                    - generic [ref=e385]: 2 steps
+                    - generic [ref=e386]: ·
+                    - generic [ref=e387]: 12 runs
+                    - generic [ref=e388]: ·
+                    - generic [ref=e389]: updated 2d ago
+                    - generic [ref=e390]: ·
+                    - generic [ref=e391]: failed · 2d ago
+                - generic [ref=e392]: Run
+              - generic [ref=e403]:
+                - generic [ref=e421]:
+                  - generic [ref=e422]: Facebook lead → CRM → team alert
+                  - generic [ref=e423]:
+                    - generic [ref=e424]: 7 steps
+                    - generic [ref=e425]: ·
+                    - generic [ref=e426]: 0 runs
+                    - generic [ref=e427]: ·
+                    - generic [ref=e428]: updated 3d ago
+                - generic [ref=e429]: Run
+              - generic [ref=e440]:
+                - generic [ref=e458]:
+                  - generic [ref=e459]: Facebook lead → CRM → team alert
+                  - generic [ref=e460]:
+                    - generic [ref=e461]: 7 steps
+                    - generic [ref=e462]: ·
+                    - generic [ref=e463]: 0 runs
+                    - generic [ref=e464]: ·
+                    - generic [ref=e465]: updated 3d ago
+                - generic [ref=e466]: Run
+              - generic [ref=e477]:
+                - generic [ref=e495]:
+                  - generic [ref=e496]: Googleshhet(read)-Ai-sendmail-googlesheet(update)-error
+                  - generic [ref=e497]:
+                    - generic [ref=e498]: 5 steps
+                    - generic [ref=e499]: ·
+                    - generic [ref=e500]: 0 runs
+                    - generic [ref=e501]: ·
+                    - generic [ref=e502]: updated 8d ago
+                - generic [ref=e503]: Run
+      - generic [ref=e515]:
+        - generic [ref=e516]:
+          - heading "Built for enterprise scale and trust" [level=2] [ref=e517]
+          - paragraph [ref=e518]: WorkflowMitra meets the highest security, uptime, and support standards—so your revenue engine never slows down, no matter how fast you grow.
+        - generic [ref=e519]:
+          - generic [ref=e520]:
+            - generic [ref=e521]:
+              - generic [ref=e522]: 5x
+              - generic [ref=e524]:
+                - generic [ref=e525]:
+                  - generic [ref=e526]:
+                    - generic [ref=e527]: A
+                    - generic [ref=e529]: Alec Whitten
+                  - generic [ref=e530]: Accepted
+                - generic [ref=e534]:
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: Discovery Call
+                    - generic [ref=e537]: 30 Min Meeting
+                  - generic [ref=e538]:
+                    - generic [ref=e539]:
+                      - generic [ref=e540]: L
+                      - generic [ref=e541]: R
+                    - generic [ref=e542]:
+                      - generic [ref=e543]: Lyle Kaufman
+                      - generic [ref=e544]:
+                        - generic [ref=e545]: Agenda
+                        - generic [ref=e546]: KPI
+                        - generic [ref=e547]: QnA
+                    - generic [ref=e548]: 9.30 am
+            - generic [ref=e551]:
+              - heading "Calendar Booking on Autopilot" [level=3] [ref=e552]
+              - paragraph [ref=e553]: Schedules meetings the moment a lead qualifies—often while your team sleeps. Our AI books 5× more demos without human back-and-forth and drops them straight into your calendar.
+          - generic [ref=e554]:
+            - generic [ref=e555]:
+              - generic [ref=e556]: ">1M"
+              - img "User" [ref=e562] [cursor=pointer]
+              - img "User" [ref=e564] [cursor=pointer]
+              - img "User" [ref=e566] [cursor=pointer]
+              - img "User" [ref=e568] [cursor=pointer]
+              - img "User" [ref=e570] [cursor=pointer]
+              - img "User" [ref=e572] [cursor=pointer]
+            - generic [ref=e573]:
+              - heading "Scale That Humans Can’t Match" [level=3] [ref=e574]
+              - paragraph [ref=e575]: WorkflowMitra delivers over one million personalized touches each month, engaging prospects at machine speed. Your team can focus entirely on closing deals while outreach runs on autopilot.
+          - generic [ref=e576]:
+            - generic [ref=e577]:
+              - generic:
+                - generic [ref=e580] [cursor=pointer]
+                - generic [ref=e583] [cursor=pointer]
+                - generic [ref=e586] [cursor=pointer]
+                - generic [ref=e590] [cursor=pointer]
+              - generic:
+                - generic [ref=e593] [cursor=pointer]
+                - generic [ref=e596] [cursor=pointer]
+            - generic [ref=e599]:
+              - heading "Integrations That Just Work" [level=3] [ref=e600]
+              - paragraph [ref=e601]: Seamlessly connect with the tools your team already relies on, without complicated setup or costly delays. Enjoy smooth workflows and instant compatibility from day one.
+          - generic [ref=e616]:
+            - heading "Enterprise-Grade Performance" [level=3] [ref=e617]
+            - paragraph [ref=e618]: With millisecond-level API calls and elastic scaling, WorkflowMitra easily handles sudden traffic spikes. Your pipeline remains fast, stable, and reliable—even during peak launch days.
+      - region [ref=e619]:
+        - generic [ref=e620]:
+          - generic [ref=e621]:
+            - heading "Effortless Tool Integrations" [level=2] [ref=e622]
+            - paragraph [ref=e623]: Add or remove integrations as your needs grow, without slowing down performance.
+          - generic [ref=e624]:
+            - generic [ref=e626]:
+              - generic [ref=e639]: WorkflowMitra
+              - generic [ref=e640]: Live Hub
+            - generic:
+              - button "OpenAI (ChatGPT) integration":
+                - generic: OpenAI (ChatGPT)
+              - button "HubSpot CRM integration":
+                - generic: HubSpot CRM
+              - button "Slack integration":
+                - generic: Slack
+              - button "WhatsApp Business integration":
+                - generic: WhatsApp Business
+              - button "Google Sheets integration":
+                - generic: Google Sheets
+              - button "Gmail integration":
+                - generic: Gmail
+              - button "Notion integration":
+                - generic: Notion
+              - button "Anthropic Claude integration":
+                - generic: Anthropic Claude
+          - generic [ref=e643]:
+            - generic [ref=e647]:
+              - generic [ref=e648]:
+                - heading "OpenAI (ChatGPT)" [level=3] [ref=e649]
+                - generic [ref=e650]: AI Model
+              - paragraph [ref=e651]: Generate responses, analyze data & run AI agents
+            - generic [ref=e652]: Instant Hook
+          - link "Explore 200+ Pre-Built Integrations" [ref=e658] [cursor=pointer]:
+            - /url: /integrations
+            - generic [ref=e660]:
+              - generic [ref=e661]:
+                - generic [ref=e662]: E
+                - generic [ref=e663]: E
+              - generic [ref=e664]:
+                - generic [ref=e665]: x
+                - generic [ref=e666]: x
+              - generic [ref=e667]:
+                - generic [ref=e668]: p
+                - generic [ref=e669]: p
+              - generic [ref=e670]:
+                - generic [ref=e671]: l
+                - generic [ref=e672]: l
+              - generic [ref=e673]:
+                - generic [ref=e674]: o
+                - generic [ref=e675]: o
+              - generic [ref=e676]:
+                - generic [ref=e677]: r
+                - generic [ref=e678]: r
+              - generic [ref=e679]:
+                - generic [ref=e680]: e
+                - generic [ref=e681]: e
+              - generic [ref=e685]:
+                - generic [ref=e686]: "2"
+                - generic [ref=e687]: "2"
+              - generic [ref=e688]:
+                - generic [ref=e689]: "0"
+                - generic [ref=e690]: "0"
+              - generic [ref=e691]:
+                - generic [ref=e692]: "0"
+                - generic [ref=e693]: "0"
+              - generic [ref=e694]:
+                - generic [ref=e695]: +
+                - generic [ref=e696]: +
+              - generic [ref=e700]:
+                - generic [ref=e701]: P
+                - generic [ref=e702]: P
+              - generic [ref=e703]:
+                - generic [ref=e704]: r
+                - generic [ref=e705]: r
+              - generic [ref=e706]:
+                - generic [ref=e707]: e
+                - generic [ref=e708]: e
+              - generic [ref=e709]:
+                - generic [ref=e710]: "-"
+                - generic [ref=e711]: "-"
+              - generic [ref=e712]:
+                - generic [ref=e713]: B
+                - generic [ref=e714]: B
+              - generic [ref=e715]:
+                - generic [ref=e716]: u
+                - generic [ref=e717]: u
+              - generic [ref=e718]:
+                - generic [ref=e719]: i
+                - generic [ref=e720]: i
+              - generic [ref=e721]:
+                - generic [ref=e722]: l
+                - generic [ref=e723]: l
+              - generic [ref=e724]:
+                - generic [ref=e725]: t
+                - generic [ref=e726]: t
+              - generic [ref=e730]:
+                - generic [ref=e731]: I
+                - generic [ref=e732]: I
+              - generic [ref=e733]:
+                - generic [ref=e734]: "n"
+                - generic [ref=e735]: "n"
+              - generic [ref=e736]:
+                - generic [ref=e737]: t
+                - generic [ref=e738]: t
+              - generic [ref=e739]:
+                - generic [ref=e740]: e
+                - generic [ref=e741]: e
+              - generic [ref=e742]:
+                - generic [ref=e743]: g
+                - generic [ref=e744]: g
+              - generic [ref=e745]:
+                - generic [ref=e746]: r
+                - generic [ref=e747]: r
+              - generic [ref=e748]:
+                - generic [ref=e749]: a
+                - generic [ref=e750]: a
+              - generic [ref=e751]:
+                - generic [ref=e752]: t
+                - generic [ref=e753]: t
+              - generic [ref=e754]:
+                - generic [ref=e755]: i
+                - generic [ref=e756]: i
+              - generic [ref=e757]:
+                - generic [ref=e758]: o
+                - generic [ref=e759]: o
+              - generic [ref=e760]:
+                - generic [ref=e761]: "n"
+                - generic [ref=e762]: "n"
+              - generic [ref=e763]:
+                - generic [ref=e764]: s
+                - generic [ref=e765]: s
+      - generic [ref=e769]:
+        - generic [ref=e770]:
+          - generic [ref=e771]: ENTERPRISE WORKFLOW BLUEPRINTS
+          - heading "Top 4 Autonomous Workflows Built for Real-World Scale" [level=2] [ref=e776]
+          - paragraph [ref=e777]: See how high-performing teams replace manual chaos with automated, zero-touch operational flows across sales, support, commerce, and DevOps.
+        - generic [ref=e778]:
+          - generic [ref=e779]:
+            - generic [ref=e780]:
+              - generic [ref=e781]: 01 / Sales & Growth
+              - heading "Facebook Inbound Lead Routing & Multi-Channel Alert" [level=3] [ref=e784]
+              - paragraph [ref=e785]: Instantly capture new leads from Facebook Ads, validate contact email deliverability with intelligent conditional branching, auto-create & enrich contacts in HubSpot CRM, and notify sales reps on Slack, Gmail, and Google Sheets within seconds.
+              - generic [ref=e786]:
+                - generic [ref=e787]:
+                  - generic [ref=e788]: < 380ms
+                  - generic [ref=e789]: Sync Latency
+                - generic [ref=e790]:
+                  - generic [ref=e791]: 100%
+                  - generic [ref=e792]: Data Accuracy
+                - generic [ref=e793]:
+                  - generic [ref=e794]: Instant
+                  - generic [ref=e795]: Round-Robin
+            - generic [ref=e799]:
+              - generic:
+                - generic [ref=e800]: "1"
+                - generic:
+                  - generic: On webhook call
+                  - generic: from Lead Ads
+              - generic:
+                - generic [ref=e814]: "2"
+                - generic:
+                  - generic: IF
+                  - generic: 1 route · first match
+              - generic [ref=e824]: 1st Has an email
+              - generic [ref=e825]: Else
+              - generic:
+                - generic [ref=e828]: "3"
+                - generic:
+                  - generic: App Request
+                  - generic: hubspot · POST /crm/objects/...
+              - generic:
+                - generic [ref=e835]: "4"
+                - generic:
+                  - generic: Assign to the next pers...
+                  - generic: click to set up
+              - generic:
+                - generic [ref=e845]: "5"
+                - generic:
+                  - generic: Gmail
+                  - generic: "send {{ email }}"
+              - generic:
+                - generic [ref=e860]: "6"
+                - generic:
+                  - generic: Slack
+                  - generic: post to Slack
+              - generic:
+                - generic [ref=e873]: "7"
+                - generic:
+                  - generic: Google Sheets
+                  - generic: click to set up
+          - generic [ref=e885]:
+            - generic [ref=e886]:
+              - generic [ref=e887]: 02 / Customer Support
+              - heading "Zendesk Autonomous AI Ticket Triage & Escalation" [level=3] [ref=e890]
+              - paragraph [ref=e891]: Ingest customer tickets via Zendesk webhooks, run sentiment & intent analysis with Anthropic AI, intelligently route urgent issues directly to on-call support engineers on Slack, auto-update ticket statuses, and log every event in Google Sheets.
+              - generic [ref=e892]:
+                - generic [ref=e893]:
+                  - generic [ref=e894]: "-80%"
+                  - generic [ref=e895]: Response Time
+                - generic [ref=e896]:
+                  - generic [ref=e897]: 99.4%
+                  - generic [ref=e898]: AI Accuracy
+                - generic [ref=e899]:
+                  - generic [ref=e900]: Zero-Touch
+                  - generic [ref=e901]: Triage Speed
+            - generic [ref=e905]:
+              - generic:
+                - generic [ref=e906]: "1"
+                - generic:
+                  - generic: On webhook call
+                  - generic: from Zendesk
+              - generic:
+                - generic [ref=e919]: "2"
+                - generic:
+                  - generic: AI
+                  - generic: anthropic · default
+              - generic:
+                - generic [ref=e927]: "3"
+                - generic:
+                  - generic: IF
+                  - generic: 1 route · first match
+              - generic [ref=e937]: 1st Urgent
+              - generic [ref=e938]: Else
+              - generic:
+                - generic [ref=e939]: "4"
+                - generic:
+                  - generic: Assign to the next pers...
+                  - generic: click to set up
+              - generic:
+                - generic [ref=e949]: "5"
+                - generic:
+                  - generic: Slack
+                  - generic: post to Slack
+              - generic:
+                - generic [ref=e962]: "6"
+                - generic:
+                  - generic: App Request
+                  - generic: zendesk · PUT /api/v2/tickets/
+              - generic:
+                - generic [ref=e969]: "7"
+                - generic:
+                  - generic: Google Sheets
+                  - generic: click to set up
+          - generic [ref=e981]:
+            - generic [ref=e982]:
+              - generic [ref=e983]: 03 / E-Commerce Operations
+              - heading "Shopify Order Fulfillment, Invoicing & WhatsApp Tracking" [level=3] [ref=e986]
+              - paragraph [ref=e987]: Trigger automatically on paid Shopify checkout, generate compliant GST invoices in Zoho Books, dispatch real-time WhatsApp order tracking updates to the buyer, create automated Shiprocket courier manifests, and sync all order data to Google Sheets.
+              - generic [ref=e988]:
+                - generic [ref=e989]:
+                  - generic [ref=e990]: Instant
+                  - generic [ref=e991]: Invoice Creation
+                - generic [ref=e992]:
+                  - generic [ref=e993]: 100%
+                  - generic [ref=e994]: WhatsApp Delivery
+                - generic [ref=e995]:
+                  - generic [ref=e996]: Automated
+                  - generic [ref=e997]: Courier Booking
+            - generic [ref=e1001]:
+              - generic:
+                - generic [ref=e1002]: "1"
+                - generic:
+                  - generic: On webhook call
+                  - generic: from Shopify
+              - generic:
+                - generic [ref=e1017]: "2"
+                - generic:
+                  - generic: IF
+                  - generic: 1 route · first match
+              - generic [ref=e1027]: 1st Paid
+              - generic [ref=e1028]: Else
+              - generic:
+                - generic [ref=e1031]: "3"
+                - generic:
+                  - generic: App Request
+                  - generic: zoho-books · POST /books/v...
+              - generic:
+                - generic [ref=e1038]: "4"
+                - generic:
+                  - generic: WhatsApp
+                  - generic: send WhatsApp
+              - generic:
+                - generic [ref=e1045]: "5"
+                - generic:
+                  - generic: App Request
+                  - generic: shiprocket · POST /v1/external
+              - generic:
+                - generic [ref=e1052]: "6"
+                - generic:
+                  - generic: Google Sheets
+                  - generic: click to set up
+          - generic [ref=e1064]:
+            - generic [ref=e1065]:
+              - generic [ref=e1066]: 04 / DevOps & Monitoring
+              - heading "API Health Check & Automated Incident Escalation" [level=3] [ref=e1069]
+              - paragraph [ref=e1070]: Continuously monitor production API endpoints with automated HTTP health checks, evaluate response latency and payload validity via condition filters, and instantly alert engineering teams on Discord channels and WhatsApp on-call numbers.
+              - generic [ref=e1071]:
+                - generic [ref=e1072]:
+                  - generic [ref=e1073]: Real-Time
+                  - generic [ref=e1074]: Endpoint Checks
+                - generic [ref=e1075]:
+                  - generic [ref=e1076]: < 1.2s
+                  - generic [ref=e1077]: Alert MTTA
+                - generic [ref=e1078]:
+                  - generic [ref=e1079]: 99.99%
+                  - generic [ref=e1080]: Uptime Reliability
+            - generic [ref=e1084]:
+              - generic:
+                - generic [ref=e1085]: "1"
+                - generic:
+                  - generic: Trigger manually
+                  - generic: when you click Run
+              - generic:
+                - generic [ref=e1096]: "2"
+                - generic:
+                  - generic: HTTP Request
+                  - generic: GET https://api.example.co...
+              - generic:
+                - generic [ref=e1104]: "3"
+                - generic:
+                  - generic: IF
+                  - generic: "{{ ok }} eq false"
+              - generic [ref=e1114]: 1st Route 1
+              - generic [ref=e1115]: Else
+              - generic:
+                - generic [ref=e1116]: "4"
+                - generic:
+                  - generic: Discord
+                  - generic: post to Discord
+              - generic:
+                - generic [ref=e1125]: "5"
+                - generic:
+                  - generic: WhatsApp
+                  - generic: send WhatsApp
+  - contentinfo [ref=e1142]:
+    - generic [ref=e1143]:
+      - generic [ref=e1144]:
+        - generic [ref=e1145]:
+          - link "WorkflowMitra home" [ref=e1146] [cursor=pointer]:
+            - /url: /
+            - img [ref=e1147]:
+              - generic [ref=e1148]: WorkflowMitra
+          - paragraph [ref=e1155]: Automate without limits. Connect your apps, build AI-powered multi-step workflows, and execute operations 24/7 on autopilot.
+          - generic [ref=e1156]:
+            - link "GitHub" [ref=e1157] [cursor=pointer]:
+              - /url: https://github.com
+            - link "Discord" [ref=e1160] [cursor=pointer]:
+              - /url: https://discord.com
+            - link "LinkedIn" [ref=e1163] [cursor=pointer]:
+              - /url: https://linkedin.com
+            - link "X (Twitter)" [ref=e1166] [cursor=pointer]:
+              - /url: https://x.com
+            - link "YouTube" [ref=e1169] [cursor=pointer]:
+              - /url: https://youtube.com
+        - generic [ref=e1172]:
+          - generic [ref=e1173]:
+            - heading "Product" [level=3] [ref=e1174]
+            - list [ref=e1175]:
+              - listitem [ref=e1176]:
+                - link "AI Agents Engine" [ref=e1177] [cursor=pointer]:
+                  - /url: /#workflow-showcase
+              - listitem [ref=e1178]:
+                - link "Visual Workflow Builder" [ref=e1179] [cursor=pointer]:
+                  - /url: /#how-it-works
+              - listitem [ref=e1180]:
+                - link "37+ App Connectors" [ref=e1181] [cursor=pointer]:
+                  - /url: /integrations
+              - listitem [ref=e1182]:
+                - link "Workflow Templates 100+" [ref=e1183] [cursor=pointer]:
+                  - /url: /templates
+                  - text: Workflow Templates
+                  - generic [ref=e1184]: 100+
+              - listitem [ref=e1185]:
+                - link "Pricing & Plans" [ref=e1186] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e1187]:
+                - link "Free Trial" [ref=e1188] [cursor=pointer]:
+                  - /url: https://app.workflowmitra.com/signup
+          - generic [ref=e1189]:
+            - heading "Solutions" [level=3] [ref=e1190]
+            - list [ref=e1191]:
+              - listitem [ref=e1192]:
+                - link "Lead Qualification & CRM" [ref=e1193] [cursor=pointer]:
+                  - /url: /solutions/sales
+              - listitem [ref=e1194]:
+                - link "Customer Support AI Triage" [ref=e1195] [cursor=pointer]:
+                  - /url: /solutions/support
+              - listitem [ref=e1196]:
+                - link "E-Commerce Orders & Invoices" [ref=e1197] [cursor=pointer]:
+                  - /url: /solutions/operations
+              - listitem [ref=e1198]:
+                - link "Marketing & Growth Ops" [ref=e1199] [cursor=pointer]:
+                  - /url: /solutions/marketing
+              - listitem [ref=e1200]:
+                - link "API Webhooks & Data Sync" [ref=e1201] [cursor=pointer]:
+                  - /url: /solutions/engineering
+              - listitem [ref=e1202]:
+                - link "Custom AI Solutions" [ref=e1203] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e1204]:
+            - heading "Resources" [level=3] [ref=e1205]
+            - list [ref=e1206]:
+              - listitem [ref=e1207]:
+                - link "Documentation Hub" [ref=e1208] [cursor=pointer]:
+                  - /url: /credentials
+              - listitem [ref=e1209]:
+                - link "Account Setup Guide" [ref=e1210] [cursor=pointer]:
+                  - /url: /how-to-create-account-workflowmitra
+              - listitem [ref=e1211]:
+                - link "API Credentials Vault" [ref=e1212] [cursor=pointer]:
+                  - /url: /credentials
+              - listitem [ref=e1213]:
+                - link "WhatsApp Automation Guide" [ref=e1214] [cursor=pointer]:
+                  - /url: /credentials/whatsapp
+              - listitem [ref=e1215]:
+                - link "Use Cases Catalog" [ref=e1216] [cursor=pointer]:
+                  - /url: /solutions
+              - listitem [ref=e1217]:
+                - link "Talk to an Automation Expert" [ref=e1218] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e1219]:
+            - heading "Company" [level=3] [ref=e1220]
+            - list [ref=e1221]:
+              - listitem [ref=e1222]:
+                - link "About WorkflowMitra" [ref=e1223] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e1224]:
+                - link "Contact & Support" [ref=e1225] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e1226]:
+                - link "Careers Hiring" [ref=e1227] [cursor=pointer]:
+                  - /url: /about
+                  - text: Careers
+                  - generic [ref=e1228]: Hiring
+              - listitem [ref=e1229]:
+                - link "Enterprise & Security" [ref=e1230] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e1231]:
+                - link "Privacy & GDPR" [ref=e1232] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e1233]:
+                - link "Terms of Service" [ref=e1234] [cursor=pointer]:
+                  - /url: /terms
+      - generic [ref=e1236]:
+        - generic [ref=e1237]:
+          - link "Security" [ref=e1238] [cursor=pointer]:
+            - /url: /privacy
+          - generic [ref=e1239]: ·
+          - link "Privacy Policy" [ref=e1240] [cursor=pointer]:
+            - /url: /privacy
+          - generic [ref=e1241]: ·
+          - link "Terms & Conditions" [ref=e1242] [cursor=pointer]:
+            - /url: /terms
+          - generic [ref=e1243]: ·
+          - button "Cookie Settings" [ref=e1244] [cursor=pointer]
+          - generic [ref=e1245]: ·
+          - link "Report Vulnerability" [ref=e1246] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e1247]: © 2026 WorkflowMitra Inc. All rights reserved.

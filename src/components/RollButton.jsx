@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './RollButton.css'
 
@@ -34,12 +34,42 @@ export default function RollButton({
   disabled = false,
   ...rest
 }) {
+  const [isRolled, setIsRolled] = useState(false)
   const content = text || (typeof children === 'string' ? children : '')
   const letters = typeof content === 'string' ? content.split('') : []
 
+  // Check if cursor is properly within the center zone of the button
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    // Center zone: inside 14% horizontal margin and 12% vertical margin
+    const marginX = rect.width * 0.14
+    const marginY = rect.height * 0.12
+
+    if (
+      x >= marginX &&
+      x <= rect.width - marginX &&
+      y >= marginY &&
+      y <= rect.height - marginY
+    ) {
+      setIsRolled(true)
+    } else {
+      setIsRolled(false)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    setIsRolled(false)
+  }
+
+  const hasExplicitLabel = Boolean(rest['aria-label'])
+
   const buttonInner = (
     <>
-      <span className="roll-track" aria-label={content || undefined}>
+      {content && <span className="sr-only">{content}</span>}
+      <span className="roll-track" aria-hidden="true">
         {letters.length > 0 ? (
           letters.map((char, idx) => (
             <span
@@ -77,7 +107,7 @@ export default function RollButton({
     </>
   )
 
-  const combinedClasses = `roll-btn roll-btn-${variant} roll-btn-${size} ${className}`.trim()
+  const combinedClasses = `roll-btn roll-btn-${variant} roll-btn-${size} ${isRolled ? 'is-rolled' : ''} ${className}`.trim()
 
   if (to) {
     return (
@@ -85,6 +115,9 @@ export default function RollButton({
         to={to}
         className={combinedClasses}
         id={id}
+        aria-label={hasExplicitLabel ? rest['aria-label'] : undefined}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         onClick={onClick}
         {...rest}
       >
@@ -99,8 +132,11 @@ export default function RollButton({
         href={href}
         className={combinedClasses}
         id={id}
+        aria-label={hasExplicitLabel ? rest['aria-label'] : undefined}
         target={target}
         rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         onClick={onClick}
         {...rest}
       >
@@ -114,8 +150,11 @@ export default function RollButton({
       type={type}
       className={combinedClasses}
       id={id}
-      onClick={onClick}
+      aria-label={hasExplicitLabel ? rest['aria-label'] : undefined}
       disabled={disabled}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       {...rest}
     >
       {buttonInner}

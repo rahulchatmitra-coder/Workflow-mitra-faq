@@ -8,19 +8,19 @@ const renderPage = () => render(<MemoryRouter><Features /></MemoryRouter>)
 
 describe('Features', () => {
   it('renders the primary hero heading and both CTAs', () => {
-    const { getByText, getAllByText } = renderPage()
+    const { getByText, getAllByRole } = renderPage()
     expect(getByText('Powerful automation. Without the complexity.')).toBeInTheDocument()
-    expect(getAllByText('Start Building Free').length).toBeGreaterThan(0)
-    expect(getAllByText('Get Help Building My Workflow').length).toBeGreaterThan(0)
+    expect(getAllByRole('link', { name: /Start Building Free/i }).length).toBeGreaterThan(0)
+    expect(getAllByRole('link', { name: /Get Help Building My Workflow/i }).length).toBeGreaterThan(0)
   })
 
   it('links CTAs to real, already-implemented destinations', () => {
-    const { getAllByText } = renderPage()
-    getAllByText('Start Building Free').forEach((cta) =>
-      expect(cta.closest('a')).toHaveAttribute('href', 'https://app.workflowmitra.com/signup')
+    const { getAllByRole } = renderPage()
+    getAllByRole('link', { name: /Start Building Free/i }).forEach((cta) =>
+      expect(cta).toHaveAttribute('href', 'https://app.workflowmitra.com/signup')
     )
-    getAllByText('Get Help Building My Workflow').forEach((cta) =>
-      expect(cta.closest('a')).toHaveAttribute('href', '/automation-help')
+    getAllByRole('link', { name: /Get Help Building My Workflow/i }).forEach((cta) =>
+      expect(cta).toHaveAttribute('href', '/automation-help')
     )
   })
 
@@ -38,9 +38,9 @@ describe('Features', () => {
   })
 
   it('only shows the 8 verified live integrations, never a coming-soon backend node as if it were live', () => {
-    const { getByText, queryByText } = renderPage()
+    const { queryAllByText, queryByText } = renderPage()
     ;['WhatsApp', 'Slack', 'Telegram', 'Gmail', 'Google Sheets', 'Shopify', 'HTTP Request', 'AI Agent'].forEach((label) =>
-      expect(getByText(label)).toBeInTheDocument()
+      expect(queryAllByText(label).length).toBeGreaterThanOrEqual(1)
     )
     // Postgres/MySQL/MongoDB/Redis/Discord/HubSpot are real engine nodes but are
     // marked 'coming-soon' on /integrations — must not be shown here as available.

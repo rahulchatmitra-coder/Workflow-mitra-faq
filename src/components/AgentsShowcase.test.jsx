@@ -5,44 +5,29 @@ import AgentsShowcase from './AgentsShowcase'
 describe('AgentsShowcase', () => {
   it('titles the section by what it shows', () => {
     const { getByRole } = render(<AgentsShowcase />)
-    expect(getByRole('heading', { level: 2 }).textContent).toMatch(/Popular automations/)
+    expect(getByRole('heading', { level: 2 }).textContent).toMatch(/Top 4 Autonomous Workflows/i)
   })
 
-  it('lists the five automations', () => {
+  it('lists the top enterprise workflows', () => {
     const { getByText } = render(<AgentsShowcase />)
-    ;['Support Agent', 'Meeting automation', 'Calling automation',
-      'Data analysis automation', 'Lead capture → conversion']
-      .forEach((n) => expect(getByText(n)).toBeInTheDocument())
+    ;[
+      'Facebook Inbound Lead Routing & Multi-Channel Alert',
+      'Zendesk Autonomous AI Ticket Triage & Escalation',
+      'Shopify Order Fulfillment, Invoicing & WhatsApp Tracking',
+      'API Health Check & Automated Incident Escalation',
+    ].forEach((title) => expect(getByText(title)).toBeInTheDocument())
   })
 
-  it('renders the flow canvas rather than a chat transcript', () => {
+  it('renders interactive workflow canvas cards for all 4 flows', () => {
     const { container } = render(<AgentsShowcase />)
-    expect(container.querySelector('.fc-canvas')).toBeInTheDocument()
-    expect(container.querySelectorAll('.fc-node')).toHaveLength(5)
-    expect(container.querySelector('.chat-card')).toBeNull()
+    const cards = container.querySelectorAll('.wm-wf-card-row')
+    expect(cards).toHaveLength(4)
+    expect(container.querySelectorAll('.wm-wf-canvas-box')).toHaveLength(4)
   })
 
-  it('shows the live run status with a step counter', () => {
+  it('renders metrics boxes for each workflow', () => {
     const { container } = render(<AgentsShowcase />)
-    expect(container.querySelector('.sc-pill')).toBeInTheDocument()
-    expect(container.querySelector('.sc-now').textContent).toMatch(/Step 1 of 5/)
-  })
-
-  it('shows the first automation active on mount', () => {
-    const { container } = render(<AgentsShowcase />)
-    const active = container.querySelectorAll('.agent-item.active')
-    expect(active).toHaveLength(1)
-    expect(active[0].textContent).toMatch(/Support Agent/)
-  })
-
-  it('switches automation when a row is clicked', () => {
-    const { container, getByText } = render(<AgentsShowcase />)
-    act(() => { getByText('Calling automation').closest('button').click() })
-    expect(container.querySelector('.agent-item.active').textContent).toMatch(/Calling automation/)
-  })
-
-  it('names the running flow in the card header', () => {
-    const { container } = render(<AgentsShowcase />)
-    expect(container.querySelector('.fcard-title').textContent).toBe('Support ticket triage')
+    const metricBoxes = container.querySelectorAll('.wm-wf-metric-box')
+    expect(metricBoxes.length).toBe(12) // 3 metrics x 4 workflows
   })
 })

@@ -38,6 +38,7 @@ const ORBITAL_APPS = [
     category: 'AI & Models',
     action: 'Generate responses, analyze data & run AI agents',
     color: '#10A37F',
+    textColor: '#047857',
     renderIcon: () => <Openai className="w-7 h-7" />,
     badge: 'AI Model',
     positionClass: 'pos-1', // Top (0°)
@@ -48,6 +49,7 @@ const ORBITAL_APPS = [
     category: 'CRMs & Sales',
     action: 'Sync leads, update deals & trigger sales workflows',
     color: '#FF7A59',
+    textColor: '#c2410c',
     renderIcon: () => <SiHubspot size={28} color="#FF7A59" />,
     badge: 'CRM Sync',
     positionClass: 'pos-2', // Top Right (45°)
@@ -58,6 +60,7 @@ const ORBITAL_APPS = [
     category: 'Communication',
     action: 'Real-time team alerts, approvals & bot messages',
     color: '#ECB22E',
+    textColor: '#854d0e',
     renderIcon: () => <Slack className="w-7 h-7" />,
     badge: 'Team Chat',
     positionClass: 'pos-3', // Right (90°)
@@ -68,6 +71,7 @@ const ORBITAL_APPS = [
     category: 'Communication',
     action: 'Instant customer messaging, catalogs & 24/7 auto-replies',
     color: '#25D366',
+    textColor: '#15803d',
     renderIcon: () => <WhatsappIcon className="w-7 h-7" />,
     badge: 'Instant Chat',
     positionClass: 'pos-4', // Bottom Right (135°)
@@ -78,6 +82,7 @@ const ORBITAL_APPS = [
     category: 'Databases',
     action: 'Append rows, sync records & export live business data',
     color: '#0F9D58',
+    textColor: '#15803d',
     renderIcon: () => <GoogleSheetsLogo className="w-7 h-7" />,
     badge: 'Live Sheets',
     positionClass: 'pos-5', // Bottom (180°)
@@ -88,6 +93,7 @@ const ORBITAL_APPS = [
     category: 'Communication',
     action: 'Personalized cold email sequences & inbound email routing',
     color: '#EA4335',
+    textColor: '#b91c1c',
     renderIcon: () => <GmailLogo className="w-7 h-7" />,
     badge: 'Email Outbox',
     positionClass: 'pos-6', // Bottom Left (225°)
@@ -98,6 +104,7 @@ const ORBITAL_APPS = [
     category: 'Databases',
     action: 'Auto-populate databases, tasks & internal documentation',
     color: '#000000',
+    textColor: '#09090b',
     renderIcon: () => <SiNotion size={28} color="#000000" />,
     badge: 'Knowledge Base',
     positionClass: 'pos-7', // Left (270°)
@@ -108,6 +115,7 @@ const ORBITAL_APPS = [
     category: 'AI & Models',
     action: 'Deep document reasoning, coding & enterprise research',
     color: '#D97757',
+    textColor: '#9a3412',
     renderIcon: () => <ClaudeIcon className="w-7 h-7" />,
     badge: 'Reasoning AI',
     positionClass: 'pos-8', // Top Left (315°)
@@ -277,8 +285,8 @@ export default function IntegrationsShowcase() {
               </div>
               <div className="tg-banner-info">
                 <div className="tg-banner-top">
-                  <h4 className="tg-banner-title">{activeApp.name}</h4>
-                  <span className="tg-banner-tag" style={{ color: activeApp.color, borderColor: `${activeApp.color}35`, background: `${activeApp.color}0c` }}>
+                  <h3 className="tg-banner-title">{activeApp.name}</h3>
+                  <span className="tg-banner-tag" style={{ color: activeApp.textColor || activeApp.color, borderColor: `${activeApp.color}35`, background: `${activeApp.color}0c` }}>
                     {activeApp.badge}
                   </span>
                 </div>

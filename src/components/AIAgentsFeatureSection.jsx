@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { getBrandIcon } from '../utils/brandIcons';
 import {
   MODELS, MODEL_PROVIDERS, INTEGRATIONS, INTEGRATION_COUNT,
@@ -130,16 +131,30 @@ export default function AIAgentsFeatureSection() {
   return (
     <section className="ai-agents-section">
       <div className="wrap">
-        <h1 className="title">Everything you need to make AI work</h1>
-        <p className="section-sub">
-          Your models, your apps, your data — wired into flows that keep running
-          after you close the tab.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h1 className="title">Everything you need to make AI work</h1>
+          <p className="section-sub">
+            Your models, your apps, your data — wired into flows that keep running
+            after you close the tab.
+          </p>
+        </motion.div>
 
         <div className="grid">
 
           {/* CARD 1 — every provider the AI node can dial, plus what they serve */}
-          <div className="card gradient">
+          <motion.div 
+            className="card gradient"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.22 } }}
+          >
             <h2>Every model out of the box<br />no vendor lock-in</h2>
             <p className="h2sub">Switch provider on any AI node. Nothing else in the flow changes.</p>
 
@@ -171,10 +186,17 @@ export default function AIAgentsFeatureSection() {
             <p className="model-caption">
               <b>{MODEL_PROVIDERS.length} providers</b> · {MODEL_PROVIDERS.join(', ')}
             </p>
-          </div>
+          </motion.div>
 
           {/* CARD 2 — integrations, bleeding past both edges under a fade */}
-          <div className="card">
+          <motion.div 
+            className="card"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.22 } }}
+          >
             <h2>Connect to internal<br />and external data</h2>
             <p className="h2sub">Native nodes for the apps Indian businesses actually run on.</p>
 
@@ -182,9 +204,6 @@ export default function AIAgentsFeatureSection() {
               <div className="icon-field">
                 {INTEGRATIONS.map((name, i) => {
                   if (!name) return <span key={`ghost-${i}`} className="tile ghost" />;
-                  // getBrandIcon fails open — a missing key would render an
-                  // empty white tile that reads as a deliberate blank. The data
-                  // module's test asserts every key here resolves.
                   const icon = getBrandIcon(name, { size: 21 });
                   return (
                     <span key={name} className="tile" title={name}>
@@ -198,10 +217,17 @@ export default function AIAgentsFeatureSection() {
             <p className="field-foot">
               <b>{INTEGRATION_COUNT} apps out of the box</b> · plus any REST API
             </p>
-          </div>
+          </motion.div>
 
           {/* CARD 3 — the schedules a business turns on first */}
-          <div className="card">
+          <motion.div 
+            className="card"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.22 } }}
+          >
             <h2>Recurring tasks to keep your agents<br />running in the background</h2>
             <p className="h2sub">Live, and named by what each run actually produced.</p>
 
@@ -216,11 +242,17 @@ export default function AIAgentsFeatureSection() {
                 {AXIS_LABELS.map((l) => <span key={l}>{l}</span>)}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* CARD 4 — one inbox, three agents, a rule that decides who answers.
-              All motion is CSS so the page keeps three timers, not four. */}
-          <div className="card gradient">
+          {/* CARD 4 — one inbox, three agents, a rule that decides who answers */}
+          <motion.div 
+            className="card gradient"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, transition: { duration: 0.22 } }}
+          >
             <h2>A canvas to orchestrate<br />multi-agent workflows</h2>
             <p className="h2sub">One inbox, three agents, and a rule that decides who answers.</p>
 
@@ -263,7 +295,7 @@ export default function AIAgentsFeatureSection() {
                 ))}
               </span>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

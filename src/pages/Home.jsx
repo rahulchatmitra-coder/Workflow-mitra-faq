@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import HeroAnimated from '../components/HeroAnimated'
 import EnterpriseScaleSection from '../components/EnterpriseScaleSection'
 import IntegrationsShowcase from '../components/IntegrationsShowcase'
@@ -231,7 +232,13 @@ function Home() {
             <div className="wm-afford-card-wrapper">
               
               {/* Left Value & Feature Matrix Column */}
-              <div className="wm-afford-text-col">
+              <motion.div 
+                className="wm-afford-text-col"
+                initial={{ opacity: 0, x: -35 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className="wm-afford-pill-badge">
                   <Sparkles size={13} className="wm-afford-badge-sparkle" />
                   <span>TRANSPARENT &amp; PREDICTABLE PRICING</span>
@@ -248,7 +255,14 @@ function Home() {
 
                 {/* 2x2 Sleek Feature Grid */}
                 <div className="wm-afford-feature-grid">
-                  <div className="wm-afford-feature-card">
+                  <motion.div 
+                    className="wm-afford-feature-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  >
                     <div className="wm-afford-icon-box icon-amber">
                       <Zap size={18} />
                     </div>
@@ -256,9 +270,16 @@ function Home() {
                       <h4>10,000 Monthly Credits</h4>
                       <p>Multi-step executions and high-volume triggers included.</p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="wm-afford-feature-card">
+                  <motion.div 
+                    className="wm-afford-feature-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  >
                     <div className="wm-afford-icon-box icon-blue">
                       <Layers size={18} />
                     </div>
@@ -266,9 +287,16 @@ function Home() {
                       <h4>Unlimited Workflows</h4>
                       <p>Build and run as many active flows as your business needs.</p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="wm-afford-feature-card">
+                  <motion.div 
+                    className="wm-afford-feature-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  >
                     <div className="wm-afford-icon-box icon-purple">
                       <Users size={18} />
                     </div>
@@ -276,9 +304,16 @@ function Home() {
                       <h4>5 Team Seats Included</h4>
                       <p>Full team collaboration with zero per-seat upgrade fees.</p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="wm-afford-feature-card">
+                  <motion.div 
+                    className="wm-afford-feature-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  >
                     <div className="wm-afford-icon-box icon-emerald">
                       <Headphones size={18} />
                     </div>
@@ -286,7 +321,7 @@ function Home() {
                       <h4>Human Expert Help</h4>
                       <p>1-on-1 workflow setup assistance whenever you need it.</p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Left Guarantee Note */}
@@ -296,10 +331,16 @@ function Home() {
                     <span>Free 14-day trial &middot; No credit card required</span>
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Right Interactive AI Automation Tier Card */}
-              <div className="wm-afford-card-col">
+              <motion.div 
+                className="wm-afford-card-col"
+                initial={{ opacity: 0, x: 35, y: 15 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className="wm-afford-pricing-card">
                   {/* Popular Accent Glow */}
                   <div className="wm-afford-card-glow" />
@@ -373,7 +414,7 @@ function Home() {
                     <span>14-day guarantee</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>
@@ -384,7 +425,13 @@ function Home() {
       <DeferredHomeSection minHeight={540}>
         <section className="templates-section">
           <div className="container">
-            <div className="section-header templates-header-centered">
+            <motion.div 
+              className="section-header templates-header-centered"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="wm-templates-eyebrow-badge">
                 <Sparkles size={13} className="wm-templates-badge-sparkle" />
                 <span>PRE-BUILT BLUEPRINTS</span>
@@ -405,11 +452,20 @@ function Home() {
                   </button>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             <div className="templates-grid">
-              {TEMPLATES.filter(t => activeTab === 'All' || t.category.toLowerCase() === activeTab.toLowerCase()).map((template) => (
-                <div key={template.id} className="template-card" onClick={() => navigate(`/template/${template.id}`)}>
+              {TEMPLATES.filter(t => activeTab === 'All' || t.category.toLowerCase() === activeTab.toLowerCase()).map((template, tIdx) => (
+                <motion.div 
+                  key={template.id} 
+                  className="template-card" 
+                  onClick={() => navigate(`/template/${template.id}`)}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.55, delay: tIdx * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -6, transition: { duration: 0.22 } }}
+                >
                   <div className="template-card-glow" aria-hidden="true" />
                   <div className="template-header">
                     <div className="template-apps">
@@ -436,11 +492,17 @@ function Home() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            <div className="templates-more">
+            <motion.div 
+              className="templates-more"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <RollButton
                 to="/templates"
                 variant="dark"
@@ -449,7 +511,7 @@ function Home() {
               >
                 Explore All Templates
               </RollButton>
-            </div>
+            </motion.div>
           </div>
         </section>
       </DeferredHomeSection>
@@ -473,7 +535,13 @@ function Home() {
         <section className="faq-section" id="faq" itemScope itemType="https://schema.org/FAQPage">
           <div className="container">
             
-            <div className="section-header faq-header-centered">
+            <motion.div 
+              className="section-header faq-header-centered"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="faq-eyebrow-badge">
                 <span className="faq-eyebrow-dot" />
                 <span>Everything You Need To Know</span>
@@ -482,16 +550,20 @@ function Home() {
               <p className="section-subtitle">
                 Clear answers to common questions about WorkflowMitra, integrations, pricing, and how we compare.
               </p>
-            </div>
+            </motion.div>
 
             <div className="faq-list">
               {FAQ_ITEMS.map((item, i) => (
-                <div
+                <motion.div
                   className={`faq-card ${openFaq === i ? 'open' : ''}`}
                   key={i}
                   itemScope
                   itemProp="mainEntity"
                   itemType="https://schema.org/Question"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{ duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <button
                     className="faq-trigger"
@@ -514,7 +586,7 @@ function Home() {
                   >
                     <p className="faq-answer-text" itemProp="text">{item.a}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -524,7 +596,13 @@ function Home() {
       {/* 15 — Final CTA (Manual Rock-Solid Center AI Card) */}
       <DeferredHomeSection minHeight={320}>
         <section className="wm-final-cta-section" id="start-automating">
-          <div className="wm-final-cta-card">
+          <motion.div 
+            className="wm-final-cta-card"
+            initial={{ opacity: 0, y: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
             {/* Atmospheric Background Glow */}
             <div className="wm-final-card-glow" aria-hidden="true" />
 
@@ -566,24 +644,48 @@ function Home() {
 
             {/* Trust Reassurance Row */}
             <div className="wm-final-trust-row">
-              <span className="wm-final-trust-item">
+              <motion.span 
+                className="wm-final-trust-item"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
                 <CheckCircle2 size={15} color="#059669" />
                 <span>10,000 Free Credits</span>
-              </span>
-              <span className="wm-final-trust-item">
+              </motion.span>
+              <motion.span 
+                className="wm-final-trust-item"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.28 }}
+              >
                 <CheckCircle2 size={15} color="#059669" />
                 <span>37+ Pre-Built Apps</span>
-              </span>
-              <span className="wm-final-trust-item">
+              </motion.span>
+              <motion.span 
+                className="wm-final-trust-item"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.36 }}
+              >
                 <CheckCircle2 size={15} color="#059669" />
                 <span>Live Expert Support</span>
-              </span>
-              <span className="wm-final-trust-item">
+              </motion.span>
+              <motion.span 
+                className="wm-final-trust-item"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.44 }}
+              >
                 <CheckCircle2 size={15} color="#059669" />
                 <span>99.8% Uptime SLA</span>
-              </span>
+              </motion.span>
             </div>
-          </div>
+          </motion.div>
         </section>
       </DeferredHomeSection>
     </div>

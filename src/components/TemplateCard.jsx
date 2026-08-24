@@ -31,7 +31,7 @@ const TemplateCard = ({ template, index }) => {
         {nodes.map((icon, i) => {
           return (
             <div key={i} className="step-icon">
-              <svg width="15" height="15"><use href={`#i-${icon}`} /></svg>
+              <svg width="15" height="15" aria-hidden="true"><use href={`#i-${icon}`} /></svg>
             </div>
           );
         })}
@@ -42,14 +42,14 @@ const TemplateCard = ({ template, index }) => {
         )}
       </div>
       <div className="badge">{template.category}</div>
-      <h3>
+      <h2>
         {template.title.split('→').map((part, i, arr) => (
           <span key={i}>
             {part.trim()}
             {i < arr.length - 1 && <span style={{color: 'var(--color-text-tertiary)'}}> → </span>}
           </span>
         ))}
-      </h3>
+      </h2>
       <p>{template.description}</p>
       <div className="card-footer">
         <span className="meta">{template.steps}</span>
@@ -62,7 +62,7 @@ const TemplateCard = ({ template, index }) => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          aria-label={`Use template: ${template.title}`}
+          aria-label={`Use Template — ${template.title}`}
         >
           Use Template
         </RollButton>

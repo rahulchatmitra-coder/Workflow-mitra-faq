@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #ffffff 70%, #f8fafc 100%);
-  padding: 96px 24px 70px;
+  padding: 80px 24px 30px;
   font-family: inherit;
   color: #0f172a;
   border-top: 1px solid #e2e8f0;
@@ -100,11 +100,9 @@
    ========================================================================== */
 
 .wm-wf-cards-stack {
-  display: flex;
-  flex-direction: column;
+  display: block;
   position: relative;
-  gap: 0;
-  padding-bottom: 24px;
+  width: 100%;
 }
 
 .wm-wf-card-row {
@@ -117,19 +115,29 @@
   border-radius: 26px;
   padding: 34px 38px;
   min-height: 426px;
-  margin-bottom: clamp(180px, 28vh, 260px);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04), 0 30px 70px -15px rgba(15, 23, 42, 0.2), 0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-bottom: clamp(160px, 22vh, 220px);
+  box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.04), 0 28px 65px -15px rgba(15, 23, 42, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-.wm-wf-card-row:last-child {
+.wm-wf-card-row:last-of-type {
   margin-bottom: 0;
+}
+
+/* Compact dwell spacer for fast, responsive release into the next section */
+.wm-wf-stack-spacer {
+  display: block;
+  width: 100%;
+  height: clamp(150px, 20vh, 200px);
+  pointer-events: none;
 }
 
 .wm-wf-card-row:hover {
   border-color: #cbd5e1;
-  box-shadow: 0 -4px 22px rgba(0, 0, 0, 0.05), 0 40px 90px -18px rgba(15, 23, 42, 0.24), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.06), 0 35px 75px -16px rgba(15, 23, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* Alternating Direction */

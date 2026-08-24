@@ -178,19 +178,23 @@ WorkflowMitra helps businesses automate repetitive work, connect apps, integrate
 
       {/* Tabs */}
       <section className="solutions-tabs-section">
-        <div className="solutions-tabs">
+        <div className="solutions-tabs" role="tablist" aria-label="Filter solutions by category">
           <button
+            role="tab"
+            aria-selected={activeTab === 'roles'}
             className={`tab-button ${activeTab === 'roles' ? 'active' : ''}`}
             onClick={() => setActiveTab('roles')}
           >
-            <span className="tab-icon"><FaUsers /></span>
+            <span className="tab-icon" aria-hidden="true"><FaUsers /></span>
             <span className="tab-label">ROLES</span>
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'use-cases'}
             className={`tab-button ${activeTab === 'use-cases' ? 'active' : ''}`}
             onClick={() => setActiveTab('use-cases')}
           >
-            <span className="tab-icon"><FaLightbulb /></span>
+            <span className="tab-icon" aria-hidden="true"><FaLightbulb /></span>
             <span className="tab-label">USE CASES</span>
           </button>
         </div>
@@ -199,6 +203,7 @@ WorkflowMitra helps businesses automate repetitive work, connect apps, integrate
       {/* Content Grid */}
       <section className="solutions-content">
         <div className="solutions-container">
+          <h2 className="sr-only">Solutions Directory</h2>
           {activeTab === 'roles' && (
             <div className="solutions-grid">
               {roles.map((role) => (

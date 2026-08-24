@@ -37,7 +37,7 @@ describe('DarkAIIntegrationsSection', () => {
 
     const btn = container.querySelector('.dark-ai-btn');
     expect(btn).toBeInTheDocument();
-    expect(btn.textContent).toContain('Browse all integrations');
+    expect(btn.getAttribute('aria-label') || btn.textContent).toContain('Browse all integrations');
     expect(btn.getAttribute('href')).toBe('/integrations');
   });
 });

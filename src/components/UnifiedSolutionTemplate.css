@@ -324,7 +324,7 @@
   border-radius: 11px;
   padding: 10px 12px;
   margin-bottom: 20px;
-  color: #a9a4b5;
+  color: #64748b;
   font-size: 14px;
 }
 
@@ -629,144 +629,446 @@
   }
 }
 
-/* SECTION 4 — Custom Skills */
-.custom-skills-section {
-  --ink: #14151f;
-  --gray: #6b7280;
-  --card-border: #ececee;
-  --blue: #2f6fed;
-  --pink: #e23e93;
-  --icon-pink: #ef4676;
-  --icon-purple: #6a5cf6;
-  --icon-green: #22a35a;
+/* SECTION 4 — Everything you need to launch an AI product (100% Exact Match Axvio Bento Grid) */
+.wm-launch-bento-section {
+  padding: 96px 0 120px;
   background: #ffffff;
-  color: var(--ink);
-}
-
-.custom-skills-section .wrap {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px 100px;
-}
-
-.custom-skills-section .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  padding-top: 96px;
-}
-
-.custom-skills-section .copy h2 {
-  font-size: clamp(32px, 3.6vw, 46px);
-  font-weight: 850;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
-  color: var(--ink);
-  margin-bottom: 20px;
-  text-wrap: balance;
-}
-
-.custom-skills-section .copy p {
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--gray);
-  max-width: 400px;
-  font-weight: 450;
-}
-
-.custom-skills-section .cards-region {
   position: relative;
 }
 
-.custom-skills-section .cards-col {
+.wm-launch-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 44px;
+}
+
+.wm-launch-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #f1f2f4;
+  color: #181818;
+  border: 1px solid #e5e5e7;
+  padding: 5px 15px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.wm-launch-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #181818;
+}
+
+.wm-launch-title {
+  font-size: clamp(30px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #181818;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+
+.wm-launch-desc {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #71717a;
+  max-width: 580px;
+  margin: 0 auto;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+/* Asymmetrical 2-Row Bento Grid (5/7 and 7/5 column spans) */
+.wm-launch-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.wm-launch-bento-grid > .wm-bento-card:nth-child(1) {
+  grid-column: span 5;
+}
+
+.wm-launch-bento-grid > .wm-bento-card:nth-child(2) {
+  grid-column: span 7;
+}
+
+.wm-launch-bento-grid > .wm-bento-card:nth-child(3) {
+  grid-column: span 7;
+}
+
+.wm-launch-bento-grid > .wm-bento-card:nth-child(4) {
+  grid-column: span 5;
+}
+
+.wm-bento-card {
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+  border-radius: 18px;
+  padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 400px;
-  margin-left: auto;
+  justify-content: space-between;
+  min-height: 330px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s ease;
 }
 
-.custom-skills-section .card {
+/* Stable static box - no hover jumping / translate */
+.wm-bento-card:hover {
+  border-color: #d1d1d6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Visual Canvas in Top Half of Bento Cards */
+.wm-bento-visual {
   background: #ffffff;
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 20px 22px;
-  box-shadow: 0 1px 2px rgba(16,24,40,0.03), 0 2px 8px rgba(16,24,40,0.02);
-}
-
-.custom-skills-section .card-head {
+  border: 1px solid #f1f2f4;
+  border-radius: 13px;
+  height: 180px;
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin-bottom: 8px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.custom-skills-section .card-icon {
-  width: 19px;
-  height: 19px;
+/* ==========================================================================
+   CARD 1: Trigger -> Logic -> Action Vertical Stack
+   ========================================================================== */
+.wm-visual-pills {
+  background: #ffffff;
+}
+
+.wm-axvio-pills-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-axvio-pill {
+  width: 110px;
+  height: 32px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  transition: transform 0.2s ease;
+}
+
+.wm-axvio-pill.trigger {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.wm-axvio-pill.logic {
+  background: #ffedd5;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+
+.wm-axvio-pill.action {
+  background: #f1f2f4;
+  color: #181818;
+}
+
+.wm-axvio-line {
+  width: 1.5px;
+  height: 18px;
+  background: #d1d1d6;
+}
+
+/* ==========================================================================
+   CARD 2: Decisions Made Smarter - Skeleton Box + Horizontal Laser
+   ========================================================================== */
+.wm-visual-scanner {
+  background: #ffffff;
+  padding: 16px 20px;
+}
+
+.wm-axvio-skel-container {
+  position: relative;
+  width: 90%;
+  max-width: 480px;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #e5e5e7;
+  border-radius: 10px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wm-axvio-skel-bar {
+  height: 13px;
+  background: #f3f3f3;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: inset 0 0.5px 3px rgba(0, 0, 0, 0.04);
+}
+
+.wm-axvio-laser-beam {
+  position: absolute;
+  top: 36%;
+  left: -5%;
+  right: -5%;
+  pointer-events: none;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-axvio-laser-glow {
+  position: absolute;
+  inset: -16px -8px;
+  background: radial-gradient(ellipse at center, rgba(166, 134, 241, 0.6) 0%, rgba(166, 134, 241, 0) 70%);
+  filter: blur(10px);
+}
+
+.wm-axvio-laser-core {
+  position: relative;
+  height: 6px;
+  width: 100%;
+  background: #a686f1;
+  border-radius: 9999px;
+  box-shadow: 0 0 18px 3px rgba(166, 134, 241, 0.9), 0 0 32px rgba(166, 134, 241, 0.5);
+  animation: laserFloat 2.8s infinite alternate ease-in-out;
+}
+
+@keyframes laserFloat {
+  0% { transform: translateY(-5px); opacity: 0.88; }
+  100% { transform: translateY(7px); opacity: 1; }
+}
+
+/* ==========================================================================
+   CARD 3: Connect Everything Instantly - Smooth Marquee Loop
+   ========================================================================== */
+.wm-visual-strip {
+  background: #ffffff;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.wm-axvio-marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.wm-axvio-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: wmMarqueeContinuous 12s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.wm-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
   flex-shrink: 0;
 }
 
-.custom-skills-section .card-title {
-  font-size: 15.5px;
-  font-weight: 600;
-  color: var(--ink);
+@keyframes wmMarqueeContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.custom-skills-section .card p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #75767f;
-  margin-bottom: 0;
+.wm-app-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1.5px 5px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.custom-skills-section .cursor {
+.wm-app-icon-circle.blue-bolt {
+  background: #0084ff;
+  border-color: #0084ff;
+}
+
+/* Static Fixed Center Hero Badge (Floating right over the scrolling conveyor) */
+.wm-fixed-center-hero {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.wm-fixed-hero-aura {
+  position: absolute;
+  inset: -16px;
+  background: radial-gradient(circle, rgba(247, 195, 138, 0.95) 0%, rgba(166, 134, 241, 0.85) 45%, rgba(255, 255, 255, 0) 75%);
+  filter: blur(10px);
+  border-radius: 50%;
+  animation: appAuraPulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes appAuraPulse {
+  0% { transform: scale(0.92); opacity: 0.82; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.wm-fixed-hero-box {
+  position: relative;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   CARD 4: Scale Without Limits - Speedometer with Live Sweeping Needle
+   ========================================================================== */
+.wm-visual-speedometer {
+  background: #ffffff;
+  padding: 12px 14px 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wm-speedo-dial-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.wm-speedo-svg {
+  display: block;
+}
+
+/* Live Dynamic Needle Sweeping Animation */
+.wm-speedo-needle-sweep {
+  transform-origin: 63px 63px;
+  animation: needleSweepLoop 5s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes needleSweepLoop {
+  0% {
+    transform: rotate(80deg);
+  }
+  25% {
+    transform: rotate(145deg);
+  }
+  50% {
+    transform: rotate(115deg);
+  }
+  75% {
+    transform: rotate(165deg);
+  }
+  100% {
+    transform: rotate(80deg);
+  }
+}
+
+.wm-speedo-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.wm-speedo-stat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2px;
-  z-index: 5;
 }
 
-.custom-skills-section .cursor svg {
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12));
-}
-
-.custom-skills-section .cursor-label {
-  padding: 3px 10px;
-  border-radius: 10px;
+.wm-speedo-stat .val {
   font-size: 11.5px;
-  font-weight: 700;
-  color: #ffffff;
-  white-space: nowrap;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.75);
 }
 
-.custom-skills-section .cursor.max {
-  top: -42px;
-  right: -56px;
-  color: var(--blue);
+.wm-speedo-stat .lbl {
+  font-size: 11px;
+  font-weight: 500;
+  color: #71717a;
 }
-.custom-skills-section .cursor.max .cursor-label { background: var(--blue); margin-left: 14px; }
 
-.custom-skills-section .cursor.kat {
-  top: 41%;
-  left: -58px;
-  color: var(--pink);
+/* Card Bottom Text Copy */
+.wm-bento-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
 }
-.custom-skills-section .cursor.kat .cursor-label { background: var(--pink); margin-left: 12px; }
+
+.wm-bento-title {
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: #181818;
+  margin: 0;
+}
+
+.wm-bento-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #71717a;
+  margin: 0;
+  font-weight: 400;
+}
 
 @media (max-width: 860px) {
-  .custom-skills-section .content {
+  .wm-launch-bento-grid {
     grid-template-columns: 1fr;
-    padding-top: 70px;
-    gap: 48px;
   }
-  .custom-skills-section .copy p { max-width: 520px; }
-  .custom-skills-section .cards-col { margin-left: 0; max-width: 100%; }
-  .custom-skills-section .cursor.max { top: -38px; right: 8px; }
-  .custom-skills-section .cursor.kat { display: none; }
+  .wm-launch-bento-grid > .wm-bento-card:nth-child(3) {
+    grid-column: auto;
+  }
+  .wm-launch-bento-grid > .wm-bento-card:nth-child(4) {
+    grid-column: auto;
+  }
 }
 
 /* SECTION 5 — Interact With Agents Like Colleagues */
@@ -1102,117 +1404,213 @@
   .bg-timeline-col { width: 100%; }
 }
 
-/* SECTION 7 — How It Works */
+/* SECTION 7 — How It Works (Connect. Customize. Conquer.) */
 .hiw-section {
-  background:
-    radial-gradient(60% 50% at 85% 10%, var(--bg-a) 0%, transparent 60%),
-    radial-gradient(55% 45% at 10% 0%, var(--bg-b) 0%, transparent 65%),
-    var(--bg-c);
-  color: var(--section-text-primary);
-  padding: 96px 24px 112px;
+  background: #fafbfd;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(166, 134, 241, 0.07) 0%, transparent 60%),
+    radial-gradient(circle at 85% 60%, rgba(247, 195, 138, 0.06) 0%, transparent 50%);
+  color: #181818;
+  padding: 100px 24px 112px;
+  border-top: 1px solid #f1f2f4;
+  border-bottom: 1px solid #f1f2f4;
+  position: relative;
 }
 
 .hiw-container {
-  max-width: 1120px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
 .hiw-header {
   text-align: center;
-  max-width: 640px;
-  margin: 0 auto 64px;
+  max-width: 680px;
+  margin: 0 auto 56px;
 }
 
 .hiw-eyebrow {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  background: #f4f0ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7c3aed;
   text-transform: uppercase;
-  color: var(--accent-orange);
-  background: var(--accent-orange-soft);
-  padding: 6px 14px;
-  border-radius: 999px;
-  margin-bottom: 20px;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.hiw-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7c3aed;
 }
 
 .hiw-header h2 {
-  font-weight: 850;
-  font-size: clamp(32px, 4.4vw, 52px);
-  line-height: 1.1;
-  letter-spacing: -0.038em;
-  margin: 0 0 18px;
-  color: var(--section-text-primary);
-  text-wrap: balance;
+  font-weight: 750;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0 0 16px;
+  color: #181818;
 }
 
 .hiw-subhead {
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--section-text-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+  color: #71717a;
   margin: 0;
-  font-weight: 450;
-}
-
-.hiw-subhead .brand {
-  color: var(--section-text-primary);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .hiw-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 22px;
 }
 
 .hiw-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 28px 26px 32px;
-  box-shadow: 0 12px 28px -18px var(--card-shadow);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+  border-radius: 18px;
+  padding: 22px 20px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .hiw-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 36px -18px var(--card-shadow-hover);
-  border-color: var(--accent-purple);
+  transform: translateY(-3px);
+  border-color: #d1d1d6;
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.06);
 }
 
 .hiw-icon-panel {
-  position: relative;
-  height: 180px;
-  border-radius: 14px;
-  margin-bottom: 22px;
-  overflow: hidden;
+  height: 140px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #f1f2f4;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(155deg, var(--panel-a) 0%, var(--panel-b) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.hiw-icon-panel svg { position: relative; z-index: 2; }
+.hiw-visual-node-box {
+  width: 92%;
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-.hiw-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--dot);
-  z-index: 1;
+.hiw-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hiw-node-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.hiw-node-badge.trigger {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.hiw-node-badge.logic {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.hiw-node-badge.action {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.hiw-node-status {
+  font-size: 10px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.hiw-node-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.hiw-node-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 4px 7px;
+  font-size: 11px;
+  font-weight: 550;
+  color: #1e293b;
+}
+
+.hiw-node-app.highlight {
+  background: #ede9fe;
+  border-color: #ddd6fe;
+  color: #6d28d9;
+}
+
+.hiw-node-arrow {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hiw-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hiw-step-num {
+  font-size: 11.5px;
+  font-weight: 650;
+  color: #a686f1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .hiw-card h3 {
-  font-weight: 800;
-  font-size: 21px;
-  letter-spacing: -0.025em;
-  margin: 0 0 12px;
-  color: var(--section-text-primary);
+  font-weight: 650;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #181818;
 }
 
 .hiw-card p {
-  font-size: 15.5px;
-  line-height: 1.65;
-  color: var(--section-text-secondary);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #71717a;
   margin: 0;
   font-weight: 400;
 }

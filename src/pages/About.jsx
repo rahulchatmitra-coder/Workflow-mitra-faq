@@ -42,19 +42,19 @@ function About() {
           <h2>Our Values</h2>
           <div className="values-grid">
             <div className="value-card">
-              <h3><FaRocket /> Innovation</h3>
+              <h3><FaRocket aria-hidden="true" /> Innovation</h3>
               <p>We constantly push boundaries to deliver cutting-edge automation solutions.</p>
             </div>
             <div className="value-card">
-              <h3><FaHandshake /> Customer First</h3>
+              <h3><FaHandshake aria-hidden="true" /> Customer First</h3>
               <p>Your success is our success. We're here to help you achieve your goals.</p>
             </div>
             <div className="value-card">
-              <h3><FaBullseye /> Simplicity</h3>
+              <h3><FaBullseye aria-hidden="true" /> Simplicity</h3>
               <p>Complex problems deserve simple solutions. We make automation easy.</p>
             </div>
             <div className="value-card">
-              <h3><FaGlobe /> Transparency</h3>
+              <h3><FaGlobe aria-hidden="true" /> Transparency</h3>
               <p>We believe in honest communication and building trust with our users.</p>
             </div>
           </div>

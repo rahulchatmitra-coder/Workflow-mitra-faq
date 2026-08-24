@@ -1,0 +1,105 @@
+/* ==========================================================================
+   ScrollProgress - Ultra Modern SaaS Laser Scroll Line & Floating Widget
+   ========================================================================== */
+
+/* 1. Top Laser Scroll Progress Bar */
+.wm-scroll-progress-laser {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb 0%, #4f46e5 30%, #7c3aed 65%, #db2777 100%);
+  transform-origin: 0%;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.7), 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+/* 2. Floating Circular Scroll Tracker (Bottom-Right) */
+.wm-scroll-tracker-wrap {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wm-scroll-tracker-btn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  color: #0f172a;
+}
+
+.wm-scroll-tracker-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: #cbd5e1;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.18), 0 4px 10px rgba(0, 0, 0, 0.06);
+  color: #2563eb;
+}
+
+.wm-scroll-tracker-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Circular SVG Progress Ring */
+.wm-scroll-ring-svg {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.wm-scroll-ring-bg {
+  fill: none;
+  stroke: rgba(226, 232, 240, 0.6);
+  stroke-width: 2.5;
+}
+
+.wm-scroll-ring-fill {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+/* Arrow Icon inside button */
+.wm-scroll-tracker-icon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.wm-scroll-tracker-btn:hover .wm-scroll-tracker-icon {
+  transform: translateY(-1.5px);
+}
+
+@media (max-width: 640px) {
+  .wm-scroll-tracker-wrap {
+    bottom: 20px;
+    right: 20px;
+  }
+  .wm-scroll-tracker-btn {
+    width: 42px;
+    height: 42px;
+  }
+}

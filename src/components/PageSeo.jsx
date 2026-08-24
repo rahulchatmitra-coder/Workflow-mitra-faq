@@ -14,36 +14,38 @@ function setMeta(attr, key, content) {
   el.setAttribute('content', content)
 }
 
-export default function PageSeo({ title, description, path, ogImage }) {
-  useEffect(() => {
-    const prev = document.title
-    document.title = title
+function setCanonical(href) {
+  let canonical = document.head.querySelector('link[rel="canonical"]')
+  if (!canonical) {
+    canonical = document.createElement('link')
+    canonical.setAttribute('rel', 'canonical')
+    canonical.setAttribute('data-page-seo', 'true')
+    document.head.appendChild(canonical)
+  }
+  canonical.setAttribute('href', href)
+}
 
-    setMeta('name', 'description', description)
-    setMeta('property', 'og:title', title)
-    setMeta('property', 'og:description', description)
+export default function PageSeo({ title, description, path = '/', ogImage }) {
+  useEffect(() => {
+    if (title) document.title = title
+
+    if (description) {
+      setMeta('name', 'description', description)
+      setMeta('property', 'og:description', description)
+      setMeta('name', 'twitter:description', description)
+    }
+    if (title) {
+      setMeta('property', 'og:title', title)
+      setMeta('name', 'twitter:title', title)
+    }
     setMeta('property', 'og:type', 'website')
     setMeta('property', 'og:url', `${SITE_ORIGIN}${path}`)
     setMeta('property', 'og:image', `${SITE_ORIGIN}${ogImage || DEFAULT_OG_IMAGE}`)
     setMeta('property', 'og:site_name', 'WorkflowMitra')
     setMeta('name', 'twitter:card', 'summary_large_image')
-    setMeta('name', 'twitter:title', title)
-    setMeta('name', 'twitter:description', description)
     setMeta('name', 'twitter:image', `${SITE_ORIGIN}${ogImage || DEFAULT_OG_IMAGE}`)
 
-    let canonical = document.head.querySelector('link[rel="canonical"][data-page-seo]')
-    if (!canonical) {
-      canonical = document.createElement('link')
-      canonical.setAttribute('rel', 'canonical')
-      canonical.setAttribute('data-page-seo', 'true')
-      document.head.appendChild(canonical)
-    }
-    canonical.setAttribute('href', `${SITE_ORIGIN}${path}`)
-
-    return () => {
-      document.title = prev
-      document.head.querySelectorAll('[data-page-seo]').forEach((el) => el.remove())
-    }
+    setCanonical(`${SITE_ORIGIN}${path}`)
   }, [title, description, path, ogImage])
 
   return null

@@ -180,7 +180,7 @@
 .wm-footer-legal-links a,
 .wm-cookie-settings-btn {
   font-size: 13px;
-  color: #71717a;
+  color: #a1a1aa;
   text-decoration: none;
   background: none;
   border: none;
@@ -196,13 +196,13 @@
 }
 
 .wm-legal-dot {
-  color: #3f3f46;
+  color: #52525b;
   font-size: 12px;
 }
 
 .wm-footer-copyright {
   font-size: 13px;
-  color: #71717a;
+  color: #a1a1aa;
   font-weight: 450;
 }
 

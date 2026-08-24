@@ -608,7 +608,13 @@ export default function AgentsShowcase() {
       <div className="wm-wf-global-container">
         
         {/* SECTION HEADER (Clean, Atmospheric Hero Theme) */}
-        <div className="wm-wf-section-header">
+        <motion.div 
+          className="wm-wf-section-header"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="wm-wf-pill-badge">
             <Sparkles size={13} className="wm-pill-sparkle-icon" />
             <span>ENTERPRISE WORKFLOW BLUEPRINTS</span>
@@ -620,7 +626,7 @@ export default function AgentsShowcase() {
           <p className="wm-wf-section-subtitle">
             See how high-performing teams replace manual chaos with automated, zero-touch operational flows across sales, support, commerce, and DevOps.
           </p>
-        </div>
+        </motion.div>
 
         {/* 4 REFINED ALTERNATING WORKFLOW SHOWCASES (STICKY STACKING DECK) */}
         <div className="wm-wf-cards-stack">
@@ -637,7 +643,13 @@ export default function AgentsShowcase() {
                 }}
               >
                 {/* CONTENT COLUMN (34% Width - Clean & Highly Readable) */}
-                <div className="wm-wf-info-col">
+                <motion.div 
+                  className="wm-wf-info-col"
+                  initial={{ opacity: 0, x: isReverse ? 25 : -25 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
                   {/* Category Badge Pill */}
                   <div
                     className="wm-wf-info-badge"
@@ -667,15 +679,24 @@ export default function AgentsShowcase() {
                     ))}
                   </div>
 
-                </div>
+                </motion.div>
 
                 {/* CANVAS COLUMN (66% Width - Clean Grid Canvas) */}
-                <div className="wm-wf-canvas-col">
+                <motion.div 
+                  className="wm-wf-canvas-col"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                >
                   <RenderWorkflowCanvas wfId={wf.id} />
-                </div>
+                </motion.div>
               </div>
             )
           })}
+
+          {/* Dwell Spacer so Card 4 has identical scroll travel & sticky coverage as Cards 1, 2, and 3 */}
+          <div className="wm-wf-stack-spacer" aria-hidden="true" />
         </div>
 
       </div>

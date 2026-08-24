@@ -13,7 +13,8 @@
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
-  font-family: inherit;
+  font-family: "Inter", "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
   border: 1px solid transparent;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
   -webkit-font-smoothing: antialiased;
@@ -37,20 +38,20 @@
    Variants
    ========================================================================== */
 
-/* 1. Dark / Primary (Axvio Specular Glass) */
+/* 1. Dark / Primary (Axvio Exact Specular Top Inset Glass) */
 .roll-btn-dark,
 .roll-btn-primary {
-  background: #0a0a0a;
+  background: rgb(10, 10, 10);
   color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28), 0 4px 14px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0px 6px 5.4px 0px rgba(255, 255, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.16);
 }
 
 .roll-btn-dark:hover,
 .roll-btn-primary:hover {
   background: #000000;
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.42), 0 8px 22px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0px 6px 6px 0px rgba(255, 255, 255, 0.28), 0 6px 18px rgba(0, 0, 0, 0.28);
 }
 
 .roll-btn-dark .roll-char,
@@ -58,28 +59,25 @@
   color: #ffffff;
 }
 
-/* 2. Secondary / Frosted Glass */
+/* 2. Secondary / Off-White (Axvio Exact #f1f2f4) */
 .roll-btn-secondary,
 .roll-btn-outline {
-  background: rgba(255, 255, 255, 0.75);
-  color: #0f172a !important;
-  border-color: #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgb(241, 242, 244);
+  color: rgb(24, 24, 24) !important;
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .roll-btn-secondary:hover,
 .roll-btn-outline:hover {
-  background: #ffffff;
-  border-color: #cbd5e1;
+  background: #e9eaec;
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .roll-btn-secondary .roll-char,
 .roll-btn-outline .roll-char {
-  color: #0f172a;
+  color: rgb(24, 24, 24);
 }
 
 /* 3. Pure White */
@@ -124,9 +122,9 @@
 
 /* Small (e.g. badges or compact cards) */
 .roll-btn-sm {
-  padding: 6px 16px;
+  padding: 6px 14px;
   font-size: 13px;
-  font-weight: 550;
+  font-weight: 500;
   gap: 5px;
 }
 
@@ -139,10 +137,11 @@
 
 /* Medium (Standard navbar & section cards) */
 .roll-btn-md {
-  padding: 8.5px 22px;
-  font-size: 14px;
-  font-weight: 550;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
   gap: 7px;
+  min-height: 40px;
 }
 
 .roll-btn-md .roll-track,
@@ -152,12 +151,13 @@
   line-height: 18px;
 }
 
-/* Large (Hero CTA & Primary Section Headers) */
+/* Large (Hero CTA & Primary Section Headers - Axvio Exact 17px/500/44px) */
 .roll-btn-lg {
-  padding: 12px 28px;
-  font-size: 15.5px;
-  font-weight: 600;
+  padding: 13px 26px;
+  font-size: 17px;
+  font-weight: 500;
   gap: 8px;
+  min-height: 44px;
 }
 
 .roll-btn-lg .roll-track,
@@ -194,8 +194,10 @@
   flex-shrink: 0;
 }
 
-/* Trigger Character Wave on Button Hover */
-.roll-btn:hover .roll-char-col {
+/* Trigger Character Wave when cursor enters the button */
+.roll-btn.is-rolled .roll-char-col,
+.roll-btn:hover .roll-char-col,
+.roll-btn:focus-visible .roll-char-col {
   transform: translate3d(0, -100%, 0);
 }
 
@@ -208,6 +210,8 @@
   transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
-.roll-btn:hover .roll-icon {
+.roll-btn.is-rolled .roll-icon,
+.roll-btn:hover .roll-icon,
+.roll-btn:focus-visible .roll-icon {
   transform: translateX(3px);
 }

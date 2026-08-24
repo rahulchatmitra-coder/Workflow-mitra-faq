@@ -7,6 +7,20 @@
   background: #FFFFFF;
 }
 
+main {
+  flex: 1 0 auto;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.route-loading {
+  flex: 1 0 auto;
+  min-height: calc(100vh - 80px);
+  width: 100%;
+}
+
 /* Base button styles matching Gumloop */
 .btn {
   display: inline-flex;

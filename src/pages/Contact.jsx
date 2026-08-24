@@ -53,11 +53,11 @@ function Contact() {
             <div className="contact-info">
               <h2>Contact Information</h2>
               <div className="info-item">
-                <h3><FaEnvelope /> Email</h3>
+                <h3><FaEnvelope aria-hidden="true" /> Email</h3>
                 <p>support@workflowmitra.com</p>
               </div>
               <div className="info-item">
-                <h3><FaCommentDots /> Support</h3>
+                <h3><FaCommentDots aria-hidden="true" /> Support</h3>
                 <p>Available Monday–Friday, 10am–7pm IST</p>
               </div>
             </div>

@@ -530,7 +530,7 @@
 .sidebar-brand-sub {
   font-size: 10px;
   font-weight: 500;
-  color: #71717a;
+  color: #a1a1aa;
   line-height: 1.1;
 }
 
@@ -618,7 +618,7 @@
 
 .profile-role {
   font-size: 9.5px;
-  color: #71717a;
+  color: #a1a1aa;
   line-height: 1.1;
 }
 
@@ -787,7 +787,7 @@
 }
 
 .meta-failed-badge {
-  color: #ef4444;
+  color: #dc2626;
   font-weight: 600;
 }
 

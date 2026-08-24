@@ -1,5 +1,6 @@
 import React from 'react'
-import { Star, CheckCircle2, Quote } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Star, CheckCircle2 } from 'lucide-react'
 import './TestimonialSlider.css'
 
 const ROW_ONE_STORIES = [
@@ -104,7 +105,13 @@ export default function TestimonialSlider() {
       <div className="vintar-container">
         
         {/* Section Header */}
-        <div className="vintar-testimonial-header">
+        <motion.div 
+          className="vintar-testimonial-header"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="vintar-eyebrow-badge">
             <span className="vintar-eyebrow-dot" />
             <span>Customer Success Stories</span>
@@ -115,12 +122,18 @@ export default function TestimonialSlider() {
           <p className="vintar-testimonial-subtitle">
             Discover how fast-growing businesses automate repetitive work, eliminate bottlenecks, and scale operations with WorkflowMitra.
           </p>
-        </div>
+        </motion.div>
 
       </div>
 
       {/* Two-Row Infinite Auto-Scrolling Marquee Track */}
-      <div className="vintar-testimonial-marquee-wrapper">
+      <motion.div 
+        className="vintar-testimonial-marquee-wrapper"
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="vintar-marquee-fade-left" aria-hidden="true" />
         <div className="vintar-marquee-fade-right" aria-hidden="true" />
         
@@ -147,7 +160,10 @@ export default function TestimonialSlider() {
                     <img
                       src={item.avatar}
                       alt={item.name}
+                      width="48"
+                      height="48"
                       loading="lazy"
+                      decoding="async"
                       className="vintar-avatar-img"
                     />
                   </div>
@@ -187,7 +203,10 @@ export default function TestimonialSlider() {
                     <img
                       src={item.avatar}
                       alt={item.name}
+                      width="48"
+                      height="48"
                       loading="lazy"
+                      decoding="async"
                       className="vintar-avatar-img"
                     />
                   </div>
@@ -204,7 +223,7 @@ export default function TestimonialSlider() {
           </div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   )
 }

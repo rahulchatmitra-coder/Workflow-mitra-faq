@@ -12,6 +12,7 @@ import {
   ThumbsUp,
   ThumbsDown,
 } from 'lucide-react'
+import PageSeo from '../components/PageSeo'
 import InteractivePlayer from './InteractivePlayer'
 
 export const onboardingGuide = [
@@ -235,6 +236,11 @@ export default function CreateAccountPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#ffffff', color: '#09090b', fontFamily: "'Geist Sans', 'Inter', sans-serif" }}>
+      <PageSeo
+        title="How to Create an Account in WorkflowMitra | Setup Guide"
+        description="Follow this 5-step visual guide to register, verify your email, and access your WorkflowMitra automation dashboard."
+        path="/how-to-create-account-workflowmitra"
+      />
       
       {/* TOP NAVIGATION BACK BAR */}
       <div style={{ borderBottom: '1px solid #e4e4e7', background: '#fafafa', position: 'sticky', top: 0, zIndex: 30 }}>

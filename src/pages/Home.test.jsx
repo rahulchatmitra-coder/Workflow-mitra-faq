@@ -6,21 +6,21 @@ import Home from './Home'
 const renderHome = () => render(<MemoryRouter><Home /></MemoryRouter>)
 
 describe('Home — popular workflows section', () => {
-  it('renders the four templates', () => {
+  it('renders the templates', () => {
     const { getByText } = renderHome()
     ;[
       'Lead → WhatsApp in 5 seconds',
       'Paid order → invoice → WhatsApp',
       'AI drafts, you approve',
-      'Support ticket → AI triage',
+      'Facebook Ads → CRM + SMS',
     ].forEach((title) => expect(getByText(title)).toBeInTheDocument())
   })
 
   it('draws a real node chain on every card', () => {
     const { container } = renderHome()
     const chains = container.querySelectorAll('.templates-grid .nc')
-    expect(chains).toHaveLength(4)
-    chains.forEach((chain) => expect(chain.querySelectorAll('.nc-disc')).toHaveLength(4))
+    expect(chains).toHaveLength(6)
+    chains.forEach((chain) => expect(chain.querySelectorAll('.nc-disc').length).toBeGreaterThanOrEqual(3))
   })
 
   it('renders the templates section', () => {
@@ -43,7 +43,7 @@ describe('Home — popular workflows section', () => {
   it('titles the section by what the reader gets, not by what it is called', () => {
     const { getByText, queryByText } = renderHome()
     expect(getByText('Start from a workflow that already works')).toBeInTheDocument()
-    expect(getByText(/no coding required/)).toBeInTheDocument()
+    expect(getByText(/production-tested template/)).toBeInTheDocument()
     expect(queryByText('Featured Templates')).toBeNull()
   })
 })

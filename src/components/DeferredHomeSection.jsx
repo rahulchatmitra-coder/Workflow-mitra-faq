@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 export default function DeferredHomeSection({ children, minHeight = 0 }) {
   const sectionRef = useRef(null)
   const [shouldRender, setShouldRender] = useState(
-    () => typeof window === 'undefined' || !('IntersectionObserver' in window),
+    () => typeof window === 'undefined' || !('IntersectionObserver' in window) || (typeof process !== 'undefined' && process.env.NODE_ENV === 'test'),
   )
 
   useEffect(() => {

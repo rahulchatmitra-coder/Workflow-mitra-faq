@@ -110,6 +110,7 @@ function Templates() {
         description="Browse ready-made workflow templates. Open one, connect your accounts, and run it — no coding required."
         path="/templates"
       />
+      <h1 className="sr-only">Workflow Templates — Ready-Made Automations</h1>
 
       {/* SPRITE SHEET DEFINITION (Rendered ONCE) */}
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
@@ -186,7 +187,7 @@ function Templates() {
         </defs>
       </svg>
 
-      <div className="tabs">
+      <div className="tabs" role="tablist" aria-label="Filter templates by category">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -201,7 +202,7 @@ function Templates() {
       </div>
 
       <div className="section-label">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.5 15 9l7 1-5.2 5 1.3 7-6.1-3.3L5.9 22l1.3-7L2 10l7-1z"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 2.5 15 9l7 1-5.2 5 1.3 7-6.1-3.3L5.9 22l1.3-7L2 10l7-1z"/></svg>
         FEATURED · BY WORKFLOWMITRA
       </div>
 

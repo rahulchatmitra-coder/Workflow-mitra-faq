@@ -142,6 +142,19 @@ html {
   scroll-behavior: auto !important;
 }
 
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
@@ -154,8 +167,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Crisp Text Rendering & Anti-Blur during transforms / sticky scrolling */
+/* Universal Anti-Blur & Crystal Clear Subpixel Typography */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea,
 .home-page,
+.solution-hero,
+.axvio-pricing-section,
 .wm-top-workflows-section,
 .wm-wf-card-row,
 .template-card,
@@ -164,9 +180,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 #root {

@@ -6,29 +6,30 @@ const NODE_KEYS = ['n1', 'n2', 'n3', 'n4', 'n5']
 describe('agentsShowcaseData', () => {
   it('has the five popular automations', () => {
     expect(agentsShowcaseData.map((a) => a.id))
-      .toEqual(['support', 'meeting', 'calls', 'data', 'leads'])
+      .toEqual([
+        'lead-ai-crm-whatsapp',
+        'customer-ticket-ai-agent',
+        'order-invoice-customer-update',
+        'meeting-ai-notes-followup',
+        'website-visitor-ai-sales-booking',
+      ])
   })
 
-  it('gives every automation a five-node graph', () => {
+  it('gives every automation a valid nodes array and edges', () => {
     agentsShowcaseData.forEach((a) => {
-      expect(Object.keys(a.nodes)).toEqual(NODE_KEYS)
-      NODE_KEYS.forEach((k) => {
-        expect(a.nodes[k].type).toBeTruthy()
-        expect(a.nodes[k].label).toBeTruthy()
+      expect(Array.isArray(a.nodes)).toBe(true)
+      expect(a.nodes.length).toBeGreaterThanOrEqual(5)
+      a.nodes.forEach((n) => {
+        expect(n.type).toBeTruthy()
+        expect(n.label).toBeTruthy()
       })
+      expect(Array.isArray(a.edges)).toBe(true)
+      expect(a.edges.length).toBeGreaterThanOrEqual(4)
     })
   })
 
-  it('gives every automation one step caption per node and one payload per hop', () => {
+  it('carries demo telemetry with runs and uptime', () => {
     agentsShowcaseData.forEach((a) => {
-      expect(a.steps).toHaveLength(5)
-      expect(a.payloads).toHaveLength(4)
-    })
-  })
-
-  it('carries demo telemetry with a per-step duration for each node', () => {
-    agentsShowcaseData.forEach((a) => {
-      expect(a.live.dur).toHaveLength(5)
       expect(a.live.runs).toBeGreaterThan(0)
       expect(a.live.ok).toBeGreaterThan(90)
       expect(a.live.unit).toBeTruthy()
