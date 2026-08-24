@@ -517,11 +517,13 @@ function Home() {
       </DeferredHomeSection>
 
       {/* 13 — Why WorkflowMitra / Testimonials Slider */}
+      {/* 
       <DeferredHomeSection minHeight={480}>
         <Suspense fallback={<div className="section-placeholder" style={{ minHeight: 480 }} />}>
           <TestimonialSlider />
         </Suspense>
-      </DeferredHomeSection>
+      </DeferredHomeSection> 
+      */}
 
       {/* 14 — Documentation & Onboarding Hub */}
       <DeferredHomeSection minHeight={380}>

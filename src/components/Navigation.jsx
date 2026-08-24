@@ -11,6 +11,7 @@ import {
   Briefcase, 
   Settings, 
   MessageCircle, 
+  MessageSquare,
   Code2, 
   Shield 
 } from 'lucide-react'
@@ -29,10 +30,22 @@ function Navigation() {
   const location = useLocation()
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 8
+          setIsScrolled(prev => (prev !== scrolled ? scrolled : prev))
+          ticking = false
+        })
+        ticking = true
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+
+    // Initial check on mount
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 

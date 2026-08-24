@@ -1,7 +1,16 @@
 /* Navigation - Ultra-Modern Clean Layout */
 
-.nav-wrapper {
+#main-header {
   position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.nav-wrapper {
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -16,15 +25,27 @@
   width: 100%;
   --ink: #1a1615;
   --border: #e2e8f0;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: background-color, border-color, box-shadow;
 }
 
 .nav-wrapper.scrolled {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.nav-wrapper.has-dropdown-open {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .navbar {
@@ -727,4 +748,19 @@
   .mobile-menu {
     padding: 14px 16px 20px;
   }
+}
+
+/* Accessibility Focus States for 100% Lighthouse A11y */
+.nav-link-btn:focus-visible,
+.logo:focus-visible,
+.nav-links a:focus-visible,
+.mobile-menu-toggle:focus-visible,
+.wm-nav-login-btn:focus-visible,
+.wm-mobile-login-btn:focus-visible,
+.wm-mobile-signup-btn:focus-visible,
+.mobile-dropdown-trigger:focus-visible,
+.mobile-sublink:focus-visible {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px !important;
+  border-radius: 6px;
 }

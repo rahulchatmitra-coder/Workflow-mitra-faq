@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, CheckCircle2, ChevronDown, Sparkles, HelpCircle, ArrowRight, Zap, Bot, Users, Headphones, ShieldCheck, Layers } from 'lucide-react';
+import { Check, CheckCircle2, ChevronDown, Sparkles, HelpCircle, ArrowRight, Zap, Bot, Users, Headphones, ShieldCheck, Layers, User, Flame, Briefcase } from 'lucide-react';
 import { SiZapier, SiMake, SiN8N } from 'react-icons/si';
 import PageSeo from '../components/PageSeo';
 import RollButton from '../components/RollButton';
@@ -475,39 +475,62 @@ function Pricing() {
             <div className="compare-table-responsive">
               <table className="compare-table">
                 <thead>
-                  <tr>
-                    <th className="th-feature">
-                      <div className="th-feature-main">
-                        <span className="th-feature-title">Plan Capabilities</span>
-                        <span className="th-feature-sub">Feature specifications</span>
-                      </div>
+                  <tr className="tr-plan-headers">
+                    <th className="th-feature" aria-hidden="true">
+                      <div className="th-feature-blank" />
                     </th>
                     
                     {/* Starter */}
                     <th className="th-tier th-tier-starter">
-                      <div className="th-tier-box">
-                        <span className="tier-head-title">Starter</span>
-                        <span className="tier-head-credits">10,000 tasks</span>
-                        <span className="tier-head-price">{isYearly ? '₹849' : '₹999'}<span className="tier-period">/mo</span></span>
+                      <div className="th-tier-card">
+                        <div className="th-tier-head-row">
+                          <User size={18} strokeWidth={2} className="th-plan-icon" />
+                          <span className="tier-head-title">Starter</span>
+                        </div>
+                        <RollButton
+                          href="https://app.workflowmitra.com/signup"
+                          variant="secondary"
+                          size="sm"
+                          className="th-tier-btn"
+                        >
+                          Get started
+                        </RollButton>
                       </div>
                     </th>
 
                     {/* Pro (Recommended) */}
                     <th className="th-tier th-tier-pro">
-                      <div className="th-tier-box pro-highlight-box">
-                        <span className="pro-head-badge">Most Popular</span>
-                        <span className="tier-head-title">Pro</span>
-                        <span className="tier-head-credits">20,000 tasks</span>
-                        <span className="tier-head-price">{isYearly ? '₹1,274' : '₹1,499'}<span className="tier-period">/mo</span></span>
+                      <div className="th-tier-card">
+                        <div className="th-tier-head-row">
+                          <Sparkles size={18} strokeWidth={2} className="th-plan-icon pro-icon" />
+                          <span className="tier-head-title">Pro</span>
+                        </div>
+                        <RollButton
+                          href="https://app.workflowmitra.com/signup"
+                          variant="dark"
+                          size="sm"
+                          className="th-tier-btn th-tier-btn-pro"
+                        >
+                          Start for free
+                        </RollButton>
                       </div>
                     </th>
 
                     {/* Scale */}
                     <th className="th-tier th-tier-scale">
-                      <div className="th-tier-box">
-                        <span className="tier-head-title">Scale</span>
-                        <span className="tier-head-credits">40,000 tasks</span>
-                        <span className="tier-head-price">{isYearly ? '₹2,294' : '₹2,699'}<span className="tier-period">/mo</span></span>
+                      <div className="th-tier-card">
+                        <div className="th-tier-head-row">
+                          <Briefcase size={18} strokeWidth={2} className="th-plan-icon" />
+                          <span className="tier-head-title">Scale</span>
+                        </div>
+                        <RollButton
+                          to="/contact"
+                          variant="secondary"
+                          size="sm"
+                          className="th-tier-btn"
+                        >
+                          Contact sales
+                        </RollButton>
                       </div>
                     </th>
                   </tr>
@@ -519,19 +542,19 @@ function Pricing() {
                       {/* Category Header Row */}
                       <tr className="tr-category-header">
                         <td colSpan={4} className="td-category-title">
-                          <div className="category-header-pill">
-                            {cat.icon === 'Zap' && <Zap size={14} className="cat-icon cat-zap" />}
-                            {cat.icon === 'Bot' && <Bot size={14} className="cat-icon cat-bot" />}
-                            {cat.icon === 'Users' && <Users size={14} className="cat-icon cat-users" />}
-                            {cat.icon === 'Headphones' && <Headphones size={14} className="cat-icon cat-headphone" />}
-                            <span>{cat.category}</span>
+                          <div className="category-title-row">
+                            {cat.icon === 'Zap' && <Zap size={18} strokeWidth={2.2} className="cat-icon cat-zap" />}
+                            {cat.icon === 'Bot' && <Bot size={18} strokeWidth={2.2} className="cat-icon cat-bot" />}
+                            {cat.icon === 'Users' && <Users size={18} strokeWidth={2.2} className="cat-icon cat-users" />}
+                            {cat.icon === 'Headphones' && <Headphones size={18} strokeWidth={2.2} className="cat-icon cat-headphone" />}
+                            <span className="cat-title-text">{cat.category}</span>
                           </div>
                         </td>
                       </tr>
 
-                      {/* Category Rows */}
+                      {/* Category Rows (1st Highlight Cloud Card, 2nd Normal White, 3rd Highlight Cloud Card...) */}
                       {cat.rows.map((row, rowIdx) => (
-                        <tr key={`row-${catIdx}-${rowIdx}`} className={rowIdx % 2 === 0 ? 'row-even' : 'row-odd'}>
+                        <tr key={`row-${catIdx}-${rowIdx}`} className={`tr-feature-row ${rowIdx % 2 === 0 ? 'row-highlight' : 'row-normal'}`}>
                           <td className="td-feature-title">
                             <div className="td-feature-name-wrap">
                               <span className="td-feature-name">{row.feature}</span>
@@ -543,9 +566,12 @@ function Pricing() {
                           <td className="td-val td-val-starter">
                             <div className="td-val-inner">
                               {row.isCheck && row.starter === 'Included' ? (
-                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
-                              ) : null}
-                              <span className="td-val-text">{row.starter}</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="wm-check-icon">
+                                  <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                              ) : (
+                                <span className="td-val-text">{row.starter}</span>
+                              )}
                             </div>
                           </td>
 
@@ -553,9 +579,12 @@ function Pricing() {
                           <td className="td-val td-val-pro">
                             <div className="td-val-inner">
                               {row.isCheck ? (
-                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
-                              ) : null}
-                              <span className="td-val-text font-bold text-dark">{row.pro}</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="wm-check-icon">
+                                  <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                              ) : (
+                                <span className="td-val-text font-bold text-dark">{row.pro}</span>
+                              )}
                               {row.badgePro && (
                                 <span className="td-pro-save-pill">{row.badgePro}</span>
                               )}
@@ -566,9 +595,12 @@ function Pricing() {
                           <td className="td-val td-val-scale">
                             <div className="td-val-inner">
                               {row.isCheck ? (
-                                <CheckCircle2 size={16} color="#059669" className="td-val-check" />
-                              ) : null}
-                              <span className="td-val-text font-medium">{row.scale}</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="wm-check-icon">
+                                  <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                              ) : (
+                                <span className="td-val-text font-medium">{row.scale}</span>
+                              )}
                             </div>
                           </td>
                         </tr>
