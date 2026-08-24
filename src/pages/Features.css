@@ -269,12 +269,12 @@
 
 .ft-branch-label-yes {
   background: #e4f6ec;
-  color: #1da35b;
+  color: #065f46;
 }
 
 .ft-branch-label-no {
   background: #f1f5f9;
-  color: #64748b;
+  color: #334155;
 }
 
 /* ─── 6 · Integrations ─── */

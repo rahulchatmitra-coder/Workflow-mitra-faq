@@ -268,21 +268,23 @@ export function WorkflowCanvas() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
-                padding: '6px 12px',
+                padding: '8px 12px',
+                minHeight: '36px',
                 fontSize: '12px',
                 fontWeight: 700,
-                color: '#3f3f46',
+                color: '#18181b',
                 background: 'transparent',
                 border: 'none',
                 borderRadius: '12px',
                 cursor: 'pointer',
               }}
+              aria-label="Previous Workflow"
               title="Previous Workflow"
             >
               <ChevronLeft size={14} />
               <span>Prev</span>
             </button>
-            <span style={{ fontSize: '11px', fontWeight: 800, padding: '0 6px', color: '#71717a' }}>
+            <span style={{ fontSize: '11px', fontWeight: 800, padding: '0 6px', color: '#27272a' }}>
               {activeFlowIndex + 1}/{workflows.length}
             </span>
             <button
@@ -291,7 +293,8 @@ export function WorkflowCanvas() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
-                padding: '6px 14px',
+                padding: '8px 14px',
+                minHeight: '36px',
                 fontSize: '12px',
                 fontWeight: 800,
                 color: '#ffffff',
@@ -300,6 +303,7 @@ export function WorkflowCanvas() {
                 borderRadius: '12px',
                 cursor: 'pointer',
               }}
+              aria-label="Next Workflow"
               title="Next Workflow"
             >
               <span>Next</span>

@@ -186,7 +186,8 @@
   align-items: center;
   gap: 6px;
   font-size: .85rem;
-  color: var(--muted);
+  color: #334155;
+  font-weight: 500;
 }
 .int-sort select {
   border: 1px solid var(--border);

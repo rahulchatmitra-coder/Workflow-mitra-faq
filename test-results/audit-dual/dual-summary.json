@@ -3,80 +3,80 @@
     "name": "Home",
     "path": "/",
     "desktop": {
-      "perf": 94,
+      "perf": 98,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
-      "cls": "0.04",
-      "lcp": "1.6 s"
+      "cls": "0.001",
+      "lcp": "0.9 s"
     },
     "mobile": {
-      "perf": 89,
-      "a11y": 96,
+      "perf": 64,
+      "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0",
-      "lcp": "3.2 s"
+      "lcp": "3.8 s"
     }
   },
   {
     "name": "Solutions",
     "path": "/solutions",
     "desktop": {
-      "perf": 100,
+      "perf": 97,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0.01",
-      "lcp": "0.5 s"
+      "lcp": "1.1 s"
     },
     "mobile": {
-      "perf": 89,
+      "perf": 79,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0.141",
-      "lcp": "2.5 s"
+      "lcp": "3.2 s"
     }
   },
   {
     "name": "Pricing",
     "path": "/pricing",
     "desktop": {
-      "perf": 100,
+      "perf": 96,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
-      "cls": "0.013",
-      "lcp": "0.5 s"
+      "cls": "0.012",
+      "lcp": "1.2 s"
     },
     "mobile": {
-      "perf": 92,
+      "perf": 81,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
-      "cls": "0.031",
-      "lcp": "2.5 s"
+      "cls": "0",
+      "lcp": "3.4 s"
     }
   },
   {
     "name": "Features",
     "path": "/features",
     "desktop": {
-      "perf": 100,
+      "perf": 94,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
       "cls": "0.013",
-      "lcp": "0.7 s"
+      "lcp": "0.9 s"
     },
     "mobile": {
-      "perf": 90,
+      "perf": 76,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
-      "cls": "0.055",
-      "lcp": "2.9 s"
+      "cls": "0.025",
+      "lcp": "3.2 s"
     }
   },
   {
@@ -88,10 +88,10 @@
       "bp": 100,
       "seo": 100,
       "cls": "0.009",
-      "lcp": "0.5 s"
+      "lcp": "0.6 s"
     },
     "mobile": {
-      "perf": 95,
+      "perf": 94,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
@@ -103,12 +103,12 @@
     "name": "Integrations",
     "path": "/integrations",
     "desktop": {
-      "perf": 100,
+      "perf": 94,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
-      "cls": "0.043",
-      "lcp": "0.5 s"
+      "cls": "0.039",
+      "lcp": "1.7 s"
     },
     "mobile": {
       "perf": 95,
@@ -128,15 +128,15 @@
       "bp": 100,
       "seo": 100,
       "cls": "0.014",
-      "lcp": "0.7 s"
+      "lcp": "0.6 s"
     },
     "mobile": {
-      "perf": 90,
+      "perf": 88,
       "a11y": 92,
       "bp": 100,
       "seo": 100,
-      "cls": "0.034",
-      "lcp": "2.8 s"
+      "cls": "0.032",
+      "lcp": "3.5 s"
     }
   },
   {
@@ -148,15 +148,15 @@
       "bp": 100,
       "seo": 100,
       "cls": "0.007",
-      "lcp": "0.5 s"
+      "lcp": "0.6 s"
     },
     "mobile": {
-      "perf": 96,
+      "perf": 88,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
-      "cls": "0.043",
-      "lcp": "2.3 s"
+      "cls": "0.03",
+      "lcp": "3.4 s"
     }
   },
   {
@@ -168,15 +168,15 @@
       "bp": 100,
       "seo": 100,
       "cls": "0.003",
-      "lcp": "0.5 s"
+      "lcp": "0.7 s"
     },
     "mobile": {
-      "perf": 95,
+      "perf": 91,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0.03",
-      "lcp": "2.5 s"
+      "lcp": "3.1 s"
     }
   },
   {
@@ -187,16 +187,16 @@
       "a11y": 100,
       "bp": 100,
       "seo": 100,
-      "cls": "0.014",
-      "lcp": "0.6 s"
+      "cls": "0.012",
+      "lcp": "0.7 s"
     },
     "mobile": {
-      "perf": 94,
+      "perf": 91,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0.036",
-      "lcp": "2.4 s"
+      "lcp": "3.1 s"
     }
   },
   {
@@ -208,35 +208,35 @@
       "bp": 100,
       "seo": 100,
       "cls": "0.014",
-      "lcp": "0.7 s"
+      "lcp": "0.8 s"
     },
     "mobile": {
-      "perf": 83,
+      "perf": 79,
       "a11y": 100,
       "bp": 100,
       "seo": 100,
       "cls": "0.157",
-      "lcp": "3.3 s"
+      "lcp": "4.0 s"
     }
   },
   {
     "name": "Credentials",
     "path": "/credentials",
     "desktop": {
-      "perf": 100,
+      "perf": 99,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
       "cls": "0.018",
-      "lcp": "0.8 s"
+      "lcp": "0.9 s"
     },
     "mobile": {
-      "perf": 86,
+      "perf": 84,
       "a11y": 96,
       "bp": 100,
       "seo": 100,
-      "cls": "0.085",
-      "lcp": "3.5 s"
+      "cls": "0.03",
+      "lcp": "4.0 s"
     }
   },
   {
@@ -251,12 +251,12 @@
       "lcp": "0.7 s"
     },
     "mobile": {
-      "perf": 87,
+      "perf": 77,
       "a11y": 95,
       "bp": 100,
       "seo": 100,
-      "cls": "0.11",
-      "lcp": "2.9 s"
+      "cls": "0.166",
+      "lcp": "4.0 s"
     }
   },
   {
@@ -271,12 +271,12 @@
       "lcp": "0.7 s"
     },
     "mobile": {
-      "perf": 89,
+      "perf": 86,
       "a11y": 94,
       "bp": 100,
       "seo": 100,
-      "cls": "0.031",
-      "lcp": "2.9 s"
+      "cls": "0.032",
+      "lcp": "3.7 s"
     }
   }
 ]

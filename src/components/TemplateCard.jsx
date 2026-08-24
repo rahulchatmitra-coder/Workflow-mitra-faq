@@ -62,7 +62,6 @@ const TemplateCard = ({ template, index }) => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          aria-label={`Use Template — ${template.title}`}
         >
           Use Template
         </RollButton>

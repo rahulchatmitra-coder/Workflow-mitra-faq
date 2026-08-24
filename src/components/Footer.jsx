@@ -46,7 +46,7 @@ function IconYoutube({ size = 16 }) {
 
 export default function Footer() {
   return (
-    <footer className="wm-ai-footer">
+    <footer id="main-footer" className="wm-ai-footer" role="contentinfo" aria-label="Site footer">
       <div className="wm-footer-container">
 
         {/* ─── MAIN FOOTER GRID: BRAND INFO (LEFT) + 4 LINK COLUMNS (RIGHT) ─── */}

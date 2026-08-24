@@ -36,31 +36,41 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.25,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.98,
-      touchMultiplier: 1.5,
-      infinite: false,
-    })
+    // Enable Lenis smooth scroll on fine-pointer (mouse/desktop) devices without blocking mobile FCP
+    const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches))
+    if (isTouch) return
 
-    window.lenis = lenis
-
+    let lenis
     let rafId
-    function raf(time) {
-      lenis.raf(time)
-      rafId = requestAnimationFrame(raf)
-    }
+    const initTimer = setTimeout(() => {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.98,
+        touchMultiplier: 1,
+        infinite: false,
+      })
 
-    rafId = requestAnimationFrame(raf)
+      window.lenis = lenis
+
+      function raf(time) {
+        lenis.raf(time)
+        rafId = requestAnimationFrame(raf)
+      }
+
+      rafId = requestAnimationFrame(raf)
+    }, 50)
 
     return () => {
+      clearTimeout(initTimer)
       if (rafId) cancelAnimationFrame(rafId)
-      lenis.destroy()
-      delete window.lenis
+      if (lenis) {
+        lenis.destroy()
+        delete window.lenis
+      }
     }
   }, [])
 
@@ -70,7 +80,7 @@ function App() {
         <div className="app">
           <ScrollProgress />
           <Navigation />
-          <main>
+          <main id="main-content" role="main">
             <Suspense fallback={<div className="route-loading" aria-hidden="true" />}>
               <Routes>
                 <Route path="/" element={<Home />} />

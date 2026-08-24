@@ -151,12 +151,7 @@ export default function HeroAnimated() {
     <section className="hero-animated" id="hero-section" ref={containerRef}>
       {/* Atmosphere & Cloud Background */}
       <div className="hero-sky-atmosphere" aria-hidden="true">
-        <motion.div 
-          className="hero-cloud-layer cloud-left"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 0.96, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-cloud-layer cloud-left">
           <img 
             src="/images/hero-cloud-left.webp"
             alt=""
@@ -166,14 +161,9 @@ export default function HeroAnimated() {
             fetchpriority="high"
             className="hero-cloud-img"
           />
-        </motion.div>
+        </div>
         
-        <motion.div 
-          className="hero-cloud-layer cloud-right"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 0.96, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-cloud-layer cloud-right">
           <img 
             src="/images/hero-cloud-right.webp"
             alt=""
@@ -183,7 +173,7 @@ export default function HeroAnimated() {
             fetchpriority="high"
             className="hero-cloud-img"
           />
-        </motion.div>
+        </div>
         
         <div className="hero-sky-vignette" />
       </div>
@@ -193,30 +183,15 @@ export default function HeroAnimated() {
             1. HERO HEADLINE & VALUE PROPOSITION (DREELIO COMPOSITION & ENTRANCE)
             ============================================================== */}
         <div className="hero-header-block">
-          <motion.h1 
-            className="hero-main-headline"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <h1 className="hero-main-headline">
             Run your business on AI workflows like a pro
-          </motion.h1>
+          </h1>
 
-          <motion.p 
-            className="hero-subheadline"
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <p className="hero-subheadline">
             All-in-one AI automation platform to connect your apps, orchestrate intelligent agents, and eliminate repetitive tasks without the complexity.
-          </motion.p>
+          </p>
 
-          <motion.div 
-            className="hero-action-group"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div className="hero-action-group">
             <RollButton
               href="https://app.workflowmitra.com/signup"
               variant="dark"
@@ -235,7 +210,7 @@ export default function HeroAnimated() {
             >
               Get 1-on-1 Help
             </RollButton>
-          </motion.div>
+          </div>
         </div>
 
         {/* ==============================================================

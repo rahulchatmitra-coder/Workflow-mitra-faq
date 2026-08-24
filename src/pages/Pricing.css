@@ -148,7 +148,7 @@
 .axvio-save-tag {
   font-size: 11.5px;
   font-weight: 750;
-  color: #059669;
+  color: #065f46;
   background: #ecfdf5;
   padding: 2px 7px;
   border-radius: 9999px;
@@ -157,7 +157,7 @@
 
 .axvio-billing-tab.active .axvio-save-tag {
   background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
+  color: #a7f3d0;
 }
 
 /* ─── 4. Three-Column Pricing Cards Grid ─── */
@@ -282,7 +282,7 @@
 
 .axvio-price-strikethrough {
   font-size: 15px;
-  color: #94a3b8;
+  color: #64748b;
   text-decoration: line-through;
   font-weight: 600;
 }
@@ -290,7 +290,7 @@
 .axvio-savings-chip {
   font-size: 11px;
   font-weight: 750;
-  color: #059669;
+  color: #065f46;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   padding: 2px 7px;

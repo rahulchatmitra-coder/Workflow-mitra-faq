@@ -92,13 +92,13 @@ function Navigation() {
   }
 
   return (
-    <>
+    <header id="main-header" role="banner">
       <div 
         ref={navRef}
         className={`nav-wrapper ${isScrolled ? 'scrolled' : ''} ${activeDropdown ? 'has-dropdown-open' : ''}`}
         onMouseLeave={handleDropdownLeave}
       >
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
           <div className="navbar-container">
             {/* Logo */}
             <Link 
@@ -381,7 +381,7 @@ function Navigation() {
           )}
         </nav>
       </div>
-    </>
+    </header>
   )
 }
 
