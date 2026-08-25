@@ -511,7 +511,7 @@ export default function InteractivePlayer({
                       decoding="async"
                       width="1280"
                       height="720"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
                     />
                   </motion.div>
                 ) : (
